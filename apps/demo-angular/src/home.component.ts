@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 	demos = [
 	{
-		name: 'add a package first'
+		name: 'nativescript-label-marquee'
 	}
 ];
 }

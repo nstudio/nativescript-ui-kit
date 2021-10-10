@@ -10,11 +10,11 @@
       "~/*": [
         "src/*"
       ],
-      "@nativescript/*": [
-        "../../dist/packages/*"
-      ],
       "@demo/shared": [
         "../../tools/demo/index.ts"
+      ],
+      "@nstudio/*": [
+        "../../dist/packages/*"
       ]
     }
   },

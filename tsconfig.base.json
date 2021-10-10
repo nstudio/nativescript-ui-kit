@@ -23,11 +23,11 @@
       }
     ],
     "paths": {
-      "@nativescript/*": [
-        "packages/*"
-      ],
       "@demo/shared": [
         "tools/demo/index.ts"
+      ],
+      "@nstudio/*": [
+        "packages/*"
       ]
     }
   },

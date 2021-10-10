@@ -57,12 +57,19 @@ module.exports = {
 			},
 		},
 		'⚙️': {
-			script: `npx cowsay "@nativescript/* packages will keep your ⚙️ cranking"`,
-			description: '_____________  @nativescript/*  _____________',
+			script: `npx cowsay "@nstudio/* packages will keep your ⚙️ cranking"`,
+			description: '_____________  @nstudio/*  _____________',
 		},
 		// packages
 		// build output is always in dist/packages
-		'@nativescript': {
+		'@nstudio': {
+			// @nstudio/nativescript-label-marquee
+			'nativescript-label-marquee': {
+				build: {
+					script: 'nx run nativescript-label-marquee:build.all',
+					description: '@nstudio/nativescript-label-marquee: Build',
+				},
+			},
 			'build-all': {
 				script: 'nx run all:build',
 				description: 'Build all packages',
@@ -73,6 +80,10 @@ module.exports = {
 			description: '_____________  Focus (VS Code supported)  _____________',
 		},
 		focus: {
+			'nativescript-label-marquee': {
+				script: 'nx run nativescript-label-marquee:focus',
+				description: 'Focus on @nstudio/nativescript-label-marquee',
+			},
 			reset: {
 				script: 'nx run all:focus',
 				description: 'Reset Focus',

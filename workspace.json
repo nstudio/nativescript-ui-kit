@@ -78,14 +78,16 @@
       "projectType": "application",
       "targets": {
         "build": {
+          "executor": "@nrwl/workspace:run-commands",
           "outputs": [
             "dist/packages"
           ],
           "options": {
-            "commands": [],
+            "commands": [
+              "nx run nativescript-label-marquee:build.all"
+            ],
             "parallel": false
-          },
-          "executor": "@nrwl/workspace:run-commands"
+          }
         },
         "focus": {
           "outputs": [
@@ -101,6 +103,51 @@
         }
       },
       "sourceRoot": ""
+    },
+    "nativescript-label-marquee": {
+      "root": "packages/nativescript-label-marquee",
+      "projectType": "library",
+      "sourceRoot": "packages/nativescript-label-marquee",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/nativescript-label-marquee",
+            "tsConfig": "packages/nativescript-label-marquee/tsconfig.json",
+            "packageJson": "packages/nativescript-label-marquee/package.json",
+            "main": "packages/nativescript-label-marquee/index.d.ts",
+            "assets": [
+              "packages/nativescript-label-marquee/*.md",
+              "packages/nativescript-label-marquee/index.d.ts",
+              "LICENSE",
+              {
+                "glob": "**/*",
+                "input": "packages/nativescript-label-marquee/platforms/",
+                "output": "./platforms/"
+              }
+            ]
+          }
+        },
+        "build.all": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx run nativescript-label-marquee:build",
+              "node tools/scripts/build-finish.ts nativescript-label-marquee"
+            ],
+            "parallel": false
+          }
+        },
+        "focus": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx g @nativescript/plugin-tools:focus-packages nativescript-label-marquee"
+            ],
+            "parallel": false
+          }
+        }
+      }
     }
   },
   "cli": {
