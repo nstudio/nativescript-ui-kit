@@ -7,17 +7,22 @@
   <StackLayout class="p-20">
     <ScrollView class="h-full">
       <StackLayout>
-        <Label class="describe" text="LabelMarquee with fadeLength:150, scrollDuration:20" />
-        <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="150" scrollDuration="20"></lm:LabelMarquee>
+        <android>
+          <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="150" scrollDuration="20"></lm:LabelMarquee>
+        </android>
+        <ios>
+          <Label class="describe" text="LabelMarquee with fadeLength:150, scrollDuration:20" />
+          <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="150" scrollDuration="20"></lm:LabelMarquee>
 
-        <Label class="describe" text="LabelMarquee with fadeLength:10, scrollDuration:5" />
-        <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="10" scrollDuration="5"></lm:LabelMarquee>
+          <Label class="describe" text="LabelMarquee with fadeLength:10, scrollDuration:5" />
+          <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="10" scrollDuration="5"></lm:LabelMarquee>
 
-        <Label class="describe" text="LabelMarquee with fadeLength:35, scrollDuration:8" />
-        <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="35" scrollDuration="8"></lm:LabelMarquee>
+          <Label class="describe" text="LabelMarquee with fadeLength:35, scrollDuration:8" />
+          <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="35" scrollDuration="8"></lm:LabelMarquee>
 
-        <Label class="describe" text="LabelMarquee with labelize:true to behave like normal Label" />
-        <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="15" scrollDuration="8" labelize="true"></lm:LabelMarquee>
+          <Label class="describe" text="LabelMarquee with labelize:true to behave like normal Label" />
+          <lm:LabelMarquee class="label-marquee" text="Lorem Ipsum; this is a long string of text that will animate because it's longer than the width of the view." fadeLength="15" scrollDuration="8" labelize="true"></lm:LabelMarquee>
+        </ios>
       </StackLayout>
     </ScrollView>
   </StackLayout>

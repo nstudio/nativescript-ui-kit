@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-label-marquee",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "A Label which can scroll with a marquee effect when the text outgrows the available width.",
   "main": "index",
   "typings": "index.d.ts",

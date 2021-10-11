@@ -2,6 +2,11 @@ import { fadeLengthProperty, labelizeProperty, LabelMarqueeCommon, scrollDuratio
 
 export class LabelMarquee extends LabelMarqueeCommon {
 
+    // @ts-ignore
+    get ios(): MarqueeLabel {
+        return this.nativeView;
+    }
+    
     createNativeView() {
         return MarqueeLabel.alloc().init();
     }
@@ -10,11 +15,6 @@ export class LabelMarquee extends LabelMarqueeCommon {
         const nativeView = <MarqueeLabel>this.nativeView;
         nativeView.fadeLength = 10;
         nativeView.scrollDuration = 8;
-    }
-
-    // @ts-ignore
-    get ios(): MarqueeLabel {
-        return this.nativeView;
     }
 
     [fadeLengthProperty.setNative](value: number) {
