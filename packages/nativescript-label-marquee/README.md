@@ -22,6 +22,10 @@ ns plugin add @nstudio/nativescript-label-marquee
 </Page>
 ```
 
+* `labelize: boolean` Turn scrolling off to display as normal `Label`.
+* `fadeLength: number` (iOS Only) the width of the faded text on either side while scrolling.
+* `scrollDuration: number` (iOS Only) speed of the scrolling text measured by duration in seconds to scroll from start to finish. 
+
 ### Angular
 
 ```

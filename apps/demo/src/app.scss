@@ -10,4 +10,13 @@
 
 .label-marquee {
     font-size: 18;
+
+    &.larger {
+        font-size: 24;
+
+        &.colored {
+            color: purple;
+            font-size: 26;
+        }
+    }
 }

@@ -18,17 +18,14 @@ export class LabelMarquee extends LabelMarqueeCommon {
     }
 
     [fadeLengthProperty.setNative](value: number) {
-        // console.log('fadeLengthProperty:', value)
 		this.ios.fadeLength = value;
 	}
 
     [scrollDurationProperty.setNative](value: number) {
-        // console.log('scrollDurationProperty:', value)
 		this.ios.scrollDuration = value;
 	}
 
     [labelizeProperty.setNative](value: boolean) {
-        // console.log('scrollDurationProperty:', value)
 		this.ios.labelize = value;
 	}
 }
