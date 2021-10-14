@@ -12,9 +12,8 @@ export class LabelMarquee extends LabelMarqueeCommon {
     }
 
     initNativeView() {
-        const nativeView = <MarqueeLabel>this.nativeView;
-        nativeView.fadeLength = 10;
-        nativeView.scrollDuration = 8;
+        this.ios.fadeLength = 10;
+        this.ios.scrollDuration = 8;
     }
 
     [fadeLengthProperty.setNative](value: number) {
