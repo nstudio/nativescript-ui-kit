@@ -5,7 +5,8 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee"
+    "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
+    "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer"
   },
   "devDependencies": {
     "@nativescript/android": "~8.1.1",

@@ -70,6 +70,13 @@ module.exports = {
 					description: '@nstudio/nativescript-label-marquee: Build',
 				},
 			},
+			// @nstudio/nativescript-shimmer
+			'nativescript-shimmer': {
+				build: {
+					script: 'nx run nativescript-shimmer:build.all',
+					description: '@nstudio/nativescript-shimmer: Build',
+				},
+			},
 			'build-all': {
 				script: 'nx run all:build',
 				description: 'Build all packages',
@@ -83,6 +90,10 @@ module.exports = {
 			'nativescript-label-marquee': {
 				script: 'nx run nativescript-label-marquee:focus',
 				description: 'Focus on @nstudio/nativescript-label-marquee',
+			},
+			'nativescript-shimmer': {
+				script: 'nx run nativescript-shimmer:focus',
+				description: 'Focus on @nstudio/nativescript-shimmer',
 			},
 			reset: {
 				script: 'nx run all:focus',

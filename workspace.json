@@ -84,7 +84,8 @@
           ],
           "options": {
             "commands": [
-              "nx run nativescript-label-marquee:build.all"
+              "nx run nativescript-label-marquee:build.all",
+              "nx run nativescript-shimmer:build.all"
             ],
             "parallel": false
           }
@@ -143,6 +144,51 @@
           "options": {
             "commands": [
               "nx g @nativescript/plugin-tools:focus-packages nativescript-label-marquee"
+            ],
+            "parallel": false
+          }
+        }
+      }
+    },
+    "nativescript-shimmer": {
+      "root": "packages/nativescript-shimmer",
+      "projectType": "library",
+      "sourceRoot": "packages/nativescript-shimmer",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/nativescript-shimmer",
+            "tsConfig": "packages/nativescript-shimmer/tsconfig.json",
+            "packageJson": "packages/nativescript-shimmer/package.json",
+            "main": "packages/nativescript-shimmer/index.d.ts",
+            "assets": [
+              "packages/nativescript-shimmer/*.md",
+              "packages/nativescript-shimmer/index.d.ts",
+              "LICENSE",
+              {
+                "glob": "**/*",
+                "input": "packages/nativescript-shimmer/platforms/",
+                "output": "./platforms/"
+              }
+            ]
+          }
+        },
+        "build.all": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx run nativescript-shimmer:build",
+              "node tools/scripts/build-finish.ts nativescript-shimmer"
+            ],
+            "parallel": false
+          }
+        },
+        "focus": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx g @nativescript/plugin-tools:focus-packages nativescript-shimmer"
             ],
             "parallel": false
           }
