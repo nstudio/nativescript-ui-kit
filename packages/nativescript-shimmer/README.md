@@ -1,12 +1,24 @@
 # @nstudio/nativescript-shimmer
 
+Shimmer for NativeScript
+
 ```javascript
-ns plugin add @nstudio/nativescript-shimmer
+npm install @nstudio/nativescript-shimmer
 ```
 
 ## Usage
 
-// TODO
+```
+import { Shimmer } from '@nstudio/nativescript-shimmer';
+
+loadedView(args) {
+    view = args.object;
+    // start shimmer
+    Shimmer.start(view);
+    // stop shimmer
+    Shimmer.stop(view);
+}
+```
 
 ## License
 

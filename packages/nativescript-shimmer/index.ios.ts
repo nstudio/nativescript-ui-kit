@@ -1,10 +1,18 @@
-import { ShimmerCommon, ShimmerDirection } from './common';
-import { View } from '@nativescript/core';
+import { Color, View } from '@nativescript/core';
+import { darkColors, darkColorValues, lightColors, lightColorValues, ShimmerCommon, ShimmerDirection } from './common';
 
 export class Shimmer extends ShimmerCommon {
-  static start(view: View, speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE) {
+  static start(view: View, speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE, lightColor = lightColorValues[0], darkColor = darkColorValues[0]) {
     if (view?.ios) {
-      view.ios.startShimmeringWithSpeedDirectionRepeatCount(speed, direction, repeat);
+      if (!lightColorValues.includes(lightColor)) {
+        lightColorValues.push(lightColor);
+        lightColors[lightColor] = new Color(lightColor);
+      }
+      if (!darkColorValues.includes(darkColor)) {
+        darkColorValues.push(darkColor);
+        darkColors[darkColor] = new Color(darkColor);
+      }
+      view.ios.startShimmeringWithSpeedDirectionRepeatCountLightColorBlackColor(speed, direction, repeat, lightColors[lightColor].ios.CGColor, darkColors[darkColor].ios.CGColor);
     }
     // startShimmering(view);
   }

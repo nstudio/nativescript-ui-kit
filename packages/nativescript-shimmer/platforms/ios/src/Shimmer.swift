@@ -13,12 +13,10 @@ extension UIView {
   @objc func startShimmering(
     speed: Float = 1.4,
     direction: Direction = .leftToRight,
-    repeatCount: Float = MAXFLOAT
+    repeatCount: Float = MAXFLOAT,
+    lightColor: CGColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1.0).cgColor,
+    blackColor: CGColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
   ) {
-    // Color
-     let lightColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1.0).cgColor;
-    // let lightColor = UIColor.white.cgColor;//(red: 1, green: 1, blue: 1, alpha: 1).cgColor;
-    let blackColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8).cgColor;
     
     // Gradient
     let gradientLayer = CAGradientLayer()
