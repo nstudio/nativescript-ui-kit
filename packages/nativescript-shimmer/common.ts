@@ -1,4 +1,4 @@
-import { Color, Observable } from '@nativescript/core';
+import { Color, ContentView } from '@nativescript/core';
 
 export enum ShimmerDirection {
     topToBottom,
@@ -16,5 +16,5 @@ lightColors[lightColorValues[0]] = new Color(lightColorValues[0]);
 export let darkColors: { [key: string]: Color } = {};
 darkColors[darkColorValues[0]] = new Color(darkColorValues[0]);
 
-export class ShimmerCommon extends Observable {
+export class ShimmerCommon extends ContentView {
 }
