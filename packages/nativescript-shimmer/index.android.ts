@@ -1,6 +1,6 @@
 import { View, Color } from '@nativescript/core';
 import { darkColorValues, lightColorValues, ShimmerCommon, ShimmerDirection } from './common';
-
+export { ShimmerDirection } from './common';
 declare const io;
 
 export class Shimmer extends ShimmerCommon {
