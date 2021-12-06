@@ -14,7 +14,7 @@ export class Shimmer extends ShimmerCommon {
     return new io.nstudio.ui.Shimmer(this._context);
   }
 
-  start(speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE, lightColor = lightColorValues[0], darkColor = darkColorValues[0]) {
+  start(speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor) {
     Shimmer.cacheColors(lightColor, darkColor);
     this.android.start(speed * 1000, direction, repeat === Number.MAX_VALUE ? -1 : repeat, lightColors[lightColor].android, darkColors[darkColor].android);
   }
@@ -34,7 +34,7 @@ export class Shimmer extends ShimmerCommon {
     }
   }
 
-  static start(view: View, speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE, lightColor = lightColorValues[0], darkColor = darkColorValues[0]): void {
+  static start(view: View, speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor): void {
     if (view && view instanceof Shimmer) {
       view.start(speed, direction, repeat, lightColor, darkColor);
     } else {

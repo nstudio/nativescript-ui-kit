@@ -38,13 +38,13 @@ registerElement('Shimmer', () => Shimmer);
 
 ### Properties
 
-* `autoStart: boolean`: Default to `true`. `<Shimmer autoStart="false">` to disable starting automatically
+- `autoStart: boolean`: Default to `true`. `<Shimmer autoStart="false">` to disable starting automatically
 
 **iOS Only**:
 
 You can start shimmer on any view statically:
 
-```
+```ts
 import { Shimmer } from '@nstudio/nativescript-shimmer';
 
 loadedView(args) {
@@ -57,6 +57,20 @@ loadedView(args) {
 ```
 
 Android will always need a Shimmer instance to start the effect however you can statically stop the shimmer effect if that instance is passed into `Shimmer.stop(view /* shimmer instance */)`.
+
+- `Shimmer.defaults`: you can adjust any of the default effect settings in your app (often in `app.ts` or `main.ts` before bootstrap depending on your flavor) to avoid passing in the same settings each time the effect is configured:
+
+```ts
+Shimmer.defaults = {
+    speed: 0.9,
+    direction: ShimmerDirection.topToBottom,
+    repeat: 4,
+    lightColor: 'rgba(255,255,255,.8)',
+    darkColor: 'rgba(0,0,0,.7)',
+};
+
+// bootstrap app...
+```
 
 ## License
 

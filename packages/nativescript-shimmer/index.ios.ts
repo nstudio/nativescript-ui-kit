@@ -5,7 +5,7 @@ export { ShimmerDirection } from './common';
 
 export class Shimmer extends ShimmerCommon {
 
-  start(speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE, lightColor = lightColorValues[0], darkColor = darkColorValues[0]) {
+  start(speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor) {
     Shimmer.start(this, speed, direction, repeat, lightColor, darkColor);
   }
 
@@ -24,7 +24,7 @@ export class Shimmer extends ShimmerCommon {
     }
   }
 
-  static start(view: View, speed = 1.1, direction: ShimmerDirection = ShimmerDirection.leftToRight, repeat = Number.MAX_VALUE, lightColor = lightColorValues[0], darkColor = darkColorValues[0]) {
+  static start(view: View, speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor) {
     if (view?.ios) {
       Shimmer.cacheColors(lightColor, darkColor);
       view.ios.startShimmeringWithSpeedDirectionRepeatCountLightColorBlackColor(speed, direction, repeat, lightColors[lightColor].ios.CGColor, darkColors[darkColor].ios.CGColor);

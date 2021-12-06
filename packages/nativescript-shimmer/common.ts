@@ -18,6 +18,20 @@ darkColors[darkColorValues[0]] = new Color(darkColorValues[0]);
 
 export class ShimmerCommon extends ContentView {
   protected _autoStart = true;
+  static defaults: {
+    speed?: number;
+    direction?: ShimmerDirection;
+    repeat?: number;
+    lightColor?: string;
+    darkColor?: string;
+  } = {
+    speed: 1.1,
+    direction: ShimmerDirection.leftToRight, 
+    repeat: Number.MAX_VALUE, 
+    lightColor: lightColorValues[0],
+    darkColor: darkColorValues[0]
+  };
+
   static cacheColors(lightColor: string, darkColor: string) {
     if (!lightColorValues.includes(lightColor)) {
       lightColorValues.push(lightColor);
