@@ -1,27 +1,37 @@
 @import 'nativescript-theme-core/scss/light';
 @import 'nativescript-theme-core/scss/index';
 
+Button {
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 1;
+  text-transform: capitalize;
+  android-elevation: 0;
+  android-dynamic-elevation-offset: 0;
+  padding: 0;
+  margin: 0;
+}
 .describe {
-    color: #ababab;
-    font-size: 13;
-    margin-top: 25;
-    margin-bottom: 10;
+  color: #ababab;
+  font-size: 13;
+  margin-top: 25;
+  margin-bottom: 10;
 }
 
 .label-marquee {
-    font-size: 18;
+  font-size: 18;
 
-    &.larger {
-        font-size: 24;
+  &.larger {
+    font-size: 24;
 
-        &.colored {
-            color: purple;
-            font-size: 26;
-        }
+    &.colored {
+      color: purple;
+      font-size: 26;
     }
+  }
 }
 
 .action-bar {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
