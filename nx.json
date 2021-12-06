@@ -25,6 +25,9 @@
     },
     "nativescript-label-marquee": {
       "tags": []
+    },
+    "nativescript-shimmer": {
+      "tags": []
     }
   },
   "workspaceLayout": {
