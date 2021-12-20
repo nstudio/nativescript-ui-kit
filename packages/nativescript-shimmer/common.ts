@@ -18,6 +18,10 @@ darkColors[darkColorValues[0]] = new Color(darkColorValues[0]);
 
 export class ShimmerCommon extends ContentView {
   protected _autoStart = true;
+  /**
+   * Enable various logs which could help in debugging
+   */
+  static debug = false;
   static defaults: {
     speed?: number;
     direction?: ShimmerDirection;

@@ -41,7 +41,7 @@ export class Shimmer extends ShimmerCommon {
   static start(view: View, speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor): void {
     if (view && view instanceof Shimmer) {
       view.start(speed, direction, repeat, lightColor, darkColor);
-    } else {
+    } else if (Shimmer.debug) {
       console.log(viewNote);
     }
   }
@@ -49,7 +49,7 @@ export class Shimmer extends ShimmerCommon {
   static stop(view: View): void {
     if (view?.android?.stopShimmer) {
       view.android.stopShimmer();
-    } else {
+    } else if (Shimmer.debug) {
       console.log(viewNote);
     }
   }

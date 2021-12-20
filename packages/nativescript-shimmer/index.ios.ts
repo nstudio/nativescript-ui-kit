@@ -1,5 +1,5 @@
-import { Color, View } from '@nativescript/core';
-import { autoStartProperty, darkColors, darkColorValues, lightColors, lightColorValues, ShimmerCommon, ShimmerDirection } from './common';
+import { View } from '@nativescript/core';
+import { autoStartProperty, darkColors, lightColors, ShimmerCommon, ShimmerDirection } from './common';
 
 export { ShimmerDirection } from './common';
 
