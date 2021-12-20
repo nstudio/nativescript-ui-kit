@@ -15,12 +15,16 @@ export class Shimmer extends ShimmerCommon {
   }
 
   start(speed = Shimmer.defaults.speed, direction: ShimmerDirection = Shimmer.defaults.direction, repeat = Shimmer.defaults.repeat, lightColor = Shimmer.defaults.lightColor, darkColor = Shimmer.defaults.darkColor) {
-    Shimmer.cacheColors(lightColor, darkColor);
-    this.android.start(speed * 1000, direction, repeat === Number.MAX_VALUE ? -1 : repeat, lightColors[lightColor].android, darkColors[darkColor].android);
+    if (this.android) {
+      Shimmer.cacheColors(lightColor, darkColor);
+      this.android.start(speed * 1000, direction, repeat === Number.MAX_VALUE ? -1 : repeat, lightColors[lightColor].android, darkColors[darkColor].android);
+    }
   }
 
   stop() {
-    this.android.stopShimmer();
+    if (this.android) {
+      this.android.stopShimmer();
+    }
   }
 
   [autoStartProperty.setNative](value: boolean) {
