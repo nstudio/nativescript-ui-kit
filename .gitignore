@@ -9,6 +9,7 @@
 node_modules
 package-lock.json
 yarn.lock
+.npmrc
 
 # IDEs and editors
 /.idea
@@ -42,6 +43,10 @@ Thumbs.db
 
 *.tgz
 packages/**/angular/dist
+
+# android
+.idea
+*.iml
 
 # experiments
 shimmer-android
