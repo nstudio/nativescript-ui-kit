@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-shimmer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shimmer for NativeScript",
   "main": "index",
   "typings": "index.d.ts",
