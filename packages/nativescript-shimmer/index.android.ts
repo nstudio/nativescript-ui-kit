@@ -23,7 +23,7 @@ export class Shimmer extends ShimmerCommon {
 
   stop() {
     if (this.android) {
-      this.android.stopShimmer();
+      this.android.hideShimmer();
     }
   }
 
@@ -35,6 +35,8 @@ export class Shimmer extends ShimmerCommon {
     super.onLoaded();
     if (this._autoStart) {
       this.start();
+    } else {
+      this.stop();
     }
   }
 
@@ -47,8 +49,8 @@ export class Shimmer extends ShimmerCommon {
   }
 
   static stop(view: View): void {
-    if (view?.android?.stopShimmer) {
-      view.android.stopShimmer();
+    if (view?.android?.hideShimmer) {
+      view.android.hideShimmer();
     } else if (Shimmer.debug) {
       console.log(viewNote);
     }
