@@ -13,25 +13,20 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {
-    "demo": {
-      "tags": []
-    },
-    "demo-angular": {
-      "tags": []
-    },
-    "all": {
-      "tags": []
-    },
-    "nativescript-label-marquee": {
-      "tags": []
-    },
-    "nativescript-shimmer": {
-      "tags": []
-    }
-  },
   "workspaceLayout": {
     "appsDir": "apps",
     "libsDir": "packages"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "build.all", "lint", "test", "e2e"],
+        "runtimeCacheInputs": ["node -v"]
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
   }
 }

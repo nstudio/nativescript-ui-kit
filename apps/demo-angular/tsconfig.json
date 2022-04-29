@@ -1,26 +1,13 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDirs": [
-      ".",
-      "../.."
-    ],
-    "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "src/*"
-      ],
-      "@demo/shared": [
-        "../../tools/demo/index.ts"
-      ],
-      "@nstudio/*": [
-        "../../dist/packages/*"
-      ]
+      "~/*": ["src/*"],
+      "@demo/shared": ["tools/demo/index.ts"],
+      "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
+      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"]
     }
   },
-  "files": [
-    "./references.d.ts",
-    "./src/main.ts",
-    "./src/polyfills.ts"
-  ]
+  "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],
+  "include": ["../../packages/**/references.d.ts"]
 }

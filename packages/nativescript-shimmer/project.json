@@ -1,0 +1,63 @@
+{
+  "root": "packages/nativescript-shimmer",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-shimmer",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-shimmer",
+        "tsConfig": "packages/nativescript-shimmer/tsconfig.json",
+        "packageJson": "packages/nativescript-shimmer/package.json",
+        "main": "packages/nativescript-shimmer/index.d.ts",
+        "assets": [
+          "packages/nativescript-shimmer/*.md",
+          "packages/nativescript-shimmer/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-shimmer/platforms/",
+            "output": "./platforms/"
+          }
+        ]
+      },
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "build.all": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts nativescript-shimmer"],
+        "parallel": false
+      },
+      "outputs": ["dist/packages/nativescript-shimmer"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-shimmer"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/nativescript-shimmer/**/*.ts"]
+      }
+    }
+  }
+}

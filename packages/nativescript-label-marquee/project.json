@@ -1,0 +1,63 @@
+{
+  "root": "packages/nativescript-label-marquee",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-label-marquee",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-label-marquee",
+        "tsConfig": "packages/nativescript-label-marquee/tsconfig.json",
+        "packageJson": "packages/nativescript-label-marquee/package.json",
+        "main": "packages/nativescript-label-marquee/index.d.ts",
+        "assets": [
+          "packages/nativescript-label-marquee/*.md",
+          "packages/nativescript-label-marquee/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-label-marquee/platforms/",
+            "output": "./platforms/"
+          }
+        ]
+      },
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "build.all": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts nativescript-label-marquee"],
+        "parallel": false
+      },
+      "outputs": ["dist/packages/nativescript-label-marquee"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-label-marquee"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/nativescript-label-marquee/**/*.ts"]
+      }
+    }
+  }
+}
