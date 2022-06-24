@@ -2,6 +2,7 @@
   "main": "./src/main.ts",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
+    "@nstudio/nativescript-split-view-layout": "file:../../dist/packages/nativescript-split-view-layout",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer"
   },

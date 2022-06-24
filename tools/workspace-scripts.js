@@ -77,7 +77,14 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
-      'build-all': {
+      // @nstudio/nativescript-split-view-layout
+			'nativescript-split-view-layout': {
+				build: {
+					script: 'nx run nativescript-split-view-layout:build.all',
+					description: '@nstudio/nativescript-split-view-layout: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -95,7 +102,11 @@ module.exports = {
         script: 'nx run nativescript-shimmer:focus',
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
-      reset: {
+      'nativescript-split-view-layout': {
+				script: 'nx run nativescript-split-view-layout:focus',
+				description: 'Focus on @nstudio/nativescript-split-view-layout',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },

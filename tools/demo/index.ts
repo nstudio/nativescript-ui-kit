@@ -1,3 +1,4 @@
 export * from './utils';
 export * from './nativescript-label-marquee';
 export * from './nativescript-shimmer';
+export * from './nativescript-split-view-layout';

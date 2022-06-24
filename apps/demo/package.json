@@ -5,6 +5,7 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
+    "@nstudio/nativescript-split-view-layout": "file:../../packages/nativescript-split-view-layout",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer"
   },

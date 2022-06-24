@@ -1,0 +1,72 @@
+{
+  "root": "packages/nativescript-split-view-layout",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-split-view-layout",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-split-view-layout",
+        "tsConfig": "packages/nativescript-split-view-layout/tsconfig.json",
+        "packageJson": "packages/nativescript-split-view-layout/package.json",
+        "main": "packages/nativescript-split-view-layout/index.d.ts",
+        "assets": [
+          "packages/nativescript-split-view-layout/*.md",
+          "packages/nativescript-split-view-layout/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-split-view-layout/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-split-view-layout"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-split-view-layout"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-split-view-layout"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-split-view-layout/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
