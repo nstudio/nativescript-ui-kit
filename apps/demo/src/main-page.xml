@@ -1,5 +1,19 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page" xmlns:ui="@nstudio/nativescript-split-view-layout">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:ui="@nstudio/nativescript-split-view-layout">
   <RootLayout>
-    <ui:SplitViewLayout/>
+    <ui:SplitViewLayout>
+      <ui:AutoLayoutView splitview="primary">
+
+        <Label text="test" textWrap="true" />
+      </ui:AutoLayoutView>
+      <ui:AutoLayoutView splitview="detail">
+
+        <GridLayout backgroundColor="yellow" rows="" columns="">
+          <Label text="test" textWrap="true" />
+            
+        </GridLayout>
+
+      </ui:AutoLayoutView>
+    </ui:SplitViewLayout>
   </RootLayout>
 </Page>
