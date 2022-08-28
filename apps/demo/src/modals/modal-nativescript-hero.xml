@@ -1,0 +1,12 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+  <!--shownModally="shownModally"-->
+  <!-- <ScrollView class="h-full"> -->
+    <GridLayout class="w-full h-full">
+      <!-- <Label text="Testing share from a modal" textWrap="true" class="text-center" /> -->
+      <!-- <Button text="share" tap="{{shareThis}}" /> -->
+      <GridLayout heroID="start" loaded="{{loadedEnd}}" rows="auto" columns="auto" width="300" height="300" backgroundColor="#333" borderRadius="25">
+        <!-- visibility="{{ showEnd ? 'visible' : 'hidden' }}"-->
+      </GridLayout>
+    </GridLayout>
+  <!-- </ScrollView> -->
+</Page>

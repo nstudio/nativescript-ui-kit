@@ -1,0 +1,4 @@
+platform :ios, '13.0'
+
+pod 'Hero'
+pod 'SteviaLayout'

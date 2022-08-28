@@ -1,0 +1,19 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page" xmlns:hero="@nstudio/nativescript-hero">
+    <Page.actionBar>
+        <ActionBar title="nativescript-hero" icon="" class="action-bar">
+        </ActionBar>
+    </Page.actionBar>
+    <StackLayout tap="{{openIt}}" backgroundColor="blue">
+        
+    <hero:Hero class="w-full h-full" backgroundColor="yellow" loaded="{{loadedHeroTest}}"></hero:Hero>
+    </StackLayout>
+    <!-- <StackLayout class="p-20">
+        <GridLayout heroID="start" rows="auto" columns="auto" loaded="{{loadedStart}}" width="50" height="50" backgroundColor="#333" borderRadius="6">
+          <Button text="Transition Now" tap="{{ doTransition }}"/>
+        </GridLayout>
+
+        <GridLayout heroID="end" rows="auto" columns="auto" loaded="{{loadedEnd}}" width="300" height="300" backgroundColor="green" borderRadius="25" >
+        </GridLayout>
+    </StackLayout> -->
+</Page>
+<!-- visibility="{{ showEnd ? 'visible' : 'collapsed' }}" -->

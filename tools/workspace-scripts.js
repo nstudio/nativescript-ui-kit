@@ -75,7 +75,14 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
-      'build-all': {
+      // @nstudio/nativescript-hero
+			'nativescript-hero': {
+				build: {
+					script: 'nx run nativescript-hero:build.all',
+					description: '@nstudio/nativescript-hero: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -93,7 +100,11 @@ module.exports = {
         script: 'nx run nativescript-shimmer:focus',
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
-      reset: {
+      'nativescript-hero': {
+				script: 'nx run nativescript-hero:focus',
+				description: 'Focus on @nstudio/nativescript-hero',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },

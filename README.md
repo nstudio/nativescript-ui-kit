@@ -1,10 +1,4 @@
-# @nstudio/\* plugins
-
-```
-npm run setup
-npm start
-```
-
+- [@nstudio/nativescript-hero](packages/nativescript-hero/README.md)
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 
