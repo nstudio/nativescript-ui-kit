@@ -75,7 +75,14 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
-      'build-all': {
+      // @nstudio/nativescript-transitions
+			'nativescript-transitions': {
+				build: {
+					script: 'nx run nativescript-transitions:build.all',
+					description: '@nstudio/nativescript-transitions: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -93,7 +100,11 @@ module.exports = {
         script: 'nx run nativescript-shimmer:focus',
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
-      reset: {
+      'nativescript-transitions': {
+				script: 'nx run nativescript-transitions:focus',
+				description: 'Focus on @nstudio/nativescript-transitions',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },
