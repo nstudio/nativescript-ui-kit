@@ -34,6 +34,9 @@
       ],
       "@nstudio/nativescript-transitions": [
         "packages/nativescript-transitions/index.d.ts"
+      ],
+      "@nstudio/nativescript-split-sheet": [
+        "packages/nativescript-split-sheet/index.d.ts"
       ]
     }
   },

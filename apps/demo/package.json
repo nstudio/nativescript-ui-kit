@@ -5,9 +5,10 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-transitions": "file:../../packages/nativescript-transitions",
+    "@nstudio/nativescript-split-sheet": "file:../../packages/nativescript-split-sheet",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
-    "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer"
+    "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
+    "@nstudio/nativescript-transitions": "file:../../packages/nativescript-transitions"
   },
   "devDependencies": {
     "@nativescript/android": "~8.3.0",

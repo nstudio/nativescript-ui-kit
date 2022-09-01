@@ -82,6 +82,13 @@ module.exports = {
 					description: '@nstudio/nativescript-transitions: Build',
 				},
 			},
+			// @nstudio/nativescript-split-sheet
+			'nativescript-split-sheet': {
+				build: {
+					script: 'nx run nativescript-split-sheet:build.all',
+					description: '@nstudio/nativescript-split-sheet: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -103,6 +110,10 @@ module.exports = {
       'nativescript-transitions': {
 				script: 'nx run nativescript-transitions:focus',
 				description: 'Focus on @nstudio/nativescript-transitions',
+			},
+			'nativescript-split-sheet': {
+				script: 'nx run nativescript-split-sheet:focus',
+				description: 'Focus on @nstudio/nativescript-split-sheet',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

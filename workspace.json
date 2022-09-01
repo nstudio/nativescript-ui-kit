@@ -5,6 +5,7 @@
     "demo-angular": "apps/demo-angular",
     "nativescript-label-marquee": "packages/nativescript-label-marquee",
     "nativescript-shimmer": "packages/nativescript-shimmer",
-    "nativescript-transitions": "packages/nativescript-transitions"
+    "nativescript-transitions": "packages/nativescript-transitions",
+    "nativescript-split-sheet": "packages/nativescript-split-sheet"
   }
 }

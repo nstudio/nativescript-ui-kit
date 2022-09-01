@@ -13,6 +13,9 @@ export class HomeComponent {
 		name: 'nativescript-shimmer'
 	},
 	{
+		name: 'nativescript-split-sheet'
+	},
+	{
 		name: 'nativescript-transitions'
 	}
 ];
