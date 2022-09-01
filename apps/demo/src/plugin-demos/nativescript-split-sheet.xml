@@ -1,14 +1,37 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
-    <Page.actionBar>
-        <ActionBar title="nativescript-split-sheet" icon="" class="action-bar">
-        </ActionBar>
-    </Page.actionBar>
-    <StackLayout class="p-20">
-        <ScrollView class="h-full">
-          <StackLayout>
-            <Button text="Test nativescript-split-sheet" tap="{{ testIt }}" class="btn btn-primary"/>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:ui="@nstudio/nativescript-split-sheet">
+  <!-- <Page.actionBar>
+    <ActionBar title="SplitSheet" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar> -->
+  <RootLayout>
+    <ui:SplitSheet loaded="{{loadedSplitSheet}}">
+      <ui:AutoLayout position="top">
+        <StackLayout>
+          <Button text="test" textWrap="true" fontSize="45" tap="{{openSheet}}" color="{{sheetOpen ? 'green' : 'blue'}}" />
+          <Image src="https://images.squarespace-cdn.com/content/v1/5d09463a7ff6500001c3c9ba/1623703936933-BPGKN1KV6YMZB465336T/Zion-10.jpg" class="w-full h-full" loaded="{{loadedImage}}"></Image>
 
-          </StackLayout>
-        </ScrollView>
-    </StackLayout>
+        </StackLayout>
+      </ui:AutoLayout>
+      <ui:AutoLayout position="bottom">
+        <StackLayout backgroundColor="#efefef">
+          <ScrollView>
+            <StackLayout rows="" columns="">
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+              <Label text="test" textWrap="true" fontSize="45" marginTop="10" />
+            </StackLayout>
+          </ScrollView>
+        </StackLayout>
+      </ui:AutoLayout>
+    </ui:SplitSheet>
+  </RootLayout>
 </Page>

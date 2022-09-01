@@ -21,7 +21,7 @@ declare class SplitSheetController extends UIViewController implements UIScrollV
 
 	mainPlaceholderContainerView: UIView;
 
-	readonly mainViewController: UIViewController;
+	mainViewController: UIViewController;
 
 	minimumSheetHeight: number;
 
@@ -31,7 +31,7 @@ declare class SplitSheetController extends UIViewController implements UIScrollV
 
 	sheetHeightConstraint: NSLayoutConstraint;
 
-	readonly sheetViewController: UIViewController;
+	sheetViewController: UIViewController;
 
 	showHandle: boolean;
 
@@ -55,15 +55,11 @@ declare class SplitSheetController extends UIViewController implements UIScrollV
 
 	readonly  // inherited from NSObjectProtocol
 
-	constructor(o: { mainViewController: UIViewController; sheetViewController: UIViewController; });
-
 	addHandle(): void;
 
 	class(): typeof NSObject;
 
 	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
-
-	initWithMainViewControllerSheetViewController(mainViewController: UIViewController, sheetViewController: UIViewController): this;
 
 	isEqual(object: any): boolean;
 
@@ -109,7 +105,7 @@ declare class SplitSheetController extends UIViewController implements UIScrollV
 
 	self(): this;
 
-	setup(): void;
+	setupWithMainViewControllerSheetViewController(mainViewController: UIViewController, sheetViewController: UIViewController): void;
 
 	show(shouldShow: boolean): void;
 

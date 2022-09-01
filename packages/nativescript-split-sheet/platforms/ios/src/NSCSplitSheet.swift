@@ -36,10 +36,10 @@ import UIKit
     // MARK: - External parameters
 
     /// The main content view controller.
-    public let mainViewController: UIViewController
+    public var mainViewController: UIViewController?
 
     /// The supplementary sheet view controller.
-    public let sheetViewController: UIViewController
+    public var sheetViewController: UIViewController?
 
     /// If true, `mainViewController` will shift up as the sheet is shown.
     public var displaceContent = true
@@ -66,7 +66,7 @@ import UIKit
 
     /// The current state of the sheet. `true` if shown, `false` if hidden.
     /// Observable with Combine.
-    @objc public private(set) dynamic var showing = false
+    public var showing = false
 
     // MARK: - Internal Properties
 
@@ -87,14 +87,17 @@ import UIKit
     public lazy var sheetHeightConstraint = sheetContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumSheetHeight)
 
     /// Create a new `SplitSheetController`.
-    public init(
-        mainViewController: UIViewController,
-        sheetViewController: UIViewController
-    ) {
-        self.mainViewController = mainViewController
-        self.sheetViewController = sheetViewController
+    // public init(
+    //     mainViewController: UIViewController,
+    //     sheetViewController: UIViewController
+    // ) {
+    //     self.mainViewController = mainViewController
+    //     self.sheetViewController = sheetViewController
+    //     super.init(nibName: nil, bundle: nil)
+    //     // setup()
+    // }
+    public init() {
         super.init(nibName: nil, bundle: nil)
-        setup()
     }
 
     /// Apply `statusBarStyle`.
@@ -117,7 +120,12 @@ import UIKit
 // MARK: - Setup
 
 public extension SplitSheetController {
-    @objc func setup() {
+    @objc func setup(
+        mainViewController: UIViewController,
+        sheetViewController: UIViewController
+    ) {
+        self.mainViewController = mainViewController
+        self.sheetViewController = sheetViewController
         // MARK: - Configuration
 
         scrollView.decelerationRate = .fast
@@ -141,8 +149,8 @@ public extension SplitSheetController {
 
         // MARK: Add sub-view controllers
 
-        embed(mainViewController, inside: mainInnerContainerView)
-        embed(sheetViewController, inside: sheetContainerView)
+        embed(self.mainViewController!, inside: mainInnerContainerView)
+        embed(self.sheetViewController!, inside: sheetContainerView)
 
         // MARK: Add constraints
 
@@ -231,8 +239,10 @@ public extension SplitSheetController {
     }
 
     /// Update `showing` and other properties.
-    private func updateShowing(_ showing: Bool) {
+    @objc func updateShowing(_ showing: Bool) {
         self.showing = showing
+        print("showing \(showing)")
+        NotificationCenter.default.post(name: Notification.Name("SplitSheetShowing"), object: self.showing)
 
         /// If `swipeUpToShowAllowed` is not enabled, prevent scrolling up when hidden.
         if !swipeUpToShowAllowed {
@@ -251,7 +261,7 @@ public extension SplitSheetController {
 // MARK: - Observe scroll view
 
 extension SplitSheetController: UIScrollViewDelegate {
-    private func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
         mainOuterTopConstraint.constant = scrollView.contentOffset.y
 
         if displaceContent {
@@ -264,7 +274,7 @@ extension SplitSheetController: UIScrollViewDelegate {
         }
     }
 
-    private func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    @objc func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         /// The distance to the just-shown detent (shown, but not fully expanded).
         let distanceToShown = minimumSheetHeight - targetContentOffset.pointee.y
 
