@@ -10,6 +10,9 @@ export class HomeComponent {
 		name: 'nativescript-label-marquee'
 	},
 	{
+		name: 'nativescript-rive'
+	},
+	{
 		name: 'nativescript-shimmer'
 	}
 ];

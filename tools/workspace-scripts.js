@@ -75,7 +75,14 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
-      'build-all': {
+      // @nstudio/nativescript-rive
+			'nativescript-rive': {
+				build: {
+					script: 'nx run nativescript-rive:build.all',
+					description: '@nstudio/nativescript-rive: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -93,7 +100,11 @@ module.exports = {
         script: 'nx run nativescript-shimmer:focus',
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
-      reset: {
+      'nativescript-rive': {
+				script: 'nx run nativescript-rive:focus',
+				description: 'Focus on @nstudio/nativescript-rive',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },

@@ -6,6 +6,7 @@ npm start
 ```
 
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
+- [@nstudio/nativescript-rive](packages/nativescript-rive/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 
 # How to use?
