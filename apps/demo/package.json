@@ -10,7 +10,7 @@
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer"
   },
   "devDependencies": {
-    "@nativescript/android": "~8.2.0",
-    "@nativescript/ios": "~8.2.0"
+    "@nativescript/android": "~8.4.0",
+    "@nativescript/ios": "~8.4.0"
   }
 }

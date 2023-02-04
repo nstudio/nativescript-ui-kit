@@ -1,4 +1,5 @@
 {
+  "name": "nativescript-rive",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "packages/nativescript-rive",
@@ -29,16 +30,12 @@
       }
     },
     "build.all": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "node tools/scripts/build-finish.ts nativescript-rive"
-        ],
+        "commands": ["node tools/scripts/build-finish.ts nativescript-rive"],
         "parallel": false
       },
-      "outputs": [
-        "dist/packages/nativescript-rive"
-      ],
+      "outputs": ["{workspaceRoot}/dist/packages/nativescript-rive"],
       "dependsOn": [
         {
           "target": "build.all",
@@ -51,20 +48,16 @@
       ]
     },
     "focus": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx g @nativescript/plugin-tools:focus-packages nativescript-rive"
-        ],
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-rive"],
         "parallel": false
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/nativescript-rive/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nativescript-rive/**/*.ts"]
       }
     }
   },
