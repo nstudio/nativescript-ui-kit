@@ -1,6 +1,7 @@
 import {File, Folder, knownFolders, Utils} from '@nativescript/core';
 import {
     RiveViewBase,
+    RiveAlignment, RiveDirection, RiveFit, RiveLoop,
     autoPlayProperty,
     srcProperty,
     fitProperty,
@@ -11,7 +12,7 @@ import {
     onStopProperty,
     onLoopEndProperty, onStateChangedProperty
 } from './common';
-import {RiveAlignment, RiveDirection, RiveFit, RiveLoop} from ".";
+export { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
 
 import Fit = app.rive.runtime.kotlin.core.Fit;
 import Alignment = app.rive.runtime.kotlin.core.Alignment;
@@ -21,7 +22,7 @@ import InputStream = java.io.InputStream;
 import RiveArtboardRenderer = app.rive.runtime.kotlin.RiveArtboardRenderer;
 import PlayableInstance = app.rive.runtime.kotlin.core.PlayableInstance;
 
-@NativeClass
+@NativeClass()
 @Interfaces([RiveArtboardRenderer.Listener])
 class Listener extends java.lang.Object implements RiveArtboardRenderer.Listener {
     owner: RiveView

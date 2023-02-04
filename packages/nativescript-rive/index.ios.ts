@@ -1,9 +1,14 @@
-import { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from ".";
-import { alignmentProperty, artboardNameProperty, autoPlayProperty, fitProperty, onLoopEndProperty, onPauseProperty, onPlayProperty, onStateChangedProperty, onStopProperty, RiveViewBase, srcProperty } from "./common";
+import { RiveViewBase, RiveAlignment, RiveDirection, RiveFit, RiveLoop, alignmentProperty, artboardNameProperty, autoPlayProperty, fitProperty, onLoopEndProperty, onPauseProperty, onPlayProperty, onStateChangedProperty, onStopProperty, srcProperty } from "./common";
+export { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
+declare var NSCRiveController;
 
 export class RiveView extends RiveViewBase {
+    // model: RiveViewModel;
+    ctrl: any;//NSCRiveController;
+
     public createNativeView() {
-        return UIView.new();// new app.rive.runtime.kotlin.RiveAnimationView(this._context, null);
+        this.ctrl = NSCRiveController.alloc().init();
+        return this.ctrl.view;// new app.rive.runtime.kotlin.RiveAnimationView(this._context, null);
     }
 
     public initNativeView(): void {

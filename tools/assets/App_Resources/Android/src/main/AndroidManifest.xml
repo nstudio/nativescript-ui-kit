@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="__PACKAGE__"
 	android:versionCode="1"
-	android:versionName="1.0">
+	android:versionName="1.0"
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<supports-screens
 		android:smallScreens="true"
@@ -22,6 +23,15 @@
 		android:icon="@drawable/icon"
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
+
+		<provider
+				android:name="androidx.startup.InitializationProvider"
+				android:authorities="${applicationId}.androidx-startup"
+				android:exported="false"
+				tools:node="merge">
+			<meta-data android:name="app.rive.runtime.kotlin.RiveInitializer"
+					   android:value="androidx.startup" />
+		</provider>
 
 		<activity
 			android:name="com.tns.NativeScriptActivity"
