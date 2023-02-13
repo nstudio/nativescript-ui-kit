@@ -6,5 +6,6 @@
     "nativescript-label-marquee": "packages/nativescript-label-marquee",
     "nativescript-shimmer": "packages/nativescript-shimmer",
     "ui-collectionview": "packages/ui-collectionview"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

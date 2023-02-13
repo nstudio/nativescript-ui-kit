@@ -7,7 +7,7 @@
     "@nstudio/ui-collectionview": "file:../../dist/packages/ui-collectionview"
   },
   "devDependencies": {
-    "@nativescript/android": "~8.2.0",
-    "@nativescript/ios": "~8.2.0"
+    "@nativescript/android": "~8.4.0",
+    "@nativescript/ios": "~8.4.0"
   }
 }
