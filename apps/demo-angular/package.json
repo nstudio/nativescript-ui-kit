@@ -3,7 +3,8 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
-    "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer"
+    "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer",
+    "@nstudio/ui-collectionview": "file:../../dist/packages/ui-collectionview"
   },
   "devDependencies": {
     "@nativescript/android": "~8.2.0",

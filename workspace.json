@@ -4,6 +4,7 @@
     "demo": "apps/demo",
     "demo-angular": "apps/demo-angular",
     "nativescript-label-marquee": "packages/nativescript-label-marquee",
-    "nativescript-shimmer": "packages/nativescript-shimmer"
+    "nativescript-shimmer": "packages/nativescript-shimmer",
+    "ui-collectionview": "packages/ui-collectionview"
   }
 }

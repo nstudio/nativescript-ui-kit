@@ -75,7 +75,14 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
-      'build-all': {
+      // @nstudio/ui-collectionview
+			'ui-collectionview': {
+				build: {
+					script: 'nx run ui-collectionview:build.all',
+					description: '@nstudio/ui-collectionview: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -93,7 +100,11 @@ module.exports = {
         script: 'nx run nativescript-shimmer:focus',
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
-      reset: {
+      'ui-collectionview': {
+				script: 'nx run ui-collectionview:focus',
+				description: 'Focus on @nstudio/ui-collectionview',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },

@@ -1,12 +1,6 @@
-# @nstudio/\* plugins
-
-```
-npm run setup
-npm start
-```
-
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
+- [@nstudio/ui-collectionview](packages/ui-collectionview/README.md)
 
 # How to use?
 

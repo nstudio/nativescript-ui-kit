@@ -11,6 +11,9 @@ export class HomeComponent {
 	},
 	{
 		name: 'nativescript-shimmer'
+	},
+	{
+		name: 'ui-collectionview'
 	}
 ];
 }

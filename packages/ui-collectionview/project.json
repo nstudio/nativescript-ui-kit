@@ -1,0 +1,73 @@
+{
+  "name": "ui-collectionview",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/ui-collectionview",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/ui-collectionview",
+        "tsConfig": "packages/ui-collectionview/tsconfig.json",
+        "packageJson": "packages/ui-collectionview/package.json",
+        "main": "packages/ui-collectionview/index.d.ts",
+        "assets": [
+          "packages/ui-collectionview/*.md",
+          "packages/ui-collectionview/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/ui-collectionview/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts ui-collectionview"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/ui-collectionview"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages ui-collectionview"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/ui-collectionview/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
