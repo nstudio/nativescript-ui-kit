@@ -5,9 +5,11 @@
       "~/*": ["src/*"],
       "@demo/shared": ["tools/demo/index.ts"],
       "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
-      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"]
+      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
+      "@nstudio/ui-collectionview": ["packages/ui-collectionview/index.ios.ts"],
+      "@nstudio/ui-collectionview/angular": ["packages/ui-collectionview/angular/index.ts"]
     }
   },
   "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],
-  "include": ["../../packages/**/references.d.ts"]
+  "include": ["../../packages/**/references.d.ts", "../../**/*.android.ts", "../../**/*.ios.ts"]
 }

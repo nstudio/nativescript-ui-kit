@@ -1042,9 +1042,9 @@ class CollectionViewCell extends UICollectionViewCell {
         return this.owner ? this.owner.deref() : null;
     }
 
-    systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(targetSize: CGSize, horizontalFittingPriority: number, verticalFittingPriority: number): CGSize {
-        return CGSizeMake(Screen.mainScreen.widthDIPs, 253);
-    }
+    // systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(targetSize: CGSize, horizontalFittingPriority: number, verticalFittingPriority: number): CGSize {
+    //     return CGSizeMake(Screen.mainScreen.widthDIPs, 253);
+    // }
 
     // preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes): UICollectionViewLayoutAttributes {
     //     let targetSize = CGSizeMake(layoutAttributes.frame.size.width, 0)

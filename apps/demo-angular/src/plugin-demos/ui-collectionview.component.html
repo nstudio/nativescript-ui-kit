@@ -1,8 +1,39 @@
 <ActionBar title="ui-collectionview" class="action-bar"> </ActionBar>
-<StackLayout class="p-20">
-  <ScrollView class="h-full">
-    <StackLayout>
-      <Button text="Test ui-collectionview" (tap)="demoShared.testIt()" class="btn btn-primary"></Button>
-    </StackLayout>
-  </ScrollView>
-</StackLayout>
+<CollectionView
+  [items]="items"
+  [itemTemplateSelector]="templateSelector"
+  layoutStyle="swipe"
+  (itemTap)="itemTap($event)"
+  (loaded)="loaded($event)"
+>
+  <ng-template cvTemplateKey="default" let-item="item">
+    <GridLayout
+      [nsRouterLink]="['/item', item.id]"
+      rows="auto,auto,auto"
+      class="pl-4 pt-2 pr-2 v-center"
+    >
+      <Label
+        [text]="item.name"
+        class="text-[17px] font-bold align-middle"
+      ></Label>
+      <Label
+        row="1"
+        [text]="item.subject"
+        class="text-base leading-none align-middle"
+      ></Label>
+      <Label
+        row="2"
+        [text]="item.body"
+        class="text-base leading-none text-gray-500"
+        maxLines="2"
+        textWrap="true"
+      ></Label>
+      <GridLayout rowSpan="3" columns="auto,auto" class="align-top h-right">
+        <Label
+          [text]="item.date | date : 'shortDate'"
+          class="text-sm align-middle text-gray-500"
+        ></Label>
+      </GridLayout>
+    </GridLayout>
+  </ng-template>
+</CollectionView>

@@ -22,6 +22,22 @@ import { CLog, CLogTypes, CollectionViewBase, ListViewViewTypes, isScrollEnabled
 
 export * from './common';
 
+interface CollectionViewCellHolder extends com.nativescript.collectionview.CollectionViewCellHolder {
+    // tslint:disable-next-line:no-misused-new
+    new (androidView: android.view.View): CollectionViewCellHolder;
+    view: View;
+    clickListener: android.view.View.OnClickListener;
+}
+
+let CollectionViewCellHolder: CollectionViewCellHolder;
+
+export interface CollectionViewRecyclerView extends com.nativescript.collectionview.RecyclerView {
+    // tslint:disable-next-line:no-misused-new
+    new (context: any): CollectionViewRecyclerView;
+}
+
+let CollectionViewRecyclerView: CollectionViewRecyclerView;
+
 declare module '@nativescript/core/ui/core/view' {
     interface ViewCommon {
         layoutChangeListenerIsSet: boolean;
@@ -256,13 +272,13 @@ export class CollectionView extends CollectionViewBase {
         });
         this.spanSize = this._getSpanSize;
 
-        const animator = new com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator();
+        // const animator = new com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator();
 
-        // Change animations are enabled by default since support-v7-recyclerview v22.
-        // Need to disable them when using animation indicator.
-        animator.setSupportsChangeAnimations(false);
+        // // Change animations are enabled by default since support-v7-recyclerview v22.
+        // // Need to disable them when using animation indicator.
+        // animator.setSupportsChangeAnimations(false);
 
-        this.android.setItemAnimator(animator);
+        // this.android.setItemAnimator(animator);
         this.refresh();
     }
     public disposeNativeView() {
@@ -1179,22 +1195,6 @@ export class CollectionView extends CollectionViewBase {
         holder['position'] = null;
     }
 }
-
-interface CollectionViewCellHolder extends com.nativescript.collectionview.CollectionViewCellHolder {
-    // tslint:disable-next-line:no-misused-new
-    new (androidView: android.view.View): CollectionViewCellHolder;
-    view: View;
-    clickListener: android.view.View.OnClickListener;
-}
-
-let CollectionViewCellHolder: CollectionViewCellHolder;
-
-export interface CollectionViewRecyclerView extends com.nativescript.collectionview.RecyclerView {
-    // tslint:disable-next-line:no-misused-new
-    new (context: any): CollectionViewRecyclerView;
-}
-
-let CollectionViewRecyclerView: CollectionViewRecyclerView;
 itemViewCacheSizeProperty.register(CollectionViewBase);
 extraLayoutSpaceProperty.register(CollectionViewBase);
 nestedScrollingEnabledProperty.register(CollectionViewBase);

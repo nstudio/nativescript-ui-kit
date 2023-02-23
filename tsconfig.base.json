@@ -9,7 +9,10 @@
     "noEmitHelpers": true,
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["ESNext", "dom"],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -31,6 +34,9 @@
       ],
       "@nstudio/ui-collectionview": [
         "packages/ui-collectionview/index.d.ts"
+      ],
+      "@nstudio/ui-collectionview/angular": [
+        "packages/ui-collectionview/angular/index.ts"
       ]
     }
   },
