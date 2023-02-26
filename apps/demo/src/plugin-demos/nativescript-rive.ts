@@ -1,6 +1,6 @@
 import { Observable, EventData, Page } from '@nativescript/core';
 import { DemoSharedNativescriptRive } from '@demo/shared';
-import { RiveView } from '@nstudio/nativescript-rive';
+import { RiveDirection, RiveLoop, RiveView } from '@nstudio/nativescript-rive';
 
 export function navigatingTo(args: EventData) {
 	const page = <Page>args.object;
@@ -10,18 +10,41 @@ export function navigatingTo(args: EventData) {
 export class DemoModel extends DemoSharedNativescriptRive {
 	riveView: RiveView;
 	playing = true;
+	stopText = `Where we're going, we don't need roads ...`
+	playText = `I guess you guys aren't ready for that yet ... Or are you?`
 	onStateChanged() {
 		console.log('onStateChanged')
 	}
 
+	ready = false;
 	togglePlay() {
-		this.playing = !this.playing;
+		
 		this.notifyPropertyChange('playing', this.playing);
 		if (this.riveView.isPlaying()) {
-			this.riveView.stop()
+			this.riveView.pause()
+			if (this.ready) {
+				this.stopText =  `Let's do this ⚡ Rive is Alive!`
+				this.notifyPropertyChange('stopText', `Let's do this ⚡ Rive is Alive!`)
+			} else {
+
+				this.stopText = 'I mean ... I figured you were ...'
+				this.notifyPropertyChange('stopText', 'I mean ... I figured you were ...')
+			}
 		  } else {
-			this.riveView.play()
+			if (this.ready) {
+				
+				this.riveView.play(RiveLoop.PINGPONG, RiveDirection.BACKWARDS);//RiveLoop.PINGPONG, RiveDirection.BACKWARDS)
+			} else {
+				this.playText =  `Let's do this ⚡`
+				this.notifyPropertyChange('playText', `Let's do this ⚡`)
+			// 	this.stopText = this.playText
+			// this.notifyPropertyChange('stopText', this.playText)
+				this.ready = true;
+				this.riveView.play();
+			}
 		  }
+		  this.playing = !this.playing;
+		  this.notifyPropertyChange('playing', this.playing)
 	}
 
 	loadedPlayer(args) {

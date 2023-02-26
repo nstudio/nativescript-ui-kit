@@ -5,6 +5,7 @@ export enum RiveLoop {
   LOOP,
   PINGPONG,
   AUTO,
+  NONE
 }
 
 export enum RiveDirection {

@@ -1,0 +1,5179 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveView",
+        "printedName": "RiveView",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "playerDelegate",
+            "printedName": "playerDelegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "RiveRuntime.RivePlayerDelegate?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvp",
+            "mangledName": "$s11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RivePlayerDelegate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RivePlayerDelegate",
+                        "printedName": "RiveRuntime.RivePlayerDelegate",
+                        "usr": "s:11RiveRuntime0A14PlayerDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvg",
+                "mangledName": "$s11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RivePlayerDelegate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RivePlayerDelegate",
+                        "printedName": "RiveRuntime.RivePlayerDelegate",
+                        "usr": "s:11RiveRuntime0A14PlayerDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvs",
+                "mangledName": "$s11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvM",
+                "mangledName": "$s11RiveRuntime0A4ViewC14playerDelegateAA0a6PlayerE0_pSgvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "stateMachineDelegate",
+            "printedName": "stateMachineDelegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "RiveRuntime.RiveStateMachineDelegate?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvp",
+            "mangledName": "$s11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveStateMachineDelegate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveStateMachineDelegate",
+                        "printedName": "RiveRuntime.RiveStateMachineDelegate",
+                        "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvg",
+                "mangledName": "$s11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveStateMachineDelegate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveStateMachineDelegate",
+                        "printedName": "RiveRuntime.RiveStateMachineDelegate",
+                        "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvs",
+                "mangledName": "$s11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvM",
+                "mangledName": "$s11RiveRuntime0A4ViewC20stateMachineDelegateAA0a5StateeF0_pSgvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "showFPS",
+            "printedName": "showFPS",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A4ViewC7showFPSSbvp",
+            "mangledName": "$s11RiveRuntime0A4ViewC7showFPSSbvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "HasInitialValue",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC7showFPSSbvg",
+                "mangledName": "$s11RiveRuntime0A4ViewC7showFPSSbvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC7showFPSSbvs",
+                "mangledName": "$s11RiveRuntime0A4ViewC7showFPSSbvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC7showFPSSbvM",
+                "mangledName": "$s11RiveRuntime0A4ViewC7showFPSSbvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "showFPSCounters",
+            "printedName": "showFPSCounters",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A4ViewC15showFPSCountersSbvpZ",
+            "mangledName": "$s11RiveRuntime0A4ViewC15showFPSCountersSbvpZ",
+            "moduleName": "RiveRuntime",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC15showFPSCountersSbvgZ",
+                "mangledName": "$s11RiveRuntime0A4ViewC15showFPSCountersSbvgZ",
+                "moduleName": "RiveRuntime",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC15showFPSCountersSbvsZ",
+                "mangledName": "$s11RiveRuntime0A4ViewC15showFPSCountersSbvsZ",
+                "moduleName": "RiveRuntime",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A4ViewC15showFPSCountersSbvMZ",
+                "mangledName": "$s11RiveRuntime0A4ViewC15showFPSCountersSbvMZ",
+                "moduleName": "RiveRuntime",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)init",
+            "mangledName": "$s11RiveRuntime0A4ViewCACycfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(model:autoPlay:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A4ViewC5model8autoPlayAcA0A5ModelC_Sbtcfc",
+            "mangledName": "$s11RiveRuntime0A4ViewC5model8autoPlayAcA0A5ModelC_Sbtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "Convenience",
+              "AccessControl"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(coder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSCoder",
+                "printedName": "Foundation.NSCoder",
+                "usr": "c:objc(cs)NSCoder"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)initWithCoder:",
+            "mangledName": "$s11RiveRuntime0A4ViewC5coderACSo7NSCoderC_tcfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "objc_name": "initWithCoder:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl",
+              "Required"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "setModel",
+            "printedName": "setModel(_:autoPlay:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A4ViewC8setModel_8autoPlayyAA0aE0C_SbtKF",
+            "mangledName": "$s11RiveRuntime0A4ViewC8setModel_8autoPlayyAA0aE0C_SbtKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "advance",
+            "printedName": "advance(delta:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)advanceWithDelta:",
+            "mangledName": "$s11RiveRuntime0A4ViewC7advance5deltaySd_tF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "objc_name": "advanceWithDelta:",
+            "declAttributes": [
+              "Custom",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "drawRive",
+            "printedName": "drawRive(_:size:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGRect",
+                "printedName": "CoreFoundation.CGRect",
+                "usr": "c:@S@CGRect"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGSize",
+                "printedName": "CoreFoundation.CGSize",
+                "usr": "c:@S@CGSize"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)drawRive:size:",
+            "mangledName": "$s11RiveRuntime0A4ViewC04drawA0_4sizeySo6CGRectV_So6CGSizeVtF",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "objc_name": "drawRive:size:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl",
+              "Override",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchesBegan",
+            "printedName": "touchesBegan(_:with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Set",
+                "printedName": "Swift.Set<UIKit.UITouch>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UITouch",
+                    "printedName": "UIKit.UITouch",
+                    "usr": "c:objc(cs)UITouch"
+                  }
+                ],
+                "usr": "s:Sh"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIEvent?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIEvent",
+                    "printedName": "UIKit.UIEvent",
+                    "usr": "c:objc(cs)UIEvent"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)touchesBegan:withEvent:",
+            "mangledName": "$s11RiveRuntime0A4ViewC12touchesBegan_4withyShySo7UITouchCG_So7UIEventCSgtF",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "touchesBegan:withEvent:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchesMoved",
+            "printedName": "touchesMoved(_:with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Set",
+                "printedName": "Swift.Set<UIKit.UITouch>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UITouch",
+                    "printedName": "UIKit.UITouch",
+                    "usr": "c:objc(cs)UITouch"
+                  }
+                ],
+                "usr": "s:Sh"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIEvent?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIEvent",
+                    "printedName": "UIKit.UIEvent",
+                    "usr": "c:objc(cs)UIEvent"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)touchesMoved:withEvent:",
+            "mangledName": "$s11RiveRuntime0A4ViewC12touchesMoved_4withyShySo7UITouchCG_So7UIEventCSgtF",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "touchesMoved:withEvent:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchesEnded",
+            "printedName": "touchesEnded(_:with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Set",
+                "printedName": "Swift.Set<UIKit.UITouch>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UITouch",
+                    "printedName": "UIKit.UITouch",
+                    "usr": "c:objc(cs)UITouch"
+                  }
+                ],
+                "usr": "s:Sh"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIEvent?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIEvent",
+                    "printedName": "UIKit.UIEvent",
+                    "usr": "c:objc(cs)UIEvent"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)touchesEnded:withEvent:",
+            "mangledName": "$s11RiveRuntime0A4ViewC12touchesEnded_4withyShySo7UITouchCG_So7UIEventCSgtF",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "touchesEnded:withEvent:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchesCancelled",
+            "printedName": "touchesCancelled(_:with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Set",
+                "printedName": "Swift.Set<UIKit.UITouch>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UITouch",
+                    "printedName": "UIKit.UITouch",
+                    "usr": "c:objc(cs)UITouch"
+                  }
+                ],
+                "usr": "s:Sh"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIEvent?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIEvent",
+                    "printedName": "UIKit.UIEvent",
+                    "usr": "c:objc(cs)UIEvent"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)touchesCancelled:withEvent:",
+            "mangledName": "$s11RiveRuntime0A4ViewC16touchesCancelled_4withyShySo7UITouchCG_So7UIEventCSgtF",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "touchesCancelled:withEvent:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(frame:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveView",
+                    "printedName": "RiveRuntime.RiveView",
+                    "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGRect",
+                "printedName": "CoreFoundation.CGRect",
+                "usr": "c:@S@CGRect"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)initWithFrame:",
+            "mangledName": "$s11RiveRuntime0A4ViewC5frameACSgSo6CGRectV_tcfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithFrame:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(frame:device:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGRect",
+                "printedName": "CoreFoundation.CGRect",
+                "usr": "c:@S@CGRect"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Metal.MTLDevice?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MTLDevice",
+                    "printedName": "Metal.MTLDevice",
+                    "usr": "c:objc(pl)MTLDevice"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveView(im)initWithFrame:device:",
+            "mangledName": "$s11RiveRuntime0A4ViewC5frame6deviceACSo6CGRectV_So9MTLDevice_pSgtcfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithFrame:device:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@RiveRuntime@objc(cs)RiveView",
+        "mangledName": "$s11RiveRuntime0A4ViewC",
+        "moduleName": "RiveRuntime",
+        "isOpen": true,
+        "declAttributes": [
+          "Custom",
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)RiveRendererView",
+        "superclassNames": [
+          "RiveRuntime.RiveRendererView",
+          "MetalKit.MTKView",
+          "UIKit.UIView",
+          "UIKit.UIResponder",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "__DefaultCustomPlaygroundQuickLookable",
+            "printedName": "__DefaultCustomPlaygroundQuickLookable",
+            "usr": "s:s38__DefaultCustomPlaygroundQuickLookableP",
+            "mangledName": "$ss38__DefaultCustomPlaygroundQuickLookableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveStateMachineDelegate",
+        "printedName": "RiveStateMachineDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "touchBegan",
+            "printedName": "touchBegan(onArtboard:atLocation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveArtboard?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveArtboard",
+                    "printedName": "RiveRuntime.RiveArtboard",
+                    "usr": "c:objc(cs)RiveArtboard"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGPoint",
+                "printedName": "CoreFoundation.CGPoint",
+                "usr": "c:@S@CGPoint"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)touchBeganOnArtboard:atLocation:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP10touchBegan10onArtboard10atLocationySo0aI0CSg_So7CGPointVtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "objc_name": "touchBeganOnArtboard:atLocation:",
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchMoved",
+            "printedName": "touchMoved(onArtboard:atLocation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveArtboard?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveArtboard",
+                    "printedName": "RiveRuntime.RiveArtboard",
+                    "usr": "c:objc(cs)RiveArtboard"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGPoint",
+                "printedName": "CoreFoundation.CGPoint",
+                "usr": "c:@S@CGPoint"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)touchMovedOnArtboard:atLocation:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP10touchMoved10onArtboard10atLocationySo0aI0CSg_So7CGPointVtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "objc_name": "touchMovedOnArtboard:atLocation:",
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchEnded",
+            "printedName": "touchEnded(onArtboard:atLocation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveArtboard?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveArtboard",
+                    "printedName": "RiveRuntime.RiveArtboard",
+                    "usr": "c:objc(cs)RiveArtboard"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGPoint",
+                "printedName": "CoreFoundation.CGPoint",
+                "usr": "c:@S@CGPoint"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)touchEndedOnArtboard:atLocation:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP10touchEnded10onArtboard10atLocationySo0aI0CSg_So7CGPointVtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "objc_name": "touchEndedOnArtboard:atLocation:",
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "touchCancelled",
+            "printedName": "touchCancelled(onArtboard:atLocation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveArtboard?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveArtboard",
+                    "printedName": "RiveRuntime.RiveArtboard",
+                    "usr": "c:objc(cs)RiveArtboard"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGPoint",
+                "printedName": "CoreFoundation.CGPoint",
+                "usr": "c:@S@CGPoint"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)touchCancelledOnArtboard:atLocation:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP14touchCancelled10onArtboard10atLocationySo0aI0CSg_So7CGPointVtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "objc_name": "touchCancelledOnArtboard:atLocation:",
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stateMachine",
+            "printedName": "stateMachine(_:receivedInput:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveStateMachineInstance",
+                "printedName": "RiveRuntime.RiveStateMachineInstance",
+                "usr": "c:objc(cs)RiveStateMachineInstance"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StateMachineInput",
+                "printedName": "RiveRuntime.StateMachineInput",
+                "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)stateMachine:receivedInput:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP05stateD0_13receivedInputySo0acD8InstanceC_AA0cdH0CtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stateMachine",
+            "printedName": "stateMachine(_:didChangeState:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveStateMachineInstance",
+                "printedName": "RiveRuntime.RiveStateMachineInstance",
+                "usr": "c:objc(cs)RiveStateMachineInstance"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate(im)stateMachine:didChangeState:",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP05stateD0_09didChangeC0ySo0acD8InstanceC_SStF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RiveStateMachineDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RiveStateMachineDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "Optional",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate",
+        "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP",
+        "moduleName": "RiveRuntime",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RivePlayerDelegate",
+        "printedName": "RivePlayerDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(playedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP6player15playedWithModelyAA0aH0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP6player15playedWithModelyAA0aH0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RivePlayerDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RivePlayerDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(pausedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP6player15pausedWithModelyAA0aH0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP6player15pausedWithModelyAA0aH0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RivePlayerDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RivePlayerDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(loopedWithModel:type:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP6player15loopedWithModel4typeyAA0aH0CSg_SitF",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP6player15loopedWithModel4typeyAA0aH0CSg_SitF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RivePlayerDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RivePlayerDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(stoppedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP6player16stoppedWithModelyAA0aH0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP6player16stoppedWithModelyAA0aH0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RivePlayerDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RivePlayerDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(didAdvanceby:riveModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP6player12didAdvanceby9riveModelySd_AA0aI0CSgtF",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP6player12didAdvanceby9riveModelySd_AA0aI0CSgtF",
+            "moduleName": "RiveRuntime",
+            "genericSig": "<τ_0_0 where τ_0_0 : RiveRuntime.RivePlayerDelegate>",
+            "sugared_genericSig": "<Self where Self : RiveRuntime.RivePlayerDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:11RiveRuntime0A14PlayerDelegateP",
+        "mangledName": "$s11RiveRuntime0A14PlayerDelegateP",
+        "moduleName": "RiveRuntime",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "StateMachineInputType",
+        "printedName": "StateMachineInputType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "trigger",
+            "printedName": "trigger",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(RiveRuntime.StateMachineInputType.Type) -> RiveRuntime.StateMachineInputType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInputType",
+                    "printedName": "RiveRuntime.StateMachineInputType",
+                    "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "RiveRuntime.StateMachineInputType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StateMachineInputType",
+                        "printedName": "RiveRuntime.StateMachineInputType",
+                        "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@RiveRuntime@E@StateMachineInputType@StateMachineInputTypeTrigger",
+            "mangledName": "$s11RiveRuntime21StateMachineInputTypeO7triggeryA2CmF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "number",
+            "printedName": "number",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(RiveRuntime.StateMachineInputType.Type) -> RiveRuntime.StateMachineInputType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInputType",
+                    "printedName": "RiveRuntime.StateMachineInputType",
+                    "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "RiveRuntime.StateMachineInputType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StateMachineInputType",
+                        "printedName": "RiveRuntime.StateMachineInputType",
+                        "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@RiveRuntime@E@StateMachineInputType@StateMachineInputTypeNumber",
+            "mangledName": "$s11RiveRuntime21StateMachineInputTypeO6numberyA2CmF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "boolean",
+            "printedName": "boolean",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(RiveRuntime.StateMachineInputType.Type) -> RiveRuntime.StateMachineInputType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInputType",
+                    "printedName": "RiveRuntime.StateMachineInputType",
+                    "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "RiveRuntime.StateMachineInputType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StateMachineInputType",
+                        "printedName": "RiveRuntime.StateMachineInputType",
+                        "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@RiveRuntime@E@StateMachineInputType@StateMachineInputTypeBoolean",
+            "mangledName": "$s11RiveRuntime21StateMachineInputTypeO7booleanyA2CmF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.StateMachineInputType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInputType",
+                    "printedName": "RiveRuntime.StateMachineInputType",
+                    "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime21StateMachineInputTypeO8rawValueACSgSi_tcfc",
+            "mangledName": "$s11RiveRuntime21StateMachineInputTypeO8rawValueACSgSi_tcfc",
+            "moduleName": "RiveRuntime",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime21StateMachineInputTypeO8rawValueSivp",
+            "mangledName": "$s11RiveRuntime21StateMachineInputTypeO8rawValueSivp",
+            "moduleName": "RiveRuntime",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime21StateMachineInputTypeO8rawValueSivg",
+                "mangledName": "$s11RiveRuntime21StateMachineInputTypeO8rawValueSivg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@RiveRuntime@E@StateMachineInputType",
+        "mangledName": "$s11RiveRuntime21StateMachineInputTypeO",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "StateMachineInput",
+        "printedName": "StateMachineInput",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime17StateMachineInputC4nameSSvp",
+            "mangledName": "$s11RiveRuntime17StateMachineInputC4nameSSvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime17StateMachineInputC4nameSSvg",
+                "mangledName": "$s11RiveRuntime17StateMachineInputC4nameSSvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "StateMachineInputType",
+                "printedName": "RiveRuntime.StateMachineInputType",
+                "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime17StateMachineInputC4typeAA0cdE4TypeOvp",
+            "mangledName": "$s11RiveRuntime17StateMachineInputC4typeAA0cdE4TypeOvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInputType",
+                    "printedName": "RiveRuntime.StateMachineInputType",
+                    "usr": "c:@M@RiveRuntime@E@StateMachineInputType"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime17StateMachineInputC4typeAA0cdE4TypeOvg",
+                "mangledName": "$s11RiveRuntime17StateMachineInputC4typeAA0cdE4TypeOvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "StateMachineInput",
+                "printedName": "RiveRuntime.StateMachineInput",
+                "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput(im)init",
+            "mangledName": "$s11RiveRuntime17StateMachineInputCACycfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput",
+        "mangledName": "$s11RiveRuntime17StateMachineInputC",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Combine",
+        "printedName": "Combine",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveViewModel",
+        "printedName": "RiveViewModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "riveView",
+            "printedName": "riveView",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveView",
+                    "printedName": "RiveRuntime.RiveView",
+                    "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC04riveC0AA0aC0CSgvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC04riveC0AA0aC0CSgvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveView?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveView",
+                        "printedName": "RiveRuntime.RiveView",
+                        "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC04riveC0AA0aC0CSgvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC04riveC0AA0aC0CSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:stateMachineName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC_16stateMachineName3fit9alignment8autoPlay08artboardG0AcA0aD0C_SSSgSo0A3FitVSo0A9AlignmentVSbAKtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC_16stateMachineName3fit9alignment8autoPlay08artboardG0AcA0aD0C_SSSgSo0A3FitVSo0A9AlignmentVSbAKtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:animationName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC_13animationName3fit9alignment8autoPlay08artboardF0AcA0aD0C_SSSgSo0A3FitVSo0A9AlignmentVSbAKtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC_13animationName3fit9alignment8autoPlay08artboardF0AcA0aD0C_SSSgSo0A3FitVSo0A9AlignmentVSbAKtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(fileName:stateMachineName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC8fileName012stateMachineF03fit9alignment8autoPlay08artboardF0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8fileName012stateMachineF03fit9alignment8autoPlay08artboardF0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(fileName:animationName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC8fileName09animationF03fit9alignment8autoPlay08artboardF0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8fileName09animationF03fit9alignment8autoPlay08artboardF0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(webURL:stateMachineName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC6webURL16stateMachineName3fit9alignment8autoPlay08artboardI0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6webURL16stateMachineName3fit9alignment8autoPlay08artboardI0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(webURL:animationName:fit:alignment:autoPlay:artboardName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveFit"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveAlignment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A9ViewModelC6webURL13animationName3fit9alignment8autoPlay08artboardH0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6webURL13animationName3fit9alignment8autoPlay08artboardH0ACSS_SSSgSo0A3FitVSo0A9AlignmentVSbAJtcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "riveModel",
+            "printedName": "riveModel",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC04riveD0AA0aD0CSgvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC04riveD0AA0aD0CSgvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveModel?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveModel",
+                        "printedName": "RiveRuntime.RiveModel",
+                        "usr": "s:11RiveRuntime0A5ModelC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC04riveD0AA0aD0CSgvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC04riveD0AA0aD0CSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isPlaying",
+            "printedName": "isPlaying",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC9isPlayingSbvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC9isPlayingSbvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC9isPlayingSbvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC9isPlayingSbvg",
+                "moduleName": "RiveRuntime",
+                "isOpen": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "autoPlay",
+            "printedName": "autoPlay",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC8autoPlaySbvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8autoPlaySbvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC8autoPlaySbvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC8autoPlaySbvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC8autoPlaySbvs",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC8autoPlaySbvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC8autoPlaySbvM",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC8autoPlaySbvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fit",
+            "printedName": "fit",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFit",
+                "printedName": "RiveRuntime.RiveFit",
+                "usr": "c:@E@RiveFit"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC3fitSo0A3FitVvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC3fitSo0A3FitVvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveFit",
+                    "printedName": "RiveRuntime.RiveFit",
+                    "usr": "c:@E@RiveFit"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC3fitSo0A3FitVvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC3fitSo0A3FitVvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveFit",
+                    "printedName": "RiveRuntime.RiveFit",
+                    "usr": "c:@E@RiveFit"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC3fitSo0A3FitVvs",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC3fitSo0A3FitVvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC3fitSo0A3FitVvM",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC3fitSo0A3FitVvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "alignment",
+            "printedName": "alignment",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveAlignment",
+                "printedName": "RiveRuntime.RiveAlignment",
+                "usr": "c:@E@RiveAlignment"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvp",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveAlignment",
+                    "printedName": "RiveRuntime.RiveAlignment",
+                    "usr": "c:@E@RiveAlignment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvg",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveAlignment",
+                    "printedName": "RiveRuntime.RiveAlignment",
+                    "usr": "c:@E@RiveAlignment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvs",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvs",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvM",
+                "mangledName": "$s11RiveRuntime0A9ViewModelC9alignmentSo0A9AlignmentVvM",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "play",
+            "printedName": "play(animationName:loop:direction:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveLoop",
+                "printedName": "RiveRuntime.RiveLoop",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveLoop"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveDirection",
+                "printedName": "RiveRuntime.RiveDirection",
+                "hasDefaultArg": true,
+                "usr": "c:@E@RiveDirection"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC4play13animationName4loop9directionySSSg_So0A4LoopVSo0A9DirectionVtF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC4play13animationName4loop9directionySSSg_So0A4LoopVSo0A9DirectionVtF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "pause",
+            "printedName": "pause()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC5pauseyyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC5pauseyyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stop",
+            "printedName": "stop()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC4stopyyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC4stopyyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "reset",
+            "printedName": "reset()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC5resetyyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC5resetyyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "configureModel",
+            "printedName": "configureModel(artboardName:stateMachineName:animationName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC09configureD012artboardName012stateMachineG009animationG0ySSSg_A2HtKF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC09configureD012artboardName012stateMachineG009animationG0ySSSg_A2HtKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "resetToDefaultModel",
+            "printedName": "resetToDefaultModel()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC014resetToDefaultD0yyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC014resetToDefaultD0yyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "triggerInput",
+            "printedName": "triggerInput(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC12triggerInputyySSF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC12triggerInputyySSF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setInput",
+            "printedName": "setInput(_:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC8setInput_5valueySS_SbtF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8setInput_5valueySS_SbtF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setInput",
+            "printedName": "setInput(_:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC8setInput_5valueySS_SftF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8setInput_5valueySS_SftF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setInput",
+            "printedName": "setInput(_:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC8setInput_5valueySS_SdtF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC8setInput_5valueySS_SdtF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "artboardNames",
+            "printedName": "artboardNames()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC13artboardNamesSaySSGyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC13artboardNamesSaySSGyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "createRiveView",
+            "printedName": "createRiveView()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC06createaC0AA0aC0CyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC06createaC0AA0aC0CyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "update",
+            "printedName": "update(view:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel(im)updateWithView:",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6update4viewyAA0aC0C_tF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "objc_name": "updateWithView:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deregisterView",
+            "printedName": "deregisterView()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC010deregisterC0yyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC010deregisterC0yyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "view",
+            "printedName": "view()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AnyView",
+                "printedName": "SwiftUI.AnyView",
+                "usr": "s:7SwiftUI7AnyViewV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC4view7SwiftUI03AnyC0VyF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC4view7SwiftUI03AnyC0VyF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setView",
+            "printedName": "setView(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel(im)setView:",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC03setC0yyAA0aC0CF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "riveFileDidLoad",
+            "printedName": "riveFileDidLoad(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFile",
+                "printedName": "RiveRuntime.RiveFile",
+                "usr": "c:objc(cs)RiveFile"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel(im)riveFileDidLoad:error:",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC15riveFileDidLoadyySo0aF0CKF",
+            "moduleName": "RiveRuntime",
+            "objc_name": "riveFileDidLoad:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(playedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC6player010playedWithD0yAA0aD0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6player010playedWithD0yAA0aD0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(pausedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC6player010pausedWithD0yAA0aD0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6player010pausedWithD0yAA0aD0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(loopedWithModel:type:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC6player010loopedWithD04typeyAA0aD0CSg_SitF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6player010loopedWithD04typeyAA0aD0CSg_SitF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(stoppedWithModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC6player011stoppedWithD0yAA0aD0CSg_tF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6player011stoppedWithD0yAA0aD0CSg_tF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "player",
+            "printedName": "player(didAdvanceby:riveModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveModel",
+                    "printedName": "RiveRuntime.RiveModel",
+                    "usr": "s:11RiveRuntime0A5ModelC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A9ViewModelC6player12didAdvanceby04riveD0ySd_AA0aD0CSgtF",
+            "mangledName": "$s11RiveRuntime0A9ViewModelC6player12didAdvanceby04riveD0ySd_AA0aD0CSgtF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel(im)init",
+            "mangledName": "$s11RiveRuntime0A9ViewModelCACycfc",
+            "moduleName": "RiveRuntime",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel",
+        "mangledName": "$s11RiveRuntime0A9ViewModelC",
+        "moduleName": "RiveRuntime",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "ObservableObject",
+            "printedName": "ObservableObject",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ObjectWillChangePublisher",
+                "printedName": "ObjectWillChangePublisher",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ObservableObjectPublisher",
+                    "printedName": "Combine.ObservableObjectPublisher",
+                    "usr": "s:7Combine25ObservableObjectPublisherC"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine16ObservableObjectP",
+            "mangledName": "$s7Combine16ObservableObjectP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RiveStateMachineDelegate",
+            "printedName": "RiveStateMachineDelegate",
+            "usr": "c:@M@RiveRuntime@objc(pl)RiveStateMachineDelegate",
+            "mangledName": "$s11RiveRuntime0A20StateMachineDelegateP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RivePlayerDelegate",
+            "printedName": "RivePlayerDelegate",
+            "usr": "s:11RiveRuntime0A14PlayerDelegateP",
+            "mangledName": "$s11RiveRuntime0A14PlayerDelegateP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveViewRepresentable",
+        "printedName": "RiveViewRepresentable",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(viewModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewRepresentable",
+                "printedName": "RiveRuntime.RiveViewRepresentable",
+                "usr": "s:11RiveRuntime0A17ViewRepresentableV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveViewModel",
+                "printedName": "RiveRuntime.RiveViewModel",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV9viewModelAcA0acF0C_tcfc",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV9viewModelAcA0acF0C_tcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "makeUIView",
+            "printedName": "makeUIView(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewRepresentableContext",
+                "printedName": "SwiftUI.UIViewRepresentableContext<RiveRuntime.RiveViewRepresentable>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveViewRepresentable",
+                    "printedName": "RiveRuntime.RiveViewRepresentable",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV"
+                  }
+                ],
+                "usr": "s:7SwiftUI26UIViewRepresentableContextV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV10makeUIView7contextAA0aC0C7SwiftUI0fD7ContextVyACG_tF",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV10makeUIView7contextAA0aC0C7SwiftUI0fD7ContextVyACG_tF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "updateUIView",
+            "printedName": "updateUIView(_:context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewRepresentableContext",
+                "printedName": "SwiftUI.UIViewRepresentableContext<RiveRuntime.RiveViewRepresentable>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveViewRepresentable",
+                    "printedName": "RiveRuntime.RiveViewRepresentable",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV"
+                  }
+                ],
+                "usr": "s:7SwiftUI26UIViewRepresentableContextV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV12updateUIView_7contextyAA0aC0C_7SwiftUI0fD7ContextVyACGtF",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV12updateUIView_7contextyAA0aC0C_7SwiftUI0fD7ContextVyACGtF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "dismantleUIView",
+            "printedName": "dismantleUIView(_:coordinator:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveView",
+                "printedName": "RiveRuntime.RiveView",
+                "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Coordinator",
+                "printedName": "RiveRuntime.RiveViewRepresentable.Coordinator",
+                "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV15dismantleUIView_11coordinatoryAA0aC0C_AC11CoordinatorCtFZ",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV15dismantleUIView_11coordinatoryAA0aC0C_AC11CoordinatorCtFZ",
+            "moduleName": "RiveRuntime",
+            "static": true,
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "makeCoordinator",
+            "printedName": "makeCoordinator()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Coordinator",
+                "printedName": "RiveRuntime.RiveViewRepresentable.Coordinator",
+                "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV15makeCoordinatorAC0F0CyF",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV15makeCoordinatorAC0F0CyF",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Coordinator",
+            "printedName": "Coordinator",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "viewModel",
+                "printedName": "viewModel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveViewModel",
+                    "printedName": "RiveRuntime.RiveViewModel",
+                    "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvp",
+                "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvp",
+                "moduleName": "RiveRuntime",
+                "declAttributes": [
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveViewModel",
+                        "printedName": "RiveRuntime.RiveViewModel",
+                        "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvg",
+                    "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvg",
+                    "moduleName": "RiveRuntime",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveViewModel",
+                        "printedName": "RiveRuntime.RiveViewModel",
+                        "usr": "c:@M@RiveRuntime@objc(cs)RiveViewModel"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvs",
+                    "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0Cvs",
+                    "moduleName": "RiveRuntime",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0CvM",
+                    "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorC9viewModelAA0acG0CvM",
+                    "moduleName": "RiveRuntime",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Coordinator",
+                    "printedName": "RiveRuntime.RiveViewRepresentable.Coordinator",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorCAEycfc",
+                "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorCAEycfc",
+                "moduleName": "RiveRuntime",
+                "overriding": true,
+                "implicit": true,
+                "objc_name": "init",
+                "declAttributes": [
+                  "Dynamic",
+                  "ObjC",
+                  "Override"
+                ],
+                "init_kind": "Designated"
+              }
+            ],
+            "declKind": "Class",
+            "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC",
+            "mangledName": "$s11RiveRuntime0A17ViewRepresentableV11CoordinatorC",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "superclassUsr": "c:objc(cs)NSObject",
+            "hasMissingDesignatedInitializers": true,
+            "superclassNames": [
+              "ObjectiveC.NSObject"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CVarArg",
+                "printedName": "CVarArg",
+                "usr": "s:s7CVarArgP",
+                "mangledName": "$ss7CVarArgP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "_KeyValueCodingAndObservingPublishing",
+                "printedName": "_KeyValueCodingAndObservingPublishing",
+                "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+                "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "_KeyValueCodingAndObserving",
+                "printedName": "_KeyValueCodingAndObserving",
+                "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+                "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomStringConvertible",
+                "printedName": "CustomStringConvertible",
+                "usr": "s:s23CustomStringConvertibleP",
+                "mangledName": "$ss23CustomStringConvertibleP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomDebugStringConvertible",
+                "printedName": "CustomDebugStringConvertible",
+                "usr": "s:s28CustomDebugStringConvertibleP",
+                "mangledName": "$ss28CustomDebugStringConvertibleP"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11RiveRuntime0A17ViewRepresentableV",
+        "mangledName": "$s11RiveRuntime0A17ViewRepresentableV",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "UIViewRepresentable",
+            "printedName": "UIViewRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "UIViewType",
+                "printedName": "UIViewType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveView",
+                    "printedName": "RiveRuntime.RiveView",
+                    "usr": "c:@M@RiveRuntime@objc(cs)RiveView"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Coordinator",
+                "printedName": "Coordinator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Coordinator",
+                    "printedName": "RiveRuntime.RiveViewRepresentable.Coordinator",
+                    "usr": "s:11RiveRuntime0A17ViewRepresentableV11CoordinatorC"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI19UIViewRepresentableP",
+            "mangledName": "$s7SwiftUI19UIViewRepresentableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Body",
+                "printedName": "Body",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI4ViewP",
+            "mangledName": "$s7SwiftUI4ViewP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "RiveRuntime",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveModel",
+        "printedName": "RiveModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "artboard",
+            "printedName": "artboard",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "RiveRuntime.RiveArtboard?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveArtboard",
+                    "printedName": "RiveRuntime.RiveArtboard",
+                    "usr": "c:objc(cs)RiveArtboard"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A5ModelC8artboardSo0A8ArtboardCSgvp",
+            "mangledName": "$s11RiveRuntime0A5ModelC8artboardSo0A8ArtboardCSgvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "RiveRuntime.RiveArtboard?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveArtboard",
+                        "printedName": "RiveRuntime.RiveArtboard",
+                        "usr": "c:objc(cs)RiveArtboard"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A5ModelC8artboardSo0A8ArtboardCSgvg",
+                "mangledName": "$s11RiveRuntime0A5ModelC8artboardSo0A8ArtboardCSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "stateMachine",
+            "printedName": "stateMachine",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveStateMachineInstance?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveStateMachineInstance",
+                    "printedName": "RiveRuntime.RiveStateMachineInstance",
+                    "usr": "c:objc(cs)RiveStateMachineInstance"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A5ModelC12stateMachineSo0a5StateE8InstanceCSgvp",
+            "mangledName": "$s11RiveRuntime0A5ModelC12stateMachineSo0a5StateE8InstanceCSgvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveStateMachineInstance?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveStateMachineInstance",
+                        "printedName": "RiveRuntime.RiveStateMachineInstance",
+                        "usr": "c:objc(cs)RiveStateMachineInstance"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A5ModelC12stateMachineSo0a5StateE8InstanceCSgvg",
+                "mangledName": "$s11RiveRuntime0A5ModelC12stateMachineSo0a5StateE8InstanceCSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "animation",
+            "printedName": "animation",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "RiveRuntime.RiveLinearAnimationInstance?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RiveLinearAnimationInstance",
+                    "printedName": "RiveRuntime.RiveLinearAnimationInstance",
+                    "usr": "c:objc(cs)RiveLinearAnimationInstance"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A5ModelC9animationSo0A23LinearAnimationInstanceCSgvp",
+            "mangledName": "$s11RiveRuntime0A5ModelC9animationSo0A23LinearAnimationInstanceCSgvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "RiveRuntime.RiveLinearAnimationInstance?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RiveLinearAnimationInstance",
+                        "printedName": "RiveRuntime.RiveLinearAnimationInstance",
+                        "usr": "c:objc(cs)RiveLinearAnimationInstance"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A5ModelC9animationSo0A23LinearAnimationInstanceCSgvg",
+                "mangledName": "$s11RiveRuntime0A5ModelC9animationSo0A23LinearAnimationInstanceCSgvg",
+                "moduleName": "RiveRuntime",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(riveFile:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFile",
+                "printedName": "RiveRuntime.RiveFile",
+                "usr": "c:objc(cs)RiveFile"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A5ModelC8riveFileACSo0aE0C_tcfc",
+            "mangledName": "$s11RiveRuntime0A5ModelC8riveFileACSo0aE0C_tcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(fileName:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A5ModelC8fileNameACSS_tKcfc",
+            "mangledName": "$s11RiveRuntime0A5ModelC8fileNameACSS_tKcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(webURL:delegate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveModel",
+                "printedName": "RiveRuntime.RiveModel",
+                "usr": "s:11RiveRuntime0A5ModelC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFileDelegate",
+                "printedName": "RiveRuntime.RiveFileDelegate",
+                "usr": "c:objc(pl)RiveFileDelegate"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11RiveRuntime0A5ModelC6webURL8delegateACSS_So0A12FileDelegate_ptcfc",
+            "mangledName": "$s11RiveRuntime0A5ModelC6webURL8delegateACSS_So0A12FileDelegate_ptcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "setArtboard",
+            "printedName": "setArtboard(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC11setArtboardyySSKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC11setArtboardyySSKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setArtboard",
+            "printedName": "setArtboard(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC11setArtboardyySiSgKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC11setArtboardyySiSgKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setStateMachine",
+            "printedName": "setStateMachine(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC15setStateMachineyySSKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC15setStateMachineyySSKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setStateMachine",
+            "printedName": "setStateMachine(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC15setStateMachineyySiSgKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC15setStateMachineyySiSgKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setAnimation",
+            "printedName": "setAnimation(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC12setAnimationyySSKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC12setAnimationyySSKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setAnimation",
+            "printedName": "setAnimation(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11RiveRuntime0A5ModelC12setAnimationyySiSgKF",
+            "mangledName": "$s11RiveRuntime0A5ModelC12setAnimationyySiSgKF",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11RiveRuntime0A5ModelC11descriptionSSvp",
+            "mangledName": "$s11RiveRuntime0A5ModelC11descriptionSSvp",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11RiveRuntime0A5ModelC11descriptionSSvg",
+                "mangledName": "$s11RiveRuntime0A5ModelC11descriptionSSvg",
+                "moduleName": "RiveRuntime",
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:11RiveRuntime0A5ModelC",
+        "mangledName": "$s11RiveRuntime0A5ModelC",
+        "moduleName": "RiveRuntime",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "ObservableObject",
+            "printedName": "ObservableObject",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ObjectWillChangePublisher",
+                "printedName": "ObjectWillChangePublisher",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ObservableObjectPublisher",
+                    "printedName": "Combine.ObservableObjectPublisher",
+                    "usr": "s:7Combine25ObservableObjectPublisherC"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine16ObservableObjectP",
+            "mangledName": "$s7Combine16ObservableObjectP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveFile",
+        "printedName": "RiveFile",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(name:extension:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RiveFile",
+                "printedName": "RiveRuntime.RiveFile",
+                "usr": "c:objc(cs)RiveFile"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:So8RiveFileC0A7RuntimeE4name9extensionABSS_SStKcfc",
+            "mangledName": "$sSo8RiveFileC0A7RuntimeE4name9extensionABSS_SStKcfc",
+            "moduleName": "RiveRuntime",
+            "declAttributes": [
+              "Convenience"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "getBytes",
+            "printedName": "getBytes(fileName:extension:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So8RiveFileC0A7RuntimeE8getBytes8fileName9extensionSays5UInt8VGSS_SStFZ",
+            "mangledName": "$sSo8RiveFileC0A7RuntimeE8getBytes8fileName9extensionSays5UInt8VGSS_SStFZ",
+            "moduleName": "RiveRuntime",
+            "static": true,
+            "declAttributes": [
+              "Final"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)RiveFile",
+        "moduleName": "RiveRuntime",
+        "isOpen": true,
+        "objc_name": "RiveFile",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RiveStateMachineInstance",
+        "printedName": "RiveStateMachineInstance",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "inputs",
+            "printedName": "inputs",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[RiveRuntime.StateMachineInput]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StateMachineInput",
+                    "printedName": "RiveRuntime.StateMachineInput",
+                    "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24RiveStateMachineInstanceC0A7RuntimeE6inputsSayAC0bC5InputCGvp",
+            "mangledName": "$sSo24RiveStateMachineInstanceC0A7RuntimeE6inputsSayAC0bC5InputCGvp",
+            "moduleName": "RiveRuntime",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[RiveRuntime.StateMachineInput]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StateMachineInput",
+                        "printedName": "RiveRuntime.StateMachineInput",
+                        "usr": "c:@M@RiveRuntime@objc(cs)StateMachineInput"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24RiveStateMachineInstanceC0A7RuntimeE6inputsSayAC0bC5InputCGvg",
+                "mangledName": "$sSo24RiveStateMachineInstanceC0A7RuntimeE6inputsSayAC0bC5InputCGvg",
+                "moduleName": "RiveRuntime",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)RiveStateMachineInstance",
+        "moduleName": "RiveRuntime",
+        "isOpen": true,
+        "objc_name": "RiveStateMachineInstance",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveFile+Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 261,
+      "length": 6,
+      "value": "\".riv\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveFile+Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 478,
+      "length": 6,
+      "value": "\".riv\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 504,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "IntegerLiteral",
+      "offset": 553,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1127,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1350,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1702,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "StringLiteral",
+      "offset": 167,
+      "length": 8,
+      "value": "\"RiveRuntime.RiveView\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "StringLiteral",
+      "offset": 167,
+      "length": 8,
+      "value": "\"RiveRuntime.RiveView\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveView.swift",
+      "kind": "Array",
+      "offset": 10953,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveStateMachineInstance+Extensions.swift",
+      "kind": "IntegerLiteral",
+      "offset": 848,
+      "length": 6,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveStateMachineInstance+Extensions.swift",
+      "kind": "IntegerLiteral",
+      "offset": 856,
+      "length": 7,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveStateMachineInstance+Extensions.swift",
+      "kind": "IntegerLiteral",
+      "offset": 848,
+      "length": 6,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveStateMachineInstance+Extensions.swift",
+      "kind": "IntegerLiteral",
+      "offset": 856,
+      "length": 7,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/RiveStateMachineInstance+Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 963,
+      "length": 17,
+      "value": "\"RiveRuntime.StateMachineInput\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1504,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1991,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2470,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2984,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3490,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4029,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "StringLiteral",
+      "offset": 1116,
+      "length": 13,
+      "value": "\"RiveRuntime.RiveViewModel\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/RiveViewModel.swift",
+      "kind": "StringLiteral",
+      "offset": 15166,
+      "length": 11,
+      "value": "\"RiveRuntime.Coordinator\""
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/FPSCounterView.swift",
+      "kind": "FloatLiteral",
+      "offset": 278,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/FPSCounterView.swift",
+      "kind": "IntegerLiteral",
+      "offset": 338,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/nstudio\/Documents\/github\/FelixHerrmann\/rive-ios\/Source\/Utils\/FPSCounterView.swift",
+      "kind": "IntegerLiteral",
+      "offset": 390,
+      "length": 1,
+      "value": "0"
+    }
+  ]
+}

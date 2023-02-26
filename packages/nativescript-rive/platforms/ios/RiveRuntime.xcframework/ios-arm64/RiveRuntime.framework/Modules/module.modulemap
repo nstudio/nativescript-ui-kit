@@ -1,0 +1,11 @@
+framework module RiveRuntime {
+  umbrella header "RiveRuntime.h"
+
+  export *
+  module * { export * }
+}
+
+module RiveRuntime.Swift {
+  header "RiveRuntime-Swift.h"
+  requires objc
+}

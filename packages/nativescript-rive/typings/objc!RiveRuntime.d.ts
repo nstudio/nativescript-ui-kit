@@ -1,70 +1,24 @@
 
-declare const enum Alignment {
+declare const enum RiveAlignment {
 
-	alignmentTopLeft = 0,
+	topLeft = 0,
 
-	alignmentTopCenter = 1,
+	topCenter = 1,
 
-	alignmentTopRight = 2,
+	topRight = 2,
 
-	alignmentCenterLeft = 3,
+	centerLeft = 3,
 
-	alignmentCenter = 4,
+	center = 4,
 
-	alignmentCenterRight = 5,
+	centerRight = 5,
 
-	alignmentBottomLeft = 6,
+	bottomLeft = 6,
 
-	alignmentBottomCenter = 7,
+	bottomCenter = 7,
 
-	alignmentBottomRight = 8
+	bottomRight = 8
 }
-
-declare const enum Direction {
-
-	directionBackwards = 0,
-
-	directionForwards = 1,
-
-	directionAuto = 2
-}
-
-declare const enum Fit {
-
-	fitFill = 0,
-
-	fitContain = 1,
-
-	fitCover = 2,
-
-	fitFitHeight = 3,
-
-	fitFitWidth = 4,
-
-	fitScaleDown = 5,
-
-	fitNone = 6
-}
-
-declare const enum Loop {
-
-	loopOneShot = 0,
-
-	loopLoop = 1,
-
-	loopPingPong = 2,
-
-	loopAuto = 3
-}
-
-interface RArtboardDelegate {
-
-	artboardDidTriggerEvent(artboard: RiveArtboard, event: string): void;
-}
-declare var RArtboardDelegate: {
-
-	prototype: RArtboardDelegate;
-};
 
 declare class RiveAnimationState extends RiveLayerState {
 
@@ -90,31 +44,36 @@ declare class RiveArtboard extends NSObject {
 
 	animationCount(): number;
 
-	animationFromIndexError(index: number): RiveLinearAnimation;
+	animationFromIndexError(index: number): RiveLinearAnimationInstance;
 
-	animationFromNameError(name: string): RiveLinearAnimation;
+	animationFromNameError(name: string): RiveLinearAnimationInstance;
 
 	animationNames(): NSArray<string>;
 
 	bounds(): CGRect;
 
+	defaultStateMachine(): RiveStateMachineInstance;
+
 	draw(renderer: RiveRenderer): void;
-
-	firstAnimation(): RiveLinearAnimation;
-
-	firstStateMachine(): RiveStateMachine;
 
 	name(): string;
 
 	stateMachineCount(): number;
 
-	stateMachineFromIndexError(index: number): RiveStateMachine;
+	stateMachineFromIndexError(index: number): RiveStateMachineInstance;
 
-	stateMachineFromNameError(name: string): RiveStateMachine;
+	stateMachineFromNameError(name: string): RiveStateMachineInstance;
 
 	stateMachineNames(): NSArray<string>;
+}
 
-	touchedAtInfo(location: CGPoint, hitInfo: number): void;
+declare const enum RiveDirection {
+
+	backwards = 0,
+
+	forwards = 1,
+
+	autoDirection = 2
 }
 
 declare class RiveEntryState extends RiveLayerState {
@@ -214,13 +173,28 @@ declare var RiveFileDelegate: {
 	prototype: RiveFileDelegate;
 };
 
+declare const enum RiveFit {
+
+	fill = 0,
+
+	contain = 1,
+
+	cover = 2,
+
+	fitHeight = 3,
+
+	fitWidth = 4,
+
+	scaleDown = 5,
+
+	noFit = 6
+}
+
 declare class RiveLayerState extends NSObject {
 
 	static alloc(): RiveLayerState; // inherited from NSObject
 
 	static new(): RiveLayerState; // inherited from NSObject
-
-	animation(): RiveLinearAnimation;
 
 	isAnimationState(): boolean;
 
@@ -231,15 +205,21 @@ declare class RiveLayerState extends NSObject {
 	isExitState(): boolean;
 
 	name(): string;
+
+	rive_layer_state(): interop.Pointer | interop.Reference<any>;
 }
 
-declare class RiveLinearAnimation extends NSObject {
+declare class RiveLinearAnimationInstance extends NSObject {
 
-	static alloc(): RiveLinearAnimation; // inherited from NSObject
+	static alloc(): RiveLinearAnimationInstance; // inherited from NSObject
 
-	static new(): RiveLinearAnimation; // inherited from NSObject
+	static new(): RiveLinearAnimationInstance; // inherited from NSObject
 
-	applyTo(time: number, artboard: RiveArtboard): void;
+	advanceBy(elapsedSeconds: number): boolean;
+
+	didLoop(): boolean;
+
+	direction(): number;
 
 	duration(): number;
 
@@ -251,32 +231,7 @@ declare class RiveLinearAnimation extends NSObject {
 
 	fps(): number;
 
-	instanceWithArtboard(artboard: RiveArtboard): RiveLinearAnimationInstance;
-
-	loop(): number;
-
-	name(): string;
-
-	workEnd(): number;
-
-	workStart(): number;
-}
-
-declare class RiveLinearAnimationInstance extends NSObject {
-
-	static alloc(): RiveLinearAnimationInstance; // inherited from NSObject
-
-	static new(): RiveLinearAnimationInstance; // inherited from NSObject
-
-	advanceBy(elapsedSeconds: number): boolean;
-
-	animation(): RiveLinearAnimation;
-
-	apply(): void;
-
-	didLoop(): boolean;
-
-	direction(): number;
+	hasEnded(): boolean;
 
 	loop(): number;
 
@@ -285,6 +240,21 @@ declare class RiveLinearAnimationInstance extends NSObject {
 	setTime(time: number): void;
 
 	time(): number;
+
+	workEnd(): number;
+
+	workStart(): number;
+}
+
+declare const enum RiveLoop {
+
+	oneShot = 0,
+
+	loop = 1,
+
+	pingPong = 2,
+
+	autoLoop = 3
 }
 
 declare class RiveRenderer extends NSObject {
@@ -295,7 +265,7 @@ declare class RiveRenderer extends NSObject {
 
 	constructor(o: { context: any; });
 
-	alignWithRectWithContentRectWithAlignmentWithFit(rect: CGRect, contentRect: CGRect, alignment: Alignment, fit: Fit): void;
+	alignWithRectWithContentRectWithAlignmentWithFit(rect: CGRect, contentRect: CGRect, alignment: RiveAlignment, fit: RiveFit): void;
 
 	initWithContext(context: any): this;
 }
@@ -322,7 +292,9 @@ declare class RiveRendererView extends MTKView {
 
 	metalQueue: MTLCommandQueue;
 
-	alignWithRectContentRectAlignmentFit(rect: CGRect, contentRect: CGRect, alignment: Alignment, fit: Fit): void;
+	alignWithRectContentRectAlignmentFit(rect: CGRect, contentRect: CGRect, alignment: RiveAlignment, fit: RiveFit): void;
+
+	artboardLocationFromTouchLocationInArtboardFitAlignment(touchLocation: CGPoint, artboardRect: CGRect, fit: RiveFit, alignment: RiveAlignment): CGPoint;
 
 	drawRiveSize(rect: CGRect, size: CGSize): void;
 
@@ -381,50 +353,24 @@ declare class RiveSMITrigger extends RiveSMIInput {
 	fire(): void;
 }
 
-declare class RiveStateMachine extends NSObject {
+interface RiveStateMachineDelegate {
 
-	static alloc(): RiveStateMachine; // inherited from NSObject
+	stateMachineDidChangeState?(stateMachine: RiveStateMachineInstance, stateName: string): void;
 
-	static new(): RiveStateMachine; // inherited from NSObject
+	stateMachineReceivedInput?(stateMachine: RiveStateMachineInstance, input: StateMachineInput): void;
 
-	inputCount(): number;
+	touchBeganOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
 
-	inputFromIndexError(index: number): RiveStateMachineInput;
+	touchCancelledOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
 
-	inputFromNameError(name: string): RiveStateMachineInput;
+	touchEndedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
 
-	inputNames(): NSArray<string>;
-
-	instanceWithArtboard(artboard: RiveArtboard): RiveStateMachineInstance;
-
-	layerCount(): number;
-
-	name(): string;
+	touchMovedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
 }
+declare var RiveStateMachineDelegate: {
 
-declare class RiveStateMachineBoolInput extends RiveStateMachineInput {
-
-	static alloc(): RiveStateMachineBoolInput; // inherited from NSObject
-
-	static new(): RiveStateMachineBoolInput; // inherited from NSObject
-
-	value(): boolean;
-}
-
-declare class RiveStateMachineInput extends NSObject {
-
-	static alloc(): RiveStateMachineInput; // inherited from NSObject
-
-	static new(): RiveStateMachineInput; // inherited from NSObject
-
-	isBoolean(): boolean;
-
-	isNumber(): boolean;
-
-	isTrigger(): boolean;
-
-	name(): string;
-}
+	prototype: RiveStateMachineDelegate;
+};
 
 declare class RiveStateMachineInstance extends NSObject {
 
@@ -448,6 +394,8 @@ declare class RiveStateMachineInstance extends NSObject {
 
 	inputNames(): NSArray<string>;
 
+	layerCount(): number;
+
 	name(): string;
 
 	stateChangedCount(): number;
@@ -456,39 +404,14 @@ declare class RiveStateMachineInstance extends NSObject {
 
 	stateChanges(): NSArray<string>;
 
-	stateMachine(): RiveStateMachine;
+	touchBeganAtLocation(touchLocation: CGPoint): void;
+
+	touchCancelledAtLocation(touchLocation: CGPoint): void;
+
+	touchEndedAtLocation(touchLocation: CGPoint): void;
+
+	touchMovedAtLocation(touchLocation: CGPoint): void;
 }
-
-declare class RiveStateMachineNumberInput extends RiveStateMachineInput {
-
-	static alloc(): RiveStateMachineNumberInput; // inherited from NSObject
-
-	static new(): RiveStateMachineNumberInput; // inherited from NSObject
-
-	value(): number;
-}
-
-declare class RiveStateMachineTriggerInput extends RiveStateMachineInput {
-
-	static alloc(): RiveStateMachineTriggerInput; // inherited from NSObject
-
-	static new(): RiveStateMachineTriggerInput; // inherited from NSObject
-}
-
-interface RiveTouchDelegate {
-
-	touchBeganOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
-
-	touchCancelledOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
-
-	touchEndedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
-
-	touchMovedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void;
-}
-declare var RiveTouchDelegate: {
-
-	prototype: RiveTouchDelegate;
-};
 
 declare class RiveUnknownState extends RiveLayerState {
 
@@ -497,7 +420,7 @@ declare class RiveUnknownState extends RiveLayerState {
 	static new(): RiveUnknownState; // inherited from NSObject
 }
 
-declare class RiveView extends RiveRendererView implements RArtboardDelegate, RiveFileDelegate {
+declare class RiveView extends RiveRendererView {
 
 	static alloc(): RiveView; // inherited from NSObject
 
@@ -515,6 +438,15 @@ declare class RiveView extends RiveRendererView implements RArtboardDelegate, Ri
 
 	static new(): RiveView; // inherited from NSObject
 
+	advanceWithDelta(delta: number): void;
+}
+
+declare class RiveViewModel extends NSObject implements RiveFileDelegate, RiveStateMachineDelegate {
+
+	static alloc(): RiveViewModel; // inherited from NSObject
+
+	static new(): RiveViewModel; // inherited from NSObject
+
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
 	readonly description: string; // inherited from NSObjectProtocol
@@ -526,8 +458,6 @@ declare class RiveView extends RiveRendererView implements RArtboardDelegate, Ri
 	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
 	readonly  // inherited from NSObjectProtocol
-
-	artboardDidTriggerEvent(artboard: RiveArtboard, event: string): void;
 
 	class(): typeof NSObject;
 
@@ -552,4 +482,36 @@ declare class RiveView extends RiveRendererView implements RArtboardDelegate, Ri
 	riveFileDidLoadError(riveFile: RiveFile): boolean;
 
 	self(): this;
+
+	setView(view: RiveView): void;
+
+	stateMachineDidChangeState(stateMachine: RiveStateMachineInstance, stateName: string): void;
+
+	stateMachineReceivedInput(stateMachine: RiveStateMachineInstance, input: StateMachineInput): void;
+
+	touchBeganOnArtboardAtLocation(artboard: RiveArtboard, location: CGPoint): void;
+
+	touchCancelledOnArtboardAtLocation(artboard: RiveArtboard, location: CGPoint): void;
+
+	touchEndedOnArtboardAtLocation(artboard: RiveArtboard, location: CGPoint): void;
+
+	touchMovedOnArtboardAtLocation(artboard: RiveArtboard, location: CGPoint): void;
+
+	updateWithView(view: RiveView): void;
+}
+
+declare class StateMachineInput extends NSObject {
+
+	static alloc(): StateMachineInput; // inherited from NSObject
+
+	static new(): StateMachineInput; // inherited from NSObject
+}
+
+declare const enum StateMachineInputType {
+
+	Trigger = 0,
+
+	Number = 1,
+
+	Boolean = 2
 }

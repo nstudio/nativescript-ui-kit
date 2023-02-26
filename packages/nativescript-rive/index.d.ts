@@ -1,4 +1,5 @@
 import { View } from '@nativescript/core';
+import { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
 export { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
 
 export declare class RiveView extends View {
