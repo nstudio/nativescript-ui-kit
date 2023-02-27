@@ -82,6 +82,13 @@ module.exports = {
 					description: '@nstudio/nativescript-rive: Build',
 				},
 			},
+			// @nstudio/nativescript-ui-charts
+			'nativescript-ui-charts': {
+				build: {
+					script: 'nx run nativescript-ui-charts:build.all',
+					description: '@nstudio/nativescript-ui-charts: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -103,6 +110,10 @@ module.exports = {
       'nativescript-rive': {
 				script: 'nx run nativescript-rive:focus',
 				description: 'Focus on @nstudio/nativescript-rive',
+			},
+			'nativescript-ui-charts': {
+				script: 'nx run nativescript-ui-charts:focus',
+				description: 'Focus on @nstudio/nativescript-ui-charts',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

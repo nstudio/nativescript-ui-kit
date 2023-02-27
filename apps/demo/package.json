@@ -5,8 +5,9 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-rive": "file:../../packages/nativescript-rive",
+    "@nstudio/nativescript-ui-charts": "file:../../packages/nativescript-ui-charts",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
+    "@nstudio/nativescript-rive": "file:../../packages/nativescript-rive",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer"
   },
   "devDependencies": {

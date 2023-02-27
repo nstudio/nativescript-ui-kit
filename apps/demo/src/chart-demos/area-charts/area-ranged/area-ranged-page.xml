@@ -1,0 +1,16 @@
+<Page
+    navigatingTo="onNavigatingTo" 
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:uc="@nstudio/nativescript-ui-charts">
+    
+    <ActionBar>
+        <Label text="Area Range Chart"></Label>
+        <NavigationButton android.systemIcon="ic_menu_back" tap="goBack" />
+    </ActionBar>
+    
+    <GridLayout>
+        <GridLayout id="main" rows="*">
+            <uc:UIChartsView row="0" id="chartView" loaded="chartViewLoaded" />
+        </GridLayout>
+    </GridLayout>
+</Page>

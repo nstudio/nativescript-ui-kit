@@ -8,8 +8,8 @@
       "@demo/shared": ["../../tools/demo/index.ts"],
       "@nstudio/nativescript-label-marquee": ["../../packages/nativescript-label-marquee/index.d.ts"],
       "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"],
-      "@nstudio/nativescript-rive": ["../../packages/nativescript-rive/index.d.ts"]
+      "@nstudio/nativescript-rive": ["../../packages/nativescript-rive/index.d.ts"],
+      "@nstudio/nativescript-ui-charts": ["../../packages/nativescript-ui-charts/index.d.ts"]
     }
-  },
-  "include": ["../../packages/nativescript-rive/index.android.ts"]
+  }
 }

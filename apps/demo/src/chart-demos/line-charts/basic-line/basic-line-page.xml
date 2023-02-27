@@ -1,0 +1,18 @@
+<Page
+    navigatingTo="onNavigatingTo" 
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:uc="@nstudio/nativescript-ui-charts">
+    
+    <ActionBar>
+        <Label text="Basic Line Chart (async data)"></Label>
+        <NavigationButton android.systemIcon="ic_menu_back" tap="goBack" />
+    </ActionBar>
+    
+    <GridLayout>
+        <GridLayout id="main" rows="*, auto">
+            <ActivityIndicator width="100" height="100" busy="{{ loading, loading }}" />
+            <uc:UIChartsView row="0" id="chartView" loaded="chartViewLoaded" />
+            <Button row="1" text="Tap to Change Data" tap="changeData" />
+        </GridLayout>
+    </GridLayout>
+</Page>

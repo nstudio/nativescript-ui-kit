@@ -1,0 +1,25 @@
+<Page
+    navigatingTo="onNavigatingTo" 
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:uc="@nstudio/nativescript-ui-charts">
+    
+    <ActionBar>
+        <Label text="Dynamic Chart Height"></Label>
+        <NavigationButton android.systemIcon="ic_menu_back" tap="goBack" />
+    </ActionBar>
+    
+    <GridLayout rows="*, auto">
+        <GridLayout id="main" rows="{{ '101, ' + graphHeight + ', auto' }}">
+            <StackLayout row="0" height="100" backgroundColor="lightblue" verticalAlignment="center">
+                <Label text="Some Content" textAlignment="center" fontSize="20" />
+            </StackLayout>
+            <uc:UIChartsView row="1" id="chartView" loaded="chartViewLoaded" />
+            <StackLayout row="2" height="100" backgroundColor="lightblue" verticalAlignment="center">
+                <Label text="Some Content" textAlignment="center" fontSize="20" />
+            </StackLayout>
+        </GridLayout>
+        <StackLayout row="1">
+            <Button class="-primary p-x-10 m-x-auto" text="Adjust graph Height" tap="{{ onAdjustGraphHeight }}" />
+        </StackLayout>
+    </GridLayout>
+</Page>

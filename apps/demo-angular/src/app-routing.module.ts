@@ -9,7 +9,8 @@ const routes: Routes = [
    { path: 'home', component: HomeComponent },
 	{ path: 'nativescript-label-marquee', loadChildren: () => import('./plugin-demos/nativescript-label-marquee.module').then(m => m.NativescriptLabelMarqueeModule) },
 	{ path: 'nativescript-rive', loadChildren: () => import('./plugin-demos/nativescript-rive.module').then(m => m.NativescriptRiveModule) },
-	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) }
+	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) },
+	{ path: 'nativescript-ui-charts', loadChildren: () => import('./plugin-demos/nativescript-ui-charts.module').then(m => m.NativescriptUiChartsModule) }
 ];
 
 @NgModule({
