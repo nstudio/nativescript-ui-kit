@@ -37,6 +37,9 @@
       ],
       "@nstudio/nativescript-ui-charts": [
         "packages/nativescript-ui-charts/index.d.ts"
+      ],
+      "@nstudio/nativescript-ui-charts/angular": [
+        "packages/nativescript-ui-charts/angular/index.ts"
       ]
     }
   },
