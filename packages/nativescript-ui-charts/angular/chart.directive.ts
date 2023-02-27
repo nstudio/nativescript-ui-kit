@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Inject, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { EventData } from '@nativescript/core';
-import { UIChartsView } from '@nativescript/ui-charts';
+import { UIChartsView } from '@nstudio/nativescript-ui-charts';
 
 @Directive({
   // tslint:disable-next-line: directive-selector

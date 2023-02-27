@@ -3,7 +3,7 @@ Highcharts SDK for NativeScript
 ## Installation
 
 ```
-npm install @nativescript/ui-charts
+npm install @nstudio/nativescript-ui-charts
 ```
 
 ## Usage

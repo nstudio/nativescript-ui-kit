@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { UIChartsView } from '@nativescript/ui-charts';
+import { UIChartsView } from '@nstudio/nativescript-ui-charts';
 import { UIChartsViewDirective } from './chart.directive';
 
 export * from './chart.directive';
