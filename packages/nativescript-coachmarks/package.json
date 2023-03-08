@@ -1,0 +1,37 @@
+{
+  "name": "@nstudio/nativescript-coachmarks",
+  "version": "3.0.0",
+  "description": "Display user coach marks with a couple of shape cutouts over an existing UI for NativeScript.",
+  "main": "index",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "ios": "6.0.0",
+      "android": "6.0.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstudio/nativescript-ui-kit.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "iOS",
+    "Android",
+    "coachmarks",
+    "instructions",
+    "guide",
+    "intro"
+  ],
+  "author": {
+    "name": "nstudio",
+    "email": "oss@nstudio.io"
+  },
+  "bugs": {
+    "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/nstudio/nativescript-ui-kit",
+  "readmeFilename": "README.md",
+  "bootstrapper": "@nativescript/plugin-seed"
+}

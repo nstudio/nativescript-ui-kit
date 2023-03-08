@@ -3,6 +3,7 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/nativescript-ui-charts": "file:../../dist/packages/nativescript-ui-charts",
+    "@nstudio/nativescript-coachmarks": "file:../../dist/packages/nativescript-coachmarks",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
     "@nstudio/nativescript-rive": "file:../../dist/packages/nativescript-rive",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer"

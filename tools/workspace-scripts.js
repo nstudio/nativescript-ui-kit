@@ -87,6 +87,13 @@ module.exports = {
 				build: {
 					script: 'nx run nativescript-ui-charts:build.all',
 					description: '@nstudio/nativescript-ui-charts: Build',
+        }
+      },
+      // @nstudio/nativescript-coachmarks
+			'nativescript-coachmarks': {
+				build: {
+					script: 'nx run nativescript-coachmarks:build.all',
+					description: '@nstudio/nativescript-coachmarks: Build',
 				},
 			},
 			'build-all': {
@@ -114,6 +121,10 @@ module.exports = {
 			'nativescript-ui-charts': {
 				script: 'nx run nativescript-ui-charts:focus',
 				description: 'Focus on @nstudio/nativescript-ui-charts',
+      },
+      'nativescript-coachmarks': {
+				script: 'nx run nativescript-coachmarks:focus',
+				description: 'Focus on @nstudio/nativescript-coachmarks',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

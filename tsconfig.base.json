@@ -40,6 +40,9 @@
       ],
       "@nstudio/nativescript-ui-charts/angular": [
         "packages/nativescript-ui-charts/angular/index.ts"
+      ],
+      "@nstudio/nativescript-coachmarks": [
+        "packages/nativescript-coachmarks/index.d.ts"
       ]
     }
   },

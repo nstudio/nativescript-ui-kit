@@ -6,7 +6,8 @@
     "nativescript-label-marquee": "packages/nativescript-label-marquee",
     "nativescript-rive": "packages/nativescript-rive",
     "nativescript-shimmer": "packages/nativescript-shimmer",
-    "nativescript-ui-charts": "packages/nativescript-ui-charts"
+    "nativescript-ui-charts": "packages/nativescript-ui-charts",
+    "nativescript-coachmarks": "packages/nativescript-coachmarks"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
