@@ -4,7 +4,8 @@
     "demo": "apps/demo",
     "demo-angular": "apps/demo-angular",
     "nativescript-label-marquee": "packages/nativescript-label-marquee",
-    "nativescript-shimmer": "packages/nativescript-shimmer"
+    "nativescript-shimmer": "packages/nativescript-shimmer",
+    "nativescript-coachmarks": "packages/nativescript-coachmarks"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
