@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function areasplinerangeHandler(areasplinerangeOptions) {
   const areasplinerangeSchema = {
@@ -19,7 +19,7 @@ export function areasplinerangeHandler(areasplinerangeOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(areasplinerangeSchema, opts, areasplinerange)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const areasplinerange = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIAreasplinerange() : new HIAreasplinerange();
     return seriesHandler(areasplinerangeOptions, optionsBuilder(areasplinerangeSchema, areasplinerangeOptions, areasplinerange));

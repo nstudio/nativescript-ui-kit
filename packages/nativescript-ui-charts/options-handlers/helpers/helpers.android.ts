@@ -1,44 +1,21 @@
-import { Color } from '@nativescript/core';
+import { Color, Utils } from '@nativescript/core';
 import { typesMap as _typesMap } from './_helpers.common';
 
 const typesMap = Object.assign({}, _typesMap, {
-  number: (options) => fromJSToNativePrimitive(options),
-  boolean: (options) => fromJSToNativePrimitive(options),
-  Array: (options) => convertJSArrayToNative(options),
+  number: (options) => Utils.dataSerialize(options, true),
+  boolean: (options) => Utils.dataSerialize(options, true),
+  Array: (options) => Utils.dataSerialize(options, true),
   LinkedList: (options) => toLinkedList(options),
   HIColor: (options) => toHIColor(options),
 });
 
-export function convertJSArrayToNative(jsArray: Array<any>): java.util.ArrayList<any> {
-  const nativeArray = new java.util.ArrayList<any>();
-  for (let i = 0, l = jsArray.length; i < l; i++) {
-    nativeArray.add(fromJSToNativePrimitive(jsArray[i]));
-  }
-
-  return nativeArray;
-}
-
-export function fromJSToNativePrimitive(value: any): any {
-  if (typeof value === 'boolean' || value === 'false' || value === 'true') return new java.lang.Boolean(value);
-  if (typeof value === 'string') return value;
-
-  if (Number.isInteger(value)) {
-    return new java.lang.Double(value);
-  }
-
-  if (!isNaN(Number(value)) && value !== null) {
-    return new java.lang.Double(value.toString());
-  }
-
-  return value;
-}
-
 export function toArrayList(arr, isNumber = false) {
-  const arrayList = new java.util.ArrayList<any>();
-  arr.forEach((item) => {
-    arrayList.add(item);
-  });
-  return arrayList;
+  // const arrayList = new java.util.ArrayList<any>();
+  // arr.forEach((item) => {
+  //   arrayList.add(item);
+  // });
+  // return arrayList;
+  return Utils.dataSerialize(arr, true);
 }
 
 export function toLinkedList(arr, isNumber = false) {
@@ -56,7 +33,7 @@ export function toArrayListRecursive(arr, isNumber = false) {
       arrayList.add(toArrayListRecursive(item, isNumber));
     } else {
       if (isNumber) {
-        arrayList.add(fromJSToNativePrimitive(item));
+        arrayList.add(Utils.dataSerialize(item, true));
       } else {
         arrayList.add(item);
       }
@@ -96,7 +73,7 @@ export function toHIColor(color) {
       }
     }
 
-    return convertJSArrayToNative(colorArray);
+    return Utils.dataSerialize(colorArray, true);
   } else {
     if (color.radialGradient && color.stops) {
       const grad = color.radialGradient;

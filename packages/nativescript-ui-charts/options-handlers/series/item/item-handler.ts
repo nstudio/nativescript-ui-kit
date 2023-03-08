@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function itemHandler(itemOptions) {
   const itemSchema = {
@@ -26,7 +26,7 @@ export function itemHandler(itemOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(itemSchema, opts, item)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const item = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIItem() : new HIItem();
     return seriesHandler(itemOptions, optionsBuilder(itemSchema, itemOptions, item));

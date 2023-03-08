@@ -1,16 +1,12 @@
-import { Color } from '@nativescript/core';
+import { Color, Utils } from '@nativescript/core';
 import { typesMap as _typesMap } from './_helpers.common';
 
 const typesMap = Object.assign({}, _typesMap, {
-  number: (options) => fromJSToNativePrimitive(options),
-  boolean: (options) => fromJSToNativePrimitive(options),
-  Array: (options) => convertJSArrayToNative(options),
+  number: (options) => Utils.dataSerialize(options, true),
+  boolean: (options) => Utils.dataSerialize(options, true),
+  Array: (options) => Utils.dataSerialize(options, true),
   HIColor: (options) => toHIColor(options),
 });
-
-export function convertJSArrayToNative(array) {
-  return new NSArray({ array: array });
-}
 
 export function fromJSToNativePrimitive(value) {
   // stub
@@ -70,7 +66,7 @@ export function toHIColor(color) {
       }
     }
 
-    return convertJSArrayToNative(colorArray);
+    return Utils.dataSerialize(colorArray, true);
   } else {
     if (color.radialGradient && color.stops) {
       const stops = color.stops.map((stop, index) => [index, colorToString(stop)]);

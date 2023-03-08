@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from '../helpers/helpers';
-import { isAndroid } from '@nativescript/core';
+import { optionsBuilder } from '../helpers/helpers';
+import { isAndroid, Utils } from '@nativescript/core';
 
 export function xAxisHandler(xAxisOptions) {
   const xAxisSchema = {
@@ -90,5 +90,5 @@ export function xAxisHandler(xAxisOptions) {
     axisArray.push(optionsBuilder(xAxisSchema, xAxisOptions, xAxis));
   }
 
-  return convertJSArrayToNative(axisArray);
+  return Utils.dataSerialize(axisArray, true);
 }

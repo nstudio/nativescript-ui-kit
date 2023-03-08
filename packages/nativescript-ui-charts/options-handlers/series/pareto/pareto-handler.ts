@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function paretoHandler(paretoOptions) {
   const paretoSchema = {
@@ -15,7 +15,7 @@ export function paretoHandler(paretoOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(paretoSchema, opts, pareto)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const pareto = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPareto() : new HIPareto();
     return seriesHandler(paretoOptions, optionsBuilder(paretoSchema, paretoOptions, pareto));

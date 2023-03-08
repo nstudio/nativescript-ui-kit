@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function windbarbHandler(windbarbOptions) {
   const windbarbSchema = {
@@ -36,7 +36,7 @@ export function windbarbHandler(windbarbOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(windbarbSchema, opts, windbarb)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const windbarb = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIWindbarb() : new HIWindbarb();
     return seriesHandler(windbarbOptions, optionsBuilder(windbarbSchema, windbarbOptions, windbarb));

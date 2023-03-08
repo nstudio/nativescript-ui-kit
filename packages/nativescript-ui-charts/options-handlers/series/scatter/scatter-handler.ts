@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function scatterHandler(scatterOptions) {
   const scatterSchema = {
@@ -16,7 +16,7 @@ export function scatterHandler(scatterOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(scatterSchema, opts, scatter)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const scatter = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIScatter() : new HIScatter();
     return seriesHandler(scatterOptions, optionsBuilder(scatterSchema, scatterOptions, scatter));

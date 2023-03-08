@@ -1,5 +1,5 @@
-import { optionsBuilder, toArrayList, convertJSArrayToNative } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function dataLabelsHandler(dataLabelsOptions) {
   const dataLabels = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIDataLabels() : new HIDataLabels();
@@ -62,5 +62,5 @@ export function dataLabelsHandler(dataLabelsOptions) {
     zIndex: 'number'
   };
 
-  return convertJSArrayToNative([optionsBuilder(dataLabelsSchema, dataLabelsOptions, dataLabels)]);
+  return Utils.dataSerialize([optionsBuilder(dataLabelsSchema, dataLabelsOptions, dataLabels)], true);
 }

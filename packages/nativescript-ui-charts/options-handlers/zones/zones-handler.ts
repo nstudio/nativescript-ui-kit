@@ -1,5 +1,5 @@
-import { isAndroid } from "@nativescript/core";
-import { convertJSArrayToNative, optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
 
 export function zonesHandler(zonesOptions) {
   const zones = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIZones() : new HIZones();
@@ -22,5 +22,5 @@ export function zonesHandler(zonesOptions) {
     });
   }
 
-  return convertJSArrayToNative(zonesArray);
+  return Utils.dataSerialize(zonesArray, true);
 }

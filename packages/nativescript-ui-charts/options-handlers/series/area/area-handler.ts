@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { optionsBuilder, convertJSArrayToNative } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function areaHandler(areaOptions) {
   const areaSchema = {
@@ -20,7 +20,7 @@ export function areaHandler(areaOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(areaSchema, opts, area)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const area = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIArea() : new HIArea();
 

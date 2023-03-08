@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function shapesHandler(shapesOptions) {
   const shapesSchema = {
@@ -27,7 +27,7 @@ export function shapesHandler(shapesOptions) {
       shapesArray.push(optionsBuilder(shapesSchema, shapesOptions, shapes));
     }
 
-    return convertJSArrayToNative(shapesArray);
+    return Utils.dataSerialize(shapesArray, true);
   } else {
     const shapes = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIShapes() : new HIShapes();
   

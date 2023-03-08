@@ -1,5 +1,5 @@
-import { isAndroid } from '@nativescript/core';
-import { optionsBuilder, toArrayList, convertJSArrayToNative, fromJSToNativePrimitive } from '../helpers/helpers';
+import { isAndroid, Utils } from '@nativescript/core';
+import { optionsBuilder, toArrayList } from '../helpers/helpers';
 
 export function seriesHandler(seriesOptions, seriesSubClass?) {
   const seriesSchema = {
@@ -95,7 +95,7 @@ export function seriesHandler(seriesOptions, seriesSubClass?) {
               innerArray.push(new java.lang.Long(item[0]));
             }
           } else {
-            innerArray.push(fromJSToNativePrimitive(item[i]));
+            innerArray.push(Utils.dataSerialize(item[i], true));
           }
         }
 
@@ -103,7 +103,7 @@ export function seriesHandler(seriesOptions, seriesSubClass?) {
       });
       (<any> series).setData(toArrayList(data));
     } else {
-      (<any> series).setData(convertJSArrayToNative(sOpts.data));
+      (<any> series).setData(Utils.dataSerialize(sOpts.data, true));
     }
   } else if (sOpts.data) {
     (<any> series).data = new NSArray({

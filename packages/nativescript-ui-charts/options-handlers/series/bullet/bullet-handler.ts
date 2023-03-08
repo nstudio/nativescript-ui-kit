@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function bulletHandler(bulletOptions) {
   const bulletSchema = {
@@ -32,7 +32,7 @@ export function bulletHandler(bulletOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(bulletSchema, opts, bullet)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const bullet = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIBullet() : new HIBullet();
     return seriesHandler(bulletOptions, optionsBuilder(bulletSchema, bulletOptions, bullet));

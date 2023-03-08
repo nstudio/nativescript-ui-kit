@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function gaugeHandler(gaugeOptions) {
   const gaugeSchema = {
@@ -18,7 +18,7 @@ export function gaugeHandler(gaugeOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(gaugeSchema, opts, gauge)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const gauge = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIGauge() : new HIGauge();
     return seriesHandler(gaugeOptions, optionsBuilder(gaugeSchema, gaugeOptions, gauge));

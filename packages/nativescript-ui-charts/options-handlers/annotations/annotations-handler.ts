@@ -1,5 +1,5 @@
-import { convertJSArrayToNative, optionsBuilder } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function annotationsHandler(annotationsOptions) {
   const annotations = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIAnnotations() : new HIAnnotations();
@@ -21,7 +21,7 @@ export function annotationsHandler(annotationsOptions) {
     for (var i = 0; i < annotationsOptions.length; i++) {
         annotationsArray.push(optionsBuilder(annotationsSchema, annotationsOptions[i], annotations));
     }
-    return convertJSArrayToNative(annotationsArray);
+    return Utils.dataSerialize(annotationsArray, true);
   } else {
       return optionsBuilder(annotationsSchema, annotationsOptions, annotations);
   }

@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function pyramid3dHandler(pyramid3dOptions) {
   const pyramid3dSchema = {
@@ -35,7 +35,7 @@ export function pyramid3dHandler(pyramid3dOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(pyramid3dSchema, opts, pyramid3d)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const pyramid3d = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPyramid3d() : new HIPyramid3d();
     return seriesHandler(pyramid3dOptions, optionsBuilder(pyramid3dSchema, pyramid3dOptions, pyramid3d));

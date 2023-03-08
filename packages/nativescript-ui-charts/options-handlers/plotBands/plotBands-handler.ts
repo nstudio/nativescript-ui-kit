@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function plotBandsHandler(plotBandsOptions) {
   const plotbands = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPlotBands() : new HIPlotBands();
@@ -28,7 +28,7 @@ export function plotBandsHandler(plotBandsOptions) {
       seriesArr.push(optionsBuilder(plotBandSchema, opts, plotBand));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const plotBand = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPlotBands() : new HIPlotBands();
     return optionsBuilder(plotBandSchema, plotBandsOptions, plotBand);

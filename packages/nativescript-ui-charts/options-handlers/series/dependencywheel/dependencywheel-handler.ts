@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function dependencywheelHandler(dependencywheelOptions) {
   const dependencywheelSchema = {
@@ -28,7 +28,7 @@ export function dependencywheelHandler(dependencywheelOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(dependencywheelSchema, opts, dependencywheel)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const dependencywheel = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIDependencywheel() : new HIDependencywheel();
     return seriesHandler(dependencywheelOptions, optionsBuilder(dependencywheelSchema, dependencywheelOptions, dependencywheel));

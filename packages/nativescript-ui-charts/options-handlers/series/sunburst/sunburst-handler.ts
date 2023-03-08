@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function sunburstHandler(sunburstOptions) {
   const sunburstSchema = {
@@ -29,7 +29,7 @@ export function sunburstHandler(sunburstOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(sunburstSchema, opts, sunburst)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const sunburst = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HISunburst() : new HISunburst();
     return seriesHandler(sunburstOptions, optionsBuilder(sunburstSchema, sunburstOptions, sunburst));

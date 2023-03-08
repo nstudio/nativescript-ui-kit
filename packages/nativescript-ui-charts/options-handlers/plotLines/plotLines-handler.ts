@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function plotLinesHandler(plotLineOptions) {
   const plotLinesSchema = {
@@ -22,7 +22,7 @@ export function plotLinesHandler(plotLineOptions) {
       seriesArr.push(optionsBuilder(plotLinesSchema, opts, plotBand));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const plotBand = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPlotLines() : new HIPlotLines();
     return optionsBuilder(plotLinesSchema, plotLineOptions, plotBand);

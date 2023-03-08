@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function bellcurveHandler(bellcurveOptions) {
   const bellcurveSchema = {
@@ -22,7 +22,7 @@ export function bellcurveHandler(bellcurveOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(bellcurveSchema, opts, bellcurve)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const bellcurve = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIBellcurve() : new HIBellcurve();
     return seriesHandler(bellcurveOptions, optionsBuilder(bellcurveSchema, bellcurveOptions, bellcurve));

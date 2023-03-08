@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function wordcloudHandler(wordcloudOptions) {
   const wordcloudSchema = {
@@ -28,7 +28,7 @@ export function wordcloudHandler(wordcloudOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(wordcloudSchema, opts, wordcloud)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const wordcloud = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIWordcloud() : new HIWordcloud();
     return seriesHandler(wordcloudOptions, optionsBuilder(wordcloudSchema, wordcloudOptions, wordcloud));

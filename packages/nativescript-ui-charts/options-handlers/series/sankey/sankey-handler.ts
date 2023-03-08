@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function sankeyHandler(sankeyOptions) {
   const sankeySchema = {
@@ -26,7 +26,7 @@ export function sankeyHandler(sankeyOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(sankeySchema, opts, sankey)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const sankey = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HISankey() : new HISankey();
     return seriesHandler(sankeyOptions, optionsBuilder(sankeySchema, sankeyOptions, sankey));

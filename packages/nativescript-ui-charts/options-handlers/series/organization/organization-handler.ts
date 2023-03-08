@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function organizationHandler(organizationOptions) {
   const organizationSchema = {
@@ -30,7 +30,7 @@ export function organizationHandler(organizationOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(organizationSchema, opts, organization)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const organization = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIOrganization() : new HIOrganization();
     return seriesHandler(organizationOptions, optionsBuilder(organizationSchema, organizationOptions, organization));

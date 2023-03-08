@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function treemapHandler(treemapOptions) {
   const treemapSchema = {
@@ -27,7 +27,7 @@ export function treemapHandler(treemapOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(treemapSchema, opts, treemap)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const treemap = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HITreemap() : new HITreemap();
     return seriesHandler(treemapOptions, optionsBuilder(treemapSchema, treemapOptions, treemap));

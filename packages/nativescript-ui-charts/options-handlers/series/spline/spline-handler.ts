@@ -1,6 +1,5 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
 
 export function splineHandler(splineOptions) {
   if (splineOptions instanceof Array) {
@@ -11,7 +10,7 @@ export function splineHandler(splineOptions) {
       seriesArr.push(seriesHandler(opts, spline));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const spline = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HISpline() : new HISpline();
     return seriesHandler(splineOptions, spline);

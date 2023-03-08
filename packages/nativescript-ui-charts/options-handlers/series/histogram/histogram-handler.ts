@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function histogramHandler(histogramOptions) {
   const histogramSchema = {
@@ -34,7 +34,7 @@ export function histogramHandler(histogramOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(histogramSchema, opts, histogram)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const histogram = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIHistogram() : new HIHistogram();
     return seriesHandler(histogramOptions, optionsBuilder(histogramSchema, histogramOptions, histogram));

@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function dumbbellHandler(dumbbellOptions) {
   const dumbbellSchema = {
@@ -22,7 +22,7 @@ export function dumbbellHandler(dumbbellOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(dumbbellSchema, opts, dumbbell)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const dumbbell = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIDumbbell() : new HIDumbbell();
     return seriesHandler(dumbbellOptions, optionsBuilder(dumbbellSchema, dumbbellOptions, dumbbell));

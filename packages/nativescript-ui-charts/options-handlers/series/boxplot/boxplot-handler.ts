@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function boxplotHandler(boxplotOptions) {
   const boxplotSchema = {
@@ -38,7 +38,7 @@ export function boxplotHandler(boxplotOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(boxplotSchema, opts, boxplot)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const boxplot = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIBoxplot() : new HIBoxplot();
     return seriesHandler(boxplotOptions, optionsBuilder(boxplotSchema, boxplotOptions, boxplot));

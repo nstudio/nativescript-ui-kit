@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-ui-charts",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.2",
   "description": "Highcharts SDK for NativeScript",
   "main": "index",
   "typings": "index.d.ts",

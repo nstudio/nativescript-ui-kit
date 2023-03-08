@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { optionsBuilder, convertJSArrayToNative } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function barHandler(barOptions) {
   const barSchema = {
@@ -32,7 +32,7 @@ export function barHandler(barOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(barSchema, opts, bar)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const bar = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIBar() : new HIBar();
 

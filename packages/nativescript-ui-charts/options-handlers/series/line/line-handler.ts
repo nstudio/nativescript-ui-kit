@@ -1,6 +1,5 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative } from "../../helpers/helpers";
 
 export function lineHandler(lineOptions) {
   if (lineOptions instanceof Array) {
@@ -11,7 +10,7 @@ export function lineHandler(lineOptions) {
       seriesArr.push(seriesHandler(opts, line));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const line = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HILine() : new HILine();
     return seriesHandler(lineOptions, line);

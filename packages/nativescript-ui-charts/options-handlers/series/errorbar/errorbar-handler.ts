@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function errorbarHandler(errorbarOptions) {
   const errorbarSchema = {
@@ -38,7 +38,7 @@ export function errorbarHandler(errorbarOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(errorbarSchema, opts, errorbar)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const errorbar = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIErrorbar() : new HIErrorbar();
     return seriesHandler(errorbarOptions, optionsBuilder(errorbarSchema, errorbarOptions, errorbar));

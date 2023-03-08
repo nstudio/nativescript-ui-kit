@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function networkgraphHandler(networkgraphOptions) {
   const networkgraphSchema = {
@@ -18,7 +18,7 @@ export function networkgraphHandler(networkgraphOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(networkgraphSchema, opts, networkgraph)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const networkgraph = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HINetworkgraph() : new HINetworkgraph();
     return seriesHandler(networkgraphOptions, optionsBuilder(networkgraphSchema, networkgraphOptions, networkgraph));

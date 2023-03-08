@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function streamgraphHandler(streamgraphOptions) {
   const streamgraphSchema = {
@@ -19,7 +19,7 @@ export function streamgraphHandler(streamgraphOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(streamgraphSchema, opts, streamgraph)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const streamgraph = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIStreamgraph() : new HIStreamgraph();
     return seriesHandler(streamgraphOptions, optionsBuilder(streamgraphSchema, streamgraphOptions, streamgraph));

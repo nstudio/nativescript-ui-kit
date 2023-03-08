@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function variablepieHandler(variablepieOptions) {
   const variablepieSchema = {
@@ -32,7 +32,7 @@ export function variablepieHandler(variablepieOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(variablepieSchema, opts, variablepie)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const variablepie = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIVariablepie() : new HIVariablepie();
     return seriesHandler(variablepieOptions, optionsBuilder(variablepieSchema, variablepieOptions, variablepie));

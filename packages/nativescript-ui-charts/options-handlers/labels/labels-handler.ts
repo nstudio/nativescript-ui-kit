@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from "../helpers/helpers";
-import { isAndroid } from "@nativescript/core";
+import { optionsBuilder } from "../helpers/helpers";
+import { isAndroid, Utils } from "@nativescript/core";
 
 export function labelsHandler(labelsOptions) {
   const labelsSchema = {
@@ -46,7 +46,7 @@ export function labelsHandler(labelsOptions) {
       labelsArray.push(optionsBuilder(labelsSchema, labelsOptions[i], labels));
     }
 
-    return convertJSArrayToNative(labelsArray);
+    return Utils.dataSerialize(labelsArray, true);
   } else {
     const labels = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HILabels() : new HILabels();
   

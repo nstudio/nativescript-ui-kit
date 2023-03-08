@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function cylinderHandler(cylinderOptions) {
   const cylinderSchema = {
@@ -31,7 +31,7 @@ export function cylinderHandler(cylinderOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(cylinderSchema, opts, cylinder)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const cylinder = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HICylinder() : new HICylinder();
     return seriesHandler(cylinderOptions, optionsBuilder(cylinderSchema, cylinderOptions, cylinder));

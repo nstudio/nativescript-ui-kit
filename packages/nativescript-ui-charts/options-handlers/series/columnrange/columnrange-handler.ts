@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function columnrangeHandler(columnrangeOptions) {
   const columnrangeSchema = {
@@ -31,7 +31,7 @@ export function columnrangeHandler(columnrangeOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(columnrangeSchema, opts, columnrange)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const columnrange = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIColumnrange() : new HIColumnrange();
     return seriesHandler(columnrangeOptions, optionsBuilder(columnrangeSchema, columnrangeOptions, columnrange));

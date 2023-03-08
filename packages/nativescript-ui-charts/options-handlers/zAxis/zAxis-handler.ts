@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from '../helpers/helpers';
-import { isAndroid } from '@nativescript/core';
+import { optionsBuilder } from '../helpers/helpers';
+import { isAndroid, Utils } from '@nativescript/core';
 
 export function zAxisHandler(zAxisOptions) {
   const zAxis = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIZAxis() : new HIZAxis();
@@ -83,5 +83,5 @@ export function zAxisHandler(zAxisOptions) {
     axisArray.push(optionsBuilder(zAxisSchema, zAxisOptions, zAxis));
   }
 
-  return convertJSArrayToNative(axisArray);
+  return Utils.dataSerialize(axisArray, true);
 }

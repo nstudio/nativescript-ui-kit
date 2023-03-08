@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function funnel3dHandler(funnel3dOptions) {
   const funnel3dSchema = {
@@ -37,7 +37,7 @@ export function funnel3dHandler(funnel3dOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(funnel3dSchema, opts, funnel3d)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const funnel3d = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIFunnel3d() : new HIFunnel3d();
     return seriesHandler(funnel3dOptions, optionsBuilder(funnel3dSchema, funnel3dOptions, funnel3d));

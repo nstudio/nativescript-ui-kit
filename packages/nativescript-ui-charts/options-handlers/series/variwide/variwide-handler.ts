@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function variwideHandler(variwideOptions) {
   const variwideSchema = {
@@ -27,7 +27,7 @@ export function variwideHandler(variwideOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(variwideSchema, opts, variwide)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const variwide = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIVariwide() : new HIVariwide();
     return seriesHandler(variwideOptions, optionsBuilder(variwideSchema, variwideOptions, variwide));

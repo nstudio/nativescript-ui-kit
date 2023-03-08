@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function columnpyramidHandler(columnpyramidOptions) {
   const columnpyramidSchema = {
@@ -26,7 +26,7 @@ export function columnpyramidHandler(columnpyramidOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(columnpyramidSchema, opts, columnpyramid)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const columnpyramid = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIColumnpyramid() : new HIColumnpyramid();
     return seriesHandler(columnpyramidOptions, optionsBuilder(columnpyramidSchema, columnpyramidOptions, columnpyramid));

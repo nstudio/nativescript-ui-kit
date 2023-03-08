@@ -1,5 +1,5 @@
-import { optionsBuilder, convertJSArrayToNative } from '../helpers/helpers';
-import { isAndroid } from '@nativescript/core';
+import { optionsBuilder } from '../helpers/helpers';
+import { isAndroid, Utils } from '@nativescript/core';
 
 export function yAxisHandler(yAxisOptions) {
   const yAxis = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIYAxis() : new HIYAxis();
@@ -97,5 +97,5 @@ export function yAxisHandler(yAxisOptions) {
     axisArray.push(optionsBuilder(yAxisSchema, yAxisOptions, yAxis));
   }
 
-  return convertJSArrayToNative(axisArray);
+  return Utils.dataSerialize(axisArray, true);
 }

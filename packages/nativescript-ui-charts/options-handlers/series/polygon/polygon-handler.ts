@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function polygonHandler(polygonOptions) {
   const polygonSchema = {
@@ -15,7 +15,7 @@ export function polygonHandler(polygonOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(polygonSchema, opts, polygon)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const polygon = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIPolygon() : new HIPolygon();
     return seriesHandler(polygonOptions, optionsBuilder(polygonSchema, polygonOptions, polygon));

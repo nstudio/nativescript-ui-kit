@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function bubbleHandler(bubbleOptions) {
   const bubbleSchema = {
@@ -23,7 +23,7 @@ export function bubbleHandler(bubbleOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(bubbleSchema, opts, bubble)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const bubble = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HIBubble() : new HIBubble();
     return seriesHandler(bubbleOptions, optionsBuilder(bubbleSchema, bubbleOptions, bubble));

@@ -1,6 +1,6 @@
-import { isAndroid } from "@nativescript/core";
+import { isAndroid, Utils } from "@nativescript/core";
 import { seriesHandler } from "../series-handler";
-import { convertJSArrayToNative, optionsBuilder } from "../../helpers/helpers";
+import { optionsBuilder } from "../../helpers/helpers";
 
 export function tilemapHandler(tilemapOptions) {
   const tilemapSchema = {
@@ -19,7 +19,7 @@ export function tilemapHandler(tilemapOptions) {
       seriesArr.push(seriesHandler(opts, optionsBuilder(tilemapSchema, opts, tilemap)));
     }
 
-    return convertJSArrayToNative(seriesArr);
+    return Utils.dataSerialize(seriesArr, true);
   } else {
     const tilemap = isAndroid ? new com.highsoft.highcharts.common.hichartsclasses.HITilemap() : new HITilemap();
     return seriesHandler(tilemapOptions, optionsBuilder(tilemapSchema, tilemapOptions, tilemap));
