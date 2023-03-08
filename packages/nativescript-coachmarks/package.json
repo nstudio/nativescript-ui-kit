@@ -16,10 +16,12 @@
   },
   "keywords": [
     "NativeScript",
-    "JavaScript",
-    "TypeScript",
     "iOS",
-    "Android"
+    "Android",
+    "coachmarks",
+    "instructions",
+    "guide",
+    "intro"
   ],
   "author": {
     "name": "nstudio",
