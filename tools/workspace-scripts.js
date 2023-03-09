@@ -75,6 +75,13 @@ module.exports = {
           description: '@nstudio/nativescript-shimmer: Build',
         },
       },
+      // @nstudio/nativescript-coachmarks
+      'nativescript-coachmarks': {
+        build: {
+          script: 'nx run nativescript-coachmarks:build.all',
+          description: '@nstudio/nativescript-coachmarks: Build',
+        }
+      },      
       // @nstudio/ui-collectionview
 			'ui-collectionview': {
 				build: {
@@ -103,6 +110,10 @@ module.exports = {
       'ui-collectionview': {
 				script: 'nx run ui-collectionview:focus',
 				description: 'Focus on @nstudio/ui-collectionview',
+      },
+      'nativescript-coachmarks': {
+				script: 'nx run nativescript-coachmarks:focus',
+				description: 'Focus on @nstudio/nativescript-coachmarks',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

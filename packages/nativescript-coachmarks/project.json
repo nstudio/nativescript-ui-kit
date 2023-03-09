@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-coachmarks",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-coachmarks",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-coachmarks",
+        "tsConfig": "packages/nativescript-coachmarks/tsconfig.json",
+        "packageJson": "packages/nativescript-coachmarks/package.json",
+        "main": "packages/nativescript-coachmarks/index.d.ts",
+        "assets": [
+          "packages/nativescript-coachmarks/*.md",
+          "packages/nativescript-coachmarks/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-coachmarks/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-coachmarks"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-coachmarks"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-coachmarks"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-coachmarks/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

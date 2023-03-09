@@ -26,6 +26,7 @@
       "@demo/shared": [
         "tools/demo/index.ts"
       ],
+      "@nstudio/nativescript-coachmarks": ["packages/nativescript-coachmarks/index.d.ts"],
       "@nstudio/nativescript-label-marquee": [
         "packages/nativescript-label-marquee/index.d.ts"
       ],
