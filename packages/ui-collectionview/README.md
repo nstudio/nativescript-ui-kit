@@ -2,6 +2,7 @@ All credits to [farfromrefug](https://github.com/farfromrefug) for `@nativescrip
 
 This customizes the community plugin to support:
 - Adjusting cell behavior for more custom layouts
+- Improved Angular support
 
 <p align="center">
   <b>Allows you to easily add a collection view (grid list view) to your projects. Supports vertical and horizontal modes, templating, and more.</b></br>
@@ -38,16 +39,6 @@ This customizes the community plugin to support:
   - [Simple Example](#simple-example-3)
 - [Usage in React](#usage-in-react)
   - [Simple Example](#simple-example-4)
-- [Demos](#demos)
-- [Demos and Development](#demos-and-development)
-  - [Repo Setup](#repo-setup)
-  - [Build](#build)
-  - [Demos](#demos-1)
-- [Contributing](#contributing)
-  - [Update repo](#update-repo)
-  - [Update readme](#update-readme)
-  - [Update doc](#update-doc)
-  - [Publish](#publish)
 - [Questions](#questions)
 
 
@@ -56,7 +47,7 @@ This customizes the community plugin to support:
 ## Installation
 Run the following command from the root of your project:
 
-`ns plugin add @nativescript-community/ui-collectionview`
+`npm install @nstudio/ui-collectionview`
 
 
 [](#api)
@@ -106,7 +97,7 @@ Run the following command from the root of your project:
 [](#usage)
 
 ## Usage
-You need to add `xmlns:gv="@nativescript-community/ui-collectionview"` to your page tag, and then simply use `<gv:CollectionView/>` in order to add the widget to your page. Use `<gv:Gridview.itemTemplate/>` to specify the template for each cell:
+You need to add `xmlns:gv="@nstudio/ui-collectionview"` to your page tag, and then simply use `<gv:CollectionView/>` in order to add the widget to your page. Use `<gv:Gridview.itemTemplate/>` to specify the template for each cell:
 
 ### Simple Example
 
@@ -129,7 +120,7 @@ const items = [
 
 ```xml
 <!-- test-page.xml -->
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gv="@nativescript-community/ui-collectionview" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gv="@nstudio/ui-collectionview" loaded="pageLoaded">
     <GridLayout>
         <gv:CollectionView items="items" colWidth="50%" rowHeight="100">
             <gv:CollectionView.itemTemplate>
@@ -176,7 +167,7 @@ export function templateSelector(item: any, index: number, items: any) {
 Import the module into your project.
 
 ```typescript
-import { CollectionViewModule } from '@nativescript-community/ui-collectionview/angular';
+import { CollectionViewModule } from '@nstudio/ui-collectionview/angular';
 
 @NgModule({
     imports: [
@@ -252,7 +243,7 @@ For a more complete example, look in the `demo-ng` directory.
 Register the plugin in your `app.ts`.
 
 ```typescript
-import CollectionView from '@nativescript-community/ui-collectionview/vue';
+import CollectionView from '@nstudio/ui-collectionview/vue';
 Vue.use(CollectionView);
 ```
 
@@ -307,7 +298,7 @@ For a more complete example, look in the `demo-vue` directory.
 Register the plugin in your `app.ts`.
 
 ```typescript
-import CollectionViewElement from '@nativescript-community/ui-collectionview/svelte';
+import CollectionViewElement from '@nstudio/ui-collectionview/svelte';
 CollectionViewElement.register();
 ```
 
@@ -356,7 +347,7 @@ For a more complete example, look in the `demo-svelte` directory.
 Register the plugin in your `app.ts`.
 
 ```typescript
-import { registerCollectionView } from '@nativescript-community/ui-collectionview/react';
+import { registerCollectionView } from '@nstudio/ui-collectionview/react';
 registerCollectionView();
 ```
 
@@ -365,7 +356,7 @@ registerCollectionView();
 In your component, add the following code to create a simple list.
 
 ```tsx
-import { CollectionView } from '@nativescript-community/ui-collectionview/react';
+import { CollectionView } from '@nstudio/ui-collectionview/react';
 
 const items = [
     { index: 0, name: 'TURQUOISE', color: '#1abc9c' },
@@ -395,101 +386,6 @@ export function First() {
         <CollectionView items={items} colWidth="50%" rowHeight="100" cellFactory={cellFactory} width="100%" height="100%" />
     );
 }
-```
-
-For a more complete example, look in the `demo-react` directory.
-
-
-[](#demos)
-
-## Demos
-This repository includes Angular, Vue.js, and Svelte demos. In order to run these execute the following in your shell:
-```shell
-$ git clone https://github.com/@nativescript-community/ui-collectionview
-$ cd ui-collectionview
-$ npm i
-$ npm run setup
-$ npm run build # && npm run build.angular
-$ cd demo-ng # or demo-vue or demo-svelte
-$ ns run ios|android
-```
-
-
-[](#demos-and-development)
-
-## Demos and Development
-
-
-### Repo Setup
-
-The repo uses submodules. If you did not clone with ` --recursive` then you need to call
-```
-git submodule update --init
-```
-
-The package manager used to install and link dependencies must be `pnpm` or `yarn`. `npm` wont work.
-
-To develop and test:
-if you use `yarn` then run `yarn`
-if you use `pnpm` then run `pnpm i`
-
-**Interactive Menu:**
-
-To start the interactive menu, run `npm start` (or `yarn start` or `pnpm start`). This will list all of the commonly used scripts.
-
-### Build
-
-```bash
-npm run build.all
-```
-
-### Demos
-
-```bash
-npm run demo.[ng|react|svelte|vue].[ios|android]
-
-npm run demo.svelte.ios # Example
-```
-
-
-[](#contributing)
-
-## Contributing
-
-### Update repo 
-
-You can update the repo files quite easily
-
-First update the submodules
-
-```bash
-npm run update
-```
-
-Then commit the changes
-Then update common files
-
-```bash
-npm run sync
-```
-Then you can run `yarn|pnpm`, commit changed files if any
-
-### Update readme 
-```bash
-npm run readme
-```
-
-### Update doc 
-```bash
-npm run doc
-```
-
-### Publish
-
-The publishing is completely handled by `lerna` (you can add `-- --bump major` to force a major release)
-Simply run 
-```shell
-npm run publish
 ```
 
 

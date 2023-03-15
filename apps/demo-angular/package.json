@@ -2,10 +2,10 @@
   "main": "./src/main.ts",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
+    "@nstudio/ui-collectionview": "file:../../dist/packages/ui-collectionview",
     "@nstudio/nativescript-coachmarks": "file:../../dist/packages/nativescript-coachmarks",
-    "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
-    "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
-    "@nstudio/ui-collectionview": "file:../../packages/ui-collectionview"
+    "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
+    "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer"
   },
   "devDependencies": {
     "@nativescript/android": "~8.4.0",

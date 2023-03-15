@@ -8,7 +8,7 @@
         <Button text="nativescript-coachmarks" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
         <Button text="nativescript-label-marquee" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
         <Button text="nativescript-shimmer" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
-<Button text="ui-collectionview" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
+        <Button text="ui-collectionview" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
       </StackLayout>
     </ScrollView>
   </StackLayout>

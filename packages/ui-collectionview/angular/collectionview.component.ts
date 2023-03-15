@@ -21,7 +21,6 @@ import {
     TemplateRef,
     ViewChild,
     ViewContainerRef,
-    ɵisListLikeIterable as isListLikeIterable
 } from '@angular/core';
 import { CLog, CLogTypes, CollectionView, CollectionViewItemEventData, ListViewViewTypes } from '@nstudio/ui-collectionview';
 import { DetachedLoader, NativeScriptRendererFactory, extractSingleViewRecursive, registerElement } from '@nativescript/angular';
@@ -40,6 +39,19 @@ export interface SetupItemViewArgs {
     data: any;
     index: number;
     context: ItemContext;
+}
+
+function isListLikeIterable(obj: any): boolean {
+	if (!isJsObject(obj)) return false;
+	return (
+		Array.isArray(obj) ||
+		(!(obj instanceof Map) && // JS Map are iterables but return entries as [k, v]
+			Symbol.iterator in obj)
+	); // JS Iterable have a Symbol.iterator prop
+}
+
+function isJsObject(o: any): boolean {
+	return o !== null && (typeof o === 'function' || typeof o === 'object');
 }
 
 @Component({

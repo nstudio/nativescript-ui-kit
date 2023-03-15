@@ -1,14 +1,16 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page" xmlns:cv="@nstudio/ui-collectionview">
     <Page.actionBar>
         <ActionBar title="ui-collectionview" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
-    <StackLayout class="p-20">
-        <ScrollView class="h-full">
-          <StackLayout>
-            <Button text="Test ui-collectionview" tap="{{ testIt }}" class="btn btn-primary"/>
-
-          </StackLayout>
-        </ScrollView>
-    </StackLayout>
+    <GridLayout>
+        <cv:CollectionView items="{{items}}" colWidth="50%" rowHeight="100">
+            <cv:CollectionView.itemTemplate>
+              <GridLayout backgroundColor="{{color}}">
+                <Label text="{{name}}" class="text-center"/>
+                  
+              </GridLayout>
+            </cv:CollectionView.itemTemplate>
+        </cv:CollectionView>
+    </GridLayout>
 </Page>

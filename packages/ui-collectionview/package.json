@@ -1,7 +1,7 @@
 {
   "name": "@nstudio/ui-collectionview",
-  "version": "4.0.70-custom.1",
-  "description": "NativeScript CollectionView for high performance lists. Supports vertical and horizontal modes, templating, and more.",
+  "version": "4.0.70",
+  "description": "Customized NativeScript CollectionView for high performance lists. Supports vertical and horizontal modes, templating, and more.",
   "main": "index",
   "typings": "index.d.ts",
   "nativescript": {
@@ -17,9 +17,24 @@
   "keywords": [
     "NativeScript",
     "JavaScript",
-    "TypeScript",
+    "Android",
     "iOS",
-    "Android"
+    "RadListView",
+    "CollectionView",
+    "collection view",
+    "grid view",
+    "grid list view",
+    "super grid",
+    "NativeScript UI",
+    "nativescript community",
+    "Angular",
+    "Vue.js",
+    "Vue.js Native",
+    "Vue Native",
+    "Svelte",
+    "Svelte Native",
+    "React",
+    "React NativeScript"
   ],
   "author": {
     "name": "Martin Guillon",

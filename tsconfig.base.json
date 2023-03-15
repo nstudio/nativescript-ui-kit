@@ -13,6 +13,8 @@
       "ESNext",
       "dom"
     ],
+    "types": ["node", "svelte", "vue", "svelte-native"],
+    "jsx": "react",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
