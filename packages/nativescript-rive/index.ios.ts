@@ -7,6 +7,7 @@ export class RiveView extends RiveViewBase {
   // model: RiveViewModel;
   ctrl: NSCRiveController;
   nativeViewProtected: UIView;
+  fileName = 'flux_capacitor';
 
   public createNativeView() {
     this.ctrl = NSCRiveController.alloc().init();
@@ -14,7 +15,7 @@ export class RiveView extends RiveViewBase {
   }
 
   public initNativeView(): void {
-    this.ctrl.setFileWithName('flux_capacitor');
+    this.ctrl.setFileWithName(this.fileName);
   }
 
   public disposeNativeView(): void {
@@ -119,7 +120,7 @@ export class RiveView extends RiveViewBase {
 
   public play(loop = RiveLoop.AUTO, direction = RiveDirection.AUTO, settleInitialState = true) {
     if (this.ctrl) {
-      this.ctrl.playWithNameDirectionLoop(null, this.getDirection(direction), this.getLoop(loop));
+      this.ctrl.playWithNameDirectionLoop(this.fileName, this.getDirection(direction), this.getLoop(loop));
     }
     // this.nativeViewProtected.play(this.getLoop(loop), this.getDirection(direction), settleInitialState)
   }
