@@ -5,13 +5,29 @@ declare class NSCRiveController extends UIViewController {
 
 	static new(): NSCRiveController; // inherited from NSObject
 
-	playWithNameDirectionLoop(name: string, direction: number, loop: string): void;
+	riveView: RiveView;
 
-	setFileWithName(name: string): void;
+	riveViewModel: RiveViewModel;
+
+	configureModelWithArtboardStateMachineAnimation(artboard: string, stateMachine: string, animation: string): void;
+
+	isPlaying(): boolean;
 
 	pause(): void;
 
-    stop(): void;
+	playWithDirectionLoopName(direction: number, loop: string, name: string): void;
 
-    isPlaying(): boolean;
+	setDelegateWithDelegate(delegate: RiveStateMachineDelegate): void;
+
+	setFit(fit: RiveFit): void;
+
+	setInputWithNameValue(name: string, value: boolean): void;
+
+	setModelResourceWithNameFit(name: string, fit: RiveFit): void;
+
+	setModelWithFileFit(file: RiveFile, fit: RiveFit): void;
+
+	stop(): void;
+
+	triggerInputWithName(name: string): void;
 }

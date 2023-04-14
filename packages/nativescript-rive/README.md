@@ -1,7 +1,7 @@
 # @nstudio/nativescript-rive
 
 ```javascript
-ns plugin add @nstudio/nativescript-rive
+npm install @nstudio/nativescript-rive
 ```
 
 ## Usage

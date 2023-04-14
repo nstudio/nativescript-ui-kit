@@ -5,7 +5,11 @@
     </ActionBar>
   </Page.actionBar>
   <GridLayout rows="*" backgroundColor="#111111">
-    <ui:RiveView src="~/assets/rive/compass" width="700" height="700" autoPlay="true" onStateChanged="{{onStateChanged}}" loaded="{{loadedPlayer}}" marginTop="-220"/>
+  <!--~/assets/rive/compass.riv-->
+  <!--~/assets/rive/icons.riv-->
+  <!--https://cdn.rive.app/animations/vehicles.riv-->
+  <!--res://flux_capacitor-->
+    <ui:RiveView src="~/assets/rive/icons.riv" artboard="CHAT" stateMachine="CHAT_Interactivity" input="active" inputValue="{{inputValue}}" width="700" height="700" autoPlay="true" onStateChanged="{{onStateChanged}}" loaded="{{loadedPlayer}}" loop="0" marginTop="-220"/>
 
     <GridLayout rows="" columns="" class="p-x-20" horizontalAlignment="center" verticalAlignment="bottom" marginBottom="200">
       <Button text="{{playing ? stopText : playText}}" tap="{{togglePlay}}" horizontalAlignment="center" verticalAlignment="bottom" textAlignment="center"  color="white" textWrap="true" height="100" width="100%" fontSize="22"></Button>

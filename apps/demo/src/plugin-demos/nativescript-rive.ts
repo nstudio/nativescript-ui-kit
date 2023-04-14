@@ -1,6 +1,6 @@
 import { Observable, EventData, Page } from '@nativescript/core';
 import { DemoSharedNativescriptRive } from '@demo/shared';
-import { RiveDirection, RiveLoop, RiveView } from '@nstudio/nativescript-rive';
+import { TypeRiveDirection, TypeRiveLoop, RiveView } from '@nstudio/nativescript-rive';
 
 export function navigatingTo(args: EventData) {
 	const page = <Page>args.object;
@@ -12,13 +12,17 @@ export class DemoModel extends DemoSharedNativescriptRive {
 	playing = true;
 	stopText = `Where we're going, we don't need roads ...`
 	playText = `I guess you guys aren't ready for that yet ... Or are you?`
-	onStateChanged() {
+	inputValue = true;
+	onStateChanged(args) {
 		console.log('onStateChanged')
 	}
 
 	ready = false;
 	togglePlay() {
-		
+		this.inputValue = !this.inputValue;
+		this.notifyPropertyChange('inputValue', this.inputValue);
+		return;
+
 		this.notifyPropertyChange('playing', this.playing);
 		if (this.riveView.isPlaying()) {
 			this.riveView.pause()
@@ -33,7 +37,7 @@ export class DemoModel extends DemoSharedNativescriptRive {
 		  } else {
 			if (this.ready) {
 				
-				this.riveView.play(RiveLoop.PINGPONG, RiveDirection.BACKWARDS);//RiveLoop.PINGPONG, RiveDirection.BACKWARDS)
+				this.riveView.play(TypeRiveLoop.PINGPONG, TypeRiveDirection.BACKWARDS);
 			} else {
 				this.playText =  `Let's do this ⚡`
 				this.notifyPropertyChange('playText', `Let's do this ⚡`)

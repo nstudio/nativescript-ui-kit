@@ -2,7 +2,7 @@ dependencies {
 	def androidXAppCompatVersion =  project.hasProperty("androidXAppCompat") ? project.androidXAppCompat : "1.3.1"
 	implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
 
-	def riveVersion =  project.hasProperty("riveVersion") ? project.riveVersion : "4.2.5"
+	def riveVersion =  project.hasProperty("riveVersion") ? project.riveVersion : "4.3.+"
 	implementation "app.rive:rive-android:$riveVersion"
     implementation "androidx.startup:startup-runtime:1.1.0"
 }

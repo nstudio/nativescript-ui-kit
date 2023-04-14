@@ -1,6 +1,6 @@
 import { View } from '@nativescript/core';
-import { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
-export { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
+import { TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop } from './common';
+export { TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop } from './common';
 
 export declare class RiveView extends View {
   /**
@@ -27,19 +27,19 @@ export declare class RiveView extends View {
    * loop: default AUTO
    * direction: default AUTO
    * */
-  public play(loop?: RiveLoop, direction?: RiveDirection, settleInitialState?: true): void;
+  public play(loop?: TypeRiveLoop, direction?: TypeRiveDirection, settleInitialState?: true): void;
 
   /*
    * loop: default AUTO
    * direction: default AUTO
    * */
-  public playWithAnimations(animationNames: string[], loop?: RiveLoop, direction?: RiveDirection, areStateMachines?: false, settleInitialState?: true): void;
+  public playWithAnimations(animationNames: string[], loop?: TypeRiveLoop, direction?: TypeRiveDirection, areStateMachines?: false, settleInitialState?: true): void;
 
   /*
    * loop: default AUTO
    * direction: default AUTO
    * */
-  public playWithAnimation(animationName: string, loop?: RiveLoop, direction?: RiveDirection, areStateMachines?: false, settleInitialState?: true): void;
+  public playWithAnimation(animationName: string, loop?: TypeRiveLoop, direction?: TypeRiveDirection, areStateMachines?: false, settleInitialState?: true): void;
 
   public stop(): void;
 

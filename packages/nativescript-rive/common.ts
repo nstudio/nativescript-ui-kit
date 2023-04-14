@@ -1,20 +1,20 @@
-import { Property, View, booleanConverter } from '@nativescript/core';
+import { Observable, Property, View, booleanConverter } from '@nativescript/core';
 
-export enum RiveLoop {
+export enum TypeRiveLoop {
   ONESHOT,
   LOOP,
   PINGPONG,
   AUTO,
-  NONE
+  NONE,
 }
 
-export enum RiveDirection {
+export enum TypeRiveDirection {
   BACKWARDS,
   FORWARDS,
   AUTO,
 }
 
-export enum RiveFit {
+export enum TypeRiveFit {
   FILL,
   CONTAIN,
   COVER,
@@ -24,7 +24,7 @@ export enum RiveFit {
   SCALE_DOWN,
 }
 
-export enum RiveAlignment {
+export enum TypeRiveAlignment {
   TOP_LEFT,
   TOP_CENTER,
   TOP_RIGHT,
@@ -35,68 +35,105 @@ export enum RiveAlignment {
   BOTTOM_RIGHT,
 }
 
+export class RiveEvents {
+  
+  static onPlayEvent = 'onPlayEvent';
+  static onPauseEvent = 'onPauseEvent';
+  static onLoopEndEvent = 'onLoopEndEvent';
+  static onStopEvent = 'onStopEvent';
+  static stateChangedEvent = 'stageChangedEvent';
+  static receivedInputEvent = 'receivedInputEvent';
+  static touchBeganEvent = 'touchBeganEvent';
+  static touchCancelledEvent = 'touchCancelledEvent';
+  static touchEndedEvent = 'touchEndedEvent';
+  static touchMovedEvent = 'touchMovedEvent';
+  constructor(public view: View) {}
+  notifyEvent(name: string, data: any) {
+    this.view.notify({ eventName: name, object: this.view, data });
+  }
+}
+
 export abstract class RiveViewBase extends View {
   /*
    * Android: file in folder raw of android or path of file
    * Required
    * */
   public src: string;
+  /**
+   * Rive events
+   */
+  public events: RiveEvents;
+
   /* autoplay (optional) - Opening a rive animation view or specifying new resourceName or url will make it automatically play, when it is ready.
    * Default: true
    * */
   public autoPlay: boolean;
   /* alignment. (optional) - Specifies how animation should be aligned inside rive animation view..
-   * Default: RiveAlignment.NONE
+   * Default: TypeRiveAlignment.NONE
    * */
-  public alignment?: RiveAlignment;
+  public alignment?: TypeRiveAlignment;
   /*
    * fit (optional) - Specifies how animation should be displayed inside rive animation view
-   * Default: RiveFit.CONTAIN
+   * Default: TypeRiveFit.CONTAIN
    * */
-  public fit?: RiveFit;
+  public fit?: TypeRiveFit;
   /*
-   * artboardName. (optional) - Specifies which animation artboard should be displayed in rive animation view.
+   * artboard (optional) - Specifies which animation artboard should be displayed in rive animation view.
    * Default: null
    * */
-  public artboardName?: string;
+  public artboard?: string;
   /*
-   * animationName. (optional) - Specifies which animation should be played when autoplay is set to true.
+   * animation (optional) - Specifies which animation should be played when autoplay is set to true.
    * Default: null
    * */
-  public animationName?: string;
+  public animation?: string;
+
+  /**
+   * input (optional) - Specifies which input should be used.
+   */
+  public input?: string;
+
+  /**
+   * inputValue (optional) - Specifies which input value should be used.
+   */
+  public inputValue?: boolean;
 
   /*
-   * stateMachineName. (optional) - Specifies which stateMachine should be played when autoplay is set to true.
+   * stateMachine (optional) - Specifies which stateMachine should be played when autoplay is set to true.
    * Default: undefined
    * */
-  public stateMachineName?: string;
+  public stateMachine?: string;
   /*
    * loop. (optional).
-   * Default: Loop.AUTO
+   * Default: TypeRiveLoop.AUTO
    * */
-  public loop?: RiveLoop;
+  public loop?: TypeRiveLoop;
 
-  onPlay: (animationName: string) => void;
-  onPause: (animationName: string) => void;
-  onStop: (animationName: string) => void;
-  onLoopEnd: (animationName: string, loopMode: RiveLoop) => void;
-  onStateChanged: (stateMachineName: string, stateName: string) => void;
+  /**
+   * direction. (optional).
+   */
+  public direction?: TypeRiveDirection;
+
+  onPlay: (animation: string) => void;
+  onPause: (animation: string) => void;
+  onStop: (animation: string) => void;
+  onLoopEnd: (animation: string, loopMode: TypeRiveLoop) => void;
 
   /*
    * loop: default AUTO
    * direction: default AUTO
    * settleInitialState: default true
    * */
-  public abstract play(loop?: RiveLoop, direction?: RiveDirection, settleInitialState?: true): void;
+  public abstract play(loop?: TypeRiveLoop, direction?: TypeRiveDirection, settleInitialState?: true): void;
 
   /*
-   * animationNames: default []
+   * animations: default []
    * loop: default AUTO
    * direction: default AUTO
    * areStateMachines: default false
    * settleInitialState: default true
    * */
-  public abstract playWithAnimations(animationNames?: string | string[], loop?: RiveLoop, direction?: RiveDirection, areStateMachines?: false, settleInitialState?: true): void;
+  public abstract playWithAnimations(animations?: string | string[], loop?: TypeRiveLoop, direction?: TypeRiveDirection, areStateMachines?: false, settleInitialState?: true): void;
 
   /**
    * Stops all.
@@ -104,9 +141,9 @@ export abstract class RiveViewBase extends View {
   public abstract stop(): void;
 
   /**
-   * Stops any of the provided animationNames.
+   * Stops any of the provided animations.
    */
-  public abstract stopWithAnimations(animationNames: string | string[], areStateMachines?: false): void;
+  public abstract stopWithAnimations(animations: string | string[], areStateMachines?: false): void;
 
   /**
    * Pauses all playing animations.
@@ -114,11 +151,11 @@ export abstract class RiveViewBase extends View {
   public abstract pause(): void;
 
   /*
-   * Pauses any of the provided animationNames.
-   * animationNames: default []
+   * Pauses any of the provided animations.
+   * animations: default []
    * areStateMachines: default false
    * */
-  public abstract pauseWithAnimations(animationNames: string | string[], areStateMachines?: false): void;
+  public abstract pauseWithAnimations(animations: string | string[], areStateMachines?: false): void;
 
   /**
    * Reset the view by resetting the current artboard, before any animations have been applied
@@ -178,69 +215,38 @@ export const autoPlayProperty = new Property<RiveViewBase, boolean>({
 });
 autoPlayProperty.register(RiveViewBase);
 
-export const fitProperty = new Property<RiveViewBase, RiveFit>({
+export const fitProperty = new Property<RiveViewBase, TypeRiveFit>({
   name: 'fit',
-  defaultValue: RiveFit.CONTAIN,
+  defaultValue: TypeRiveFit.CONTAIN,
 });
 fitProperty.register(RiveViewBase);
 
-export const alignmentProperty = new Property<RiveViewBase, RiveAlignment>({
+export const alignmentProperty = new Property<RiveViewBase, TypeRiveAlignment>({
   name: 'alignment',
-  defaultValue: RiveAlignment.CENTER,
+  defaultValue: TypeRiveAlignment.CENTER,
 });
 alignmentProperty.register(RiveViewBase);
 
-export const loopProperty = new Property<RiveViewBase, RiveLoop>({
-  name: 'loop',
-  defaultValue: RiveLoop.AUTO,
-});
-loopProperty.register(RiveViewBase);
-
-export const artboardNameProperty = new Property<RiveViewBase, string | null>({
-  name: 'artboardName',
+export const artboardProperty = new Property<RiveViewBase, string | null>({
+  name: 'artboard',
   defaultValue: null,
 });
-artboardNameProperty.register(RiveViewBase);
-export const animationNameProperty = new Property<RiveViewBase, string | null>({
-  name: 'animationName',
+artboardProperty.register(RiveViewBase);
+export const animationProperty = new Property<RiveViewBase, string | null>({
+  name: 'animation',
   defaultValue: null,
 });
-animationNameProperty.register(RiveViewBase);
-export const stateMachineNameProperty = new Property<RiveViewBase, string | null>({
-  name: 'stateMachineName',
+animationProperty.register(RiveViewBase);
+export const stateMachineProperty = new Property<RiveViewBase, string | null>({
+  name: 'stateMachine',
   defaultValue: null,
 });
-stateMachineNameProperty.register(RiveViewBase);
-
-export const onPlayProperty = new Property<RiveViewBase, () => void>({
-  name: 'onPlay',
+stateMachineProperty.register(RiveViewBase);
+export const inputValueProperty = new Property<RiveViewBase, string | null>({
+  name: 'inputValue',
   defaultValue: null,
 });
-onPlayProperty.register(RiveViewBase);
-
-export const onPauseProperty = new Property<RiveViewBase, () => void>({
-  name: 'onPause',
-  defaultValue: null,
-});
-onPauseProperty.register(RiveViewBase);
-
-export const onStopProperty = new Property<RiveViewBase, () => void>({
-  name: 'onStop',
-  defaultValue: null,
-});
-onStopProperty.register(RiveViewBase);
-
-export const onLoopEndProperty = new Property<RiveViewBase, () => void>({
-  name: 'onLoopEnd',
-  defaultValue: null,
-});
-onLoopEndProperty.register(RiveViewBase);
-
-export const onStateChangedProperty = new Property<RiveViewBase, () => void>({
-  name: 'onStateChanged',
-  defaultValue: null,
-});
-onStateChangedProperty.register(RiveViewBase);
+inputValueProperty.register(RiveViewBase);
 
 export const srcProperty = new Property<RiveViewBase, string>({
   name: 'src',

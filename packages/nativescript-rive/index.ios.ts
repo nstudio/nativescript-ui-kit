@@ -1,21 +1,26 @@
 import { File, Folder, knownFolders, Utils } from '@nativescript/core';
-import { RiveViewBase, RiveAlignment, RiveDirection, RiveFit, RiveLoop, alignmentProperty, artboardNameProperty, autoPlayProperty, fitProperty, onLoopEndProperty, onPauseProperty, onPlayProperty, onStateChangedProperty, onStopProperty, srcProperty } from './common';
-export { RiveAlignment, RiveDirection, RiveFit, RiveLoop } from './common';
+import { RiveEvents, RiveViewBase, TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop, alignmentProperty, fitProperty, inputValueProperty, srcProperty } from './common';
+export { TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop } from './common';
 declare var NSCRiveController;
 
 export class RiveView extends RiveViewBase {
-  // model: RiveViewModel;
+  riveFile: RiveFile;
   ctrl: NSCRiveController;
   nativeViewProtected: UIView;
-  fileName = 'flux_capacitor';
+  fileName: string;
+  fit: TypeRiveFit;
+  autoPlay: boolean;
+  riveFileDelegate: RiveFileDelegateImpl;
+  riveStateMachineDelegate: RiveStateMachineDelegateImpl;
+
+  constructor() {
+    super();
+    this.events = new RiveEvents(this);
+  }
 
   public createNativeView() {
     this.ctrl = NSCRiveController.alloc().init();
     return this.ctrl.view;
-  }
-
-  public initNativeView(): void {
-    this.ctrl.setFileWithName(this.fileName);
   }
 
   public disposeNativeView(): void {
@@ -23,93 +28,84 @@ export class RiveView extends RiveViewBase {
   }
 
   async [srcProperty.setNative](src: string) {
-    // if (!src) {
-    //     console.log("No rive file specified")
-    // } else {
-    //     if (!/.(riv)$/.test(src)) {
-    //         src += '.riv';
-    //     }
-    //     if (src[0] === '~' || src[0] === '@') {
-    //         const app: Folder = <Folder>knownFolders.currentApp();
-    //         const filename = src.replace(/^.*[\\\/]/, '')
-    //         const folder: Folder = <Folder>app.getFolder(src.substring(2).replace(filename, ""));
-    //         const file: File = folder.getFile(filename);
-    //         this.bytes = await file.read()
-    //     } else {
-    //         console.log("[ui-rive] File not supported")
-    //     }
-    // }
-    // if (this.autoPlay) {
-    //     this.init();
-    // }
+    if (!src) {
+      console.log('No rive file specified');
+    } else if (src[0] === '~' || src[0] === '@') {
+      if (!/.(riv)$/.test(src)) {
+        src += '.riv';
+      }
+      const app: Folder = <Folder>knownFolders.currentApp();
+      const filename = src.replace(/^.*[\\\/]/, '');
+      const folder: Folder = <Folder>app.getFolder(src.substring(2).replace(filename, ''));
+      const file: File = folder.getFile(filename);
+      // TODO: fix typings in 8.5.1 to includes these new file apis
+      // const bytes = await file.readBufferAsync();
+      const bytes = interop.bufferFromData(NSData.dataWithContentsOfFile(file.path));
+      this.riveFile = RiveFile.alloc().initWithBytesByteLengthError(<any>bytes, bytes.byteLength);
+      this._init();
+    } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+      this.fileName = src.replace(Utils.RESOURCE_PREFIX, '').replace('.riv', '');
+      this._init();
+    } else if (src.startsWith('http')) {
+      this.riveFileDelegate = RiveFileDelegateImpl.initWithOwner(new WeakRef(this));
+      this.riveFile = RiveFile.alloc().initWithHttpUrlWithDelegate(src, <RiveFileDelegate>(<unknown>this.riveFileDelegate));
+    } else {
+      console.log('[ui-rive] File not supported');
+    }
   }
 
-  [autoPlayProperty.setNative](autoPlay: boolean) {
-    
-    // this.nativeViewProtected.setAutoplay(autoPlay);
+  riveFileHttpSrcDidLoad(riveFile: RiveFile) {
+    this._init();
   }
 
   [fitProperty.getDefault]() {
-    return RiveFit.CONTAIN;
+    return TypeRiveFit.CONTAIN;
   }
 
-  [fitProperty.setNative](value: RiveFit) {
+  [fitProperty.setNative](value: TypeRiveFit) {
+    this.fit = value;
     // this.nativeViewProtected.setFit(value);
   }
 
   [alignmentProperty.getDefault]() {
-    return RiveAlignment.CENTER;
+    return TypeRiveAlignment.CENTER;
   }
 
-  [alignmentProperty.setNative](value: RiveAlignment) {
+  [alignmentProperty.setNative](value: TypeRiveAlignment) {
     // this.nativeViewProtected.setAlignment(value);
   }
 
-  [artboardNameProperty.getDefault]() {
-    return null;
+  [inputValueProperty.setNative](value: boolean) {
+    if (this.input) {
+      this.ctrl.setInputWithNameValue(this.input, value);
+    }
   }
 
-  [artboardNameProperty.setNative](value: string | null) {
-    // this.nativeViewProtected.setArtboardName(value);
+  private _init() {
+    // console.log('init autoPlay:', this.autoPlay);
+    // console.log('init this.fit:', this.fit);
+    
+    if (this.riveFile) {
+      this.ctrl.setModelWithFileFit(this.riveFile, this.getFit(this.fit));
+    } else if (this.fileName) {
+      this.ctrl.setModelResourceWithNameFit(this.fileName, this.getFit(this.fit));
+    }
+    if (this.artboard || this.animation || this.stateMachine) {
+      this.ctrl.configureModelWithArtboardStateMachineAnimation(this.artboard, this.stateMachine, this.animation);
+    }
+    this.riveStateMachineDelegate = RiveStateMachineDelegateImpl.initWithOwner(new WeakRef(this));
+    this.ctrl.setDelegateWithDelegate(this.riveStateMachineDelegate);
+    if (this.input) {
+      if (this.inputValue) {
+        this.ctrl.setInputWithNameValue(this.input, this.inputValue);
+      } else {
+        this.ctrl.triggerInputWithName(this.input);
+      }
+    }
+    if (this.autoPlay) {
+      this.play(this.loop, this.direction);
+    }
   }
-
-  [onPlayProperty.setNative](value: () => void) {
-    this.addListener();
-  }
-
-  [onPauseProperty.setNative](value: () => void) {
-    this.addListener();
-  }
-
-  [onStopProperty.setNative](value: () => void) {
-    this.addListener();
-  }
-
-  [onLoopEndProperty.setNative](value: () => void) {
-    this.addListener();
-  }
-
-  [onStateChangedProperty.setNative](value: () => void) {
-    this.addListener();
-  }
-
-  public init = (): void => {
-    // if (this.nativeViewProtected) {
-    //     if (!this.isPlaying()) {
-    //         this.nativeViewProtected.reset();
-    //         this.nativeViewProtected.setRiveBytes(
-    //             this.bytes,
-    //             this.artboardName,
-    //             this.animationName,
-    //             this.stateMachineName,
-    //             this.autoPlay,
-    //             this.getFit(this.fit),
-    //             this.getAlignment(this.alignment),
-    //             this.getLoop(this.loop)
-    //         )
-    //     }
-    // }
-  };
 
   public isPlaying(): boolean {
     if (this.ctrl) {
@@ -118,14 +114,14 @@ export class RiveView extends RiveViewBase {
     return false;
   }
 
-  public play(loop = RiveLoop.AUTO, direction = RiveDirection.AUTO, settleInitialState = true) {
+  public play(loop = TypeRiveLoop.AUTO, direction = TypeRiveDirection.AUTO, settleInitialState = true) {
     if (this.ctrl) {
-      this.ctrl.playWithNameDirectionLoop(this.fileName, this.getDirection(direction), this.getLoop(loop));
+      console.log('looop:', loop)
+      this.ctrl.playWithDirectionLoopName(this.getDirection(direction), this.getLoop(loop), null);
     }
-    // this.nativeViewProtected.play(this.getLoop(loop), this.getDirection(direction), settleInitialState)
   }
 
-  public playWithAnimations(animationNames: string | string[] = [], loop = RiveLoop.AUTO, direction = RiveDirection.AUTO, areStateMachines = false, settleInitialState = true) {
+  public playWithAnimations(animationNames: string | string[] = [], loop = TypeRiveLoop.AUTO, direction = TypeRiveDirection.AUTO, areStateMachines = false, settleInitialState = true) {
     // if (Array.isArray(animationNames)) {
     //     this.nativeViewProtected.play(this.buildList(animationNames), this.getLoop(loop), this.getDirection(direction), areStateMachines, settleInitialState)
     // } else if (typeof animationNames === 'string') {
@@ -225,51 +221,49 @@ export class RiveView extends RiveViewBase {
     return animations;
   }
 
-  private getLoop(riveLoop: RiveLoop): string {
+  private getLoop(riveLoop: TypeRiveLoop): string {
     switch (riveLoop) {
-      case RiveLoop.ONESHOT:
+      case TypeRiveLoop.ONESHOT:
         return 'oneShot';
-      case RiveLoop.LOOP:
+      case TypeRiveLoop.LOOP:
         return 'loop';
-      case RiveLoop.PINGPONG:
+      case TypeRiveLoop.PINGPONG:
         return 'pingPong';
-      case RiveLoop.NONE:
+      case TypeRiveLoop.NONE:
         return 'none';
       default:
         return null;
     }
   }
 
-  private getDirection(riveDirection: RiveDirection) {
-    //: Direction {
+  private getDirection(riveDirection: TypeRiveDirection): number {
     switch (riveDirection) {
-      case RiveDirection.BACKWARDS:
+      case TypeRiveDirection.BACKWARDS:
         return -1;
-      case RiveDirection.FORWARDS:
+      case TypeRiveDirection.FORWARDS:
         return 1;
       default:
         return 0;
     }
   }
 
-  private getFit(riveFit: RiveFit) {
-    //: Fit {
-    // switch (riveFit) {
-    //     case RiveFit.FILL:
-    //         return Fit.FILL;
-    //     case RiveFit.CONTAIN:
-    //         return Fit.CONTAIN;
-    //     case RiveFit.COVER:
-    //         return Fit.COVER;
-    //     case RiveFit.FIT_WIDTH:
-    //         return Fit.FIT_WIDTH;
-    //     case RiveFit.FIT_HEIGHT:
-    //         return Fit.FIT_HEIGHT;
-    //     case RiveFit.SCALE_DOWN:
-    //         return Fit.SCALE_DOWN;
-    //     default:
-    //         return Fit.NONE;
-    // }
+  private getFit(riveFit: TypeRiveFit): RiveFit {
+    switch (riveFit) {
+      case TypeRiveFit.FILL:
+        return RiveFit.fill;
+      case TypeRiveFit.CONTAIN:
+        return RiveFit.contain;
+      case TypeRiveFit.COVER:
+        return RiveFit.cover;
+      case TypeRiveFit.FIT_WIDTH:
+        return RiveFit.fitWidth;
+      case TypeRiveFit.FIT_HEIGHT:
+        return RiveFit.fitHeight;
+      case TypeRiveFit.SCALE_DOWN:
+        return RiveFit.scaleDown;
+      default:
+        return RiveFit.noFit;
+    }
   }
 
   private getAlignment(riveAlignment: RiveAlignment) {
@@ -292,5 +286,90 @@ export class RiveView extends RiveViewBase {
     //     default:
     //         return Alignment.CENTER;
     // }
+  }
+}
+
+@NativeClass()
+class RiveFileDelegateImpl extends NSObject implements RiveFileDelegate {
+  static ObjCProtocols = [RiveFileDelegate];
+
+  private _owner: WeakRef<RiveView>;
+
+  static initWithOwner(owner: WeakRef<RiveView>): RiveFileDelegateImpl {
+    const delegate = <RiveFileDelegateImpl>RiveFileDelegateImpl.new();
+    delegate._owner = owner;
+    return delegate;
+  }
+
+  riveFileDidLoadError(riveFile: RiveFile) {
+    console.log('riveFileDidLoadError:', riveFile.isLoaded);
+    const owner = this._owner.deref();
+    if (owner) {
+      if (riveFile.isLoaded) {
+        owner.riveFileHttpSrcDidLoad(riveFile);
+      }
+    }
+    return riveFile.isLoaded;
+  }
+}
+
+@NativeClass()
+class RiveStateMachineDelegateImpl extends NSObject implements RiveStateMachineDelegate {
+  static ObjCProtocols = [RiveStateMachineDelegate];
+
+  private _owner: WeakRef<RiveView>;
+
+  static initWithOwner(owner: WeakRef<RiveView>): RiveStateMachineDelegateImpl {
+    const delegate = <RiveStateMachineDelegateImpl>RiveStateMachineDelegateImpl.new();
+    delegate._owner = owner;
+    return delegate;
+  }
+
+  stateMachineDidChangeState?(stateMachine: RiveStateMachineInstance, stateName: string): void {
+    console.log('stateMachineDidChangeState:', stateName);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.stateChangedEvent, { stateMachine, stateName });
+    }
+  }
+
+	stateMachineReceivedInput?(stateMachine: RiveStateMachineInstance, input: StateMachineInput): void {
+    console.log('stateMachineReceivedInput:', input);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.receivedInputEvent, { stateMachine, input });
+    }
+  }
+
+	touchBeganOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+    console.log('touchBeganOnArtboardAtLocation:', location);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.touchBeganEvent, { artboard, location });
+    }
+  }
+
+	touchCancelledOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+    console.log('touchCancelledOnArtboardAtLocation:', location);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.touchCancelledEvent, { artboard, location });
+    }
+  }
+
+	touchEndedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+    console.log('touchEndedOnArtboardAtLocation:', location);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.touchEndedEvent, { artboard, location });
+    }
+  }
+
+	touchMovedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+    console.log('touchMovedOnArtboardAtLocation:', location);
+    const owner = this._owner.deref();
+    if (owner) {
+        owner.events.notifyEvent(RiveEvents.touchMovedEvent, { artboard, location });
+    }
   }
 }
