@@ -8,12 +8,12 @@ export default {
     markingMode: 'none',
   },
   ios: {
-    experimentalSPMPackages: [
+    SPMPackages: [
       {
-        name: 'rive-ios',
+        name: 'RiveRuntime',
         libs: ['RiveRuntime'],
         repositoryURL: 'https://github.com/rive-app/rive-ios.git',
-        version: '1.0.0',
+        version: '3.1.8',
       },
     ],
   },
