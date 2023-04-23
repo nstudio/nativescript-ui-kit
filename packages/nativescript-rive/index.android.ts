@@ -1,5 +1,5 @@
 import { File, Folder, Http, knownFolders, Utils } from '@nativescript/core';
-import { RiveViewBase, TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop, autoPlayProperty, srcProperty, fitProperty, alignmentProperty, artboardProperty, RiveEvents } from './common';
+import { RiveViewBase, TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop, autoPlayProperty, srcProperty, fitProperty, alignmentProperty, artboardProperty, RiveEvents, inputValueProperty } from './common';
 export { TypeRiveAlignment, TypeRiveDirection, TypeRiveFit, TypeRiveLoop } from './common';
 
 function lazy<T>(action: () => T): () => T {
@@ -69,9 +69,8 @@ export class RiveView extends RiveViewBase {
       if (!/.(riv)$/.test(src)) {
         src += '.riv';
       }
-      const app: Folder = <Folder>knownFolders.currentApp();
       const filename = src.replace(/^.*[\\\/]/, '');
-      const folder: Folder = <Folder>app.getFolder(src.substring(2).replace(filename, ''));
+      const folder = knownFolders.currentApp().getFolder(src.substring(2).replace(filename, ''));
       const file: File = folder.getFile(filename);
       this.bytes = await file.read();
     } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
@@ -117,19 +116,18 @@ export class RiveView extends RiveViewBase {
     this.nativeViewProtected.setAlignment(value);
   }
 
-  [artboardProperty.getDefault]() {
-    return null;
-  }
-
-  [artboardProperty.setNative](value: string | null) {
-    this.nativeViewProtected.setArtboardName(value);
+  [inputValueProperty.setNative](value: boolean) {
+    if (this.input) {
+      this.nativeViewProtected.setBooleanState(this.stateMachine, this.input, value === true);
+    }
   }
 
   private _init() {
     if (this.nativeViewProtected) {
-      if (!this.isPlaying()) {
-        this.nativeViewProtected.reset();
-        this.nativeViewProtected.setRiveBytes(this.bytes, this.artboard, this.animation, this.stateMachine, this.autoPlay, this.getFit(this.fit), this.getAlignment(this.alignment), this.getLoop(this.loop));
+      this.nativeViewProtected.reset();
+      this.nativeViewProtected.setRiveBytes(this.bytes, this.artboard, this.animation, this.stateMachine, this.autoPlay, this.getFit(this.fit), this.getAlignment(this.alignment), this.getLoop(this.loop));
+      if (this.input) {
+        this.nativeViewProtected.setBooleanState(this.stateMachine, this.input, this.inputValue === true);
       }
     }
   }
