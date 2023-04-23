@@ -12,7 +12,7 @@ For iOS, configure your `nativescript.config.ts` to use the Swift Package:
 
 ```ts
 ios: {
-SPMPackages: [
+    SPMPackages: [
         {
             name: 'RiveRuntime',
             libs: ['RiveRuntime'],
@@ -21,6 +21,30 @@ SPMPackages: [
         },
     ],
 },
+```
+
+For Android, add this provider to your `AndroidManifest.xml` inside the `application` tag:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="__PACKAGE__"
+    xmlns:tools="http://schemas.android.com/tools"> <!-- You may need to add this xmlns:tools attr/value -->
+    ...
+
+    <application
+        android:name="com.tns.NativeScriptApplication"
+        ...>
+
+        <!-- Add this for Rive -->
+        <provider
+                android:name="androidx.startup.InitializationProvider"
+                android:authorities="${applicationId}.androidx-startup"
+                android:exported="false"
+                tools:node="merge">
+            <meta-data android:name="app.rive.runtime.kotlin.RiveInitializer"
+                        android:value="androidx.startup" />
+        </provider>
 ```
 
 Use `RiveView`:
