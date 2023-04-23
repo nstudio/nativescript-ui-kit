@@ -265,10 +265,23 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     items: any[] | ItemsSource;
 
     @profile
-    public _prepareItem(item: View, index: number) {
-        const context = this.getItemAtIndex(index);
-        if (item) {
-            item.bindingContext = context;
+    public _prepareItem(view: View, index: number) {
+        let context = this.getItemAtIndex(index);
+        if (view) {
+            // we check old bindingContext to see if properties disappeared.
+            // if so we set them to null for the View to update
+            if (view.bindingContext && view.bindingContext !== context) {
+                const removed = {};
+                Object.keys(view.bindingContext).forEach((k) => {
+                    if (!context.hasOwnProperty(k)) {
+                        removed[k] = null;
+                    }
+                });
+                if (Object.keys(removed).length) {
+                    context = { ...context, ...removed };
+                }
+                view.bindingContext = context;
+            }
         }
         return context;
     }
