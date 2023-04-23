@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-rive",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Rive for NativeScript",
   "main": "index",
   "typings": "index.d.ts",
