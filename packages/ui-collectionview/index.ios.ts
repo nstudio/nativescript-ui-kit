@@ -125,6 +125,15 @@ export class CollectionView extends CollectionViewBase {
 
         this._measureCellMap = new Map<string, { cell: CollectionViewCell; view: View }>();
 
+        // waterfall requires the delegate to be set as soon as possible
+        // but default delegates need _effectiveRowHeight and _effectiveColWidth
+        // so we need to wait
+        const layoutStyle = CollectionViewBase.layoutStyles[this.layoutStyle];
+        if (layoutStyle && layoutStyle.createDelegate) {
+            this._delegate = layoutStyle.createDelegate(this);
+            this.nativeViewProtected.delegate = this._delegate;
+        }
+
         this._setNativeClipToBounds();
     }
 
@@ -444,6 +453,7 @@ export class CollectionView extends CollectionViewBase {
                 if (Trace.isEnabled()) {
                     CLog(CLogTypes.info, 'reloadItemsAtIndexPaths', event.index, indexes.count);
                 }
+
                 view.performBatchUpdatesCompletion(() => {
                     view.reloadItemsAtIndexPaths(indexes);
                 }, null);
@@ -481,17 +491,6 @@ export class CollectionView extends CollectionViewBase {
                         }
                         view.reloadItemsAtIndexPaths(indexes);
                     } else {
-                        if (event.addedCount > 0) {
-                            const indexes = NSMutableArray.alloc<NSIndexPath>().init();
-                            for (let index = 0; index < event.addedCount; index++) {
-                                indexes.addObject(NSIndexPath.indexPathForItemInSection(event.index + index, 0));
-                                if (sizes) {
-                                    sizes.insertObjectAtIndex(NSValue.valueWithCGSize(CGSizeZero), event.index);
-                                }
-                                // this._sizes.splice(event.index, 0, null);
-                            }
-                            view.insertItemsAtIndexPaths(indexes);
-                        }
                         if (event.removed && event.removed.length > 0) {
                             const indexes = NSMutableArray.new<NSIndexPath>();
                             for (let index = 0; index < event.removed.length; index++) {
@@ -506,6 +505,20 @@ export class CollectionView extends CollectionViewBase {
                                 CLog(CLogTypes.info, 'deleteItemsAtIndexPaths', indexes.count);
                             }
                             view.deleteItemsAtIndexPaths(indexes);
+                        }
+                        if (event.addedCount > 0) {
+                            const indexes = NSMutableArray.alloc<NSIndexPath>().init();
+                            for (let index = 0; index < event.addedCount; index++) {
+                                indexes.addObject(NSIndexPath.indexPathForItemInSection(event.index + index, 0));
+                                if (sizes) {
+                                    sizes.insertObjectAtIndex(NSValue.valueWithCGSize(CGSizeZero), event.index);
+                                }
+                                // this._sizes.splice(event.index, 0, null);
+                            }
+                            if (Trace.isEnabled()) {
+                                CLog(CLogTypes.info, 'insertItemsAtIndexPaths', indexes.count);
+                            }
+                            view.insertItemsAtIndexPaths(indexes);
                         }
                     }
                     // view.collectionViewLayout.invalidateLayout();
@@ -600,12 +613,7 @@ export class CollectionView extends CollectionViewBase {
         // dispatch_async(main_queue, () => {
         this.nativeViewProtected.reloadData();
         // });
-
-        const args = {
-            eventName: CollectionViewBase.dataPopulatedEvent,
-            object: this
-        };
-        this.notify(args);
+        this.notify({ eventName: CollectionViewBase.dataPopulatedEvent });
     }
     //@ts-ignore
     get scrollOffset() {
@@ -636,10 +644,10 @@ export class CollectionView extends CollectionViewBase {
     public _setNativeClipToBounds() {
         this.nativeView.clipsToBounds = true;
     }
-    notifyForItemAtIndex(listView: CollectionViewBase, cell: any, view: View, eventName: string, indexPath: NSIndexPath, bindingContext?) {
-        const args = { eventName, object: listView, index: indexPath.row, view, ios: cell, bindingContext };
-        listView.notify(args);
-        return args;
+    notifyForItemAtIndex(eventName: string, view: View, index: number, bindingContext?, native?: any) {
+        const args = { eventName, object: this, index, view, ios: native, bindingContext };
+        this.notify(args);
+        return args as any;
     }
     _getItemTemplateType(indexPath) {
         const selector = this._itemTemplateSelector;
@@ -666,7 +674,7 @@ export class CollectionView extends CollectionViewBase {
             if (Trace.isEnabled()) {
                 CLog(CLogTypes.log, '_prepareCell', index, templateType, !!cell.view, !!view, cell.view !== view, notForCellSizeComp);
             }
-            const args = this.notifyForItemAtIndex(this, cell, view, CollectionViewBase.itemLoadingEvent, indexPath, bindingContext);
+            const args = this.notifyForItemAtIndex(CollectionViewBase.itemLoadingEvent, view, indexPath.row, bindingContext, cell);
             view = args.view;
             view.bindingContext = bindingContext;
 
@@ -708,8 +716,8 @@ export class CollectionView extends CollectionViewBase {
 
                             nativeView.performBatchUpdatesCompletion(() => {
                                 this.measureCell(cell, view, index);
-                                this.notifyForItemAtIndex(this, cell, view, CollectionViewBase.itemLoadingEvent, indexPath, view.bindingContext);
-                             }, null);
+                                this.notifyForItemAtIndex(CollectionViewBase.itemLoadingEvent, view, indexPath.row, view.bindingContext, cell);
+                            }, null);
                             nativeView.collectionViewLayout.invalidateLayout();
                         }
                     };
@@ -1150,7 +1158,7 @@ class CollectionViewDataSource extends NSObject implements UICollectionViewDataS
     }
 }
 @NativeClass
-class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayout implements UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayout implements UICollectionViewDelegate {
     _owner: WeakRef<CollectionView>;
     public static ObjCProtocols = [UICollectionViewDelegate, UICollectionViewDelegateFlowLayout];
 
@@ -1171,13 +1179,6 @@ class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayo
             return owner.collectionViewDidSelectItemAtIndexPath(collectionView, indexPath);
         }
         return indexPath;
-    }
-    collectionViewLayoutSizeForItemAtIndexPath(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, indexPath: NSIndexPath): CGSize {
-        const owner = this._owner.deref();
-        if (owner) {
-            return owner.collectionViewLayoutSizeForItemAtIndexPath(collectionView, collectionViewLayout, indexPath);
-        }
-        return CGSizeZero;
     }
     collectionViewLayoutComputedSizeForItemAtIndexPath(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, indexPath: NSIndexPath) {
         const owner = this._owner.deref();

@@ -2,8 +2,8 @@ import {
     Builder,
     CSSType,
     ChangedData,
+    ContentView,
     CoreTypes,
-    EventData,
     ItemsSource,
     KeyedTemplate,
     Label,
@@ -25,35 +25,9 @@ import {
     removeWeakEventListener,
     widthProperty
 } from '@nativescript/core';
-import { CollectionView as CollectionViewDefinition } from '.';
+import { CollectionView as CollectionViewDefinition, CollectionViewItemEventData } from '.';
 
 export const CollectionViewTraceCategory = 'NativescriptCollectionView';
-
-export interface CollectionViewItemEventData extends EventData {
-    eventName: string;
-    object: CollectionViewBase;
-    index: number;
-    view: View;
-    item: any;
-    bindingContext?: any;
-}
-
-export interface CollectionViewItemDisplayEventData extends EventData {
-    eventName: string;
-    object: CollectionViewBase;
-    index: number;
-    cell: any; /* UICollectionViewCell on iOS, CollectionViewCellHolder on Android */
-}
-
-/**
- * Defines the different view types that {@link RadListView} can display in various scenarios.
- */
-export enum ListViewViewTypes {
-    /**
-     * Identifies a view created using the {@link itemTemplate} value.
-     */
-    ItemView
-}
 
 // iOS only
 export enum ContentInsetAdjustmentBehavior {
@@ -76,6 +50,12 @@ export const CLog = (type: CLogTypes, ...args) => {
 
 const autoEffectiveRowHeight = 0;
 const autoEffectiveColWidth = 0;
+
+// export * from 'ui/core/view';
+
+export enum ListViewViewTypes {
+    ItemView
+}
 
 export namespace knownTemplates {
     export const itemTemplate = 'itemTemplate';
@@ -153,8 +133,8 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public reorderEnabled: boolean;
 
     /** Used on iOS to auto update cells size if the cell request a layout change (like image itemLoading).
-    * Experimental and true by default
-    */
+     * Experimental and true by default
+     */
     public autoReloadItemOnLayout: boolean;
     public reorderLongPressEnabled: boolean;
     protected _dataUpdatesSuspended = false;
@@ -187,6 +167,9 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         };
         this._itemTemplatesInternal = new Map();
         this._itemTemplatesInternal.set(this._defaultTemplate.key, this._defaultTemplate);
+    }
+    notifyForItemAtIndex(eventName: string, view: View, index: number, bindingContext?: any, native?: any) {
+        throw new Error('Method not implemented.');
     }
 
     public abstract refresh();
@@ -266,20 +249,16 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
 
     @profile
     public _prepareItem(view: View, index: number) {
-        let context = this.getItemAtIndex(index);
+        const context = this.getItemAtIndex(index);
         if (view) {
             // we check old bindingContext to see if properties disappeared.
             // if so we set them to null for the View to update
             if (view.bindingContext && view.bindingContext !== context) {
-                const removed = {};
                 Object.keys(view.bindingContext).forEach((k) => {
                     if (!context.hasOwnProperty(k)) {
-                        removed[k] = null;
+                        context[k] = null;
                     }
                 });
-                if (Object.keys(removed).length) {
-                    context = { ...context, ...removed };
-                }
                 view.bindingContext = context;
             }
         }
@@ -485,11 +464,18 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     // onItemTemplateSelectorPropertyChanged(oldValue, newValue) {
     //     this.onItemTemplateSelectorChanged(oldValue, newValue);
     // }
+
+    getItemSourceAtIndex(index: number) {
+        return (this.items as ItemsSource).getItem(index);
+    }
+    getItemArrayAtIndex(index: number) {
+        return this.items[index];
+    }
     onItemsChanged(oldValue, newValue) {
         const getItem = newValue && (newValue as ItemsSource).getItem;
         this.isItemsSourceIn = typeof getItem === 'function';
         // we override the method to prevent the test on every getItem
-        this.getItemAtIndex = this.isItemsSourceIn ? (index: number) => (this.items as ItemsSource).getItem(index) : (index: number) => this.items[index];
+        this.getItemAtIndex = this.isItemsSourceIn ? this.getItemSourceAtIndex.bind(this) : this.getItemArrayAtIndex.bind(this);
         if (oldValue instanceof Observable) {
             removeWeakEventListener(oldValue, ObservableArray.changeEvent, this.onSourceCollectionChangedInternal, this);
         }
