@@ -32,6 +32,21 @@ declare module '@nativescript/core/ui/core/view' {
     }
 }
 
+interface CollectionViewCellHolder extends com.nativescript.collectionview.CollectionViewCellHolder {
+    // tslint:disable-next-line:no-misused-new
+    new (androidView: android.view.View): CollectionViewCellHolder;
+    view: View;
+    clickListener: android.view.View.OnClickListener;
+}
+
+let CollectionViewCellHolder: CollectionViewCellHolder;
+let CollectionViewRecyclerView: CollectionViewRecyclerView;
+
+export interface CollectionViewRecyclerView extends com.nativescript.collectionview.RecyclerView {
+    // tslint:disable-next-line:no-misused-new
+    new (context: any): CollectionViewRecyclerView;
+}
+
 @NativeClass
 class SimpleCallback extends androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback {
     owner: WeakRef<CollectionView>;
@@ -1150,21 +1165,6 @@ export class CollectionView extends CollectionViewBase {
     }
 }
 
-interface CollectionViewCellHolder extends com.nativescript.collectionview.CollectionViewCellHolder {
-    // tslint:disable-next-line:no-misused-new
-    new (androidView: android.view.View): CollectionViewCellHolder;
-    view: View;
-    clickListener: android.view.View.OnClickListener;
-}
-
-let CollectionViewCellHolder: CollectionViewCellHolder;
-
-export interface CollectionViewRecyclerView extends com.nativescript.collectionview.RecyclerView {
-    // tslint:disable-next-line:no-misused-new
-    new (context: any): CollectionViewRecyclerView;
-}
-
-let CollectionViewRecyclerView: CollectionViewRecyclerView;
 itemViewCacheSizeProperty.register(CollectionViewBase);
 extraLayoutSpaceProperty.register(CollectionViewBase);
 nestedScrollingEnabledProperty.register(CollectionViewBase);
