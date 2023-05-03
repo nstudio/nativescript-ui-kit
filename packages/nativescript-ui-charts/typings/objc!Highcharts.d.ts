@@ -1,7142 +1,6926 @@
-
 declare class HIAccessibility extends HIChartsJSONSerializable {
+  static alloc(): HIAccessibility; // inherited from NSObject
 
-	static alloc(): HIAccessibility; // inherited from NSObject
+  static new(): HIAccessibility; // inherited from NSObject
 
-	static new(): HIAccessibility; // inherited from NSObject
+  announceNewData: HIAnnounceNewData;
 
-	announceNewData: HIAnnounceNewData;
+  axis: HIAxis;
 
-	axis: HIAxis;
+  chartContainerLabel: string;
 
-	chartContainerLabel: string;
+  chartTypes: HIChartTypes;
 
-	chartTypes: HIChartTypes;
+  credits: string;
 
-	credits: string;
+  customComponents: any;
 
-	customComponents: any;
+  defaultChartTitle: string;
 
-	defaultChartTitle: string;
+  definition: string;
 
-	definition: string;
+  drillUpButton: string;
 
-	drillUpButton: string;
+  enabled: number;
 
-	enabled: number;
+  exporting: HIAccessibilityExporting;
 
-	exporting: HIAccessibilityExporting;
+  exposeAsGroupOnly: number;
 
-	exposeAsGroupOnly: number;
+  graphicContainerLabel: string;
 
-	graphicContainerLabel: string;
+  highContrastTheme: any;
 
-	highContrastTheme: any;
+  keyboardNavigation: HIKeyboardNavigation;
 
-	keyboardNavigation: HIKeyboardNavigation;
+  landmarkVerbosity: string;
 
-	landmarkVerbosity: string;
+  legend: HIAccessibilityLegend;
 
-	legend: HIAccessibilityLegend;
+  linkedDescription: string;
 
-	linkedDescription: string;
+  point: HIPoint;
 
-	point: HIPoint;
+  pointDescriptionFormatter: HIFunction;
 
-	pointDescriptionFormatter: HIFunction;
+  rangeDescription: string;
 
-	rangeDescription: string;
+  rangeSelector: HIRangeSelector;
 
-	rangeSelector: HIRangeSelector;
+  screenReaderSection: HIScreenReaderSection;
 
-	screenReaderSection: HIScreenReaderSection;
+  series: HIAccessibilitySeries;
 
-	series: HIAccessibilitySeries;
+  seriesTypeDescriptions: HISeriesTypeDescriptions;
 
-	seriesTypeDescriptions: HISeriesTypeDescriptions;
+  sonification: HISonification;
 
-	sonification: HISonification;
+  svgContainerLabel: string;
 
-	svgContainerLabel: string;
+  svgContainerTitle: string;
 
-	svgContainerTitle: string;
+  table: HITable;
 
-	table: HITable;
+  thousandsSep: string;
 
-	thousandsSep: string;
+  typeDescription: string;
 
-	typeDescription: string;
+  zoom: HIZoom;
 
-	zoom: HIZoom;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAccessibilityExporting extends HIChartsJSONSerializable {
+  static alloc(): HIAccessibilityExporting; // inherited from NSObject
 
-	static alloc(): HIAccessibilityExporting; // inherited from NSObject
+  static new(): HIAccessibilityExporting; // inherited from NSObject
 
-	static new(): HIAccessibilityExporting; // inherited from NSObject
+  chartMenuLabel: string;
 
-	chartMenuLabel: string;
+  exportRegionLabel: string;
 
-	exportRegionLabel: string;
+  menuButtonLabel: string;
 
-	menuButtonLabel: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAccessibilityLegend extends HIChartsJSONSerializable {
+  static alloc(): HIAccessibilityLegend; // inherited from NSObject
 
-	static alloc(): HIAccessibilityLegend; // inherited from NSObject
+  static new(): HIAccessibilityLegend; // inherited from NSObject
 
-	static new(): HIAccessibilityLegend; // inherited from NSObject
+  legendItem: string;
 
-	legendItem: string;
+  legendLabel: string;
 
-	legendLabel: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAccessibilitySeries extends HIChartsJSONSerializable {
+  static alloc(): HIAccessibilitySeries; // inherited from NSObject
 
-	static alloc(): HIAccessibilitySeries; // inherited from NSObject
+  static new(): HIAccessibilitySeries; // inherited from NSObject
 
-	static new(): HIAccessibilitySeries; // inherited from NSObject
+  definition: string;
 
-	definition: string;
+  summary: HISummary;
 
-	summary: HISummary;
+  xAxisDescription: string;
 
-	xAxisDescription: string;
+  yAxisDescription: string;
 
-	yAxisDescription: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIActiveDataLabelStyle extends HIChartsJSONSerializable {
+  static alloc(): HIActiveDataLabelStyle; // inherited from NSObject
 
-	static alloc(): HIActiveDataLabelStyle; // inherited from NSObject
+  static new(): HIActiveDataLabelStyle; // inherited from NSObject
 
-	static new(): HIActiveDataLabelStyle; // inherited from NSObject
+  color: string;
 
-	color: string;
+  cursor: string;
 
-	cursor: string;
+  fontWeight: string;
 
-	fontWeight: string;
+  textDecoration: string;
 
-	textDecoration: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAlignObject extends HIChartsJSONSerializable {
+  static alloc(): HIAlignObject; // inherited from NSObject
 
-	static alloc(): HIAlignObject; // inherited from NSObject
+  static new(): HIAlignObject; // inherited from NSObject
 
-	static new(): HIAlignObject; // inherited from NSObject
+  align: string;
 
-	align: string;
+  alignByTranslate: number;
 
-	alignByTranslate: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAnimation extends HIChartsJSONSerializable {
+  static alloc(): HIAnimation; // inherited from NSObject
 
-	static alloc(): HIAnimation; // inherited from NSObject
+  static new(): HIAnimation; // inherited from NSObject
 
-	static new(): HIAnimation; // inherited from NSObject
+  duration: number;
 
-	duration: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAnimationOptionsObject extends HIChartsJSONSerializable {
+  static alloc(): HIAnimationOptionsObject; // inherited from NSObject
 
-	static alloc(): HIAnimationOptionsObject; // inherited from NSObject
+  static new(): HIAnimationOptionsObject; // inherited from NSObject
 
-	static new(): HIAnimationOptionsObject; // inherited from NSObject
+  complete: HIFunction;
 
-	complete: HIFunction;
+  duration: number;
 
-	duration: number;
+  easing: string;
 
-	easing: string;
+  step: HIFunction;
 
-	step: HIFunction;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAnnotations extends HIChartsJSONSerializable {
+  static alloc(): HIAnnotations; // inherited from NSObject
 
-	static alloc(): HIAnnotations; // inherited from NSObject
+  static new(): HIAnnotations; // inherited from NSObject
 
-	static new(): HIAnnotations; // inherited from NSObject
+  controlPointOptions: HIControlPointOptions;
 
-	controlPointOptions: HIControlPointOptions;
+  descriptionMultiplePoints: string;
 
-	descriptionMultiplePoints: string;
+  descriptionNoPoints: string;
 
-	descriptionNoPoints: string;
+  descriptionSinglePoint: string;
 
-	descriptionSinglePoint: string;
+  draggable: string;
 
-	draggable: string;
+  events: HIEvents;
 
-	events: HIEvents;
+  heading: string;
 
-	heading: string;
+  id: string;
 
-	id: string;
+  labelOptions: HILabelOptions;
 
-	labelOptions: HILabelOptions;
+  labels: NSArray<HILabels>;
 
-	labels: NSArray<HILabels>;
+  shapeOptions: HIShapeOptions;
 
-	shapeOptions: HIShapeOptions;
+  shapes: NSArray<HIShapes>;
 
-	shapes: NSArray<HIShapes>;
+  visible: number;
 
-	visible: number;
+  zIndex: number;
 
-	zIndex: number;
+  adjustLabelVisibility(item: HILabels): void;
 
-	adjustLabelVisibility(item: HILabels): void;
+  adjustShapeVisibility(item: HIShapes): void;
 
-	adjustShapeVisibility(item: HIShapes): void;
+  destroy(): void;
 
-	destroy(): void;
+  destroyLabelItem(item: HILabels): void;
 
-	destroyLabelItem(item: HILabels): void;
+  destroyShapeItem(item: HIShapes): void;
 
-	destroyShapeItem(item: HIShapes): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  initLabel(labelOptions: HILabels): void;
 
-	initLabel(labelOptions: HILabels): void;
+  initShape(shapeOptions: HIShapes): void;
 
-	initShape(shapeOptions: HIShapes): void;
+  redrawLabelItem(item: HILabels): void;
 
-	redrawLabelItem(item: HILabels): void;
+  redrawLabelItemAnimation(item: HILabels, animation: number): void;
 
-	redrawLabelItemAnimation(item: HILabels, animation: number): void;
+  redrawLabelItems(items: NSArray<HILabels> | HILabels[]): void;
 
-	redrawLabelItems(items: NSArray<HILabels> | HILabels[]): void;
+  redrawLabelItemsAnimation(items: NSArray<HILabels> | HILabels[], animation: number): void;
 
-	redrawLabelItemsAnimation(items: NSArray<HILabels> | HILabels[], animation: number): void;
+  redrawShapeItem(item: HIShapes): void;
 
-	redrawShapeItem(item: HIShapes): void;
+  redrawShapeItemAnimation(item: HIShapes, animation: number): void;
 
-	redrawShapeItemAnimation(item: HIShapes, animation: number): void;
+  redrawShapeItems(items: NSArray<HIShapes> | HIShapes[]): void;
 
-	redrawShapeItems(items: NSArray<HIShapes> | HIShapes[]): void;
+  redrawShapeItemsAnimation(items: NSArray<HIShapes> | HIShapes[], animation: number): void;
 
-	redrawShapeItemsAnimation(items: NSArray<HIShapes> | HIShapes[], animation: number): void;
+  remove(): void;
 
-	remove(): void;
+  setOptions(): void;
 
-	setOptions(): void;
-
-	setVisibility(): void;
+  setVisibility(): void;
 }
 
 declare class HIAnnotationsOptions extends HIChartsJSONSerializable {
+  static alloc(): HIAnnotationsOptions; // inherited from NSObject
 
-	static alloc(): HIAnnotationsOptions; // inherited from NSObject
+  static new(): HIAnnotationsOptions; // inherited from NSObject
 
-	static new(): HIAnnotationsOptions; // inherited from NSObject
+  controlPointOptions: HIControlPointOptions;
 
-	controlPointOptions: HIControlPointOptions;
+  draggable: string;
 
-	draggable: string;
+  events: HIEvents;
 
-	events: HIEvents;
+  id: string;
 
-	id: string;
+  labelOptions: HILabelOptions;
 
-	labelOptions: HILabelOptions;
+  labels: NSArray<HILabels>;
 
-	labels: NSArray<HILabels>;
+  shapeOptions: HIShapeOptions;
 
-	shapeOptions: HIShapeOptions;
+  shapes: NSArray<HIShapes>;
 
-	shapes: NSArray<HIShapes>;
+  visible: number;
 
-	visible: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAnnounceNewData extends HIChartsJSONSerializable {
+  static alloc(): HIAnnounceNewData; // inherited from NSObject
 
-	static alloc(): HIAnnounceNewData; // inherited from NSObject
+  static new(): HIAnnounceNewData; // inherited from NSObject
 
-	static new(): HIAnnounceNewData; // inherited from NSObject
+  announcementFormatter: HIFunction;
 
-	announcementFormatter: HIFunction;
+  dataAnnounce: string;
 
-	dataAnnounce: string;
+  enabled: number;
 
-	enabled: number;
+  interruptUser: number;
 
-	interruptUser: number;
+  minAnnounceInterval: number;
 
-	minAnnounceInterval: number;
+  pointAnnounceMultiple: string;
 
-	pointAnnounceMultiple: string;
+  pointAnnounceSingle: string;
 
-	pointAnnounceSingle: string;
+  seriesAnnounceMultiple: string;
 
-	seriesAnnounceMultiple: string;
+  seriesAnnounceSingle: string;
 
-	seriesAnnounceSingle: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIArea extends HISeries {
+  static alloc(): HIArea; // inherited from NSObject
 
-	static alloc(): HIArea; // inherited from NSObject
+  static new(): HIArea; // inherited from NSObject
 
-	static new(): HIArea; // inherited from NSObject
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIArearange extends HISeries {
+  static alloc(): HIArearange; // inherited from NSObject
 
-	static alloc(): HIArearange; // inherited from NSObject
+  static new(): HIArearange; // inherited from NSObject
 
-	static new(): HIArearange; // inherited from NSObject
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIAreaspline extends HISeries {
+  static alloc(): HIAreaspline; // inherited from NSObject
 
-	static alloc(): HIAreaspline; // inherited from NSObject
+  static new(): HIAreaspline; // inherited from NSObject
 
-	static new(): HIAreaspline; // inherited from NSObject
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIAreasplinerange extends HISeries {
+  static alloc(): HIAreasplinerange; // inherited from NSObject
 
-	static alloc(): HIAreasplinerange; // inherited from NSObject
+  static new(): HIAreasplinerange; // inherited from NSObject
 
-	static new(): HIAreasplinerange; // inherited from NSObject
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIArrow extends HIChartsJSONSerializable {
+  static alloc(): HIArrow; // inherited from NSObject
 
-	static alloc(): HIArrow; // inherited from NSObject
+  static new(): HIArrow; // inherited from NSObject
 
-	static new(): HIArrow; // inherited from NSObject
+  children: NSArray<any>;
 
-	children: NSArray<any>;
+  id: string;
 
-	id: string;
+  markerHeight: number;
 
-	markerHeight: number;
+  markerWidth: number;
 
-	markerWidth: number;
+  refX: number;
 
-	refX: number;
+  refY: number;
 
-	refY: number;
+  render: number;
 
-	render: number;
+  tagName: string;
 
-	tagName: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAttr extends HIChartsJSONSerializable {
+  static alloc(): HIAttr; // inherited from NSObject
 
-	static alloc(): HIAttr; // inherited from NSObject
+  static new(): HIAttr; // inherited from NSObject
 
-	static new(): HIAttr; // inherited from NSObject
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAttributes extends HIChartsJSONSerializable {
+  static alloc(): HIAttributes; // inherited from NSObject
 
-	static alloc(): HIAttributes; // inherited from NSObject
+  static new(): HIAttributes; // inherited from NSObject
 
-	static new(): HIAttributes; // inherited from NSObject
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIAxis extends HIChartsJSONSerializable {
+  static alloc(): HIAxis; // inherited from NSObject
 
-	static alloc(): HIAxis; // inherited from NSObject
+  static new(): HIAxis; // inherited from NSObject
 
-	static new(): HIAxis; // inherited from NSObject
+  rangeCategories: string;
 
-	rangeCategories: string;
+  rangeFromTo: string;
 
-	rangeFromTo: string;
+  timeRangeDays: string;
 
-	timeRangeDays: string;
+  timeRangeHours: string;
 
-	timeRangeHours: string;
+  timeRangeMinutes: string;
 
-	timeRangeMinutes: string;
+  timeRangeSeconds: string;
 
-	timeRangeSeconds: string;
+  xAxisDescriptionPlural: string;
 
-	xAxisDescriptionPlural: string;
+  xAxisDescriptionSingular: string;
 
-	xAxisDescriptionSingular: string;
+  yAxisDescriptionPlural: string;
 
-	yAxisDescriptionPlural: string;
+  yAxisDescriptionSingular: string;
 
-	yAxisDescriptionSingular: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBack extends HIChartsJSONSerializable {
+  static alloc(): HIBack; // inherited from NSObject
 
-	static alloc(): HIBack; // inherited from NSObject
+  static new(): HIBack; // inherited from NSObject
 
-	static new(): HIBack; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBackground extends HIChartsJSONSerializable {
+  static alloc(): HIBackground; // inherited from NSObject
 
-	static alloc(): HIBackground; // inherited from NSObject
+  static new(): HIBackground; // inherited from NSObject
 
-	static new(): HIBackground; // inherited from NSObject
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  innerRadius: any;
 
-	innerRadius: any;
+  outerRadius: any;
 
-	outerRadius: any;
+  shape: string;
 
-	shape: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBar extends HISeries {
+  static alloc(): HIBar; // inherited from NSObject
 
-	static alloc(): HIBar; // inherited from NSObject
+  static new(): HIBar; // inherited from NSObject
 
-	static new(): HIBar; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIBellcurve extends HISeries {
+  static alloc(): HIBellcurve; // inherited from NSObject
 
-	static alloc(): HIBellcurve; // inherited from NSObject
+  static new(): HIBellcurve; // inherited from NSObject
 
-	static new(): HIBellcurve; // inherited from NSObject
+  baseSeries: any;
 
-	baseSeries: any;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  intervals: number;
 
-	intervals: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
+  pointsInInterval: number;
 
-	pointsInInterval: number;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIBindings extends HIChartsJSONSerializable {
+  static alloc(): HIBindings; // inherited from NSObject
 
-	static alloc(): HIBindings; // inherited from NSObject
+  static new(): HIBindings; // inherited from NSObject
 
-	static new(): HIBindings; // inherited from NSObject
+  circleAnnotation: HINavigationBindingsOptionsObject;
 
-	circleAnnotation: HINavigationBindingsOptionsObject;
+  labelAnnotation: HINavigationBindingsOptionsObject;
 
-	labelAnnotation: HINavigationBindingsOptionsObject;
+  rectangleAnnotation: HINavigationBindingsOptionsObject;
 
-	rectangleAnnotation: HINavigationBindingsOptionsObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBoost extends HIChartsJSONSerializable {
+  static alloc(): HIBoost; // inherited from NSObject
 
-	static alloc(): HIBoost; // inherited from NSObject
+  static new(): HIBoost; // inherited from NSObject
 
-	static new(): HIBoost; // inherited from NSObject
+  allowForce: number;
 
-	allowForce: number;
+  debug: HIDebug;
 
-	debug: HIDebug;
+  enabled: number;
 
-	enabled: number;
+  seriesThreshold: number;
 
-	seriesThreshold: number;
+  useGPUTranslations: number;
 
-	useGPUTranslations: number;
+  usePreallocated: number;
 
-	usePreallocated: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBottom extends HIChartsJSONSerializable {
+  static alloc(): HIBottom; // inherited from NSObject
 
-	static alloc(): HIBottom; // inherited from NSObject
+  static new(): HIBottom; // inherited from NSObject
 
-	static new(): HIBottom; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBoxplot extends HISeries {
+  static alloc(): HIBoxplot; // inherited from NSObject
 
-	static alloc(): HIBoxplot; // inherited from NSObject
+  static new(): HIBoxplot; // inherited from NSObject
 
-	static new(): HIBoxplot; // inherited from NSObject
+  boxDashStyle: string;
 
-	boxDashStyle: string;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  groupPadding: number;
 
-	groupPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  medianColor: HIColor;
 
-	medianColor: HIColor;
+  medianDashStyle: string;
 
-	medianDashStyle: string;
+  medianWidth: number;
 
-	medianWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  stemDashStyle: string;
 
-	stemDashStyle: string;
+  stemWidth: number;
 
-	stemWidth: number;
+  whiskerColor: HIColor;
 
-	whiskerColor: HIColor;
+  whiskerDashStyle: string;
 
-	whiskerDashStyle: string;
+  whiskerLength: any;
 
-	whiskerLength: any;
-
-	whiskerWidth: number;
+  whiskerWidth: number;
 }
 
 declare class HIBreaks extends HIChartsJSONSerializable {
+  static alloc(): HIBreaks; // inherited from NSObject
 
-	static alloc(): HIBreaks; // inherited from NSObject
+  static new(): HIBreaks; // inherited from NSObject
 
-	static new(): HIBreaks; // inherited from NSObject
+  breakSize: number;
 
-	breakSize: number;
+  from: number;
 
-	from: number;
+  repeat: number;
 
-	repeat: number;
+  to: number;
 
-	to: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBubble extends HISeries {
+  static alloc(): HIBubble; // inherited from NSObject
 
-	static alloc(): HIBubble; // inherited from NSObject
+  static new(): HIBubble; // inherited from NSObject
 
-	static new(): HIBubble; // inherited from NSObject
+  displayNegative: number;
 
-	displayNegative: number;
+  jitter: HIJitter;
 
-	jitter: HIJitter;
+  maxSize: any;
 
-	maxSize: any;
+  minSize: any;
 
-	minSize: any;
+  sizeBy: string;
 
-	sizeBy: string;
+  sizeByAbsoluteValue: number;
 
-	sizeByAbsoluteValue: number;
+  zMax: number;
 
-	zMax: number;
+  zMin: number;
 
-	zMin: number;
-
-	zThreshold: number;
+  zThreshold: number;
 }
 
 declare class HIBubbleLegend extends HIChartsJSONSerializable {
+  static alloc(): HIBubbleLegend; // inherited from NSObject
 
-	static alloc(): HIBubbleLegend; // inherited from NSObject
+  static new(): HIBubbleLegend; // inherited from NSObject
 
-	static new(): HIBubbleLegend; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  connectorClassName: string;
 
-	connectorClassName: string;
+  connectorColor: HIColor;
 
-	connectorColor: HIColor;
+  connectorDistance: number;
 
-	connectorDistance: number;
+  connectorWidth: number;
 
-	connectorWidth: number;
+  enabled: number;
 
-	enabled: number;
+  labels: HILabels;
 
-	labels: HILabels;
+  legendIndex: number;
 
-	legendIndex: number;
+  maxSize: number;
 
-	maxSize: number;
+  minSize: number;
 
-	minSize: number;
+  ranges: NSArray<HIRanges>;
 
-	ranges: NSArray<HIRanges>;
+  sizeBy: string;
 
-	sizeBy: string;
+  sizeByAbsoluteValue: number;
 
-	sizeByAbsoluteValue: number;
+  zIndex: number;
 
-	zIndex: number;
+  zThreshold: number;
 
-	zThreshold: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIBullet extends HISeries {
+  static alloc(): HIBullet; // inherited from NSObject
 
-	static alloc(): HIBullet; // inherited from NSObject
+  static new(): HIBullet; // inherited from NSObject
 
-	static new(): HIBullet; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
-
-	targetOptions: HITargetOptions;
+  targetOptions: HITargetOptions;
 }
 
 declare class HIButtonOptions extends HIChartsJSONSerializable {
+  static alloc(): HIButtonOptions; // inherited from NSObject
 
-	static alloc(): HIButtonOptions; // inherited from NSObject
+  static new(): HIButtonOptions; // inherited from NSObject
 
-	static new(): HIButtonOptions; // inherited from NSObject
+  align: string;
 
-	align: string;
+  buttonSpacing: number;
 
-	buttonSpacing: number;
+  enabled: number;
 
-	enabled: number;
+  height: number;
 
-	height: number;
+  symbolFill: HIColor;
 
-	symbolFill: HIColor;
+  symbolSize: number;
 
-	symbolSize: number;
+  symbolStroke: HIColor;
 
-	symbolStroke: HIColor;
+  symbolStrokeWidth: number;
 
-	symbolStrokeWidth: number;
+  symbolX: number;
 
-	symbolX: number;
+  symbolY: number;
 
-	symbolY: number;
+  text: string;
 
-	text: string;
+  theme: HITheme;
 
-	theme: HITheme;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  width: number;
 
-	width: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIButtons extends HIChartsJSONSerializable {
+  static alloc(): HIButtons; // inherited from NSObject
 
-	static alloc(): HIButtons; // inherited from NSObject
+  static new(): HIButtons; // inherited from NSObject
 
-	static new(): HIButtons; // inherited from NSObject
+  contextButton: HIContextButton;
 
-	contextButton: HIContextButton;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICSSObject extends HIChartsJSONSerializable {
+  static alloc(): HICSSObject; // inherited from NSObject
 
-	static alloc(): HICSSObject; // inherited from NSObject
+  static new(): HICSSObject; // inherited from NSObject
 
-	static new(): HICSSObject; // inherited from NSObject
+  background: string;
 
-	background: string;
+  backgroundColor: string;
 
-	backgroundColor: string;
+  border: string;
 
-	border: string;
+  borderRadius: number;
 
-	borderRadius: number;
+  color: string;
 
-	color: string;
+  cursor: string;
 
-	cursor: string;
+  fontFamily: string;
 
-	fontFamily: string;
+  fontSize: string;
 
-	fontSize: string;
+  fontWeight: string;
 
-	fontWeight: string;
+  height: number;
 
-	height: number;
+  lineWidth: number;
 
-	lineWidth: number;
+  opacity: number;
 
-	opacity: number;
+  padding: string;
 
-	padding: string;
+  pointerEvents: string;
 
-	pointerEvents: string;
+  position: string;
 
-	position: string;
+  textAlign: string;
 
-	textAlign: string;
+  textDecoration: string;
 
-	textDecoration: string;
+  textOutline: string;
 
-	textOutline: string;
+  textOverflow: string;
 
-	textOverflow: string;
+  top: string;
 
-	top: string;
+  transition: string;
 
-	transition: string;
+  whiteSpace: string;
 
-	whiteSpace: string;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICaption extends HIChartsJSONSerializable {
+  static alloc(): HICaption; // inherited from NSObject
 
-	static alloc(): HICaption; // inherited from NSObject
+  static new(): HICaption; // inherited from NSObject
 
-	static new(): HICaption; // inherited from NSObject
+  align: string;
 
-	align: string;
+  floating: number;
 
-	floating: number;
+  margin: number;
 
-	margin: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIChart extends HIChartsJSONSerializable {
+  static alloc(): HIChart; // inherited from NSObject
 
-	static alloc(): HIChart; // inherited from NSObject
+  static new(): HIChart; // inherited from NSObject
 
-	static new(): HIChart; // inherited from NSObject
+  alignTicks: number;
 
-	alignTicks: number;
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  colorCount: number;
 
-	colorCount: number;
+  displayErrors: number;
 
-	displayErrors: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  height: any;
 
-	height: any;
+  ignoreHiddenSeries: number;
 
-	ignoreHiddenSeries: number;
+  inverted: number;
 
-	inverted: number;
+  margin: NSArray<number>;
 
-	margin: NSArray<number>;
+  marginBottom: number;
 
-	marginBottom: number;
+  marginLeft: number;
 
-	marginLeft: number;
+  marginRight: number;
 
-	marginRight: number;
+  marginTop: number;
 
-	marginTop: number;
+  numberFormatter: HIFunction;
 
-	numberFormatter: HIFunction;
+  options3d: HIOptions3d;
 
-	options3d: HIOptions3d;
+  panKey: string;
 
-	panKey: string;
+  panning: HIPanning;
 
-	panning: HIPanning;
+  parallelAxes: HIParallelAxes;
 
-	parallelAxes: HIParallelAxes;
+  parallelCoordinates: number;
 
-	parallelCoordinates: number;
+  pinchType: string;
 
-	pinchType: string;
+  plotBackgroundColor: HIColor;
 
-	plotBackgroundColor: HIColor;
+  plotBackgroundImage: string;
 
-	plotBackgroundImage: string;
+  plotBorderColor: HIColor;
 
-	plotBorderColor: HIColor;
+  plotBorderWidth: number;
 
-	plotBorderWidth: number;
+  plotShadow: HICSSObject;
 
-	plotShadow: HICSSObject;
+  polar: number;
 
-	polar: number;
+  reflow: number;
 
-	reflow: number;
+  renderTo: string;
 
-	renderTo: string;
+  resetZoomButton: HIResetZoomButton;
 
-	resetZoomButton: HIResetZoomButton;
+  scrollablePlotArea: HIScrollablePlotArea;
 
-	scrollablePlotArea: HIScrollablePlotArea;
+  selectionMarkerFill: HIColor;
 
-	selectionMarkerFill: HIColor;
+  shadow: HICSSObject;
 
-	shadow: HICSSObject;
+  showAxes: number;
 
-	showAxes: number;
+  spacing: NSArray<number>;
 
-	spacing: NSArray<number>;
+  spacingBottom: number;
 
-	spacingBottom: number;
+  spacingLeft: number;
 
-	spacingLeft: number;
+  spacingRight: number;
 
-	spacingRight: number;
+  spacingTop: number;
 
-	spacingTop: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  styledMode: number;
 
-	styledMode: number;
+  type: string;
 
-	type: string;
+  width: any;
 
-	width: any;
+  zoomKey: string;
 
-	zoomKey: string;
+  zoomType: string;
 
-	zoomType: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIChartContext extends NSObject implements NSCopying {
+  static alloc(): HIChartContext; // inherited from NSObject
 
-	static alloc(): HIChartContext; // inherited from NSObject
+  static new(): HIChartContext; // inherited from NSObject
 
-	static new(): HIChartContext; // inherited from NSObject
+  constructor(o: { context: NSDictionary<any, any> });
 
-	constructor(o: { context: NSDictionary<any, any>; });
+  copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+  getProperty(param: string): any;
 
-	getProperty(param: string): any;
-
-	initWithContext(context: NSDictionary<any, any>): this;
+  initWithContext(context: NSDictionary<any, any>): this;
 }
 
 declare class HIChartTypes extends HIChartsJSONSerializable {
+  static alloc(): HIChartTypes; // inherited from NSObject
 
-	static alloc(): HIChartTypes; // inherited from NSObject
+  static new(): HIChartTypes; // inherited from NSObject
 
-	static new(): HIChartTypes; // inherited from NSObject
+  barMultiple: string;
 
-	barMultiple: string;
+  barSingle: string;
 
-	barSingle: string;
+  boxplotMultiple: string;
 
-	boxplotMultiple: string;
+  boxplotSingle: string;
 
-	boxplotSingle: string;
+  bubbleMultiple: string;
 
-	bubbleMultiple: string;
+  bubbleSingle: string;
 
-	bubbleSingle: string;
+  columnMultiple: string;
 
-	columnMultiple: string;
+  columnSingle: string;
 
-	columnSingle: string;
+  combinationChart: string;
 
-	combinationChart: string;
+  defaultMultiple: string;
 
-	defaultMultiple: string;
+  defaultSingle: string;
 
-	defaultSingle: string;
+  emptyChart: string;
 
-	emptyChart: string;
+  lineMultiple: string;
 
-	lineMultiple: string;
+  lineSingle: string;
 
-	lineSingle: string;
+  mapTypeDescription: string;
 
-	mapTypeDescription: string;
+  pieMultiple: string;
 
-	pieMultiple: string;
+  pieSingle: string;
 
-	pieSingle: string;
+  scatterMultiple: string;
 
-	scatterMultiple: string;
+  scatterSingle: string;
 
-	scatterSingle: string;
+  splineMultiple: string;
 
-	splineMultiple: string;
+  splineSingle: string;
 
-	splineSingle: string;
+  unknownMap: string;
 
-	unknownMap: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIChartView extends UIView {
+  static addFont(path: string): void;
 
-	static addFont(path: string): void;
+  static alloc(): HIChartView; // inherited from NSObject
 
-	static alloc(): HIChartView; // inherited from NSObject
+  static appearance(): HIChartView; // inherited from UIAppearance
 
-	static appearance(): HIChartView; // inherited from UIAppearance
+  static appearanceForTraitCollection(trait: UITraitCollection): HIChartView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): HIChartView; // inherited from UIAppearance
+  static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): HIChartView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): HIChartView; // inherited from UIAppearance
+  static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): HIChartView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): HIChartView; // inherited from UIAppearance
+  static appearanceWhenContainedIn(ContainerClass: typeof NSObject): HIChartView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): HIChartView; // inherited from UIAppearance
+  static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): HIChartView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): HIChartView; // inherited from UIAppearance
+  static new(): HIChartView; // inherited from NSObject
 
-	static new(): HIChartView; // inherited from NSObject
+  static preload(): void;
 
-	static preload(): void;
+  debug: boolean;
 
-	debug: boolean;
+  delegate: HIChartViewDelegate;
 
-	delegate: HIChartViewDelegate;
+  global: HIGlobal;
 
-	global: HIGlobal;
+  lang: HILang;
 
-	lang: HILang;
+  options: HIOptions;
 
-	options: HIOptions;
+  plugins: NSArray<any>;
 
-	plugins: NSArray<any>;
+  theme: string;
 
-	theme: string;
+  viewController: UIViewController;
 
-	viewController: UIViewController;
+  static synced: number;
 
-	static synced: number;
+  addAnnotation(options: HIAnnotations): void;
 
-	addAnnotation(options: HIAnnotations): void;
+  addAnnotationRedraw(options: HIAnnotations, redraw: number): void;
 
-	addAnnotationRedraw(options: HIAnnotations, redraw: number): void;
+  addColorAxis(options: HIColorAxis): void;
 
-	addColorAxis(options: HIColorAxis): void;
+  addColorAxisRedraw(options: HIColorAxis, redraw: number): void;
 
-	addColorAxisRedraw(options: HIColorAxis, redraw: number): void;
+  addColorAxisRedrawAnimation(options: HIColorAxis, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	addColorAxisRedrawAnimation(options: HIColorAxis, redraw: number, animation: HIAnimationOptionsObject): void;
+  addCredits(options: HICredits): void;
 
-	addCredits(options: HICredits): void;
+  addSeries(options: HISeries): void;
 
-	addSeries(options: HISeries): void;
+  addSeriesAsDrilldownOptions(point: HIPoint, options: HISeries): void;
 
-	addSeriesAsDrilldownOptions(point: HIPoint, options: HISeries): void;
+  addSeriesRedraw(options: HISeries, redraw: number): void;
 
-	addSeriesRedraw(options: HISeries, redraw: number): void;
+  addSeriesRedrawAnimation(options: HISeries, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	addSeriesRedrawAnimation(options: HISeries, redraw: number, animation: HIAnimationOptionsObject): void;
+  addXAxis(options: HIXAxis): void;
 
-	addXAxis(options: HIXAxis): void;
+  addXAxisRedraw(options: HIXAxis, redraw: number): void;
 
-	addXAxisRedraw(options: HIXAxis, redraw: number): void;
+  addXAxisRedrawAnimation(options: HIXAxis, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	addXAxisRedrawAnimation(options: HIXAxis, redraw: number, animation: HIAnimationOptionsObject): void;
+  addYAxis(options: HIYAxis): void;
 
-	addYAxis(options: HIYAxis): void;
+  addYAxisRedraw(options: HIYAxis, redraw: number): void;
 
-	addYAxisRedraw(options: HIYAxis, redraw: number): void;
+  addYAxisRedrawAnimation(options: HIYAxis, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	addYAxisRedrawAnimation(options: HIYAxis, redraw: number, animation: HIAnimationOptionsObject): void;
+  cancelSonify(): void;
 
-	cancelSonify(): void;
+  destroy(): void;
 
-	destroy(): void;
+  drillUp(): void;
 
-	drillUp(): void;
+  exportToCSV(): void;
 
-	exportToCSV(): void;
+  exportToPDF(): void;
 
-	exportToPDF(): void;
+  exportToPNG(): void;
 
-	exportToPNG(): void;
+  hideLoading(): void;
 
-	hideLoading(): void;
+  loadChart(): void;
 
-	loadChart(): void;
+  loadJSONOptions(options: NSDictionary<any, any>): void;
 
-	loadJSONOptions(options: NSDictionary<any, any>): void;
+  openInCloud(): void;
 
-	openInCloud(): void;
+  pauseSonify(): void;
 
-	pauseSonify(): void;
+  print(): void;
 
-	print(): void;
+  redraw(): void;
 
-	redraw(): void;
+  reload(): void;
 
-	reload(): void;
+  removeAnnotation(annotation: HIAnnotations): void;
 
-	removeAnnotation(annotation: HIAnnotations): void;
+  removeAnnotationById(id: string): void;
 
-	removeAnnotationById(id: string): void;
+  resetSonifyCursor(): void;
 
-	resetSonifyCursor(): void;
+  resetSonifyCursorEnd(): void;
 
-	resetSonifyCursorEnd(): void;
+  setCaption(options: HICaption): void;
 
-	setCaption(options: HICaption): void;
+  setClassName(): void;
 
-	setClassName(): void;
+  setSonifyCursorToPoint(point: HIPoint): void;
 
-	setSonifyCursorToPoint(point: HIPoint): void;
+  setSonifyCursorToPoints(points: NSArray<HIPoint> | HIPoint[]): void;
 
-	setSonifyCursorToPoints(points: NSArray<HIPoint> | HIPoint[]): void;
+  setSubtitle(options: HISubtitle): void;
 
-	setSubtitle(options: HISubtitle): void;
+  setTitleSubtitleOptionsRedraw(titleOptions: HITitle, subtitleOptions: HISubtitle, redraw: number): void;
 
-	setTitleSubtitleOptionsRedraw(titleOptions: HITitle, subtitleOptions: HISubtitle, redraw: number): void;
+  showLoading(str: string): void;
 
-	showLoading(str: string): void;
+  sonify(options: NSDictionary<any, any>): void;
 
-	sonify(options: NSDictionary<any, any>): void;
+  update(options: HIOptions): void;
 
-	update(options: HIOptions): void;
+  updateOptions(): void;
 
-	updateOptions(): void;
+  updateRedraw(options: HIOptions, redraw: number): void;
 
-	updateRedraw(options: HIOptions, redraw: number): void;
+  updateRedrawOneToOne(options: HIOptions, redraw: number, oneToOne: number): void;
 
-	updateRedrawOneToOne(options: HIOptions, redraw: number, oneToOne: number): void;
+  updateRedrawOneToOneAnimation(options: HIOptions, redraw: number, oneToOne: number, animation: HIAnimationOptionsObject): void;
 
-	updateRedrawOneToOneAnimation(options: HIOptions, redraw: number, oneToOne: number, animation: HIAnimationOptionsObject): void;
+  viewData(): void;
 
-	viewData(): void;
-
-	zoomOut(): void;
+  zoomOut(): void;
 }
 
 interface HIChartViewDelegate extends NSObjectProtocol {
-
-	chartViewDidLoad(chart: HIChartView): void;
+  chartViewDidLoad(chart: HIChartView): void;
 }
 declare var HIChartViewDelegate: {
-
-	prototype: HIChartViewDelegate;
+  prototype: HIChartViewDelegate;
 };
 
 declare class HIChartsJSONSerializable extends NSObject implements NSCopying {
+  static alloc(): HIChartsJSONSerializable; // inherited from NSObject
 
-	static alloc(): HIChartsJSONSerializable; // inherited from NSObject
+  static new(): HIChartsJSONSerializable; // inherited from NSObject
 
-	static new(): HIChartsJSONSerializable; // inherited from NSObject
-
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+  copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
 declare class HICluster extends HIChartsJSONSerializable {
+  static alloc(): HICluster; // inherited from NSObject
 
-	static alloc(): HICluster; // inherited from NSObject
+  static new(): HICluster; // inherited from NSObject
 
-	static new(): HICluster; // inherited from NSObject
+  allowOverlap: number;
 
-	allowOverlap: number;
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  dataLabels: HIDataLabels;
 
-	dataLabels: HIDataLabels;
+  drillToCluster: number;
 
-	drillToCluster: number;
+  enabled: number;
 
-	enabled: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  layoutAlgorithm: HILayoutAlgorithm;
 
-	layoutAlgorithm: HILayoutAlgorithm;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  minimumClusterSize: number;
 
-	minimumClusterSize: number;
+  states: HIStates;
 
-	states: HIStates;
+  zones: NSArray<HIZones>;
 
-	zones: NSArray<HIZones>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIColor extends HIChartsJSONSerializable {
+  static alloc(): HIColor; // inherited from NSObject
 
-	static alloc(): HIColor; // inherited from NSObject
+  static new(): HIColor; // inherited from NSObject
 
-	static new(): HIColor; // inherited from NSObject
+  constructor(o: { hexValue: string });
 
-	constructor(o: { hexValue: string; });
+  constructor(o: { linearGradient: NSDictionary<any, any>; stops: NSArray<any> | any[] });
 
-	constructor(o: { linearGradient: NSDictionary<any, any>; stops: NSArray<any> | any[]; });
+  constructor(o: { name: string });
 
-	constructor(o: { name: string; });
+  constructor(o: { RGBA: number; green: number; blue: number; alpha: number });
 
-	constructor(o: { RGBA: number; green: number; blue: number; alpha: number; });
+  constructor(o: { RGB: number; green: number; blue: number });
 
-	constructor(o: { RGB: number; green: number; blue: number; });
+  constructor(o: { radialGradient: NSDictionary<any, any>; stops: NSArray<any> | any[] });
 
-	constructor(o: { radialGradient: NSDictionary<any, any>; stops: NSArray<any> | any[]; });
+  constructor(o: { UIColor: UIColor });
 
-	constructor(o: { UIColor: UIColor; });
+  getData(): any;
 
-	getData(): any;
+  initWithHexValue(string: string): this;
 
-	initWithHexValue(string: string): this;
+  initWithLinearGradientStops(gradient: NSDictionary<any, any>, stops: NSArray<any> | any[]): this;
 
-	initWithLinearGradientStops(gradient: NSDictionary<any, any>, stops: NSArray<any> | any[]): this;
+  initWithName(name: string): this;
 
-	initWithName(name: string): this;
+  initWithRGBAGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): this;
 
-	initWithRGBAGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): this;
+  initWithRGBGreenBlue(red: number, green: number, blue: number): this;
 
-	initWithRGBGreenBlue(red: number, green: number, blue: number): this;
+  initWithRadialGradientStops(gradient: NSDictionary<any, any>, stops: NSArray<any> | any[]): this;
 
-	initWithRadialGradientStops(gradient: NSDictionary<any, any>, stops: NSArray<any> | any[]): this;
-
-	initWithUIColor(color: UIColor): this;
+  initWithUIColor(color: UIColor): this;
 }
 
 declare class HIColorAxis extends HIChartsJSONSerializable {
+  static alloc(): HIColorAxis; // inherited from NSObject
 
-	static alloc(): HIColorAxis; // inherited from NSObject
+  static new(): HIColorAxis; // inherited from NSObject
 
-	static new(): HIColorAxis; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  angle: number;
 
-	angle: number;
+  ceiling: number;
 
-	ceiling: number;
+  className: string;
 
-	className: string;
+  dataClassColor: string;
 
-	dataClassColor: string;
+  dataClasses: NSArray<HIDataClasses>;
 
-	dataClasses: NSArray<HIDataClasses>;
+  endOnTick: number;
 
-	endOnTick: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  floor: number;
 
-	floor: number;
+  gridLineColor: HIColor;
 
-	gridLineColor: HIColor;
+  gridLineDashStyle: string;
 
-	gridLineDashStyle: string;
+  gridLineInterpolation: string;
 
-	gridLineInterpolation: string;
+  gridLineWidth: number;
 
-	gridLineWidth: number;
+  gridZIndex: number;
 
-	gridZIndex: number;
+  id: string;
 
-	id: string;
+  labels: HILabels;
 
-	labels: HILabels;
+  layout: string;
 
-	layout: string;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  margin: number;
 
-	margin: number;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  max: number;
 
-	max: number;
+  maxColor: HIColor;
 
-	maxColor: HIColor;
+  maxPadding: number;
 
-	maxPadding: number;
+  min: number;
 
-	min: number;
+  minColor: HIColor;
 
-	minColor: HIColor;
+  minPadding: number;
 
-	minPadding: number;
+  minorGridLineColor: HIColor;
 
-	minorGridLineColor: HIColor;
+  minorGridLineDashStyle: string;
 
-	minorGridLineDashStyle: string;
+  minorGridLineWidth: number;
 
-	minorGridLineWidth: number;
+  minorTickColor: HIColor;
 
-	minorTickColor: HIColor;
+  minorTickInterval: any;
 
-	minorTickInterval: any;
+  minorTickLength: number;
 
-	minorTickLength: number;
+  minorTickPosition: string;
 
-	minorTickPosition: string;
+  minorTickWidth: number;
 
-	minorTickWidth: number;
+  minorTicks: number;
 
-	minorTicks: number;
+  reversed: number;
 
-	reversed: number;
+  showFirstLabel: number;
 
-	showFirstLabel: number;
+  showInLegend: number;
 
-	showInLegend: number;
+  showLastLabel: number;
 
-	showLastLabel: number;
+  softMax: number;
 
-	softMax: number;
+  softMin: number;
 
-	softMin: number;
+  startOfWeek: number;
 
-	startOfWeek: number;
+  startOnTick: number;
 
-	startOnTick: number;
+  stops: NSArray<NSArray<any>>;
 
-	stops: NSArray<NSArray<any>>;
+  tickAmount: number;
 
-	tickAmount: number;
+  tickColor: HIColor;
 
-	tickColor: HIColor;
+  tickInterval: number;
 
-	tickInterval: number;
+  tickLength: number;
 
-	tickLength: number;
+  tickPixelInterval: number;
 
-	tickPixelInterval: number;
+  tickPosition: string;
 
-	tickPosition: string;
+  tickPositioner: HIFunction;
 
-	tickPositioner: HIFunction;
+  tickPositions: NSArray<number>;
 
-	tickPositions: NSArray<number>;
+  tickWidth: number;
 
-	tickWidth: number;
+  tickmarkPlacement: string;
 
-	tickmarkPlacement: string;
+  type: string;
 
-	type: string;
+  uniqueNames: number;
 
-	uniqueNames: number;
+  units: NSArray<NSArray<any>>;
 
-	units: NSArray<NSArray<any>>;
+  visible: number;
 
-	visible: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIColorVariation extends HIChartsJSONSerializable {
+  static alloc(): HIColorVariation; // inherited from NSObject
 
-	static alloc(): HIColorVariation; // inherited from NSObject
+  static new(): HIColorVariation; // inherited from NSObject
 
-	static new(): HIColorVariation; // inherited from NSObject
+  key: string;
 
-	key: string;
+  to: number;
 
-	to: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIColumn extends HISeries {
+  static alloc(): HIColumn; // inherited from NSObject
 
-	static alloc(): HIColumn; // inherited from NSObject
+  static new(): HIColumn; // inherited from NSObject
 
-	static new(): HIColumn; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIColumnpyramid extends HISeries {
+  static alloc(): HIColumnpyramid; // inherited from NSObject
 
-	static alloc(): HIColumnpyramid; // inherited from NSObject
+  static new(): HIColumnpyramid; // inherited from NSObject
 
-	static new(): HIColumnpyramid; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  groupPadding: number;
 
-	groupPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIColumnrange extends HISeries {
+  static alloc(): HIColumnrange; // inherited from NSObject
 
-	static alloc(): HIColumnrange; // inherited from NSObject
+  static new(): HIColumnrange; // inherited from NSObject
 
-	static new(): HIColumnrange; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: any;
 
-	pointRange: any;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HICondition extends HIChartsJSONSerializable {
+  static alloc(): HICondition; // inherited from NSObject
 
-	static alloc(): HICondition; // inherited from NSObject
+  static new(): HICondition; // inherited from NSObject
 
-	static new(): HICondition; // inherited from NSObject
+  callback: HIFunction;
 
-	callback: HIFunction;
+  maxHeight: number;
 
-	maxHeight: number;
+  maxWidth: number;
 
-	maxWidth: number;
+  minHeight: number;
 
-	minHeight: number;
+  minWidth: number;
 
-	minWidth: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIContextButton extends HIChartsJSONSerializable {
+  static alloc(): HIContextButton; // inherited from NSObject
 
-	static alloc(): HIContextButton; // inherited from NSObject
+  static new(): HIContextButton; // inherited from NSObject
 
-	static new(): HIContextButton; // inherited from NSObject
+  align: string;
 
-	align: string;
+  buttonSpacing: number;
 
-	buttonSpacing: number;
+  className: string;
 
-	className: string;
+  enabled: number;
 
-	enabled: number;
+  height: number;
 
-	height: number;
+  menuClassName: string;
 
-	menuClassName: string;
+  menuItems: NSArray<string>;
 
-	menuItems: NSArray<string>;
+  onclick: HIFunction;
 
-	onclick: HIFunction;
+  symbol: string;
 
-	symbol: string;
+  symbolFill: HIColor;
 
-	symbolFill: HIColor;
+  symbolSize: number;
 
-	symbolSize: number;
+  symbolStroke: HIColor;
 
-	symbolStroke: HIColor;
+  symbolStrokeWidth: number;
 
-	symbolStrokeWidth: number;
+  symbolX: number;
 
-	symbolX: number;
+  symbolY: number;
 
-	symbolY: number;
+  text: string;
 
-	text: string;
+  theme: HITheme;
 
-	theme: HITheme;
+  titleKey: string;
 
-	titleKey: string;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  width: number;
 
-	width: number;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIControlPointOptions extends HIChartsJSONSerializable {
+  static alloc(): HIControlPointOptions; // inherited from NSObject
 
-	static alloc(): HIControlPointOptions; // inherited from NSObject
+  static new(): HIControlPointOptions; // inherited from NSObject
 
-	static new(): HIControlPointOptions; // inherited from NSObject
+  height: number;
 
-	height: number;
+  positioner: HIFunction;
 
-	positioner: HIFunction;
+  style: HIStyle;
 
-	style: HIStyle;
+  symbol: string;
 
-	symbol: string;
+  visible: number;
 
-	visible: number;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICredits extends HIChartsJSONSerializable {
+  static alloc(): HICredits; // inherited from NSObject
 
-	static alloc(): HICredits; // inherited from NSObject
+  static new(): HICredits; // inherited from NSObject
 
-	static new(): HICredits; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  href: string;
 
-	href: string;
+  position: HIAlignObject;
 
-	position: HIAlignObject;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICrosshair extends HIChartsJSONSerializable {
+  static alloc(): HICrosshair; // inherited from NSObject
 
-	static alloc(): HICrosshair; // inherited from NSObject
+  static new(): HICrosshair; // inherited from NSObject
 
-	static new(): HICrosshair; // inherited from NSObject
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  dashStyle: string;
 
-	dashStyle: string;
+  snap: number;
 
-	snap: number;
+  width: number;
 
-	width: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICsv extends HIChartsJSONSerializable {
+  static alloc(): HICsv; // inherited from NSObject
 
-	static alloc(): HICsv; // inherited from NSObject
+  static new(): HICsv; // inherited from NSObject
 
-	static new(): HICsv; // inherited from NSObject
+  columnHeaderFormatter: HIFunction;
 
-	columnHeaderFormatter: HIFunction;
+  dateFormat: string;
 
-	dateFormat: string;
+  decimalPoint: string;
 
-	decimalPoint: string;
+  itemDelimiter: string;
 
-	itemDelimiter: string;
+  lineDelimiter: string;
 
-	lineDelimiter: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HICylinder extends HISeries {
+  static alloc(): HICylinder; // inherited from NSObject
 
-	static alloc(): HICylinder; // inherited from NSObject
+  static new(): HICylinder; // inherited from NSObject
 
-	static new(): HICylinder; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIData extends HIChartsJSONSerializable {
+  static alloc(): HIData; // inherited from NSObject
 
-	static alloc(): HIData; // inherited from NSObject
+  static new(): HIData; // inherited from NSObject
 
-	static new(): HIData; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  beforeParse: HIFunction;
 
-	beforeParse: HIFunction;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  boxDashStyle: string;
 
-	boxDashStyle: string;
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  colorIndex: number;
 
-	colorIndex: number;
+  colorValue: number;
 
-	colorValue: number;
+  columns: NSArray<NSArray<any>>;
 
-	columns: NSArray<NSArray<any>>;
+  columnsURL: string;
 
-	columnsURL: string;
+  complete: HIFunction;
 
-	complete: HIFunction;
+  connectorColor: string;
 
-	connectorColor: string;
+  connectorWidth: number;
 
-	connectorWidth: number;
+  csv: string;
 
-	csv: string;
+  csvURL: string;
 
-	csvURL: string;
+  custom: NSDictionary<any, any>;
 
-	custom: NSDictionary<any, any>;
+  dashStyle: string;
 
-	dashStyle: string;
+  dataLabels: HIDataLabels;
 
-	dataLabels: HIDataLabels;
+  dataRefreshRate: number;
 
-	dataRefreshRate: number;
+  dateFormat: string;
 
-	dateFormat: string;
+  decimalPoint: string;
 
-	decimalPoint: string;
+  definition: string;
 
-	definition: string;
+  direction: number;
 
-	direction: number;
+  dragDrop: HIDragDrop;
 
-	dragDrop: HIDragDrop;
+  drilldown: string;
 
-	drilldown: string;
+  enablePolling: number;
 
-	enablePolling: number;
+  endColumn: number;
 
-	endColumn: number;
+  endRow: number;
 
-	endRow: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  firstRowAsNames: number;
 
-	firstRowAsNames: number;
+  from: string;
 
-	from: string;
+  googleSpreadsheetKey: string;
 
-	googleSpreadsheetKey: string;
+  googleSpreadsheetWorksheet: string;
 
-	googleSpreadsheetWorksheet: string;
+  gradientForSides: number;
 
-	gradientForSides: number;
+  high: number;
 
-	high: number;
+  id: string;
 
-	id: string;
+  innerRadius: any;
 
-	innerRadius: any;
+  isIntermediateSum: number;
 
-	isIntermediateSum: number;
+  isSum: number;
 
-	isSum: number;
+  itemDelimiter: string;
 
-	itemDelimiter: string;
+  label: string;
 
-	label: string;
+  labelrank: number;
 
-	labelrank: number;
+  legendIndex: number;
 
-	legendIndex: number;
+  length: number;
 
-	length: number;
+  lineDelimiter: string;
 
-	lineDelimiter: string;
+  low: number;
 
-	low: number;
+  lowColor: HIColor;
 
-	lowColor: HIColor;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  median: number;
 
-	median: number;
+  medianDashStyle: string;
 
-	medianDashStyle: string;
+  name: string;
 
-	name: string;
+  outgoing: number;
 
-	outgoing: number;
+  parent: string;
 
-	parent: string;
+  parseDate: HIFunction;
 
-	parseDate: HIFunction;
+  parsed: HIFunction;
 
-	parsed: HIFunction;
+  partialFill: HIPartialFill;
 
-	partialFill: HIPartialFill;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  q1: number;
 
-	q1: number;
+  q3: number;
 
-	q3: number;
+  radius: any;
 
-	radius: any;
+  rows: NSArray<NSArray<any>>;
 
-	rows: NSArray<NSArray<any>>;
+  rowsURL: string;
 
-	rowsURL: string;
+  selected: number;
 
-	selected: number;
+  seriesMapping: NSArray<any>;
 
-	seriesMapping: NSArray<any>;
+  sets: NSArray<string>;
 
-	sets: NSArray<string>;
+  sliced: number;
 
-	sliced: number;
+  startColumn: number;
 
-	startColumn: number;
+  startRow: number;
 
-	startRow: number;
+  stemDashStyle: string;
 
-	stemDashStyle: string;
+  switchRowsAndColumns: number;
 
-	switchRowsAndColumns: number;
+  table: string;
 
-	table: string;
+  target: number;
 
-	target: number;
+  targetOptions: HITargetOptions;
 
-	targetOptions: HITargetOptions;
+  to: string;
 
-	to: string;
+  value: number;
 
-	value: number;
+  weight: number;
 
-	weight: number;
+  whiskerDashStyle: string;
 
-	whiskerDashStyle: string;
+  x: number;
 
-	x: number;
+  x2: number;
 
-	x2: number;
+  y: number;
 
-	y: number;
+  z: number;
 
-	z: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDataClasses extends HIChartsJSONSerializable {
+  static alloc(): HIDataClasses; // inherited from NSObject
 
-	static alloc(): HIDataClasses; // inherited from NSObject
+  static new(): HIDataClasses; // inherited from NSObject
 
-	static new(): HIDataClasses; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  from: number;
 
-	from: number;
+  name: string;
 
-	name: string;
+  to: number;
 
-	to: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDataGrouping extends HIChartsJSONSerializable {
+  static alloc(): HIDataGrouping; // inherited from NSObject
 
-	static alloc(): HIDataGrouping; // inherited from NSObject
+  static new(): HIDataGrouping; // inherited from NSObject
 
-	static new(): HIDataGrouping; // inherited from NSObject
+  approximation: string;
 
-	approximation: string;
+  enabled: number;
 
-	enabled: number;
+  groupPixelWidth: number;
 
-	groupPixelWidth: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDataLabels extends HIChartsJSONSerializable {
+  static alloc(): HIDataLabels; // inherited from NSObject
 
-	static alloc(): HIDataLabels; // inherited from NSObject
+  static new(): HIDataLabels; // inherited from NSObject
 
-	static new(): HIDataLabels; // inherited from NSObject
+  align: string;
 
-	align: string;
+  alignTo: string;
 
-	alignTo: string;
+  allowOverlap: number;
 
-	allowOverlap: number;
+  alternate: number;
 
-	alternate: number;
+  attributes: HISVGAttributes;
 
-	attributes: HISVGAttributes;
+  backgroundColor: string;
 
-	backgroundColor: string;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  connectorColor: HIColor;
 
-	connectorColor: HIColor;
+  connectorPadding: number;
 
-	connectorPadding: number;
+  connectorShape: string;
 
-	connectorShape: string;
+  connectorWidth: number;
 
-	connectorWidth: number;
+  crookDistance: string;
 
-	crookDistance: string;
+  crop: number;
 
-	crop: number;
+  defer: number;
 
-	defer: number;
+  distance: number;
 
-	distance: number;
+  enabled: number;
 
-	enabled: number;
+  filter: HIFilter;
 
-	filter: HIFilter;
+  format: string;
 
-	format: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  inside: number;
 
-	inside: number;
+  linkFormat: string;
 
-	linkFormat: string;
+  linkFormatter: HIFunction;
 
-	linkFormatter: HIFunction;
+  linkTextPath: HILinkTextPath;
 
-	linkTextPath: HILinkTextPath;
+  nodeFormat: string;
 
-	nodeFormat: string;
+  nodeFormatter: HIFunction;
 
-	nodeFormatter: HIFunction;
+  nullFormat: any;
 
-	nullFormat: any;
+  nullFormatter: HIFunction;
 
-	nullFormatter: HIFunction;
+  overflow: string;
 
-	overflow: string;
+  padding: number;
 
-	padding: number;
+  parentNodeFormat: string;
 
-	parentNodeFormat: string;
+  parentNodeFormatter: HIFunction;
 
-	parentNodeFormatter: HIFunction;
+  parentNodeTextPath: HIParentNodeTextPath;
 
-	parentNodeTextPath: HIParentNodeTextPath;
+  position: string;
 
-	position: string;
+  rotation: number;
 
-	rotation: number;
+  rotationMode: string;
 
-	rotationMode: string;
+  shadow: HIShadowOptionsObject;
 
-	shadow: HIShadowOptionsObject;
+  shape: string;
 
-	shape: string;
+  softConnector: number;
 
-	softConnector: number;
+  style: HIStyle;
 
-	style: HIStyle;
+  textPath: HITextPath;
 
-	textPath: HITextPath;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  width: number;
 
-	width: number;
+  x: number;
 
-	x: number;
+  xHigh: number;
 
-	xHigh: number;
+  xLow: number;
 
-	xLow: number;
+  y: number;
 
-	y: number;
+  yHigh: number;
 
-	yHigh: number;
+  yLow: number;
 
-	yLow: number;
+  z: number;
 
-	z: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDataSorting extends HIChartsJSONSerializable {
+  static alloc(): HIDataSorting; // inherited from NSObject
 
-	static alloc(): HIDataSorting; // inherited from NSObject
+  static new(): HIDataSorting; // inherited from NSObject
 
-	static new(): HIDataSorting; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  matchByName: number;
 
-	matchByName: number;
+  sortKey: string;
 
-	sortKey: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDataSortingOptionsObject extends HIChartsJSONSerializable {
+  static alloc(): HIDataSortingOptionsObject; // inherited from NSObject
 
-	static alloc(): HIDataSortingOptionsObject; // inherited from NSObject
+  static new(): HIDataSortingOptionsObject; // inherited from NSObject
 
-	static new(): HIDataSortingOptionsObject; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  matchByName: number;
 
-	matchByName: number;
+  sortKey: string;
 
-	sortKey: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDateTimeLabelFormats extends HIChartsJSONSerializable {
+  static alloc(): HIDateTimeLabelFormats; // inherited from NSObject
 
-	static alloc(): HIDateTimeLabelFormats; // inherited from NSObject
+  static new(): HIDateTimeLabelFormats; // inherited from NSObject
 
-	static new(): HIDateTimeLabelFormats; // inherited from NSObject
+  day: HIDay;
 
-	day: HIDay;
+  hour: HIHour;
 
-	hour: HIHour;
+  millisecond: HIMillisecond;
 
-	millisecond: HIMillisecond;
+  minute: HIMinute;
 
-	minute: HIMinute;
+  month: HIMonth;
 
-	month: HIMonth;
+  second: HISecond;
 
-	second: HISecond;
+  week: HIWeek;
 
-	week: HIWeek;
+  year: HIYear;
 
-	year: HIYear;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDay extends HIChartsJSONSerializable {
+  static alloc(): HIDay; // inherited from NSObject
 
-	static alloc(): HIDay; // inherited from NSObject
+  static new(): HIDay; // inherited from NSObject
 
-	static new(): HIDay; // inherited from NSObject
+  main: string;
 
-	main: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDebug extends HIChartsJSONSerializable {
+  static alloc(): HIDebug; // inherited from NSObject
 
-	static alloc(): HIDebug; // inherited from NSObject
+  static new(): HIDebug; // inherited from NSObject
 
-	static new(): HIDebug; // inherited from NSObject
+  showSkipSummary: number;
 
-	showSkipSummary: number;
+  timeBufferCopy: number;
 
-	timeBufferCopy: number;
+  timeKDTree: number;
 
-	timeKDTree: number;
+  timeRendering: number;
 
-	timeRendering: number;
+  timeSeriesProcessing: number;
 
-	timeSeriesProcessing: number;
+  timeSetup: number;
 
-	timeSetup: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDefault extends HIChartsJSONSerializable {
+  static alloc(): HIDefault; // inherited from NSObject
 
-	static alloc(): HIDefault; // inherited from NSObject
+  static new(): HIDefault; // inherited from NSObject
 
-	static new(): HIDefault; // inherited from NSObject
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  cursor: string;
 
-	cursor: string;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDefs extends HIChartsJSONSerializable {
+  static alloc(): HIDefs; // inherited from NSObject
 
-	static alloc(): HIDefs; // inherited from NSObject
+  static new(): HIDefs; // inherited from NSObject
 
-	static new(): HIDefs; // inherited from NSObject
+  arrow: HISVGDefinitionObject;
 
-	arrow: HISVGDefinitionObject;
+  reverseArrow: HISVGDefinitionObject;
 
-	reverseArrow: HISVGDefinitionObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDependencywheel extends HISeries {
+  static alloc(): HIDependencywheel; // inherited from NSObject
 
-	static alloc(): HIDependencywheel; // inherited from NSObject
+  static new(): HIDependencywheel; // inherited from NSObject
 
-	static new(): HIDependencywheel; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  curveFactor: number;
 
-	curveFactor: number;
+  levels: NSArray<HILevels>;
 
-	levels: NSArray<HILevels>;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  minLinkWidth: number;
 
-	minLinkWidth: number;
+  nodePadding: number;
 
-	nodePadding: number;
+  nodeWidth: number;
 
-	nodeWidth: number;
+  nodes: NSArray<HINodes>;
 
-	nodes: NSArray<HINodes>;
-
-	startAngle: number;
+  startAngle: number;
 }
 
 declare class HIDial extends HIChartsJSONSerializable {
+  static alloc(): HIDial; // inherited from NSObject
 
-	static alloc(): HIDial; // inherited from NSObject
+  static new(): HIDial; // inherited from NSObject
 
-	static new(): HIDial; // inherited from NSObject
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  baseLength: string;
 
-	baseLength: string;
+  baseWidth: number;
 
-	baseWidth: number;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  radius: string;
 
-	radius: string;
+  rearLength: string;
 
-	rearLength: string;
+  topWidth: number;
 
-	topWidth: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDragDrop extends HIChartsJSONSerializable {
+  static alloc(): HIDragDrop; // inherited from NSObject
 
-	static alloc(): HIDragDrop; // inherited from NSObject
+  static new(): HIDragDrop; // inherited from NSObject
 
-	static new(): HIDragDrop; // inherited from NSObject
+  dragHandle: HIDragHandle;
 
-	dragHandle: HIDragHandle;
+  dragMaxX: number;
 
-	dragMaxX: number;
+  dragMaxY: number;
 
-	dragMaxY: number;
+  dragMinX: number;
 
-	dragMinX: number;
+  dragMinY: number;
 
-	dragMinY: number;
+  dragPrecisionX: number;
 
-	dragPrecisionX: number;
+  dragPrecisionY: number;
 
-	dragPrecisionY: number;
+  dragSensitivity: number;
 
-	dragSensitivity: number;
+  draggableHigh: number;
 
-	draggableHigh: number;
+  draggableLow: number;
 
-	draggableLow: number;
+  draggableQ1: number;
 
-	draggableQ1: number;
+  draggableQ3: number;
 
-	draggableQ3: number;
+  draggableTarget: number;
 
-	draggableTarget: number;
+  draggableX: number;
 
-	draggableX: number;
+  draggableX1: number;
 
-	draggableX1: number;
+  draggableX2: number;
 
-	draggableX2: number;
+  draggableY: number;
 
-	draggableY: number;
+  groupBy: string;
 
-	groupBy: string;
+  guideBox: HIGuideBox;
 
-	guideBox: HIGuideBox;
+  liveRedraw: number;
 
-	liveRedraw: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDragHandle extends HIChartsJSONSerializable {
+  static alloc(): HIDragHandle; // inherited from NSObject
 
-	static alloc(): HIDragHandle; // inherited from NSObject
+  static new(): HIDragHandle; // inherited from NSObject
 
-	static new(): HIDragHandle; // inherited from NSObject
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  cursor: string;
 
-	cursor: string;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  pathFormatter: HIFunction;
 
-	pathFormatter: HIFunction;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDrillUpButton extends HIChartsJSONSerializable {
+  static alloc(): HIDrillUpButton; // inherited from NSObject
 
-	static alloc(): HIDrillUpButton; // inherited from NSObject
+  static new(): HIDrillUpButton; // inherited from NSObject
 
-	static new(): HIDrillUpButton; // inherited from NSObject
+  position: HIAlignObject;
 
-	position: HIAlignObject;
+  relativeTo: string;
 
-	relativeTo: string;
+  theme: any;
 
-	theme: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDrilldown extends HIChartsJSONSerializable {
+  static alloc(): HIDrilldown; // inherited from NSObject
 
-	static alloc(): HIDrilldown; // inherited from NSObject
+  static new(): HIDrilldown; // inherited from NSObject
 
-	static new(): HIDrilldown; // inherited from NSObject
+  activeAxisLabelStyle: HICSSObject;
 
-	activeAxisLabelStyle: HICSSObject;
+  activeDataLabelStyle: HICSSObject;
 
-	activeDataLabelStyle: HICSSObject;
+  allowPointDrilldown: number;
 
-	allowPointDrilldown: number;
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  drillUpButton: HIDrillUpButton;
 
-	drillUpButton: HIDrillUpButton;
+  series: NSArray<any>;
 
-	series: NSArray<any>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIDumbbell extends HISeries {
+  static alloc(): HIDumbbell; // inherited from NSObject
 
-	static alloc(): HIDumbbell; // inherited from NSObject
+  static new(): HIDumbbell; // inherited from NSObject
 
-	static new(): HIDumbbell; // inherited from NSObject
+  connectorColor: string;
 
-	connectorColor: string;
+  connectorWidth: number;
 
-	connectorWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lowColor: HIColor;
 
-	lowColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
+  pointPadding: number;
 
-	pointPadding: number;
-
-	pointRange: number;
+  pointRange: number;
 }
 
 declare class HIErrorbar extends HISeries {
+  static alloc(): HIErrorbar; // inherited from NSObject
 
-	static alloc(): HIErrorbar; // inherited from NSObject
+  static new(): HIErrorbar; // inherited from NSObject
 
-	static new(): HIErrorbar; // inherited from NSObject
+  boxDashStyle: string;
 
-	boxDashStyle: string;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  groupPadding: number;
 
-	groupPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  medianColor: HIColor;
 
-	medianColor: HIColor;
+  medianDashStyle: string;
 
-	medianDashStyle: string;
+  medianWidth: number;
 
-	medianWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  stemDashStyle: string;
 
-	stemDashStyle: string;
+  stemWidth: number;
 
-	stemWidth: number;
+  whiskerColor: HIColor;
 
-	whiskerColor: HIColor;
+  whiskerDashStyle: string;
 
-	whiskerDashStyle: string;
+  whiskerLength: any;
 
-	whiskerLength: any;
-
-	whiskerWidth: number;
+  whiskerWidth: number;
 }
 
 declare class HIEvents extends HIChartsJSONSerializable {
+  static alloc(): HIEvents; // inherited from NSObject
 
-	static alloc(): HIEvents; // inherited from NSObject
+  static new(): HIEvents; // inherited from NSObject
 
-	static new(): HIEvents; // inherited from NSObject
+  add: HIFunction;
 
-	add: HIFunction;
+  addSeries: HIFunction;
 
-	addSeries: HIFunction;
+  afterAnimate: HIFunction;
 
-	afterAnimate: HIFunction;
+  afterBreaks: HIFunction;
 
-	afterBreaks: HIFunction;
+  afterPrint: HIFunction;
 
-	afterPrint: HIFunction;
+  afterSetExtremes: HIFunction;
 
-	afterSetExtremes: HIFunction;
+  afterUpdate: HIFunction;
 
-	afterUpdate: HIFunction;
+  beforePrint: HIFunction;
 
-	beforePrint: HIFunction;
+  checkboxClick: HIFunction;
 
-	checkboxClick: HIFunction;
+  click: HIFunction;
 
-	click: HIFunction;
+  closePopup: HIFunction;
 
-	closePopup: HIFunction;
+  deselectButton: HIFunction;
 
-	deselectButton: HIFunction;
+  drag: HIFunction;
 
-	drag: HIFunction;
+  dragStart: HIFunction;
 
-	dragStart: HIFunction;
+  drillToCluster: HIFunction;
 
-	drillToCluster: HIFunction;
+  drilldown: HIFunction;
 
-	drilldown: HIFunction;
+  drillup: HIFunction;
 
-	drillup: HIFunction;
+  drillupall: HIFunction;
 
-	drillupall: HIFunction;
+  drop: HIFunction;
 
-	drop: HIFunction;
+  exportData: HIFunction;
 
-	exportData: HIFunction;
+  hide: HIFunction;
 
-	hide: HIFunction;
+  legendItemClick: HIFunction;
 
-	legendItemClick: HIFunction;
+  load: HIFunction;
 
-	load: HIFunction;
+  mouseOut: HIFunction;
 
-	mouseOut: HIFunction;
+  mouseOver: HIFunction;
 
-	mouseOver: HIFunction;
+  mousemove: HIFunction;
 
-	mousemove: HIFunction;
+  mouseout: HIFunction;
 
-	mouseout: HIFunction;
+  mouseover: HIFunction;
 
-	mouseover: HIFunction;
+  pointBreak: HIFunction;
 
-	pointBreak: HIFunction;
+  pointInBreak: HIFunction;
 
-	pointInBreak: HIFunction;
+  redraw: HIFunction;
 
-	redraw: HIFunction;
+  remove: HIFunction;
 
-	remove: HIFunction;
+  render: HIFunction;
 
-	render: HIFunction;
+  select: HIFunction;
 
-	select: HIFunction;
+  selectButton: HIFunction;
 
-	selectButton: HIFunction;
+  selection: HIFunction;
 
-	selection: HIFunction;
+  setExtremes: HIFunction;
 
-	setExtremes: HIFunction;
+  setRootNode: HIFunction;
 
-	setRootNode: HIFunction;
+  show: HIFunction;
 
-	show: HIFunction;
+  showPopup: HIFunction;
 
-	showPopup: HIFunction;
+  unselect: HIFunction;
 
-	unselect: HIFunction;
+  update: HIFunction;
 
-	update: HIFunction;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIExportData extends HIChartsJSONSerializable {
+  static alloc(): HIExportData; // inherited from NSObject
 
-	static alloc(): HIExportData; // inherited from NSObject
+  static new(): HIExportData; // inherited from NSObject
 
-	static new(): HIExportData; // inherited from NSObject
+  categoryDatetimeHeader: string;
 
-	categoryDatetimeHeader: string;
+  categoryHeader: string;
 
-	categoryHeader: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIExporting extends HIChartsJSONSerializable {
+  static alloc(): HIExporting; // inherited from NSObject
 
-	static alloc(): HIExporting; // inherited from NSObject
+  static new(): HIExporting; // inherited from NSObject
 
-	static new(): HIExporting; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  allowHTML: number;
 
-	allowHTML: number;
+  buttons: HIButtons;
 
-	buttons: HIButtons;
+  chartMenuLabel: string;
 
-	chartMenuLabel: string;
+  chartOptions: NSDictionary<any, any>;
 
-	chartOptions: NSDictionary<any, any>;
+  csv: HICsv;
 
-	csv: HICsv;
+  enabled: number;
 
-	enabled: number;
+  error: HIFunction;
 
-	error: HIFunction;
+  exportRegionLabel: string;
 
-	exportRegionLabel: string;
+  fallbackToExportServer: number;
 
-	fallbackToExportServer: number;
+  filename: string;
 
-	filename: string;
+  formAttributes: NSDictionary<any, any>;
 
-	formAttributes: NSDictionary<any, any>;
+  libURL: string;
 
-	libURL: string;
+  menuButtonLabel: string;
 
-	menuButtonLabel: string;
+  menuItemDefinitions: any;
 
-	menuItemDefinitions: any;
+  printMaxWidth: number;
 
-	printMaxWidth: number;
+  scale: number;
 
-	scale: number;
+  showTable: number;
 
-	showTable: number;
+  sourceHeight: number;
 
-	sourceHeight: number;
+  sourceWidth: number;
 
-	sourceWidth: number;
+  tableCaption: any;
 
-	tableCaption: any;
+  type: string;
 
-	type: string;
+  url: string;
 
-	url: string;
+  useMultiLevelHeaders: number;
 
-	useMultiLevelHeaders: number;
+  useRowspanHeaders: number;
 
-	useRowspanHeaders: number;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIFilter extends HIChartsJSONSerializable {
+  static alloc(): HIFilter; // inherited from NSObject
 
-	static alloc(): HIFilter; // inherited from NSObject
+  static new(): HIFilter; // inherited from NSObject
 
-	static new(): HIFilter; // inherited from NSObject
+  operator: string;
 
-	operator: string;
+  property: string;
 
-	property: string;
+  value: number;
 
-	value: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIFocusBorder extends HIChartsJSONSerializable {
+  static alloc(): HIFocusBorder; // inherited from NSObject
 
-	static alloc(): HIFocusBorder; // inherited from NSObject
+  static new(): HIFocusBorder; // inherited from NSObject
 
-	static new(): HIFocusBorder; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  hideBrowserFocusOutline: number;
 
-	hideBrowserFocusOutline: number;
+  margin: number;
 
-	margin: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIFrame extends HIChartsJSONSerializable {
+  static alloc(): HIFrame; // inherited from NSObject
 
-	static alloc(): HIFrame; // inherited from NSObject
+  static new(): HIFrame; // inherited from NSObject
 
-	static new(): HIFrame; // inherited from NSObject
+  back: HIBack;
 
-	back: HIBack;
+  bottom: HIBottom;
 
-	bottom: HIBottom;
+  front: HIFront;
 
-	front: HIFront;
+  left: HILeft;
 
-	left: HILeft;
+  right: HIRight;
 
-	right: HIRight;
+  size: number;
 
-	size: number;
+  top: HITop;
 
-	top: HITop;
+  visible: string;
 
-	visible: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIFront extends HIChartsJSONSerializable {
+  static alloc(): HIFront; // inherited from NSObject
 
-	static alloc(): HIFront; // inherited from NSObject
+  static new(): HIFront; // inherited from NSObject
 
-	static new(): HIFront; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIFunction extends HIChartsJSONSerializable {
+  static alloc(): HIFunction; // inherited from NSObject
 
-	static alloc(): HIFunction; // inherited from NSObject
+  static new(): HIFunction; // inherited from NSObject
 
-	static new(): HIFunction; // inherited from NSObject
+  closure: (p1: HIChartContext) => void;
 
-	closure: (p1: HIChartContext) => void;
+  jsFunction: string;
 
-	jsFunction: string;
+  properties: NSArray<string>;
 
-	properties: NSArray<string>;
+  constructor(o: { closure: (p1: HIChartContext) => void });
 
-	constructor(o: { closure: (p1: HIChartContext) => void; });
+  constructor(o: { closure: (p1: HIChartContext) => void; jsFunction: string });
 
-	constructor(o: { closure: (p1: HIChartContext) => void; jsFunction: string; });
+  constructor(o: { closure: (p1: HIChartContext) => void; jsFunction: string; properties: NSArray<string> | string[] });
 
-	constructor(o: { closure: (p1: HIChartContext) => void; jsFunction: string; properties: NSArray<string> | string[]; });
+  constructor(o: { closure: (p1: HIChartContext) => void; properties: NSArray<string> | string[] });
 
-	constructor(o: { closure: (p1: HIChartContext) => void; properties: NSArray<string> | string[]; });
+  constructor(o: { JSFunction: string });
 
-	constructor(o: { JSFunction: string; });
+  getFunction(): any;
 
-	getFunction(): any;
+  initWithClosure(closure: (p1: HIChartContext) => void): this;
 
-	initWithClosure(closure: (p1: HIChartContext) => void): this;
+  initWithClosureJsFunction(closure: (p1: HIChartContext) => void, jsFunction: string): this;
 
-	initWithClosureJsFunction(closure: (p1: HIChartContext) => void, jsFunction: string): this;
+  initWithClosureJsFunctionProperties(closure: (p1: HIChartContext) => void, jsFunction: string, properties: NSArray<string> | string[]): this;
 
-	initWithClosureJsFunctionProperties(closure: (p1: HIChartContext) => void, jsFunction: string, properties: NSArray<string> | string[]): this;
+  initWithClosureProperties(closure: (p1: HIChartContext) => void, properties: NSArray<string> | string[]): this;
 
-	initWithClosureProperties(closure: (p1: HIChartContext) => void, properties: NSArray<string> | string[]): this;
-
-	initWithJSFunction(jsFunction: string): this;
+  initWithJSFunction(jsFunction: string): this;
 }
 
 declare class HIFunnel extends HISeries {
+  static alloc(): HIFunnel; // inherited from NSObject
 
-	static alloc(): HIFunnel; // inherited from NSObject
+  static new(): HIFunnel; // inherited from NSObject
 
-	static new(): HIFunnel; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  endAngle: number;
 
-	endAngle: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  height: any;
 
-	height: any;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  minSize: any;
 
-	minSize: any;
+  neckHeight: any;
 
-	neckHeight: any;
+  neckWidth: any;
 
-	neckWidth: any;
+  reversed: number;
 
-	reversed: number;
+  slicedOffset: number;
 
-	slicedOffset: number;
+  startAngle: number;
 
-	startAngle: number;
-
-	width: any;
+  width: any;
 }
 
 declare class HIFunnel3d extends HISeries {
+  static alloc(): HIFunnel3d; // inherited from NSObject
 
-	static alloc(): HIFunnel3d; // inherited from NSObject
+  static new(): HIFunnel3d; // inherited from NSObject
 
-	static new(): HIFunnel3d; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  gradientForSides: number;
 
-	gradientForSides: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  height: any;
 
-	height: any;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  neckHeight: any;
 
-	neckHeight: any;
+  neckWidth: any;
 
-	neckWidth: any;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  reversed: number;
 
-	reversed: number;
-
-	width: any;
+  width: any;
 }
 
 declare class HIGauge extends HISeries {
+  static alloc(): HIGauge; // inherited from NSObject
 
-	static alloc(): HIGauge; // inherited from NSObject
+  static new(): HIGauge; // inherited from NSObject
 
-	static new(): HIGauge; // inherited from NSObject
+  dial: HIDial;
 
-	dial: HIDial;
+  overshoot: number;
 
-	overshoot: number;
+  pivot: HIPivot;
 
-	pivot: HIPivot;
-
-	wrap: number;
+  wrap: number;
 }
 
 declare class HIGeoJSON extends HIChartsJSONSerializable {
+  static alloc(): HIGeoJSON; // inherited from NSObject
 
-	static alloc(): HIGeoJSON; // inherited from NSObject
+  static new(): HIGeoJSON; // inherited from NSObject
 
-	static new(): HIGeoJSON; // inherited from NSObject
+  copyright: string;
 
-	copyright: string;
+  copyrightShort: string;
 
-	copyrightShort: string;
+  crs: any;
 
-	crs: any;
+  features: NSArray<any>;
 
-	features: NSArray<any>;
+  hcTransform: any;
 
-	hcTransform: any;
+  title: string;
 
-	title: string;
+  type: string;
 
-	type: string;
+  version: string;
 
-	version: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIGlobal extends HIChartsJSONSerializable {
+  static alloc(): HIGlobal; // inherited from NSObject
 
-	static alloc(): HIGlobal; // inherited from NSObject
+  static new(): HIGlobal; // inherited from NSObject
 
-	static new(): HIGlobal; // inherited from NSObject
+  VMLRadialGradientURL: string;
 
-	VMLRadialGradientURL: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIGradientColorObject extends HIChartsJSONSerializable {
+  static alloc(): HIGradientColorObject; // inherited from NSObject
 
-	static alloc(): HIGradientColorObject; // inherited from NSObject
+  static new(): HIGradientColorObject; // inherited from NSObject
 
-	static new(): HIGradientColorObject; // inherited from NSObject
+  linearGradient: HILinearGradientColorObject;
 
-	linearGradient: HILinearGradientColorObject;
+  radialGradient: HIRadialGradientColorObject;
 
-	radialGradient: HIRadialGradientColorObject;
+  stops: NSArray<any>;
 
-	stops: NSArray<any>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIGradientColorStopObject extends HIChartsJSONSerializable {
+  static alloc(): HIGradientColorStopObject; // inherited from NSObject
 
-	static alloc(): HIGradientColorStopObject; // inherited from NSObject
+  static new(): HIGradientColorStopObject; // inherited from NSObject
 
-	static new(): HIGradientColorStopObject; // inherited from NSObject
+  one: string;
 
-	one: string;
+  zero: number;
 
-	zero: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIGuideBox extends HIChartsJSONSerializable {
+  static alloc(): HIGuideBox; // inherited from NSObject
 
-	static alloc(): HIGuideBox; // inherited from NSObject
+  static new(): HIGuideBox; // inherited from NSObject
 
-	static new(): HIGuideBox; // inherited from NSObject
+  defaults: HIDefault;
 
-	defaults: HIDefault;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIHalo extends HIChartsJSONSerializable {
+  static alloc(): HIHalo; // inherited from NSObject
 
-	static alloc(): HIHalo; // inherited from NSObject
+  static new(): HIHalo; // inherited from NSObject
 
-	static new(): HIHalo; // inherited from NSObject
+  attributes: HIAttributes;
 
-	attributes: HIAttributes;
+  enabled: number;
 
-	enabled: number;
+  opacity: number;
 
-	opacity: number;
+  size: number;
 
-	size: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIHeatmap extends HISeries {
+  static alloc(): HIHeatmap; // inherited from NSObject
 
-	static alloc(): HIHeatmap; // inherited from NSObject
+  static new(): HIHeatmap; // inherited from NSObject
 
-	static new(): HIHeatmap; // inherited from NSObject
+  colsize: number;
 
-	colsize: number;
+  nullColor: HIColor;
 
-	nullColor: HIColor;
+  pointPadding: number;
 
-	pointPadding: number;
-
-	rowsize: number;
+  rowsize: number;
 }
 
 declare class HIHistogram extends HISeries {
+  static alloc(): HIHistogram; // inherited from NSObject
 
-	static alloc(): HIHistogram; // inherited from NSObject
+  static new(): HIHistogram; // inherited from NSObject
 
-	static new(): HIHistogram; // inherited from NSObject
+  baseSeries: any;
 
-	baseSeries: any;
+  binWidth: number;
 
-	binWidth: number;
+  binsNumber: any;
 
-	binsNumber: any;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIHour extends HIChartsJSONSerializable {
+  static alloc(): HIHour; // inherited from NSObject
 
-	static alloc(): HIHour; // inherited from NSObject
+  static new(): HIHour; // inherited from NSObject
 
-	static new(): HIHour; // inherited from NSObject
+  main: string;
 
-	main: string;
+  range: number;
 
-	range: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIHover extends HIChartsJSONSerializable {
+  static alloc(): HIHover; // inherited from NSObject
 
-	static alloc(): HIHover; // inherited from NSObject
+  static new(): HIHover; // inherited from NSObject
 
-	static new(): HIHover; // inherited from NSObject
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  borderColor: string;
 
-	borderColor: string;
+  brightness: number;
 
-	brightness: number;
+  color: HIColor;
 
-	color: HIColor;
+  connectorWidthPlus: number;
 
-	connectorWidthPlus: number;
+  enabled: number;
 
-	enabled: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  halo: HIHalo;
 
-	halo: HIHalo;
+  height: number;
 
-	height: number;
+  heightPlus: number;
 
-	heightPlus: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  lineWidthPlus: number;
 
-	lineWidthPlus: number;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  opacity: number;
 
-	opacity: number;
+  radius: number;
 
-	radius: number;
+  radiusPlus: number;
 
-	radiusPlus: number;
+  shadow: number;
 
-	shadow: number;
+  width: number;
 
-	width: number;
+  widthPlus: number;
 
-	widthPlus: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIInactive extends HIChartsJSONSerializable {
+  static alloc(): HIInactive; // inherited from NSObject
 
-	static alloc(): HIInactive; // inherited from NSObject
+  static new(): HIInactive; // inherited from NSObject
 
-	static new(): HIInactive; // inherited from NSObject
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  enabled: number;
 
-	enabled: number;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  opacity: number;
 
-	opacity: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIItem extends HISeries {
+  static alloc(): HIItem; // inherited from NSObject
 
-	static alloc(): HIItem; // inherited from NSObject
+  static new(): HIItem; // inherited from NSObject
 
-	static new(): HIItem; // inherited from NSObject
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  endAngle: number;
 
-	endAngle: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  innerSize: any;
 
-	innerSize: any;
+  itemPadding: number;
 
-	itemPadding: number;
+  layout: string;
 
-	layout: string;
+  minSize: any;
 
-	minSize: any;
+  rows: number;
 
-	rows: number;
+  size: any;
 
-	size: any;
-
-	startAngle: number;
+  startAngle: number;
 }
 
 declare class HIJitter extends HIChartsJSONSerializable {
+  static alloc(): HIJitter; // inherited from NSObject
 
-	static alloc(): HIJitter; // inherited from NSObject
+  static new(): HIJitter; // inherited from NSObject
 
-	static new(): HIJitter; // inherited from NSObject
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIKeyboardNavigation extends HIChartsJSONSerializable {
+  static alloc(): HIKeyboardNavigation; // inherited from NSObject
 
-	static alloc(): HIKeyboardNavigation; // inherited from NSObject
+  static new(): HIKeyboardNavigation; // inherited from NSObject
 
-	static new(): HIKeyboardNavigation; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  focusBorder: HIFocusBorder;
 
-	focusBorder: HIFocusBorder;
+  order: NSArray<string>;
 
-	order: NSArray<string>;
+  seriesNavigation: HISeriesNavigation;
 
-	seriesNavigation: HISeriesNavigation;
+  wrapAround: number;
 
-	wrapAround: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabel extends HIChartsJSONSerializable {
+  static alloc(): HILabel; // inherited from NSObject
 
-	static alloc(): HILabel; // inherited from NSObject
+  static new(): HILabel; // inherited from NSObject
 
-	static new(): HILabel; // inherited from NSObject
+  align: string;
 
-	align: string;
+  boxesToAvoid: NSArray<HILabelIntersectBoxObject>;
 
-	boxesToAvoid: NSArray<HILabelIntersectBoxObject>;
+  connectorAllowed: number;
 
-	connectorAllowed: number;
+  connectorNeighbourDistance: number;
 
-	connectorNeighbourDistance: number;
+  enabled: number;
 
-	enabled: number;
+  format: string;
 
-	format: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  maxFontSize: number;
 
-	maxFontSize: number;
+  minFontSize: number;
 
-	minFontSize: number;
+  onArea: number;
 
-	onArea: number;
+  rotation: number;
 
-	rotation: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  textAlign: string;
 
-	textAlign: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabelIntersectBoxObject extends HIChartsJSONSerializable {
+  static alloc(): HILabelIntersectBoxObject; // inherited from NSObject
 
-	static alloc(): HILabelIntersectBoxObject; // inherited from NSObject
+  static new(): HILabelIntersectBoxObject; // inherited from NSObject
 
-	static new(): HILabelIntersectBoxObject; // inherited from NSObject
+  bottom: number;
 
-	bottom: number;
+  left: number;
 
-	left: number;
+  right: number;
 
-	right: number;
+  top: number;
 
-	top: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabelOptions extends HIChartsJSONSerializable {
+  static alloc(): HILabelOptions; // inherited from NSObject
 
-	static alloc(): HILabelOptions; // inherited from NSObject
+  static new(): HILabelOptions; // inherited from NSObject
 
-	static new(): HILabelOptions; // inherited from NSObject
+  accessibility: HILabelOptionsAccessibility;
 
-	accessibility: HILabelOptionsAccessibility;
+  align: string;
 
-	align: string;
+  allowOverlap: number;
 
-	allowOverlap: number;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  crop: number;
 
-	crop: number;
+  distance: number;
 
-	distance: number;
+  format: string;
 
-	format: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  overflow: string;
 
-	overflow: string;
+  padding: number;
 
-	padding: number;
+  shadow: HIShadowOptionsObject;
 
-	shadow: HIShadowOptionsObject;
+  shape: string;
 
-	shape: string;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabelOptionsAccessibility extends HIChartsJSONSerializable {
+  static alloc(): HILabelOptionsAccessibility; // inherited from NSObject
 
-	static alloc(): HILabelOptionsAccessibility; // inherited from NSObject
+  static new(): HILabelOptionsAccessibility; // inherited from NSObject
 
-	static new(): HILabelOptionsAccessibility; // inherited from NSObject
+  definition: string;
 
-	definition: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabels extends HIChartsJSONSerializable {
+  static alloc(): HILabels; // inherited from NSObject
 
-	static alloc(): HILabels; // inherited from NSObject
+  static new(): HILabels; // inherited from NSObject
 
-	static new(): HILabels; // inherited from NSObject
+  accessibility: HILabelsAccessibility;
 
-	accessibility: HILabelsAccessibility;
+  align: string;
 
-	align: string;
+  allowOverlap: number;
 
-	allowOverlap: number;
+  autoRotation: NSArray<number>;
 
-	autoRotation: NSArray<number>;
+  autoRotationLimit: number;
 
-	autoRotationLimit: number;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  crop: number;
 
-	crop: number;
+  distance: any;
 
-	distance: any;
+  enabled: number;
 
-	enabled: number;
+  format: string;
 
-	format: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  overflow: string;
 
-	overflow: string;
+  padding: number;
 
-	padding: number;
+  point: HIPoint;
 
-	point: HIPoint;
+  position3d: string;
 
-	position3d: string;
+  reserveSpace: number;
 
-	reserveSpace: number;
+  rotation: number;
 
-	rotation: number;
+  shadow: HIShadowOptionsObject;
 
-	shadow: HIShadowOptionsObject;
+  shape: string;
 
-	shape: string;
+  skew3d: number;
 
-	skew3d: number;
+  staggerLines: number;
 
-	staggerLines: number;
+  step: number;
 
-	step: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILabelsAccessibility extends HIChartsJSONSerializable {
+  static alloc(): HILabelsAccessibility; // inherited from NSObject
 
-	static alloc(): HILabelsAccessibility; // inherited from NSObject
+  static new(): HILabelsAccessibility; // inherited from NSObject
 
-	static new(): HILabelsAccessibility; // inherited from NSObject
+  definition: string;
 
-	definition: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILang extends HIChartsJSONSerializable {
+  static alloc(): HILang; // inherited from NSObject
 
-	static alloc(): HILang; // inherited from NSObject
+  static new(): HILang; // inherited from NSObject
 
-	static new(): HILang; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  cancelButtonTitle: string;
 
-	cancelButtonTitle: string;
+  contextButtonTitle: string;
 
-	contextButtonTitle: string;
+  decimalPoint: string;
 
-	decimalPoint: string;
+  downloadCSV: string;
 
-	downloadCSV: string;
+  downloadJPEG: string;
 
-	downloadJPEG: string;
+  downloadPDF: string;
 
-	downloadPDF: string;
+  downloadPNG: string;
 
-	downloadPNG: string;
+  downloadSVG: string;
 
-	downloadSVG: string;
+  downloadXLS: string;
 
-	downloadXLS: string;
+  drillUpText: string;
 
-	drillUpText: string;
+  exitFullscreen: string;
 
-	exitFullscreen: string;
+  exportData: HIExportData;
 
-	exportData: HIExportData;
+  invalidDate: string;
 
-	invalidDate: string;
+  loading: string;
 
-	loading: string;
+  months: NSArray<string>;
 
-	months: NSArray<string>;
+  navigation: HINavigation;
 
-	navigation: HINavigation;
+  noData: string;
 
-	noData: string;
+  numericSymbolMagnitude: number;
 
-	numericSymbolMagnitude: number;
+  numericSymbols: NSArray<string>;
 
-	numericSymbols: NSArray<string>;
+  printChart: string;
 
-	printChart: string;
+  resetZoom: string;
 
-	resetZoom: string;
+  resetZoomTitle: string;
 
-	resetZoomTitle: string;
+  shortMonths: NSArray<string>;
 
-	shortMonths: NSArray<string>;
+  shortWeekdays: NSArray<string>;
 
-	shortWeekdays: NSArray<string>;
+  thousandsSep: string;
 
-	thousandsSep: string;
+  viewData: string;
 
-	viewData: string;
+  viewFullscreen: string;
 
-	viewFullscreen: string;
+  weekdays: NSArray<string>;
 
-	weekdays: NSArray<string>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILayoutAlgorithm extends HIChartsJSONSerializable {
+  static alloc(): HILayoutAlgorithm; // inherited from NSObject
 
-	static alloc(): HILayoutAlgorithm; // inherited from NSObject
+  static new(): HILayoutAlgorithm; // inherited from NSObject
 
-	static new(): HILayoutAlgorithm; // inherited from NSObject
+  approximation: string;
 
-	approximation: string;
+  attractiveForce: HIFunction;
 
-	attractiveForce: HIFunction;
+  bubblePadding: number;
 
-	bubblePadding: number;
+  distance: any;
 
-	distance: any;
+  dragBetweenSeries: number;
 
-	dragBetweenSeries: number;
+  enableSimulation: number;
 
-	enableSimulation: number;
+  friction: number;
 
-	friction: number;
+  gravitationalConstant: number;
 
-	gravitationalConstant: number;
+  gridSize: any;
 
-	gridSize: any;
+  initialPositionRadius: number;
 
-	initialPositionRadius: number;
+  initialPositions: string;
 
-	initialPositions: string;
+  integration: string;
 
-	integration: string;
+  iterations: number;
 
-	iterations: number;
+  kmeansThreshold: number;
 
-	kmeansThreshold: number;
+  linkLength: number;
 
-	linkLength: number;
+  maxIterations: number;
 
-	maxIterations: number;
+  maxSpeed: number;
 
-	maxSpeed: number;
+  parentNodeLimit: number;
 
-	parentNodeLimit: number;
+  parentNodeOptions: HIParentNodeOptions;
 
-	parentNodeOptions: HIParentNodeOptions;
+  repulsiveForce: HIFunction;
 
-	repulsiveForce: HIFunction;
+  seriesInteraction: number;
 
-	seriesInteraction: number;
+  splitSeries: string;
 
-	splitSeries: string;
+  theta: number;
 
-	theta: number;
+  type: string;
 
-	type: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILeft extends HIChartsJSONSerializable {
+  static alloc(): HILeft; // inherited from NSObject
 
-	static alloc(): HILeft; // inherited from NSObject
+  static new(): HILeft; // inherited from NSObject
 
-	static new(): HILeft; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILegend extends HIChartsJSONSerializable {
+  static alloc(): HILegend; // inherited from NSObject
 
-	static alloc(): HILegend; // inherited from NSObject
+  static new(): HILegend; // inherited from NSObject
 
-	static new(): HILegend; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  align: string;
 
-	align: string;
+  alignColumns: number;
 
-	alignColumns: number;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  bubbleLegend: HIBubbleLegend;
 
-	bubbleLegend: HIBubbleLegend;
+  enabled: number;
 
-	enabled: number;
+  floating: number;
 
-	floating: number;
+  itemCheckboxStyle: HICSSObject;
 
-	itemCheckboxStyle: HICSSObject;
+  itemDistance: number;
 
-	itemDistance: number;
+  itemHiddenStyle: HICSSObject;
 
-	itemHiddenStyle: HICSSObject;
+  itemHoverStyle: HICSSObject;
 
-	itemHoverStyle: HICSSObject;
+  itemMarginBottom: number;
 
-	itemMarginBottom: number;
+  itemMarginTop: number;
 
-	itemMarginTop: number;
+  itemStyle: HICSSObject;
 
-	itemStyle: HICSSObject;
+  itemWidth: number;
 
-	itemWidth: number;
+  labelFormat: string;
 
-	labelFormat: string;
+  labelFormatter: HIFunction;
 
-	labelFormatter: HIFunction;
+  layout: string;
 
-	layout: string;
+  legendItem: string;
 
-	legendItem: string;
+  legendLabel: string;
 
-	legendLabel: string;
+  margin: number;
 
-	margin: number;
+  maxHeight: number;
 
-	maxHeight: number;
+  navigation: HINavigation;
 
-	navigation: HINavigation;
+  padding: number;
 
-	padding: number;
+  reversed: number;
 
-	reversed: number;
+  rtl: number;
 
-	rtl: number;
+  shadow: HICSSObject;
 
-	shadow: HICSSObject;
+  squareSymbol: number;
 
-	squareSymbol: number;
+  symbolHeight: number;
 
-	symbolHeight: number;
+  symbolPadding: number;
 
-	symbolPadding: number;
+  symbolRadius: number;
 
-	symbolRadius: number;
+  symbolWidth: number;
 
-	symbolWidth: number;
+  title: HITitle;
 
-	title: HITitle;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  width: any;
 
-	width: any;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  setPointText(item: HIPoint): void;
 
-	setPointText(item: HIPoint): void;
+  setSeriesText(item: HISeries): void;
 
-	setSeriesText(item: HISeries): void;
+  update(options: HILegend): void;
 
-	update(options: HILegend): void;
-
-	updateRedraw(options: HILegend, redraw: number): void;
+  updateRedraw(options: HILegend, redraw: number): void;
 }
 
 declare class HILevelSize extends HIChartsJSONSerializable {
+  static alloc(): HILevelSize; // inherited from NSObject
 
-	static alloc(): HILevelSize; // inherited from NSObject
+  static new(): HILevelSize; // inherited from NSObject
 
-	static new(): HILevelSize; // inherited from NSObject
+  unit: string;
 
-	unit: string;
+  value: number;
 
-	value: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILevels extends HIChartsJSONSerializable {
+  static alloc(): HILevels; // inherited from NSObject
 
-	static alloc(): HILevels; // inherited from NSObject
+  static new(): HILevels; // inherited from NSObject
 
-	static new(): HILevels; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderDashStyle: string;
 
-	borderDashStyle: string;
+  borderWidth: number;
 
-	borderWidth: number;
+  color: HIColor;
 
-	color: HIColor;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colorVariation: HIColorVariation;
 
-	colorVariation: HIColorVariation;
+  dataLabels: HIDataLabels;
 
-	dataLabels: HIDataLabels;
+  layoutAlgorithm: string;
 
-	layoutAlgorithm: string;
+  layoutStartingDirection: string;
 
-	layoutStartingDirection: string;
+  level: number;
 
-	level: number;
+  levelSize: any;
 
-	levelSize: any;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  rotation: number;
 
-	rotation: number;
+  rotationMode: string;
 
-	rotationMode: string;
+  states: HIStates;
 
-	states: HIStates;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILine extends HISeries {
+  static alloc(): HILine; // inherited from NSObject
 
-	static alloc(): HILine; // inherited from NSObject
-
-	static new(): HILine; // inherited from NSObject
+  static new(): HILine; // inherited from NSObject
 }
 
 declare class HILinearGradientColorObject extends HIChartsJSONSerializable {
+  static alloc(): HILinearGradientColorObject; // inherited from NSObject
 
-	static alloc(): HILinearGradientColorObject; // inherited from NSObject
+  static new(): HILinearGradientColorObject; // inherited from NSObject
 
-	static new(): HILinearGradientColorObject; // inherited from NSObject
+  x1: number;
 
-	x1: number;
+  x2: number;
 
-	x2: number;
+  y1: number;
 
-	y1: number;
+  y2: number;
 
-	y2: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILink extends HIChartsJSONSerializable {
+  static alloc(): HILink; // inherited from NSObject
 
-	static alloc(): HILink; // inherited from NSObject
+  static new(): HILink; // inherited from NSObject
 
-	static new(): HILink; // inherited from NSObject
+  color: string;
 
-	color: string;
+  dashStyle: string;
 
-	dashStyle: string;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILinkTextPath extends HIChartsJSONSerializable {
+  static alloc(): HILinkTextPath; // inherited from NSObject
 
-	static alloc(): HILinkTextPath; // inherited from NSObject
+  static new(): HILinkTextPath; // inherited from NSObject
 
-	static new(): HILinkTextPath; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILoading extends HIChartsJSONSerializable {
+  static alloc(): HILoading; // inherited from NSObject
 
-	static alloc(): HILoading; // inherited from NSObject
+  static new(): HILoading; // inherited from NSObject
 
-	static new(): HILoading; // inherited from NSObject
+  hideDuration: number;
 
-	hideDuration: number;
+  labelStyle: HICSSObject;
 
-	labelStyle: HICSSObject;
+  showDuration: number;
 
-	showDuration: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HILollipop extends HISeries {
+  static alloc(): HILollipop; // inherited from NSObject
 
-	static alloc(): HILollipop; // inherited from NSObject
+  static new(): HILollipop; // inherited from NSObject
 
-	static new(): HILollipop; // inherited from NSObject
+  connectorColor: string;
 
-	connectorColor: string;
+  connectorWidth: number;
 
-	connectorWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
+  pointPadding: number;
 
-	pointPadding: number;
-
-	pointRange: number;
+  pointRange: number;
 }
 
 declare class HIMarker extends HIChartsJSONSerializable {
+  static alloc(): HIMarker; // inherited from NSObject
 
-	static alloc(): HIMarker; // inherited from NSObject
+  static new(): HIMarker; // inherited from NSObject
 
-	static new(): HIMarker; // inherited from NSObject
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  color: HIColor;
 
-	color: HIColor;
+  enabled: number;
 
-	enabled: number;
+  enabledThreshold: number;
 
-	enabledThreshold: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  height: number;
 
-	height: number;
+  lineColor: string;
 
-	lineColor: string;
+  lineWidth: number;
 
-	lineWidth: number;
+  radius: number;
 
-	radius: number;
+  states: HIStates;
 
-	states: HIStates;
+  symbol: string;
 
-	symbol: string;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIMillisecond extends HIChartsJSONSerializable {
+  static alloc(): HIMillisecond; // inherited from NSObject
 
-	static alloc(): HIMillisecond; // inherited from NSObject
+  static new(): HIMillisecond; // inherited from NSObject
 
-	static new(): HIMillisecond; // inherited from NSObject
+  main: string;
 
-	main: string;
+  range: number;
 
-	range: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIMinute extends HIChartsJSONSerializable {
+  static alloc(): HIMinute; // inherited from NSObject
 
-	static alloc(): HIMinute; // inherited from NSObject
+  static new(): HIMinute; // inherited from NSObject
 
-	static new(): HIMinute; // inherited from NSObject
+  main: string;
 
-	main: string;
+  range: number;
 
-	range: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIMonth extends HIChartsJSONSerializable {
+  static alloc(): HIMonth; // inherited from NSObject
 
-	static alloc(): HIMonth; // inherited from NSObject
+  static new(): HIMonth; // inherited from NSObject
 
-	static new(): HIMonth; // inherited from NSObject
+  main: string;
 
-	main: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HINavigation extends HIChartsJSONSerializable {
+  static alloc(): HINavigation; // inherited from NSObject
 
-	static alloc(): HINavigation; // inherited from NSObject
+  static new(): HINavigation; // inherited from NSObject
 
-	static new(): HINavigation; // inherited from NSObject
+  activeColor: HIColor;
 
-	activeColor: HIColor;
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  annotationsOptions: HIAnnotationsOptions;
 
-	annotationsOptions: HIAnnotationsOptions;
+  arrowSize: number;
 
-	arrowSize: number;
+  bindings: HIBindings;
 
-	bindings: HIBindings;
+  bindingsClassName: string;
 
-	bindingsClassName: string;
+  buttonOptions: HIButtonOptions;
 
-	buttonOptions: HIButtonOptions;
+  enabled: number;
 
-	enabled: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  iconsURL: string;
 
-	iconsURL: string;
+  inactiveColor: HIColor;
 
-	inactiveColor: HIColor;
+  menuItemHoverStyle: HICSSObject;
 
-	menuItemHoverStyle: HICSSObject;
+  menuItemStyle: HICSSObject;
 
-	menuItemStyle: HICSSObject;
+  menuStyle: HICSSObject;
 
-	menuStyle: HICSSObject;
+  popup: HIPopup;
 
-	popup: HIPopup;
+  style: HICSSObject;
 
-	style: HICSSObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HINavigationBindingsOptionsObject extends HIChartsJSONSerializable {
+  static alloc(): HINavigationBindingsOptionsObject; // inherited from NSObject
 
-	static alloc(): HINavigationBindingsOptionsObject; // inherited from NSObject
+  static new(): HINavigationBindingsOptionsObject; // inherited from NSObject
 
-	static new(): HINavigationBindingsOptionsObject; // inherited from NSObject
+  className: string;
 
-	className: string;
+  end: HIFunction;
 
-	end: HIFunction;
+  initial: HIFunction;
 
-	initial: HIFunction;
+  start: HIFunction;
 
-	start: HIFunction;
+  steps: NSArray<HIFunction>;
 
-	steps: NSArray<HIFunction>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HINetworkgraph extends HISeries {
+  static alloc(): HINetworkgraph; // inherited from NSObject
 
-	static alloc(): HINetworkgraph; // inherited from NSObject
+  static new(): HINetworkgraph; // inherited from NSObject
 
-	static new(): HINetworkgraph; // inherited from NSObject
+  draggable: number;
 
-	draggable: number;
+  layoutAlgorithm: HILayoutAlgorithm;
 
-	layoutAlgorithm: HILayoutAlgorithm;
+  link: HILink;
 
-	link: HILink;
-
-	nodes: NSArray<HINodes>;
+  nodes: NSArray<HINodes>;
 }
 
 declare class HINoData extends HIChartsJSONSerializable {
+  static alloc(): HINoData; // inherited from NSObject
 
-	static alloc(): HINoData; // inherited from NSObject
+  static new(): HINoData; // inherited from NSObject
 
-	static new(): HINoData; // inherited from NSObject
+  attr: HISVGAttributes;
 
-	attr: HISVGAttributes;
+  position: HIAlignObject;
 
-	position: HIAlignObject;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  useHTML: number;
 
-	useHTML: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HINodes extends HIChartsJSONSerializable {
+  static alloc(): HINodes; // inherited from NSObject
 
-	static alloc(): HINodes; // inherited from NSObject
+  static new(): HINodes; // inherited from NSObject
 
-	static new(): HINodes; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  colorIndex: number;
 
-	colorIndex: number;
+  column: number;
 
-	column: number;
+  dataLabels: NSArray<HIDataLabels>;
 
-	dataLabels: NSArray<HIDataLabels>;
+  definition: string;
 
-	definition: string;
+  id: string;
 
-	id: string;
+  image: string;
 
-	image: string;
+  layout: string;
 
-	layout: string;
+  level: number;
 
-	level: number;
+  mass: number;
 
-	mass: number;
+  name: string;
 
-	name: string;
+  offset: any;
 
-	offset: any;
+  title: string;
 
-	title: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HINormal extends HIChartsJSONSerializable {
+  static alloc(): HINormal; // inherited from NSObject
 
-	static alloc(): HINormal; // inherited from NSObject
+  static new(): HINormal; // inherited from NSObject
 
-	static new(): HINormal; // inherited from NSObject
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIOptions extends HIChartsJSONSerializable {
+  static alloc(): HIOptions; // inherited from NSObject
 
-	static alloc(): HIOptions; // inherited from NSObject
+  static new(): HIOptions; // inherited from NSObject
 
-	static new(): HIOptions; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  additionalOptions: NSDictionary<any, any>;
 
-	additionalOptions: NSDictionary<any, any>;
+  annotations: NSArray<HIAnnotations>;
 
-	annotations: NSArray<HIAnnotations>;
+  boost: HIBoost;
 
-	boost: HIBoost;
+  caption: HICaption;
 
-	caption: HICaption;
+  chart: HIChart;
 
-	chart: HIChart;
+  colorAxis: NSArray<HIColorAxis>;
 
-	colorAxis: NSArray<HIColorAxis>;
+  colors: NSArray<string>;
 
-	colors: NSArray<string>;
+  credits: HICredits;
 
-	credits: HICredits;
+  data: HIData;
 
-	data: HIData;
+  defs: HIDefs;
 
-	defs: HIDefs;
+  drilldown: HIDrilldown;
 
-	drilldown: HIDrilldown;
+  exporting: HIExporting;
 
-	exporting: HIExporting;
+  legend: HILegend;
 
-	legend: HILegend;
+  loading: HILoading;
 
-	loading: HILoading;
+  navigation: HINavigation;
 
-	navigation: HINavigation;
+  noData: HINoData;
 
-	noData: HINoData;
+  pane: HIPane;
 
-	pane: HIPane;
+  plotOptions: HIPlotOptions;
 
-	plotOptions: HIPlotOptions;
+  responsive: HIResponsive;
 
-	responsive: HIResponsive;
+  series: NSArray<HISeries>;
 
-	series: NSArray<HISeries>;
+  subtitle: HISubtitle;
 
-	subtitle: HISubtitle;
+  time: HITime;
 
-	time: HITime;
+  title: HITitle;
 
-	title: HITitle;
+  tooltip: HITooltip;
 
-	tooltip: HITooltip;
+  xAxis: NSArray<HIXAxis>;
 
-	xAxis: NSArray<HIXAxis>;
+  yAxis: NSArray<HIYAxis>;
 
-	yAxis: NSArray<HIYAxis>;
+  zAxis: NSArray<HIZAxis>;
 
-	zAxis: NSArray<HIZAxis>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIOptions3d extends HIChartsJSONSerializable {
+  static alloc(): HIOptions3d; // inherited from NSObject
 
-	static alloc(): HIOptions3d; // inherited from NSObject
+  static new(): HIOptions3d; // inherited from NSObject
 
-	static new(): HIOptions3d; // inherited from NSObject
+  alpha: number;
 
-	alpha: number;
+  axisLabelPosition: string;
 
-	axisLabelPosition: string;
+  beta: number;
 
-	beta: number;
+  depth: number;
 
-	depth: number;
+  enabled: number;
 
-	enabled: number;
+  fitToPlot: number;
 
-	fitToPlot: number;
+  frame: HIFrame;
 
-	frame: HIFrame;
+  viewDistance: number;
 
-	viewDistance: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIOrganization extends HISeries {
+  static alloc(): HIOrganization; // inherited from NSObject
 
-	static alloc(): HIOrganization; // inherited from NSObject
+  static new(): HIOrganization; // inherited from NSObject
 
-	static new(): HIOrganization; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  hangingIndent: number;
 
-	hangingIndent: number;
+  levels: NSArray<HILevels>;
 
-	levels: NSArray<HILevels>;
+  linkColor: HIColor;
 
-	linkColor: HIColor;
+  linkLineWidth: number;
 
-	linkLineWidth: number;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  linkRadius: number;
 
-	linkRadius: number;
+  minLinkWidth: number;
 
-	minLinkWidth: number;
+  nodePadding: number;
 
-	nodePadding: number;
+  nodeWidth: number;
 
-	nodeWidth: number;
-
-	nodes: NSArray<HINodes>;
+  nodes: NSArray<HINodes>;
 }
 
 declare class HIPackedbubble extends HISeries {
+  static alloc(): HIPackedbubble; // inherited from NSObject
 
-	static alloc(): HIPackedbubble; // inherited from NSObject
+  static new(): HIPackedbubble; // inherited from NSObject
 
-	static new(): HIPackedbubble; // inherited from NSObject
+  displayNegative: number;
 
-	displayNegative: number;
+  draggable: number;
 
-	draggable: number;
+  layoutAlgorithm: HILayoutAlgorithm;
 
-	layoutAlgorithm: HILayoutAlgorithm;
+  maxSize: any;
 
-	maxSize: any;
+  minSize: any;
 
-	minSize: any;
+  parentNode: HIParentNode;
 
-	parentNode: HIParentNode;
+  sizeBy: string;
 
-	sizeBy: string;
+  useSimulation: number;
 
-	useSimulation: number;
-
-	zThreshold: number;
+  zThreshold: number;
 }
 
 declare class HIPane extends HIChartsJSONSerializable {
+  static alloc(): HIPane; // inherited from NSObject
 
-	static alloc(): HIPane; // inherited from NSObject
+  static new(): HIPane; // inherited from NSObject
 
-	static new(): HIPane; // inherited from NSObject
+  background: NSArray<HIBackground>;
 
-	background: NSArray<HIBackground>;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  endAngle: number;
 
-	endAngle: number;
+  innerSize: any;
 
-	innerSize: any;
+  size: any;
 
-	size: any;
+  startAngle: number;
 
-	startAngle: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPanning extends HIChartsJSONSerializable {
+  static alloc(): HIPanning; // inherited from NSObject
 
-	static alloc(): HIPanning; // inherited from NSObject
+  static new(): HIPanning; // inherited from NSObject
 
-	static new(): HIPanning; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
+  type: string;
 
-	type: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIParallelAxes extends HIChartsJSONSerializable {
+  static alloc(): HIParallelAxes; // inherited from NSObject
 
-	static alloc(): HIParallelAxes; // inherited from NSObject
+  static new(): HIParallelAxes; // inherited from NSObject
 
-	static new(): HIParallelAxes; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  alignTicks: number;
 
-	alignTicks: number;
+  allowDecimals: number;
 
-	allowDecimals: number;
+  categories: NSArray<string>;
 
-	categories: NSArray<string>;
+  ceiling: number;
 
-	ceiling: number;
+  className: string;
 
-	className: string;
+  crosshair: HICrosshair;
 
-	crosshair: HICrosshair;
+  dateTimeLabelFormats: HIDateTimeLabelFormats;
 
-	dateTimeLabelFormats: HIDateTimeLabelFormats;
+  endOnTick: number;
 
-	endOnTick: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  floor: number;
 
-	floor: number;
+  gridZIndex: number;
 
-	gridZIndex: number;
+  height: any;
 
-	height: any;
+  labels: HILabels;
 
-	labels: HILabels;
+  left: any;
 
-	left: any;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  linkedTo: number;
 
-	linkedTo: number;
+  margin: number;
 
-	margin: number;
+  max: number;
 
-	max: number;
+  maxPadding: number;
 
-	maxPadding: number;
+  min: number;
 
-	min: number;
+  minPadding: number;
 
-	minPadding: number;
+  minRange: number;
 
-	minRange: number;
+  minTickInterval: number;
 
-	minTickInterval: number;
+  minorTickColor: HIColor;
 
-	minorTickColor: HIColor;
+  minorTickInterval: any;
 
-	minorTickInterval: any;
+  minorTickLength: number;
 
-	minorTickLength: number;
+  minorTickPosition: string;
 
-	minorTickPosition: string;
+  minorTickWidth: number;
 
-	minorTickWidth: number;
+  minorTicks: number;
 
-	minorTicks: number;
+  offset: number;
 
-	offset: number;
+  opposite: number;
 
-	opposite: number;
+  pane: number;
 
-	pane: number;
+  reversed: number;
 
-	reversed: number;
+  reversedStacks: number;
 
-	reversedStacks: number;
+  showEmpty: number;
 
-	showEmpty: number;
+  showFirstLabel: number;
 
-	showFirstLabel: number;
+  showLastLabel: number;
 
-	showLastLabel: number;
+  softMax: number;
 
-	softMax: number;
+  softMin: number;
 
-	softMin: number;
+  startOfWeek: number;
 
-	startOfWeek: number;
+  startOnTick: number;
 
-	startOnTick: number;
+  tickAmount: number;
 
-	tickAmount: number;
+  tickColor: HIColor;
 
-	tickColor: HIColor;
+  tickInterval: number;
 
-	tickInterval: number;
+  tickLength: number;
 
-	tickLength: number;
+  tickPixelInterval: number;
 
-	tickPixelInterval: number;
+  tickPosition: string;
 
-	tickPosition: string;
+  tickPositioner: HIFunction;
 
-	tickPositioner: HIFunction;
+  tickPositions: NSArray<number>;
 
-	tickPositions: NSArray<number>;
+  tickWidth: number;
 
-	tickWidth: number;
+  tickmarkPlacement: string;
 
-	tickmarkPlacement: string;
+  title: any;
 
-	title: any;
+  tooltipValueFormat: string;
 
-	tooltipValueFormat: string;
+  top: any;
 
-	top: any;
+  type: string;
 
-	type: string;
+  uniqueNames: number;
 
-	uniqueNames: number;
+  units: NSArray<NSArray<any>>;
 
-	units: NSArray<NSArray<any>>;
+  visible: number;
 
-	visible: number;
+  width: any;
 
-	width: any;
+  zoomEnabled: number;
 
-	zoomEnabled: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIParentNode extends HIChartsJSONSerializable {
+  static alloc(): HIParentNode; // inherited from NSObject
 
-	static alloc(): HIParentNode; // inherited from NSObject
+  static new(): HIParentNode; // inherited from NSObject
 
-	static new(): HIParentNode; // inherited from NSObject
+  allowPointSelect: number;
 
-	allowPointSelect: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIParentNodeOptions extends HIChartsJSONSerializable {
+  static alloc(): HIParentNodeOptions; // inherited from NSObject
 
-	static alloc(): HIParentNodeOptions; // inherited from NSObject
+  static new(): HIParentNodeOptions; // inherited from NSObject
 
-	static new(): HIParentNodeOptions; // inherited from NSObject
+  friction: number;
 
-	friction: number;
+  gravitationalConstant: number;
 
-	gravitationalConstant: number;
+  initialPositionRadius: number;
 
-	initialPositionRadius: number;
+  initialPositions: string;
 
-	initialPositions: string;
+  integration: string;
 
-	integration: string;
+  linkLength: number;
 
-	linkLength: number;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  maxIterations: number;
 
-	maxIterations: number;
+  maxSpeed: number;
 
-	maxSpeed: number;
+  seriesInteraction: number;
 
-	seriesInteraction: number;
+  type: string;
 
-	type: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIParentNodeTextPath extends HIChartsJSONSerializable {
+  static alloc(): HIParentNodeTextPath; // inherited from NSObject
 
-	static alloc(): HIParentNodeTextPath; // inherited from NSObject
+  static new(): HIParentNodeTextPath; // inherited from NSObject
 
-	static new(): HIParentNodeTextPath; // inherited from NSObject
+  enabled: number;
 
-	enabled: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPareto extends HISeries {
+  static alloc(): HIPareto; // inherited from NSObject
 
-	static alloc(): HIPareto; // inherited from NSObject
+  static new(): HIPareto; // inherited from NSObject
 
-	static new(): HIPareto; // inherited from NSObject
-
-	baseSeries: any;
+  baseSeries: any;
 }
 
 declare class HIPartialFill extends HIChartsJSONSerializable {
+  static alloc(): HIPartialFill; // inherited from NSObject
 
-	static alloc(): HIPartialFill; // inherited from NSObject
+  static new(): HIPartialFill; // inherited from NSObject
 
-	static new(): HIPartialFill; // inherited from NSObject
+  amount: number;
 
-	amount: number;
+  fill: HIColor;
 
-	fill: HIColor;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPatternObject extends HIChartsJSONSerializable {
+  static alloc(): HIPatternObject; // inherited from NSObject
 
-	static alloc(): HIPatternObject; // inherited from NSObject
+  static new(): HIPatternObject; // inherited from NSObject
 
-	static new(): HIPatternObject; // inherited from NSObject
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  pattern: HIPatternOptionsObject;
 
-	pattern: HIPatternOptionsObject;
+  patternIndex: number;
 
-	patternIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPatternOptionsObject extends HIChartsJSONSerializable {
+  static alloc(): HIPatternOptionsObject; // inherited from NSObject
 
-	static alloc(): HIPatternOptionsObject; // inherited from NSObject
+  static new(): HIPatternOptionsObject; // inherited from NSObject
 
-	static new(): HIPatternOptionsObject; // inherited from NSObject
+  aspectRatio: number;
 
-	aspectRatio: number;
+  backgroundColor: string;
 
-	backgroundColor: string;
+  color: string;
 
-	color: string;
+  height: number;
 
-	height: number;
+  id: string;
 
-	id: string;
+  image: string;
 
-	image: string;
+  opacity: number;
 
-	opacity: number;
+  path: HISVGAttributes;
 
-	path: HISVGAttributes;
+  patternTransform: string;
 
-	patternTransform: string;
+  width: number;
 
-	width: number;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPie extends HISeries {
+  static alloc(): HIPie; // inherited from NSObject
 
-	static alloc(): HIPie; // inherited from NSObject
+  static new(): HIPie; // inherited from NSObject
 
-	static new(): HIPie; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  endAngle: number;
 
-	endAngle: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  innerSize: any;
 
-	innerSize: any;
+  minSize: any;
 
-	minSize: any;
+  size: any;
 
-	size: any;
+  slicedOffset: number;
 
-	slicedOffset: number;
-
-	startAngle: number;
+  startAngle: number;
 }
 
 declare class HIPivot extends HIChartsJSONSerializable {
+  static alloc(): HIPivot; // inherited from NSObject
 
-	static alloc(): HIPivot; // inherited from NSObject
+  static new(): HIPivot; // inherited from NSObject
 
-	static new(): HIPivot; // inherited from NSObject
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  radius: number;
 
-	radius: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPlotBands extends HIChartsJSONSerializable {
+  static alloc(): HIPlotBands; // inherited from NSObject
 
-	static alloc(): HIPlotBands; // inherited from NSObject
+  static new(): HIPlotBands; // inherited from NSObject
 
-	static new(): HIPlotBands; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  events: HIEvents;
 
-	events: HIEvents;
+  from: number;
 
-	from: number;
+  id: string;
 
-	id: string;
+  innerRadius: any;
 
-	innerRadius: any;
+  label: HILabel;
 
-	label: HILabel;
+  outerRadius: any;
 
-	outerRadius: any;
+  thickness: any;
 
-	thickness: any;
+  to: number;
 
-	to: number;
+  zIndex: number;
 
-	zIndex: number;
+  destroy(): void;
 
-	destroy(): void;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPlotLines extends HIChartsJSONSerializable {
+  static alloc(): HIPlotLines; // inherited from NSObject
 
-	static alloc(): HIPlotLines; // inherited from NSObject
+  static new(): HIPlotLines; // inherited from NSObject
 
-	static new(): HIPlotLines; // inherited from NSObject
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  dashStyle: string;
 
-	dashStyle: string;
+  events: HIEvents;
 
-	events: HIEvents;
+  id: string;
 
-	id: string;
+  label: HILabel;
 
-	label: HILabel;
+  value: number;
 
-	value: number;
+  width: number;
 
-	width: number;
+  zIndex: number;
 
-	zIndex: number;
+  destroy(): void;
 
-	destroy(): void;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPlotOptions extends HIChartsJSONSerializable {
+  static alloc(): HIPlotOptions; // inherited from NSObject
 
-	static alloc(): HIPlotOptions; // inherited from NSObject
+  static new(): HIPlotOptions; // inherited from NSObject
 
-	static new(): HIPlotOptions; // inherited from NSObject
+  area: HIArea;
 
-	area: HIArea;
+  arearange: HIArearange;
 
-	arearange: HIArearange;
+  areaspline: HIAreaspline;
 
-	areaspline: HIAreaspline;
+  areasplinerange: HIAreasplinerange;
 
-	areasplinerange: HIAreasplinerange;
+  bar: HIBar;
 
-	bar: HIBar;
+  bellcurve: HIBellcurve;
 
-	bellcurve: HIBellcurve;
+  boxplot: HIBoxplot;
 
-	boxplot: HIBoxplot;
+  bubble: HIBubble;
 
-	bubble: HIBubble;
+  bullet: HIBullet;
 
-	bullet: HIBullet;
+  column: HIColumn;
 
-	column: HIColumn;
+  columnpyramid: HIColumnpyramid;
 
-	columnpyramid: HIColumnpyramid;
+  columnrange: HIColumnrange;
 
-	columnrange: HIColumnrange;
+  cylinder: HICylinder;
 
-	cylinder: HICylinder;
+  dependencywheel: HIDependencywheel;
 
-	dependencywheel: HIDependencywheel;
+  dumbbell: HIDumbbell;
 
-	dumbbell: HIDumbbell;
+  errorbar: HIErrorbar;
 
-	errorbar: HIErrorbar;
+  funnel: HIFunnel;
 
-	funnel: HIFunnel;
+  funnel3d: HIFunnel3d;
 
-	funnel3d: HIFunnel3d;
+  gauge: HIGauge;
 
-	gauge: HIGauge;
+  heatmap: HIHeatmap;
 
-	heatmap: HIHeatmap;
+  histogram: HIHistogram;
 
-	histogram: HIHistogram;
+  item: HIItem;
 
-	item: HIItem;
+  line: HILine;
 
-	line: HILine;
+  lollipop: HILollipop;
 
-	lollipop: HILollipop;
+  networkgraph: HINetworkgraph;
 
-	networkgraph: HINetworkgraph;
+  organization: HIOrganization;
 
-	organization: HIOrganization;
+  packedbubble: HIPackedbubble;
 
-	packedbubble: HIPackedbubble;
+  pareto: HIPareto;
 
-	pareto: HIPareto;
+  pie: HIPie;
 
-	pie: HIPie;
+  polygon: HIPolygon;
 
-	polygon: HIPolygon;
+  pyramid: HIPyramid;
 
-	pyramid: HIPyramid;
+  pyramid3d: HIPyramid3d;
 
-	pyramid3d: HIPyramid3d;
+  sankey: HISankey;
 
-	sankey: HISankey;
+  scatter: HIScatter;
 
-	scatter: HIScatter;
+  scatter3d: HIScatter3d;
 
-	scatter3d: HIScatter3d;
+  series: HISeries;
 
-	series: HISeries;
+  solidgauge: HISolidgauge;
 
-	solidgauge: HISolidgauge;
+  spline: HISpline;
 
-	spline: HISpline;
+  streamgraph: HIStreamgraph;
 
-	streamgraph: HIStreamgraph;
+  sunburst: HISunburst;
 
-	sunburst: HISunburst;
+  tilemap: HITilemap;
 
-	tilemap: HITilemap;
+  timeline: HITimeline;
 
-	timeline: HITimeline;
+  treemap: HITreemap;
 
-	treemap: HITreemap;
+  variablepie: HIVariablepie;
 
-	variablepie: HIVariablepie;
+  variwide: HIVariwide;
 
-	variwide: HIVariwide;
+  vector: HIVector;
 
-	vector: HIVector;
+  venn: HIVenn;
 
-	venn: HIVenn;
+  waterfall: HIWaterfall;
 
-	waterfall: HIWaterfall;
+  windbarb: HIWindbarb;
 
-	windbarb: HIWindbarb;
+  wordcloud: HIWordcloud;
 
-	wordcloud: HIWordcloud;
+  xrange: HIXrange;
 
-	xrange: HIXrange;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPoint extends HIChartsJSONSerializable {
+  static alloc(): HIPoint; // inherited from NSObject
 
-	static alloc(): HIPoint; // inherited from NSObject
+  static new(): HIPoint; // inherited from NSObject
 
-	static new(): HIPoint; // inherited from NSObject
+  dateFormat: string;
 
-	dateFormat: string;
+  dateFormatter: HIFunction;
 
-	dateFormatter: HIFunction;
+  descriptionFormatter: HIFunction;
 
-	descriptionFormatter: HIFunction;
+  events: HIEvents;
 
-	events: HIEvents;
+  valueDecimals: number;
 
-	valueDecimals: number;
+  valueDescriptionFormat: string;
 
-	valueDescriptionFormat: string;
+  valuePrefix: string;
 
-	valuePrefix: string;
+  valueSuffix: string;
 
-	valueSuffix: string;
+  x: number;
 
-	x: number;
+  xAxis: any;
 
-	xAxis: any;
+  y: number;
 
-	y: number;
+  yAxis: any;
 
-	yAxis: any;
+  cancelSonify(): void;
 
-	cancelSonify(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  onMouseOut(): void;
 
-	onMouseOut(): void;
+  onMouseOver(): void;
 
-	onMouseOver(): void;
+  remove(redraw: number): void;
 
-	remove(redraw: number): void;
+  removeAnimation(redraw: number, animation: HIAnimationOptionsObject): void;
 
-	removeAnimation(redraw: number, animation: HIAnimationOptionsObject): void;
+  select(): void;
 
-	select(): void;
+  selectAccumulate(selected: number, accumulate: number): void;
 
-	selectAccumulate(selected: number, accumulate: number): void;
+  setNestedPropertyValueKey(object: any, value: any, key: string): void;
 
-	setNestedPropertyValueKey(object: any, value: any, key: string): void;
+  setState(): void;
 
-	setState(): void;
+  setStateMove(state: string, move: number): void;
 
-	setStateMove(state: string, move: number): void;
+  sonify(options: NSDictionary<any, any>): void;
 
-	sonify(options: NSDictionary<any, any>): void;
+  tooltipFormatter(pointFormat: string): void;
 
-	tooltipFormatter(pointFormat: string): void;
+  update(options: HIPoint): void;
 
-	update(options: HIPoint): void;
+  updateRedraw(options: HIPoint, redraw: number): void;
 
-	updateRedraw(options: HIPoint, redraw: number): void;
-
-	updateRedrawAnimation(options: HIPoint, redraw: number, animation: HIAnimationOptionsObject): void;
+  updateRedrawAnimation(options: HIPoint, redraw: number, animation: HIAnimationOptionsObject): void;
 }
 
 declare class HIPoints extends HIChartsJSONSerializable {
+  static alloc(): HIPoints; // inherited from NSObject
 
-	static alloc(): HIPoints; // inherited from NSObject
+  static new(): HIPoints; // inherited from NSObject
 
-	static new(): HIPoints; // inherited from NSObject
+  x: number;
 
-	x: number;
+  xAxis: any;
 
-	xAxis: any;
+  y: number;
 
-	y: number;
+  yAxis: any;
 
-	yAxis: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPolygon extends HISeries {
+  static alloc(): HIPolygon; // inherited from NSObject
 
-	static alloc(): HIPolygon; // inherited from NSObject
+  static new(): HIPolygon; // inherited from NSObject
 
-	static new(): HIPolygon; // inherited from NSObject
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIPopup extends HIChartsJSONSerializable {
+  static alloc(): HIPopup; // inherited from NSObject
 
-	static alloc(): HIPopup; // inherited from NSObject
+  static new(): HIPopup; // inherited from NSObject
 
-	static new(): HIPopup; // inherited from NSObject
+  addButton: string;
 
-	addButton: string;
+  arrowLine: string;
 
-	arrowLine: string;
+  arrowRay: string;
 
-	arrowRay: string;
+  arrowSegment: string;
 
-	arrowSegment: string;
+  background: string;
 
-	background: string;
+  backgroundColor: string;
 
-	backgroundColor: string;
+  backgroundColors: string;
 
-	backgroundColors: string;
+  borderColor: string;
 
-	borderColor: string;
+  borderRadius: string;
 
-	borderRadius: string;
+  borderWidth: string;
 
-	borderWidth: string;
+  circle: string;
 
-	circle: string;
+  color: string;
 
-	color: string;
+  connector: string;
 
-	connector: string;
+  crooked3: string;
 
-	crooked3: string;
+  crooked5: string;
 
-	crooked5: string;
+  crosshairX: string;
 
-	crosshairX: string;
+  crosshairY: string;
 
-	crosshairY: string;
+  editButton: string;
 
-	editButton: string;
+  elliott3: string;
 
-	elliott3: string;
+  elliott5: string;
 
-	elliott5: string;
+  fibonacci: string;
 
-	fibonacci: string;
+  fill: string;
 
-	fill: string;
+  flags: string;
 
-	flags: string;
+  fontSize: string;
 
-	fontSize: string;
+  format: string;
 
-	format: string;
+  height: string;
 
-	height: string;
+  horizontalLine: string;
 
-	horizontalLine: string;
+  infinityLine: string;
 
-	infinityLine: string;
+  innerBackground: string;
 
-	innerBackground: string;
+  label: string;
 
-	label: string;
+  labelOptions: string;
 
-	labelOptions: string;
+  labels: string;
 
-	labels: string;
+  line: string;
 
-	line: string;
+  lines: string;
 
-	lines: string;
+  measure: string;
 
-	measure: string;
+  measureX: string;
 
-	measureX: string;
+  measureXY: string;
 
-	measureXY: string;
+  measureY: string;
 
-	measureY: string;
+  name: string;
 
-	name: string;
+  outerBackground: string;
 
-	outerBackground: string;
+  padding: string;
 
-	padding: string;
+  parallelChannel: string;
 
-	parallelChannel: string;
+  pitchfork: string;
 
-	pitchfork: string;
+  ray: string;
 
-	ray: string;
+  rectangle: string;
 
-	rectangle: string;
+  removeButton: string;
 
-	removeButton: string;
+  saveButton: string;
 
-	saveButton: string;
+  segment: string;
 
-	segment: string;
+  series: string;
 
-	series: string;
+  shapeOptions: string;
 
-	shapeOptions: string;
+  shapes: string;
 
-	shapes: string;
+  simpleShapes: string;
 
-	simpleShapes: string;
+  stroke: string;
 
-	stroke: string;
+  strokeWidth: string;
 
-	strokeWidth: string;
+  style: string;
 
-	style: string;
+  title: string;
 
-	title: string;
+  tunnel: string;
 
-	tunnel: string;
+  typeOptions: string;
 
-	typeOptions: string;
+  verticalArrow: string;
 
-	verticalArrow: string;
+  verticalCounter: string;
 
-	verticalCounter: string;
+  verticalLabel: string;
 
-	verticalLabel: string;
+  verticalLine: string;
 
-	verticalLine: string;
+  volume: string;
 
-	volume: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPosition extends HIChartsJSONSerializable {
+  static alloc(): HIPosition; // inherited from NSObject
 
-	static alloc(): HIPosition; // inherited from NSObject
+  static new(): HIPosition; // inherited from NSObject
 
-	static new(): HIPosition; // inherited from NSObject
+  align: string;
 
-	align: string;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIPyramid extends HISeries {
+  static alloc(): HIPyramid; // inherited from NSObject
 
-	static alloc(): HIPyramid; // inherited from NSObject
+  static new(): HIPyramid; // inherited from NSObject
 
-	static new(): HIPyramid; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  endAngle: number;
 
-	endAngle: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  height: any;
 
-	height: any;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  minSize: any;
 
-	minSize: any;
+  neckHeight: string;
 
-	neckHeight: string;
+  neckWidth: string;
 
-	neckWidth: string;
+  reversed: number;
 
-	reversed: number;
+  slicedOffset: number;
 
-	slicedOffset: number;
+  startAngle: number;
 
-	startAngle: number;
-
-	width: any;
+  width: any;
 }
 
 declare class HIPyramid3d extends HISeries {
+  static alloc(): HIPyramid3d; // inherited from NSObject
 
-	static alloc(): HIPyramid3d; // inherited from NSObject
+  static new(): HIPyramid3d; // inherited from NSObject
 
-	static new(): HIPyramid3d; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  gradientForSides: number;
 
-	gradientForSides: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  height: any;
 
-	height: any;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  reversed: number;
 
-	reversed: number;
-
-	width: any;
+  width: any;
 }
 
 declare class HIRadialGradientColorObject extends HIChartsJSONSerializable {
+  static alloc(): HIRadialGradientColorObject; // inherited from NSObject
 
-	static alloc(): HIRadialGradientColorObject; // inherited from NSObject
+  static new(): HIRadialGradientColorObject; // inherited from NSObject
 
-	static new(): HIRadialGradientColorObject; // inherited from NSObject
+  cx: number;
 
-	cx: number;
+  cy: number;
 
-	cy: number;
+  r: number;
 
-	r: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIRangeSelector extends HIChartsJSONSerializable {
+  static alloc(): HIRangeSelector; // inherited from NSObject
 
-	static alloc(): HIRangeSelector; // inherited from NSObject
+  static new(): HIRangeSelector; // inherited from NSObject
 
-	static new(): HIRangeSelector; // inherited from NSObject
+  buttonText: string;
 
-	buttonText: string;
+  maxInputLabel: string;
 
-	maxInputLabel: string;
+  minInputLabel: string;
 
-	minInputLabel: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIRanges extends HIChartsJSONSerializable {
+  static alloc(): HIRanges; // inherited from NSObject
 
-	static alloc(): HIRanges; // inherited from NSObject
+  static new(): HIRanges; // inherited from NSObject
 
-	static new(): HIRanges; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  color: HIColor;
 
-	color: HIColor;
+  connectorColor: HIColor;
 
-	connectorColor: HIColor;
+  value: number;
 
-	value: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIResetZoomButton extends HIChartsJSONSerializable {
+  static alloc(): HIResetZoomButton; // inherited from NSObject
 
-	static alloc(): HIResetZoomButton; // inherited from NSObject
+  static new(): HIResetZoomButton; // inherited from NSObject
 
-	static new(): HIResetZoomButton; // inherited from NSObject
+  position: HIAlignObject;
 
-	position: HIAlignObject;
+  relativeTo: string;
 
-	relativeTo: string;
+  theme: HISVGAttributes;
 
-	theme: HISVGAttributes;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIResponsive extends HIChartsJSONSerializable {
+  static alloc(): HIResponsive; // inherited from NSObject
 
-	static alloc(): HIResponsive; // inherited from NSObject
+  static new(): HIResponsive; // inherited from NSObject
 
-	static new(): HIResponsive; // inherited from NSObject
+  rules: NSArray<HIRules>;
 
-	rules: NSArray<HIRules>;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIReverseArrow extends HIChartsJSONSerializable {
+  static alloc(): HIReverseArrow; // inherited from NSObject
 
-	static alloc(): HIReverseArrow; // inherited from NSObject
+  static new(): HIReverseArrow; // inherited from NSObject
 
-	static new(): HIReverseArrow; // inherited from NSObject
+  id: string;
 
-	id: string;
+  markerHeight: number;
 
-	markerHeight: number;
+  markerWidth: number;
 
-	markerWidth: number;
+  refX: number;
 
-	refX: number;
+  refY: number;
 
-	refY: number;
+  render: number;
 
-	render: number;
+  tagName: string;
 
-	tagName: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIRight extends HIChartsJSONSerializable {
+  static alloc(): HIRight; // inherited from NSObject
 
-	static alloc(): HIRight; // inherited from NSObject
+  static new(): HIRight; // inherited from NSObject
 
-	static new(): HIRight; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIRotation extends HIChartsJSONSerializable {
+  static alloc(): HIRotation; // inherited from NSObject
 
-	static alloc(): HIRotation; // inherited from NSObject
+  static new(): HIRotation; // inherited from NSObject
 
-	static new(): HIRotation; // inherited from NSObject
+  from: number;
 
-	from: number;
+  orientations: number;
 
-	orientations: number;
+  to: number;
 
-	to: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIRules extends HIChartsJSONSerializable {
+  static alloc(): HIRules; // inherited from NSObject
 
-	static alloc(): HIRules; // inherited from NSObject
+  static new(): HIRules; // inherited from NSObject
 
-	static new(): HIRules; // inherited from NSObject
+  chartOptions: NSDictionary<any, any>;
 
-	chartOptions: NSDictionary<any, any>;
+  condition: HICondition;
 
-	condition: HICondition;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISVGAttributes extends HIChartsJSONSerializable {
+  static alloc(): HISVGAttributes; // inherited from NSObject
 
-	static alloc(): HISVGAttributes; // inherited from NSObject
+  static new(): HISVGAttributes; // inherited from NSObject
 
-	static new(): HISVGAttributes; // inherited from NSObject
+  d: NSArray<any>;
 
-	d: NSArray<any>;
+  fill: HIColor;
 
-	fill: HIColor;
+  inverted: number;
 
-	inverted: number;
+  matrix: NSArray<number>;
 
-	matrix: NSArray<number>;
+  rotation: number;
 
-	rotation: number;
+  rotationOriginX: number;
 
-	rotationOriginX: number;
+  rotationOriginY: number;
 
-	rotationOriginY: number;
+  scaleX: number;
 
-	scaleX: number;
+  scaleY: number;
 
-	scaleY: number;
+  stroke: HIColor;
 
-	stroke: HIColor;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  translateX: number;
 
-	translateX: number;
+  translateY: number;
 
-	translateY: number;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISVGDefinitionObject extends HIChartsJSONSerializable {
+  static alloc(): HISVGDefinitionObject; // inherited from NSObject
 
-	static alloc(): HISVGDefinitionObject; // inherited from NSObject
+  static new(): HISVGDefinitionObject; // inherited from NSObject
 
-	static new(): HISVGDefinitionObject; // inherited from NSObject
+  children: NSArray<any>;
 
-	children: NSArray<any>;
+  tagName: string;
 
-	tagName: string;
+  textContent: string;
 
-	textContent: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISankey extends HISeries {
+  static alloc(): HISankey; // inherited from NSObject
 
-	static alloc(): HISankey; // inherited from NSObject
+  static new(): HISankey; // inherited from NSObject
 
-	static new(): HISankey; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  curveFactor: number;
 
-	curveFactor: number;
+  levels: NSArray<HILevels>;
 
-	levels: NSArray<HILevels>;
+  linkOpacity: number;
 
-	linkOpacity: number;
+  minLinkWidth: number;
 
-	minLinkWidth: number;
+  nodePadding: number;
 
-	nodePadding: number;
+  nodeWidth: number;
 
-	nodeWidth: number;
-
-	nodes: NSArray<HINodes>;
+  nodes: NSArray<HINodes>;
 }
 
 declare class HIScatter extends HISeries {
+  static alloc(): HIScatter; // inherited from NSObject
 
-	static alloc(): HIScatter; // inherited from NSObject
+  static new(): HIScatter; // inherited from NSObject
 
-	static new(): HIScatter; // inherited from NSObject
+  cluster: HICluster;
 
-	cluster: HICluster;
-
-	jitter: HIJitter;
+  jitter: HIJitter;
 }
 
 declare class HIScatter3d extends HISeries {
+  static alloc(): HIScatter3d; // inherited from NSObject
 
-	static alloc(): HIScatter3d; // inherited from NSObject
+  static new(): HIScatter3d; // inherited from NSObject
 
-	static new(): HIScatter3d; // inherited from NSObject
-
-	jitter: HIJitter;
+  jitter: HIJitter;
 }
 
 declare class HIScreenReaderSection extends HIChartsJSONSerializable {
+  static alloc(): HIScreenReaderSection; // inherited from NSObject
 
-	static alloc(): HIScreenReaderSection; // inherited from NSObject
+  static new(): HIScreenReaderSection; // inherited from NSObject
 
-	static new(): HIScreenReaderSection; // inherited from NSObject
+  afterChartFormat: string;
 
-	afterChartFormat: string;
+  afterChartFormatter: HIFunction;
 
-	afterChartFormatter: HIFunction;
+  afterRegionLabel: string;
 
-	afterRegionLabel: string;
+  annotations: HIAnnotations;
 
-	annotations: HIAnnotations;
+  axisRangeDateFormat: string;
 
-	axisRangeDateFormat: string;
+  beforeChartFormat: string;
 
-	beforeChartFormat: string;
+  beforeChartFormatter: HIFunction;
 
-	beforeChartFormatter: HIFunction;
+  beforeRegionLabel: string;
 
-	beforeRegionLabel: string;
+  endOfChartMarker: string;
 
-	endOfChartMarker: string;
+  onPlayAsSoundClick: HIFunction;
 
-	onPlayAsSoundClick: HIFunction;
+  onViewDataTableClick: HIFunction;
 
-	onViewDataTableClick: HIFunction;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIScrollablePlotArea extends HIChartsJSONSerializable {
+  static alloc(): HIScrollablePlotArea; // inherited from NSObject
 
-	static alloc(): HIScrollablePlotArea; // inherited from NSObject
+  static new(): HIScrollablePlotArea; // inherited from NSObject
 
-	static new(): HIScrollablePlotArea; // inherited from NSObject
+  minHeight: number;
 
-	minHeight: number;
+  minWidth: number;
 
-	minWidth: number;
+  opacity: number;
 
-	opacity: number;
+  scrollPositionX: number;
 
-	scrollPositionX: number;
+  scrollPositionY: number;
 
-	scrollPositionY: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISecond extends HIChartsJSONSerializable {
+  static alloc(): HISecond; // inherited from NSObject
 
-	static alloc(): HISecond; // inherited from NSObject
+  static new(): HISecond; // inherited from NSObject
 
-	static new(): HISecond; // inherited from NSObject
+  main: string;
 
-	main: string;
+  range: number;
 
-	range: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISelect extends HIChartsJSONSerializable {
+  static alloc(): HISelect; // inherited from NSObject
 
-	static alloc(): HISelect; // inherited from NSObject
+  static new(): HISelect; // inherited from NSObject
 
-	static new(): HISelect; // inherited from NSObject
+  animation: HIAnimation;
 
-	animation: HIAnimation;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  color: HIColor;
 
-	color: HIColor;
+  enabled: number;
 
-	enabled: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  halo: HIHalo;
 
-	halo: HIHalo;
+  height: number;
 
-	height: number;
+  heightPlus: number;
 
-	heightPlus: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  lineWidthPlus: number;
 
-	lineWidthPlus: number;
+  radius: number;
 
-	radius: number;
+  width: number;
 
-	width: number;
+  widthPlus: number;
 
-	widthPlus: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISeries extends HIChartsJSONSerializable {
+  static alloc(): HISeries; // inherited from NSObject
 
-	static alloc(): HISeries; // inherited from NSObject
+  static new(): HISeries; // inherited from NSObject
 
-	static new(): HISeries; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  allowPointSelect: number;
 
-	allowPointSelect: number;
+  animation: HIAnimationOptionsObject;
 
-	animation: HIAnimationOptionsObject;
+  animationLimit: number;
 
-	animationLimit: number;
+  boostBlending: string;
 
-	boostBlending: string;
+  boostThreshold: number;
 
-	boostThreshold: number;
+  className: string;
 
-	className: string;
+  clip: number;
 
-	clip: number;
+  color: HIColor;
 
-	color: HIColor;
+  colorAxis: any;
 
-	colorAxis: any;
+  colorIndex: number;
 
-	colorIndex: number;
+  colorKey: string;
 
-	colorKey: string;
+  connectEnds: number;
 
-	connectEnds: number;
+  connectNulls: number;
 
-	connectNulls: number;
+  crisp: number;
 
-	crisp: number;
+  cropThreshold: number;
 
-	cropThreshold: number;
+  cursor: string;
 
-	cursor: string;
+  custom: NSDictionary<any, any>;
 
-	custom: NSDictionary<any, any>;
+  dashStyle: string;
 
-	dashStyle: string;
+  data: NSArray<any>;
 
-	data: NSArray<any>;
+  dataLabels: NSArray<HIDataLabels>;
 
-	dataLabels: NSArray<HIDataLabels>;
+  dataSorting: HIDataSortingOptionsObject;
 
-	dataSorting: HIDataSortingOptionsObject;
+  definition: string;
 
-	definition: string;
+  describeSingleSeries: number;
 
-	describeSingleSeries: number;
+  descriptionFormatter: HIFunction;
 
-	descriptionFormatter: HIFunction;
+  dragDrop: HIDragDrop;
 
-	dragDrop: HIDragDrop;
+  enableMouseTracking: number;
 
-	enableMouseTracking: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  findNearestPointBy: string;
 
-	findNearestPointBy: string;
+  getExtremesFromAll: number;
 
-	getExtremesFromAll: number;
+  id: string;
 
-	id: string;
+  includeInDataExport: number;
 
-	includeInDataExport: number;
+  index: number;
 
-	index: number;
+  keys: NSArray<string>;
 
-	keys: NSArray<string>;
+  label: HILabel;
 
-	label: HILabel;
+  legendIndex: number;
 
-	legendIndex: number;
+  lineWidth: number;
 
-	lineWidth: number;
+  linecap: string;
 
-	linecap: string;
+  linkedTo: string;
 
-	linkedTo: string;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  name: string;
 
-	name: string;
+  negativeColor: HIColor;
 
-	negativeColor: HIColor;
+  nullPointValue: string;
 
-	nullPointValue: string;
+  opacity: number;
 
-	opacity: number;
+  point: HIPoint;
 
-	point: HIPoint;
+  pointAnnotationsDescription: string;
 
-	pointAnnotationsDescription: string;
+  pointDescriptionEnabledThreshold: number;
 
-	pointDescriptionEnabledThreshold: number;
+  pointDescriptionFormatter: HIFunction;
 
-	pointDescriptionFormatter: HIFunction;
+  pointInterval: number;
 
-	pointInterval: number;
+  pointIntervalUnit: string;
 
-	pointIntervalUnit: string;
+  pointPlacement: any;
 
-	pointPlacement: any;
+  pointStart: number;
 
-	pointStart: number;
+  selected: number;
 
-	selected: number;
+  shadow: HIShadowOptionsObject;
 
-	shadow: HIShadowOptionsObject;
+  showCheckbox: number;
 
-	showCheckbox: number;
+  showInLegend: number;
 
-	showInLegend: number;
+  skipKeyboardNavigation: number;
 
-	skipKeyboardNavigation: number;
+  softThreshold: number;
 
-	softThreshold: number;
+  stack: string;
 
-	stack: string;
+  stacking: string;
 
-	stacking: string;
+  states: HIStates;
 
-	states: HIStates;
+  step: string;
 
-	step: string;
+  stickyTracking: number;
 
-	stickyTracking: number;
+  summary: HISummary;
 
-	summary: HISummary;
+  threshold: number;
 
-	threshold: number;
+  tooltip: HITooltip;
 
-	tooltip: HITooltip;
+  turboThreshold: number;
 
-	turboThreshold: number;
+  type: string;
 
-	type: string;
+  visible: number;
 
-	visible: number;
+  xAxis: any;
 
-	xAxis: any;
+  xAxisDescription: string;
 
-	xAxisDescription: string;
+  yAxis: any;
 
-	yAxis: any;
+  yAxisDescription: string;
 
-	yAxisDescription: string;
+  zIndex: number;
 
-	zIndex: number;
+  zoneAxis: string;
 
-	zoneAxis: string;
+  zones: NSArray<HIZones>;
 
-	zones: NSArray<HIZones>;
+  addPoint(options: HIData): void;
 
-	addPoint(options: HIData): void;
+  addPointRedraw(options: HIData, redraw: number): void;
 
-	addPointRedraw(options: HIData, redraw: number): void;
+  addPointRedrawShift(options: HIData, redraw: number, shift: number): void;
 
-	addPointRedrawShift(options: HIData, redraw: number, shift: number): void;
+  addPointRedrawShiftAnimation(options: HIData, redraw: number, shift: number, animation: HIAnimationOptionsObject): void;
 
-	addPointRedrawShiftAnimation(options: HIData, redraw: number, shift: number, animation: HIAnimationOptionsObject): void;
+  animate(init: number): void;
 
-	animate(init: number): void;
+  drawGraph(): void;
 
-	drawGraph(): void;
+  drawPoints(): void;
 
-	drawPoints(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  hide(): void;
 
-	hide(): void;
+  onMouseOut(): void;
 
-	onMouseOut(): void;
+  onMouseOver(): void;
 
-	onMouseOver(): void;
+  remove(): void;
 
-	remove(): void;
+  removeAnimation(redraw: number, animation: HIAnimationOptionsObject): void;
 
-	removeAnimation(redraw: number, animation: HIAnimationOptionsObject): void;
+  removeAnimationWithEvent(redraw: number, animation: HIAnimationOptionsObject, withEvent: number): void;
 
-	removeAnimationWithEvent(redraw: number, animation: HIAnimationOptionsObject, withEvent: number): void;
+  removePoint(i: number): void;
 
-	removePoint(i: number): void;
+  removePointRedraw(i: number, redraw: number): void;
 
-	removePointRedraw(i: number, redraw: number): void;
+  removePointRedrawAnimation(i: number, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	removePointRedrawAnimation(i: number, redraw: number, animation: HIAnimationOptionsObject): void;
+  render(): void;
 
-	render(): void;
+  select(): void;
 
-	select(): void;
+  setOptions(itemOptions: HISeries): void;
 
-	setOptions(itemOptions: HISeries): void;
+  setSeriesData(data: NSArray<any> | any[]): void;
 
-	setSeriesData(data: NSArray<any> | any[]): void;
+  setSeriesDataRedraw(data: NSArray<any> | any[], redraw: number): void;
 
-	setSeriesDataRedraw(data: NSArray<any> | any[], redraw: number): void;
+  setSeriesDataRedrawAnimation(data: NSArray<any> | any[], redraw: number, animation: HIAnimationOptionsObject): void;
 
-	setSeriesDataRedrawAnimation(data: NSArray<any> | any[], redraw: number, animation: HIAnimationOptionsObject): void;
+  setSeriesDataRedrawAnimationUpdatePoints(data: NSArray<any> | any[], redraw: number, animation: HIAnimationOptionsObject, updatePoints: number): void;
 
-	setSeriesDataRedrawAnimationUpdatePoints(data: NSArray<any> | any[], redraw: number, animation: HIAnimationOptionsObject, updatePoints: number): void;
+  setSeriesVisible(): void;
 
-	setSeriesVisible(): void;
+  setSeriesVisibleRedraw(visible: number, redraw: number): void;
 
-	setSeriesVisibleRedraw(visible: number, redraw: number): void;
+  setState(): void;
 
-	setState(): void;
+  show(): void;
 
-	show(): void;
+  sonify(options: NSDictionary<any, any>): void;
 
-	sonify(options: NSDictionary<any, any>): void;
+  translate(): void;
 
-	translate(): void;
+  update(options: HISeries): void;
 
-	update(options: HISeries): void;
-
-	updateRedraw(options: HISeries, redraw: number): void;
+  updateRedraw(options: HISeries, redraw: number): void;
 }
 
 declare class HISeriesNavigation extends HIChartsJSONSerializable {
+  static alloc(): HISeriesNavigation; // inherited from NSObject
 
-	static alloc(): HISeriesNavigation; // inherited from NSObject
+  static new(): HISeriesNavigation; // inherited from NSObject
 
-	static new(): HISeriesNavigation; // inherited from NSObject
+  mode: string;
 
-	mode: string;
+  pointNavigationEnabledThreshold: number;
 
-	pointNavigationEnabledThreshold: number;
+  skipNullPoints: number;
 
-	skipNullPoints: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISeriesTypeDescriptions extends HIChartsJSONSerializable {
+  static alloc(): HISeriesTypeDescriptions; // inherited from NSObject
 
-	static alloc(): HISeriesTypeDescriptions; // inherited from NSObject
+  static new(): HISeriesTypeDescriptions; // inherited from NSObject
 
-	static new(): HISeriesTypeDescriptions; // inherited from NSObject
+  arearange: string;
 
-	arearange: string;
+  areasplinerange: string;
 
-	areasplinerange: string;
+  boxplot: string;
 
-	boxplot: string;
+  bubble: string;
 
-	bubble: string;
+  columnrange: string;
 
-	columnrange: string;
+  errorbar: string;
 
-	errorbar: string;
+  funnel: string;
 
-	funnel: string;
+  pyramid: string;
 
-	pyramid: string;
+  waterfall: string;
 
-	waterfall: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIShadowOptionsObject extends HIChartsJSONSerializable {
+  static alloc(): HIShadowOptionsObject; // inherited from NSObject
 
-	static alloc(): HIShadowOptionsObject; // inherited from NSObject
+  static new(): HIShadowOptionsObject; // inherited from NSObject
 
-	static new(): HIShadowOptionsObject; // inherited from NSObject
+  color: string;
 
-	color: string;
+  offsetX: number;
 
-	offsetX: number;
+  offsetY: number;
 
-	offsetY: number;
+  opacity: number;
 
-	opacity: number;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIShapeOptions extends HIChartsJSONSerializable {
+  static alloc(): HIShapeOptions; // inherited from NSObject
 
-	static alloc(): HIShapeOptions; // inherited from NSObject
+  static new(): HIShapeOptions; // inherited from NSObject
 
-	static new(): HIShapeOptions; // inherited from NSObject
+  dashStyle: string;
 
-	dashStyle: string;
+  fill: HIColor;
 
-	fill: HIColor;
+  height: number;
 
-	height: number;
+  r: number;
 
-	r: number;
+  snap: number;
 
-	snap: number;
+  src: string;
 
-	src: string;
+  stroke: HIColor;
 
-	stroke: HIColor;
+  strokeWidth: number;
 
-	strokeWidth: number;
+  type: string;
 
-	type: string;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIShapes extends HIChartsJSONSerializable {
+  static alloc(): HIShapes; // inherited from NSObject
 
-	static alloc(): HIShapes; // inherited from NSObject
+  static new(): HIShapes; // inherited from NSObject
 
-	static new(): HIShapes; // inherited from NSObject
+  dashStyle: string;
 
-	dashStyle: string;
+  fill: HIColor;
 
-	fill: HIColor;
+  height: number;
 
-	height: number;
+  markerEnd: string;
 
-	markerEnd: string;
+  markerStart: string;
 
-	markerStart: string;
+  point: HIPoint;
 
-	point: HIPoint;
+  points: NSArray<HIPoints>;
 
-	points: NSArray<HIPoints>;
+  r: number;
 
-	r: number;
+  snap: number;
 
-	snap: number;
+  src: string;
 
-	src: string;
+  stroke: HIColor;
 
-	stroke: HIColor;
+  strokeWidth: number;
 
-	strokeWidth: number;
+  type: string;
 
-	type: string;
+  width: number;
 
-	width: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISolidgauge extends HISeries {
+  static alloc(): HISolidgauge; // inherited from NSObject
 
-	static alloc(): HISolidgauge; // inherited from NSObject
+  static new(): HISolidgauge; // inherited from NSObject
 
-	static new(): HISolidgauge; // inherited from NSObject
+  colorByPoint: number;
 
-	colorByPoint: number;
+  innerRadius: any;
 
-	innerRadius: any;
+  overshoot: number;
 
-	overshoot: number;
+  radius: any;
 
-	radius: any;
-
-	rounded: number;
+  rounded: number;
 }
 
 declare class HISonification extends HIChartsJSONSerializable {
+  static alloc(): HISonification; // inherited from NSObject
 
-	static alloc(): HISonification; // inherited from NSObject
+  static new(): HISonification; // inherited from NSObject
 
-	static new(): HISonification; // inherited from NSObject
+  playAsSoundButtonText: string;
 
-	playAsSoundButtonText: string;
+  playAsSoundClickAnnouncement: string;
 
-	playAsSoundClickAnnouncement: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISpline extends HISeries {
+  static alloc(): HISpline; // inherited from NSObject
 
-	static alloc(): HISpline; // inherited from NSObject
-
-	static new(): HISpline; // inherited from NSObject
+  static new(): HISpline; // inherited from NSObject
 }
 
 declare class HIStackLabels extends HIChartsJSONSerializable {
+  static alloc(): HIStackLabels; // inherited from NSObject
 
-	static alloc(): HIStackLabels; // inherited from NSObject
+  static new(): HIStackLabels; // inherited from NSObject
 
-	static new(): HIStackLabels; // inherited from NSObject
+  align: string;
 
-	align: string;
+  allowOverlap: number;
 
-	allowOverlap: number;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  crop: number;
 
-	crop: number;
+  enabled: number;
 
-	enabled: number;
+  format: string;
 
-	format: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  overflow: string;
 
-	overflow: string;
+  rotation: number;
 
-	rotation: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  textAlign: string;
 
-	textAlign: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIStates extends HIChartsJSONSerializable {
+  static alloc(): HIStates; // inherited from NSObject
 
-	static alloc(): HIStates; // inherited from NSObject
+  static new(): HIStates; // inherited from NSObject
 
-	static new(): HIStates; // inherited from NSObject
+  hover: HIHover;
 
-	hover: HIHover;
+  inactive: HIInactive;
 
-	inactive: HIInactive;
+  normal: HINormal;
 
-	normal: HINormal;
+  select: HISelect;
 
-	select: HISelect;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIStreamgraph extends HISeries {
+  static alloc(): HIStreamgraph; // inherited from NSObject
 
-	static alloc(): HIStreamgraph; // inherited from NSObject
+  static new(): HIStreamgraph; // inherited from NSObject
 
-	static new(): HIStreamgraph; // inherited from NSObject
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  fillOpacity: number;
 
-	fillOpacity: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  negativeFillColor: HIColor;
 
-	negativeFillColor: HIColor;
-
-	trackByArea: number;
+  trackByArea: number;
 }
 
 declare class HIStyle extends HIChartsJSONSerializable {
+  static alloc(): HIStyle; // inherited from NSObject
 
-	static alloc(): HIStyle; // inherited from NSObject
+  static new(): HIStyle; // inherited from NSObject
 
-	static new(): HIStyle; // inherited from NSObject
+  borderRadius: number;
 
-	borderRadius: number;
+  color: string;
 
-	color: string;
+  cursor: string;
 
-	cursor: string;
+  fill: string;
 
-	fill: string;
+  fontSize: string;
 
-	fontSize: string;
+  fontWeight: string;
 
-	fontWeight: string;
+  lineWidth: number;
 
-	lineWidth: number;
+  stroke: string;
 
-	stroke: string;
+  strokeWidth: number;
 
-	strokeWidth: number;
+  textOutline: string;
 
-	textOutline: string;
+  textOverflow: string;
 
-	textOverflow: string;
+  transition: string;
 
-	transition: string;
+  whiteSpace: string;
 
-	whiteSpace: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISubtitle extends HIChartsJSONSerializable {
+  static alloc(): HISubtitle; // inherited from NSObject
 
-	static alloc(): HISubtitle; // inherited from NSObject
+  static new(): HISubtitle; // inherited from NSObject
 
-	static new(): HISubtitle; // inherited from NSObject
+  align: string;
 
-	align: string;
+  floating: number;
 
-	floating: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  widthAdjust: number;
 
-	widthAdjust: number;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISummary extends HIChartsJSONSerializable {
+  static alloc(): HISummary; // inherited from NSObject
 
-	static alloc(): HISummary; // inherited from NSObject
+  static new(): HISummary; // inherited from NSObject
 
-	static new(): HISummary; // inherited from NSObject
+  bar: string;
 
-	bar: string;
+  barCombination: string;
 
-	barCombination: string;
+  boxplot: string;
 
-	boxplot: string;
+  boxplotCombination: string;
 
-	boxplotCombination: string;
+  bubble: string;
 
-	bubble: string;
+  bubbleCombination: string;
 
-	bubbleCombination: string;
+  column: string;
 
-	column: string;
+  columnCombination: string;
 
-	columnCombination: string;
+  defaultCombination: string;
 
-	defaultCombination: string;
+  defaults: string;
 
-	defaults: string;
+  line: string;
 
-	line: string;
+  lineCombination: string;
 
-	lineCombination: string;
+  map: string;
 
-	map: string;
+  mapCombination: string;
 
-	mapCombination: string;
+  mapbubble: string;
 
-	mapbubble: string;
+  mapbubbleCombination: string;
 
-	mapbubbleCombination: string;
+  mapline: string;
 
-	mapline: string;
+  maplineCombination: string;
 
-	maplineCombination: string;
+  pie: string;
 
-	pie: string;
+  pieCombination: string;
 
-	pieCombination: string;
+  scatter: string;
 
-	scatter: string;
+  scatterCombination: string;
 
-	scatterCombination: string;
+  spline: string;
 
-	spline: string;
+  splineCombination: string;
 
-	splineCombination: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HISunburst extends HISeries {
+  static alloc(): HISunburst; // inherited from NSObject
 
-	static alloc(): HISunburst; // inherited from NSObject
+  static new(): HISunburst; // inherited from NSObject
 
-	static new(): HISunburst; // inherited from NSObject
+  allowTraversingTree: number;
 
-	allowTraversingTree: number;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  levelIsConstant: number;
 
-	levelIsConstant: number;
+  levelSize: HILevelSize;
 
-	levelSize: HILevelSize;
+  levels: NSArray<HILevels>;
 
-	levels: NSArray<HILevels>;
+  rootId: string;
 
-	rootId: string;
+  size: any;
 
-	size: any;
+  slicedOffset: number;
 
-	slicedOffset: number;
+  startAngle: number;
 
-	startAngle: number;
-
-	traverseUpButton: HITraverseUpButton;
+  traverseUpButton: HITraverseUpButton;
 }
 
 declare class HITable extends HIChartsJSONSerializable {
+  static alloc(): HITable; // inherited from NSObject
 
-	static alloc(): HITable; // inherited from NSObject
+  static new(): HITable; // inherited from NSObject
 
-	static new(): HITable; // inherited from NSObject
+  tableSummary: string;
 
-	tableSummary: string;
+  viewAsDataTableButtonText: string;
 
-	viewAsDataTableButtonText: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITargetOptions extends HIChartsJSONSerializable {
+  static alloc(): HITargetOptions; // inherited from NSObject
 
-	static alloc(): HITargetOptions; // inherited from NSObject
+  static new(): HITargetOptions; // inherited from NSObject
 
-	static new(): HITargetOptions; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  color: HIColor;
 
-	color: HIColor;
+  height: number;
 
-	height: number;
+  width: any;
 
-	width: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITextPath extends HIChartsJSONSerializable {
+  static alloc(): HITextPath; // inherited from NSObject
 
-	static alloc(): HITextPath; // inherited from NSObject
+  static new(): HITextPath; // inherited from NSObject
 
-	static new(): HITextPath; // inherited from NSObject
+  attributes: HISVGAttributes;
 
-	attributes: HISVGAttributes;
+  enabled: number;
 
-	enabled: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITheme extends HIChartsJSONSerializable {
+  static alloc(): HITheme; // inherited from NSObject
 
-	static alloc(): HITheme; // inherited from NSObject
+  static new(): HITheme; // inherited from NSObject
 
-	static new(): HITheme; // inherited from NSObject
+  fill: HIColor;
 
-	fill: HIColor;
+  padding: number;
 
-	padding: number;
+  stroke: HIColor;
 
-	stroke: HIColor;
+  zIndex: number;
 
-	zIndex: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITilemap extends HISeries {
+  static alloc(): HITilemap; // inherited from NSObject
 
-	static alloc(): HITilemap; // inherited from NSObject
+  static new(): HITilemap; // inherited from NSObject
 
-	static new(): HITilemap; // inherited from NSObject
+  colsize: number;
 
-	colsize: number;
+  nullColor: HIColor;
 
-	nullColor: HIColor;
+  pointPadding: number;
 
-	pointPadding: number;
+  rowsize: number;
 
-	rowsize: number;
-
-	tileShape: string;
+  tileShape: string;
 }
 
 declare class HITime extends HIChartsJSONSerializable {
+  static alloc(): HITime; // inherited from NSObject
 
-	static alloc(): HITime; // inherited from NSObject
+  static new(): HITime; // inherited from NSObject
 
-	static new(): HITime; // inherited from NSObject
+  Date: any;
 
-	Date: any;
+  getTimezoneOffset: HIFunction;
 
-	getTimezoneOffset: HIFunction;
+  timezone: string;
 
-	timezone: string;
+  timezoneOffset: number;
 
-	timezoneOffset: number;
+  useUTC: number;
 
-	useUTC: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITimeline extends HISeries {
+  static alloc(): HITimeline; // inherited from NSObject
 
-	static alloc(): HITimeline; // inherited from NSObject
+  static new(): HITimeline; // inherited from NSObject
 
-	static new(): HITimeline; // inherited from NSObject
+  colorByPoint: number;
 
-	colorByPoint: number;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
-
-	legendType: string;
+  legendType: string;
 }
 
 declare class HITitle extends HIChartsJSONSerializable {
+  static alloc(): HITitle; // inherited from NSObject
 
-	static alloc(): HITitle; // inherited from NSObject
+  static new(): HITitle; // inherited from NSObject
 
-	static new(): HITitle; // inherited from NSObject
+  align: string;
 
-	align: string;
+  floating: number;
 
-	floating: number;
+  margin: number;
 
-	margin: number;
+  offset: number;
 
-	offset: number;
+  position3d: string;
 
-	position3d: string;
+  reserveSpace: number;
 
-	reserveSpace: number;
+  rotation: number;
 
-	rotation: number;
+  skew3d: number;
 
-	skew3d: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  text: string;
 
-	text: string;
+  textAlign: string;
 
-	textAlign: string;
+  useHTML: number;
 
-	useHTML: number;
+  verticalAlign: string;
 
-	verticalAlign: string;
+  widthAdjust: number;
 
-	widthAdjust: number;
+  x: number;
 
-	x: number;
+  y: number;
 
-	y: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITooltip extends HIChartsJSONSerializable {
+  static alloc(): HITooltip; // inherited from NSObject
 
-	static alloc(): HITooltip; // inherited from NSObject
+  static new(): HITooltip; // inherited from NSObject
 
-	static new(): HITooltip; // inherited from NSObject
+  animation: number;
 
-	animation: number;
+  backgroundColor: HIColor;
 
-	backgroundColor: HIColor;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  className: string;
 
-	className: string;
+  clusterFormat: any;
 
-	clusterFormat: any;
+  dateTimeLabelFormats: HIDateTimeLabelFormats;
 
-	dateTimeLabelFormats: HIDateTimeLabelFormats;
+  distance: number;
 
-	distance: number;
+  enabled: number;
 
-	enabled: number;
+  followPointer: number;
 
-	followPointer: number;
+  followTouchMove: number;
 
-	followTouchMove: number;
+  footerFormat: string;
 
-	footerFormat: string;
+  formatter: HIFunction;
 
-	formatter: HIFunction;
+  headerFormat: string;
 
-	headerFormat: string;
+  headerShape: string;
 
-	headerShape: string;
+  hideDelay: number;
 
-	hideDelay: number;
+  nodeFormat: string;
 
-	nodeFormat: string;
+  nodeFormatter: HIFunction;
 
-	nodeFormatter: HIFunction;
+  nullFormat: string;
 
-	nullFormat: string;
+  nullFormatter: HIFunction;
 
-	nullFormatter: HIFunction;
+  outside: number;
 
-	outside: number;
+  padding: number;
 
-	padding: number;
+  pointFormat: string;
 
-	pointFormat: string;
+  pointFormatter: HIFunction;
 
-	pointFormatter: HIFunction;
+  positioner: HIFunction;
 
-	positioner: HIFunction;
+  shadow: HIShadowOptionsObject;
 
-	shadow: HIShadowOptionsObject;
+  shape: string;
 
-	shape: string;
+  shared: number;
 
-	shared: number;
+  snap: number;
 
-	snap: number;
+  split: number;
 
-	split: number;
+  stickOnContact: number;
 
-	stickOnContact: number;
+  style: HICSSObject;
 
-	style: HICSSObject;
+  useHTML: number;
 
-	useHTML: number;
+  valueDecimals: number;
 
-	valueDecimals: number;
+  valuePrefix: string;
 
-	valuePrefix: string;
+  valueSuffix: string;
 
-	valueSuffix: string;
+  xDateFormat: string;
 
-	xDateFormat: string;
+  defaultFormatter(tooltip: HITooltip): void;
 
-	defaultFormatter(tooltip: HITooltip): void;
+  destroy(): void;
 
-	destroy(): void;
+  getLabel(): void;
 
-	getLabel(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  hide(): void;
 
-	hide(): void;
+  refreshByPoint(point: HIPoint): void;
 
-	refreshByPoint(point: HIPoint): void;
+  refreshByPoints(points: NSArray<HIPoint> | HIPoint[]): void;
 
-	refreshByPoints(points: NSArray<HIPoint> | HIPoint[]): void;
-
-	update(options: HITooltip): void;
+  update(options: HITooltip): void;
 }
 
 declare class HITop extends HIChartsJSONSerializable {
+  static alloc(): HITop; // inherited from NSObject
 
-	static alloc(): HITop; // inherited from NSObject
+  static new(): HITop; // inherited from NSObject
 
-	static new(): HITop; // inherited from NSObject
+  color: HIColor;
 
-	color: HIColor;
+  size: number;
 
-	size: number;
+  visible: any;
 
-	visible: any;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITraverseUpButton extends HIChartsJSONSerializable {
+  static alloc(): HITraverseUpButton; // inherited from NSObject
 
-	static alloc(): HITraverseUpButton; // inherited from NSObject
+  static new(): HITraverseUpButton; // inherited from NSObject
 
-	static new(): HITraverseUpButton; // inherited from NSObject
+  position: HIPosition;
 
-	position: HIPosition;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HITreemap extends HISeries {
+  static alloc(): HITreemap; // inherited from NSObject
 
-	static alloc(): HITreemap; // inherited from NSObject
+  static new(): HITreemap; // inherited from NSObject
 
-	static new(): HITreemap; // inherited from NSObject
+  allowTraversingTree: number;
 
-	allowTraversingTree: number;
+  alternateStartingDirection: number;
 
-	alternateStartingDirection: number;
+  cluster: HICluster;
 
-	cluster: HICluster;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  interactByLeaf: number;
 
-	interactByLeaf: number;
+  layoutAlgorithm: string;
 
-	layoutAlgorithm: string;
+  layoutStartingDirection: string;
 
-	layoutStartingDirection: string;
+  levelIsConstant: number;
 
-	levelIsConstant: number;
+  levels: NSArray<HILevels>;
 
-	levels: NSArray<HILevels>;
+  sortIndex: number;
 
-	sortIndex: number;
-
-	traverseUpButton: HITraverseUpButton;
+  traverseUpButton: HITraverseUpButton;
 }
 
 declare class HIVariablepie extends HISeries {
+  static alloc(): HIVariablepie; // inherited from NSObject
 
-	static alloc(): HIVariablepie; // inherited from NSObject
+  static new(): HIVariablepie; // inherited from NSObject
 
-	static new(): HIVariablepie; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderWidth: number;
 
-	borderWidth: number;
+  center: NSArray<any>;
 
-	center: NSArray<any>;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  endAngle: number;
 
-	endAngle: number;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  ignoreHiddenPoint: number;
 
-	ignoreHiddenPoint: number;
+  innerSize: any;
 
-	innerSize: any;
+  maxPointSize: any;
 
-	maxPointSize: any;
+  minPointSize: any;
 
-	minPointSize: any;
+  minSize: any;
 
-	minSize: any;
+  size: any;
 
-	size: any;
+  sizeBy: string;
 
-	sizeBy: string;
+  slicedOffset: number;
 
-	slicedOffset: number;
+  startAngle: number;
 
-	startAngle: number;
+  zMax: number;
 
-	zMax: number;
-
-	zMin: number;
+  zMin: number;
 }
 
 declare class HIVariwide extends HISeries {
+  static alloc(): HIVariwide; // inherited from NSObject
 
-	static alloc(): HIVariwide; // inherited from NSObject
+  static new(): HIVariwide; // inherited from NSObject
 
-	static new(): HIVariwide; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  groupPadding: number;
 
-	groupPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIVector extends HISeries {
+  static alloc(): HIVector; // inherited from NSObject
 
-	static alloc(): HIVector; // inherited from NSObject
+  static new(): HIVector; // inherited from NSObject
 
-	static new(): HIVector; // inherited from NSObject
+  cluster: HICluster;
 
-	cluster: HICluster;
+  rotationOrigin: string;
 
-	rotationOrigin: string;
-
-	vectorLength: number;
+  vectorLength: number;
 }
 
 declare class HIVenn extends HISeries {
+  static alloc(): HIVenn; // inherited from NSObject
 
-	static alloc(): HIVenn; // inherited from NSObject
+  static new(): HIVenn; // inherited from NSObject
 
-	static new(): HIVenn; // inherited from NSObject
+  borderDashStyle: string;
 
-	borderDashStyle: string;
+  brighten: number;
 
-	brighten: number;
+  cluster: HICluster;
 
-	cluster: HICluster;
-
-	colorByPoint: number;
+  colorByPoint: number;
 }
 
 declare class HIWaterfall extends HISeries {
+  static alloc(): HIWaterfall; // inherited from NSObject
 
-	static alloc(): HIWaterfall; // inherited from NSObject
+  static new(): HIWaterfall; // inherited from NSObject
 
-	static new(): HIWaterfall; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
-
-	upColor: HIColor;
+  upColor: HIColor;
 }
 
 declare class HIWeek extends HIChartsJSONSerializable {
+  static alloc(): HIWeek; // inherited from NSObject
 
-	static alloc(): HIWeek; // inherited from NSObject
+  static new(): HIWeek; // inherited from NSObject
 
-	static new(): HIWeek; // inherited from NSObject
+  main: string;
 
-	main: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIWindbarb extends HISeries {
+  static alloc(): HIWindbarb; // inherited from NSObject
 
-	static alloc(): HIWindbarb; // inherited from NSObject
+  static new(): HIWindbarb; // inherited from NSObject
 
-	static new(): HIWindbarb; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  dataGrouping: HIDataGrouping;
 
-	dataGrouping: HIDataGrouping;
+  depth: number;
 
-	depth: number;
+  edgeColor: HIColor;
 
-	edgeColor: HIColor;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  onSeries: string;
 
-	onSeries: string;
+  pointPadding: number;
 
-	pointPadding: number;
+  pointRange: number;
 
-	pointRange: number;
+  pointWidth: number;
 
-	pointWidth: number;
+  vectorLength: number;
 
-	vectorLength: number;
+  xOffset: number;
 
-	xOffset: number;
-
-	yOffset: number;
+  yOffset: number;
 }
 
 declare class HIWordcloud extends HISeries {
+  static alloc(): HIWordcloud; // inherited from NSObject
 
-	static alloc(): HIWordcloud; // inherited from NSObject
+  static new(): HIWordcloud; // inherited from NSObject
 
-	static new(): HIWordcloud; // inherited from NSObject
+  allowExtendPlayingField: number;
 
-	allowExtendPlayingField: number;
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  edgeWidth: number;
 
-	edgeWidth: number;
+  maxFontSize: number;
 
-	maxFontSize: number;
+  minFontSize: number;
 
-	minFontSize: number;
+  placementStrategy: string;
 
-	placementStrategy: string;
+  rotation: HIRotation;
 
-	rotation: HIRotation;
+  spiral: string;
 
-	spiral: string;
-
-	style: HICSSObject;
+  style: HICSSObject;
 }
 
 declare class HIXAxis extends HIChartsJSONSerializable {
+  static alloc(): HIXAxis; // inherited from NSObject
 
-	static alloc(): HIXAxis; // inherited from NSObject
+  static new(): HIXAxis; // inherited from NSObject
 
-	static new(): HIXAxis; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  alignTicks: number;
 
-	alignTicks: number;
+  allowDecimals: number;
 
-	allowDecimals: number;
+  alternateGridColor: HIColor;
 
-	alternateGridColor: HIColor;
+  angle: number;
 
-	angle: number;
+  breaks: NSArray<HIBreaks>;
 
-	breaks: NSArray<HIBreaks>;
+  categories: NSArray<string>;
 
-	categories: NSArray<string>;
+  ceiling: number;
 
-	ceiling: number;
+  className: string;
 
-	className: string;
+  crosshair: HICrosshair;
 
-	crosshair: HICrosshair;
+  dateTimeLabelFormats: HIDateTimeLabelFormats;
 
-	dateTimeLabelFormats: HIDateTimeLabelFormats;
+  endOnTick: number;
 
-	endOnTick: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  floor: number;
 
-	floor: number;
+  gridLineColor: HIColor;
 
-	gridLineColor: HIColor;
+  gridLineDashStyle: string;
 
-	gridLineDashStyle: string;
+  gridLineInterpolation: string;
 
-	gridLineInterpolation: string;
+  gridLineWidth: number;
 
-	gridLineWidth: number;
+  gridZIndex: number;
 
-	gridZIndex: number;
+  height: any;
 
-	height: any;
+  id: string;
 
-	id: string;
+  labels: HILabels;
 
-	labels: HILabels;
+  left: any;
 
-	left: any;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  linkedTo: number;
 
-	linkedTo: number;
+  margin: number;
 
-	margin: number;
+  max: number;
 
-	max: number;
+  maxPadding: number;
 
-	maxPadding: number;
+  min: number;
 
-	min: number;
+  minPadding: number;
 
-	minPadding: number;
+  minRange: number;
 
-	minRange: number;
+  minTickInterval: number;
 
-	minTickInterval: number;
+  minorGridLineColor: HIColor;
 
-	minorGridLineColor: HIColor;
+  minorGridLineDashStyle: string;
 
-	minorGridLineDashStyle: string;
+  minorGridLineWidth: number;
 
-	minorGridLineWidth: number;
+  minorTickColor: HIColor;
 
-	minorTickColor: HIColor;
+  minorTickInterval: any;
 
-	minorTickInterval: any;
+  minorTickLength: number;
 
-	minorTickLength: number;
+  minorTickPosition: string;
 
-	minorTickPosition: string;
+  minorTickWidth: number;
 
-	minorTickWidth: number;
+  minorTicks: number;
 
-	minorTicks: number;
+  offset: number;
 
-	offset: number;
+  opposite: number;
 
-	opposite: number;
+  pane: number;
 
-	pane: number;
+  plotBands: NSArray<HIPlotBands>;
 
-	plotBands: NSArray<HIPlotBands>;
+  plotLines: NSArray<HIPlotLines>;
 
-	plotLines: NSArray<HIPlotLines>;
+  reversed: number;
 
-	reversed: number;
+  reversedStacks: number;
 
-	reversedStacks: number;
+  showEmpty: number;
 
-	showEmpty: number;
+  showFirstLabel: number;
 
-	showFirstLabel: number;
+  showLastLabel: number;
 
-	showLastLabel: number;
+  softMax: number;
 
-	softMax: number;
+  softMin: number;
 
-	softMin: number;
+  startOfWeek: number;
 
-	startOfWeek: number;
+  startOnTick: number;
 
-	startOnTick: number;
+  tickAmount: number;
 
-	tickAmount: number;
+  tickColor: HIColor;
 
-	tickColor: HIColor;
+  tickInterval: number;
 
-	tickInterval: number;
+  tickLength: number;
 
-	tickLength: number;
+  tickPixelInterval: number;
 
-	tickPixelInterval: number;
+  tickPosition: string;
 
-	tickPosition: string;
+  tickPositioner: HIFunction;
 
-	tickPositioner: HIFunction;
+  tickPositions: NSArray<number>;
 
-	tickPositions: NSArray<number>;
+  tickWidth: number;
 
-	tickWidth: number;
+  tickmarkPlacement: string;
 
-	tickmarkPlacement: string;
+  title: HITitle;
 
-	title: HITitle;
+  top: any;
 
-	top: any;
+  type: string;
 
-	type: string;
+  uniqueNames: number;
 
-	uniqueNames: number;
+  units: NSArray<NSArray<any>>;
 
-	units: NSArray<NSArray<any>>;
+  visible: number;
 
-	visible: number;
+  width: any;
 
-	width: any;
+  zoomEnabled: number;
 
-	zoomEnabled: number;
+  addPlotBand(options: HIPlotBands): void;
 
-	addPlotBand(options: HIPlotBands): void;
+  addPlotLine(options: HIPlotLines): void;
 
-	addPlotLine(options: HIPlotLines): void;
+  addTitle(display: number): void;
 
-	addTitle(display: number): void;
+  drawCrosshair(): void;
 
-	drawCrosshair(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  hideCrosshair(): void;
 
-	hideCrosshair(): void;
+  remove(): void;
 
-	remove(): void;
+  removePlotBand(id: string): void;
 
-	removePlotBand(id: string): void;
+  removePlotLine(id: string): void;
 
-	removePlotLine(id: string): void;
+  renderLine(): void;
 
-	renderLine(): void;
+  renderMinorTick(pos: number): void;
 
-	renderMinorTick(pos: number): void;
+  renderTickIndex(pos: number, i: number): void;
 
-	renderTickIndex(pos: number, i: number): void;
+  setAxisCategories(categories: NSArray<string> | string[]): void;
 
-	setAxisCategories(categories: NSArray<string> | string[]): void;
+  setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
 
-	setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
+  setAxisTitle(title: HITitle): void;
 
-	setAxisTitle(title: HITitle): void;
+  setAxisTitleRedraw(title: HITitle, redraw: number): void;
 
-	setAxisTitleRedraw(title: HITitle, redraw: number): void;
+  setExtremes(): void;
 
-	setExtremes(): void;
+  setExtremesNewMax(newMin: number, newMax: number): void;
 
-	setExtremesNewMax(newMin: number, newMax: number): void;
+  setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
 
-	setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
+  setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
+  setTickPositions(): void;
 
-	setTickPositions(): void;
+  update(options: HIXAxis): void;
 
-	update(options: HIXAxis): void;
-
-	updateRedraw(options: HIXAxis, redraw: number): void;
+  updateRedraw(options: HIXAxis, redraw: number): void;
 }
 
 declare class HIXrange extends HISeries {
+  static alloc(): HIXrange; // inherited from NSObject
 
-	static alloc(): HIXrange; // inherited from NSObject
+  static new(): HIXrange; // inherited from NSObject
 
-	static new(): HIXrange; // inherited from NSObject
+  borderColor: HIColor;
 
-	borderColor: HIColor;
+  borderRadius: number;
 
-	borderRadius: number;
+  borderWidth: number;
 
-	borderWidth: number;
+  centerInCategory: number;
 
-	centerInCategory: number;
+  colorByPoint: number;
 
-	colorByPoint: number;
+  colors: NSArray<HIColor>;
 
-	colors: NSArray<HIColor>;
+  groupPadding: number;
 
-	groupPadding: number;
+  groupZPadding: number;
 
-	groupZPadding: number;
+  grouping: number;
 
-	grouping: number;
+  maxPointWidth: number;
 
-	maxPointWidth: number;
+  minPointLength: number;
 
-	minPointLength: number;
+  partialFill: HIPartialFill;
 
-	partialFill: HIPartialFill;
+  pointPadding: number;
 
-	pointPadding: number;
-
-	pointWidth: number;
+  pointWidth: number;
 }
 
 declare class HIYAxis extends HIChartsJSONSerializable {
+  static alloc(): HIYAxis; // inherited from NSObject
 
-	static alloc(): HIYAxis; // inherited from NSObject
+  static new(): HIYAxis; // inherited from NSObject
 
-	static new(): HIYAxis; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  alignTicks: number;
 
-	alignTicks: number;
+  allowDecimals: number;
 
-	allowDecimals: number;
+  alternateGridColor: HIColor;
 
-	alternateGridColor: HIColor;
+  angle: number;
 
-	angle: number;
+  breaks: NSArray<HIBreaks>;
 
-	breaks: NSArray<HIBreaks>;
+  categories: NSArray<string>;
 
-	categories: NSArray<string>;
+  ceiling: number;
 
-	ceiling: number;
+  className: string;
 
-	className: string;
+  crosshair: HICrosshair;
 
-	crosshair: HICrosshair;
+  dateTimeLabelFormats: HIDateTimeLabelFormats;
 
-	dateTimeLabelFormats: HIDateTimeLabelFormats;
+  endOnTick: number;
 
-	endOnTick: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  floor: number;
 
-	floor: number;
+  gridLineColor: HIColor;
 
-	gridLineColor: HIColor;
+  gridLineDashStyle: string;
 
-	gridLineDashStyle: string;
+  gridLineInterpolation: string;
 
-	gridLineInterpolation: string;
+  gridLineWidth: number;
 
-	gridLineWidth: number;
+  gridZIndex: number;
 
-	gridZIndex: number;
+  height: any;
 
-	height: any;
+  id: string;
 
-	id: string;
+  labels: HILabels;
 
-	labels: HILabels;
+  left: any;
 
-	left: any;
+  lineColor: HIColor;
 
-	lineColor: HIColor;
+  lineWidth: number;
 
-	lineWidth: number;
+  linkedTo: number;
 
-	linkedTo: number;
+  margin: number;
 
-	margin: number;
+  max: number;
 
-	max: number;
+  maxColor: HIColor;
 
-	maxColor: HIColor;
+  maxPadding: number;
 
-	maxPadding: number;
+  min: number;
 
-	min: number;
+  minColor: HIColor;
 
-	minColor: HIColor;
+  minPadding: number;
 
-	minPadding: number;
+  minRange: number;
 
-	minRange: number;
+  minTickInterval: number;
 
-	minTickInterval: number;
+  minorGridLineColor: HIColor;
 
-	minorGridLineColor: HIColor;
+  minorGridLineDashStyle: string;
 
-	minorGridLineDashStyle: string;
+  minorGridLineWidth: number;
 
-	minorGridLineWidth: number;
+  minorTickColor: HIColor;
 
-	minorTickColor: HIColor;
+  minorTickInterval: any;
 
-	minorTickInterval: any;
+  minorTickLength: number;
 
-	minorTickLength: number;
+  minorTickPosition: string;
 
-	minorTickPosition: string;
+  minorTickWidth: number;
 
-	minorTickWidth: number;
+  minorTicks: number;
 
-	minorTicks: number;
+  offset: number;
 
-	offset: number;
+  opposite: number;
 
-	opposite: number;
+  pane: number;
 
-	pane: number;
+  plotBands: NSArray<HIPlotBands>;
 
-	plotBands: NSArray<HIPlotBands>;
+  plotLines: NSArray<HIPlotLines>;
 
-	plotLines: NSArray<HIPlotLines>;
+  reversed: number;
 
-	reversed: number;
+  reversedStacks: number;
 
-	reversedStacks: number;
+  showEmpty: number;
 
-	showEmpty: number;
+  showFirstLabel: number;
 
-	showFirstLabel: number;
+  showLastLabel: number;
 
-	showLastLabel: number;
+  softMax: number;
 
-	softMax: number;
+  softMin: number;
 
-	softMin: number;
+  stackLabels: HIStackLabels;
 
-	stackLabels: HIStackLabels;
+  startOfWeek: number;
 
-	startOfWeek: number;
+  startOnTick: number;
 
-	startOnTick: number;
+  stops: NSArray<HIGradientColorStopObject>;
 
-	stops: NSArray<HIGradientColorStopObject>;
+  tickAmount: number;
 
-	tickAmount: number;
+  tickColor: HIColor;
 
-	tickColor: HIColor;
+  tickInterval: number;
 
-	tickInterval: number;
+  tickLength: number;
 
-	tickLength: number;
+  tickPixelInterval: number;
 
-	tickPixelInterval: number;
+  tickPosition: string;
 
-	tickPosition: string;
+  tickPositioner: HIFunction;
 
-	tickPositioner: HIFunction;
+  tickPositions: NSArray<number>;
 
-	tickPositions: NSArray<number>;
+  tickWidth: number;
 
-	tickWidth: number;
+  tickmarkPlacement: string;
 
-	tickmarkPlacement: string;
+  title: HITitle;
 
-	title: HITitle;
+  tooltipValueFormat: string;
 
-	tooltipValueFormat: string;
+  top: any;
 
-	top: any;
+  type: string;
 
-	type: string;
+  uniqueNames: number;
 
-	uniqueNames: number;
+  units: NSArray<NSArray<any>>;
 
-	units: NSArray<NSArray<any>>;
+  visible: number;
 
-	visible: number;
+  width: any;
 
-	width: any;
+  zoomEnabled: number;
 
-	zoomEnabled: number;
+  addPlotBand(options: HIPlotBands): void;
 
-	addPlotBand(options: HIPlotBands): void;
+  addPlotLine(options: HIPlotLines): void;
 
-	addPlotLine(options: HIPlotLines): void;
+  addTitle(display: number): void;
 
-	addTitle(display: number): void;
+  drawCrosshair(): void;
 
-	drawCrosshair(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  hideCrosshair(): void;
 
-	hideCrosshair(): void;
+  remove(): void;
 
-	remove(): void;
+  removePlotBand(id: string): void;
 
-	removePlotBand(id: string): void;
+  removePlotLine(id: string): void;
 
-	removePlotLine(id: string): void;
+  renderLine(): void;
 
-	renderLine(): void;
+  renderMinorTick(pos: number): void;
 
-	renderMinorTick(pos: number): void;
+  renderTickIndex(pos: number, i: number): void;
 
-	renderTickIndex(pos: number, i: number): void;
+  setAxisCategories(categories: NSArray<string> | string[]): void;
 
-	setAxisCategories(categories: NSArray<string> | string[]): void;
+  setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
 
-	setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
+  setAxisTitle(title: HITitle): void;
 
-	setAxisTitle(title: HITitle): void;
+  setAxisTitleRedraw(title: HITitle, redraw: number): void;
 
-	setAxisTitleRedraw(title: HITitle, redraw: number): void;
+  setExtremes(): void;
 
-	setExtremes(): void;
+  setExtremesNewMax(newMin: number, newMax: number): void;
 
-	setExtremesNewMax(newMin: number, newMax: number): void;
+  setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
 
-	setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
+  setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
+  setTickPositions(): void;
 
-	setTickPositions(): void;
+  update(options: HIYAxis): void;
 
-	update(options: HIYAxis): void;
-
-	updateRedraw(options: HIYAxis, redraw: number): void;
+  updateRedraw(options: HIYAxis, redraw: number): void;
 }
 
 declare class HIYear extends HIChartsJSONSerializable {
+  static alloc(): HIYear; // inherited from NSObject
 
-	static alloc(): HIYear; // inherited from NSObject
+  static new(): HIYear; // inherited from NSObject
 
-	static new(): HIYear; // inherited from NSObject
+  main: string;
 
-	main: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIZAxis extends HIChartsJSONSerializable {
+  static alloc(): HIZAxis; // inherited from NSObject
 
-	static alloc(): HIZAxis; // inherited from NSObject
+  static new(): HIZAxis; // inherited from NSObject
 
-	static new(): HIZAxis; // inherited from NSObject
+  accessibility: HIAccessibility;
 
-	accessibility: HIAccessibility;
+  alignTicks: number;
 
-	alignTicks: number;
+  allowDecimals: number;
 
-	allowDecimals: number;
+  alternateGridColor: HIColor;
 
-	alternateGridColor: HIColor;
+  angle: number;
 
-	angle: number;
+  categories: NSArray<string>;
 
-	categories: NSArray<string>;
+  ceiling: number;
 
-	ceiling: number;
+  className: string;
 
-	className: string;
+  dateTimeLabelFormats: HIDateTimeLabelFormats;
 
-	dateTimeLabelFormats: HIDateTimeLabelFormats;
+  endOnTick: number;
 
-	endOnTick: number;
+  events: HIEvents;
 
-	events: HIEvents;
+  floor: number;
 
-	floor: number;
+  gridLineColor: HIColor;
 
-	gridLineColor: HIColor;
+  gridLineDashStyle: string;
 
-	gridLineDashStyle: string;
+  gridLineInterpolation: string;
 
-	gridLineInterpolation: string;
+  gridLineWidth: number;
 
-	gridLineWidth: number;
+  gridZIndex: number;
 
-	gridZIndex: number;
+  id: string;
 
-	id: string;
+  labels: HILabels;
 
-	labels: HILabels;
+  linkedTo: number;
 
-	linkedTo: number;
+  margin: number;
 
-	margin: number;
+  max: number;
 
-	max: number;
+  maxPadding: number;
 
-	maxPadding: number;
+  min: number;
 
-	min: number;
+  minPadding: number;
 
-	minPadding: number;
+  minRange: number;
 
-	minRange: number;
+  minTickInterval: number;
 
-	minTickInterval: number;
+  minorGridLineColor: HIColor;
 
-	minorGridLineColor: HIColor;
+  minorGridLineDashStyle: string;
 
-	minorGridLineDashStyle: string;
+  minorGridLineWidth: number;
 
-	minorGridLineWidth: number;
+  minorTickColor: HIColor;
 
-	minorTickColor: HIColor;
+  minorTickInterval: any;
 
-	minorTickInterval: any;
+  minorTickLength: number;
 
-	minorTickLength: number;
+  minorTickPosition: string;
 
-	minorTickPosition: string;
+  minorTickWidth: number;
 
-	minorTickWidth: number;
+  minorTicks: number;
 
-	minorTicks: number;
+  offset: number;
 
-	offset: number;
+  opposite: number;
 
-	opposite: number;
+  pane: number;
 
-	pane: number;
+  plotBands: NSArray<HIPlotBands>;
 
-	plotBands: NSArray<HIPlotBands>;
+  plotLines: NSArray<HIPlotLines>;
 
-	plotLines: NSArray<HIPlotLines>;
+  reversed: number;
 
-	reversed: number;
+  reversedStacks: number;
 
-	reversedStacks: number;
+  showFirstLabel: number;
 
-	showFirstLabel: number;
+  showLastLabel: number;
 
-	showLastLabel: number;
+  softMax: number;
 
-	softMax: number;
+  softMin: number;
 
-	softMin: number;
+  startOfWeek: number;
 
-	startOfWeek: number;
+  startOnTick: number;
 
-	startOnTick: number;
+  tickAmount: number;
 
-	tickAmount: number;
+  tickColor: HIColor;
 
-	tickColor: HIColor;
+  tickInterval: number;
 
-	tickInterval: number;
+  tickLength: number;
 
-	tickLength: number;
+  tickPixelInterval: number;
 
-	tickPixelInterval: number;
+  tickPosition: string;
 
-	tickPosition: string;
+  tickPositioner: HIFunction;
 
-	tickPositioner: HIFunction;
+  tickPositions: NSArray<number>;
 
-	tickPositions: NSArray<number>;
+  tickWidth: number;
 
-	tickWidth: number;
+  tickmarkPlacement: string;
 
-	tickmarkPlacement: string;
+  title: HITitle;
 
-	title: HITitle;
+  type: string;
 
-	type: string;
+  uniqueNames: number;
 
-	uniqueNames: number;
+  units: NSArray<NSArray<any>>;
 
-	units: NSArray<NSArray<any>>;
+  visible: number;
 
-	visible: number;
+  zoomEnabled: number;
 
-	zoomEnabled: number;
+  addPlotBand(options: HIPlotBands): void;
 
-	addPlotBand(options: HIPlotBands): void;
+  addPlotLine(options: HIPlotLines): void;
 
-	addPlotLine(options: HIPlotLines): void;
+  addTitle(display: number): void;
 
-	addTitle(display: number): void;
+  drawCrosshair(): void;
 
-	drawCrosshair(): void;
+  getParams(): NSDictionary<any, any>;
 
-	getParams(): NSDictionary<any, any>;
+  hideCrosshair(): void;
 
-	hideCrosshair(): void;
+  remove(): void;
 
-	remove(): void;
+  removePlotBand(id: string): void;
 
-	removePlotBand(id: string): void;
+  removePlotLine(id: string): void;
 
-	removePlotLine(id: string): void;
+  renderLine(): void;
 
-	renderLine(): void;
+  renderMinorTick(pos: number): void;
 
-	renderMinorTick(pos: number): void;
+  renderTickIndex(pos: number, i: number): void;
 
-	renderTickIndex(pos: number, i: number): void;
+  setAxisCategories(categories: NSArray<string> | string[]): void;
 
-	setAxisCategories(categories: NSArray<string> | string[]): void;
+  setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
 
-	setAxisCategoriesRedraw(categories: NSArray<string> | string[], redraw: number): void;
+  setAxisTitle(title: HITitle): void;
 
-	setAxisTitle(title: HITitle): void;
+  setAxisTitleRedraw(title: HITitle, redraw: number): void;
 
-	setAxisTitleRedraw(title: HITitle, redraw: number): void;
+  setExtremes(): void;
 
-	setExtremes(): void;
+  setExtremesNewMax(newMin: number, newMax: number): void;
 
-	setExtremesNewMax(newMin: number, newMax: number): void;
+  setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
 
-	setExtremesNewMaxRedraw(newMin: number, newMax: number, redraw: number): void;
+  setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
 
-	setExtremesNewMaxRedrawAnimation(newMin: number, newMax: number, redraw: number, animation: HIAnimationOptionsObject): void;
+  setTickPositions(): void;
 
-	setTickPositions(): void;
+  update(options: HIZAxis): void;
 
-	update(options: HIZAxis): void;
-
-	updateRedraw(options: HIZAxis, redraw: number): void;
+  updateRedraw(options: HIZAxis, redraw: number): void;
 }
 
 declare class HIZones extends HIChartsJSONSerializable {
+  static alloc(): HIZones; // inherited from NSObject
 
-	static alloc(): HIZones; // inherited from NSObject
+  static new(): HIZones; // inherited from NSObject
 
-	static new(): HIZones; // inherited from NSObject
+  className: string;
 
-	className: string;
+  color: HIColor;
 
-	color: HIColor;
+  dashStyle: string;
 
-	dashStyle: string;
+  fillColor: HIColor;
 
-	fillColor: HIColor;
+  from: number;
 
-	from: number;
+  marker: HIMarker;
 
-	marker: HIMarker;
+  to: number;
 
-	to: number;
+  value: number;
 
-	value: number;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare class HIZoom extends HIChartsJSONSerializable {
+  static alloc(): HIZoom; // inherited from NSObject
 
-	static alloc(): HIZoom; // inherited from NSObject
+  static new(): HIZoom; // inherited from NSObject
 
-	static new(): HIZoom; // inherited from NSObject
+  mapZoomIn: string;
 
-	mapZoomIn: string;
+  mapZoomOut: string;
 
-	mapZoomOut: string;
+  resetZoomButton: string;
 
-	resetZoomButton: string;
-
-	getParams(): NSDictionary<any, any>;
+  getParams(): NSDictionary<any, any>;
 }
 
 declare var HighchartsVersionNumber: number;

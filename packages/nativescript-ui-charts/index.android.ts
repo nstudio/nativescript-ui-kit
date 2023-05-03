@@ -13,7 +13,7 @@ export class UIChartsView extends UIChartsViewBase {
     super.onLoaded();
     this.customLayoutChangeListener = new android.view.View.OnLayoutChangeListener({
       onLayoutChange: (v) => {
-        var w = this.nativeView.owner.get();
+        const w = this.nativeView.owner.get();
         if (w && this.nativeView.getOptions()) {
           const newWidth = w.getActualSize().width;
           const newHeight = w.getActualSize().height;
@@ -28,7 +28,7 @@ export class UIChartsView extends UIChartsViewBase {
             }
             this.chartHeight = newHeight;
             this.chartWidth = newWidth;
-            var hiOptions = optionsHandler(this.options);
+            const hiOptions = optionsHandler(this.options);
             this.nativeView.update(hiOptions);
           }
         }
@@ -58,6 +58,38 @@ export class UIChartsView extends UIChartsViewBase {
     (<any>this.nativeView).generateDefaultLayoutParams();
     (<any>this)._orientationHandler = this.onOrientationChange.bind(this);
     Application.on('orientationChanged', (<any>this)._orientationHandler);
+
+    // Enable huge performance boost on Android devices
+    const layout = <android.widget.RelativeLayout>this.nativeViewProtected;
+    const webView = <android.webkit.WebView>layout.getChildAt(0);
+    webView.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null);
+
+    // ensure chart does not move around when dragging on visuals while nested in a ScrollView
+    webView.setOnTouchListener(
+      new android.view.View.OnTouchListener({
+        onTouch(view: android.view.View, event: android.view.MotionEvent): boolean {
+          let scrollView: org.nativescript.widgets.VerticalScrollView;
+          while (!scrollView && view) {
+            view = <any>view.getParent();
+            if (view instanceof org.nativescript.widgets.VerticalScrollView) {
+              scrollView = <org.nativescript.widgets.VerticalScrollView>view;
+            }
+          }
+          if (scrollView) {
+            scrollView.requestDisallowInterceptTouchEvent(true);
+            const action = event.getActionMasked();
+            switch (action) {
+              case android.view.MotionEvent.ACTION_UP:
+                scrollView.requestDisallowInterceptTouchEvent(false);
+                break;
+            }
+          }
+
+          return false;
+        },
+      })
+    );
+
     super.initNativeView();
   }
 
@@ -78,8 +110,8 @@ export class UIChartsView extends UIChartsViewBase {
 
   public setOptions(opts: any) {
     this.options = opts;
-    const hiOptions = optionsHandler(this.options);
     if (this.nativeView) {
+      const hiOptions = optionsHandler(this.options);
       this.nativeView.setOptions(hiOptions);
       this._chartInitialized = true;
       this.nativeView.reload();
@@ -88,9 +120,10 @@ export class UIChartsView extends UIChartsViewBase {
 
   public updateOptions(opts) {
     this.options = opts;
-    const hiOptions = optionsHandler(this.options);
     if (this.nativeView) {
-      this.nativeView.update(hiOptions);
+      const hiOptions = optionsHandler(this.options);
+      // this.nativeView.setOptions(hiOptions);
+      this.nativeView.update(hiOptions, true, true);
     }
   }
 
@@ -103,15 +136,15 @@ export class UIChartsView extends UIChartsViewBase {
 
   public setExtremes(newMin: any, newMax: any, xAxisIndex = 0) {
     if (this.nativeView) {
-        const opts = this.nativeView.getOptions() as com.highsoft.highcharts.common.hichartsclasses.HIOptions;
-        if (opts) {
-          const xaxisArr = opts.getXAxis();
-          const xaxis = xaxisArr.get(xAxisIndex);
-          xaxis.setMin(new java.lang.Long(newMin));
-          xaxis.setMax(new java.lang.Long(newMax));
-          this.nativeView.zoomOut();
-          this.nativeView.update(opts);
-        }
+      const opts = this.nativeView.getOptions() as com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+      if (opts) {
+        const xaxisArr = opts.getXAxis();
+        const xaxis = xaxisArr.get(xAxisIndex);
+        xaxis.setMin(new java.lang.Long(newMin));
+        xaxis.setMax(new java.lang.Long(newMax));
+        this.nativeView.zoomOut();
+        this.nativeView.update(opts);
+      }
     }
   }
 
