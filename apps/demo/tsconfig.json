@@ -7,7 +7,8 @@
       "~/*": ["src/*"],
       "@demo/shared": ["../../tools/demo/index.ts"],
       "@nstudio/nativescript-label-marquee": ["../../packages/nativescript-label-marquee/index.d.ts"],
-      "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"]
+      "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"],
+      "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"]
     }
   }
 }

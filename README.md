@@ -1,5 +1,6 @@
 - [@nstudio/nativescript-coachmarks](packages/nativescript-coachmarks/README.md)
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
+- [nativescript-fonticon](packages/nativescript-fonticon/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 
 # How to use?

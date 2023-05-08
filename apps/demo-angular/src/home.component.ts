@@ -10,6 +10,9 @@ export class HomeComponent {
 		name: 'nativescript-coachmarks'
 	},
 	{
+		name: 'nativescript-fonticon'
+	},
+	{
 		name: 'nativescript-label-marquee'
 	},
 	{

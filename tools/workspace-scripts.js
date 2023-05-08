@@ -82,6 +82,13 @@ module.exports = {
 					description: '@nstudio/nativescript-coachmarks: Build',
 				},
 			},
+			// nativescript-fonticon
+			'nativescript-fonticon': {
+				build: {
+					script: 'nx run nativescript-fonticon:build.all',
+					description: 'nativescript-fonticon: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -103,6 +110,10 @@ module.exports = {
       'nativescript-coachmarks': {
 				script: 'nx run nativescript-coachmarks:focus',
 				description: 'Focus on @nstudio/nativescript-coachmarks',
+			},
+			'nativescript-fonticon': {
+				script: 'nx run nativescript-fonticon:focus',
+				description: 'Focus on nativescript-fonticon',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
