@@ -6,7 +6,9 @@
 npm install nativescript-fonticon --save
 ```
 
-**NOTE:** If you were using v7 or lower, you were using `TNS` prefix naming whereas v8+ drops the prefix since no longer needed. Also `nativescript-fonticon` is now combined here to be accessibly like other packages via `nativescript-fonticon/angular` - See usage examples below.
+**NOTE:** 
+- v8+ now combines `nativescript-fonticon` and `nativescript-ngx-fonticon` to be usable with simpler consistent packaging: For example, if using Angular, can import from `nativescript-fonticon/angular` - See usage examples below.
+- If you were using v7 or lower, you were using `TNS` prefix naming which is no longer used.
 
 ### The Problem
 
