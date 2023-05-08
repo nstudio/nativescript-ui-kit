@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-ble",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-ble",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-ble",
+        "tsConfig": "packages/nativescript-ble/tsconfig.json",
+        "packageJson": "packages/nativescript-ble/package.json",
+        "main": "packages/nativescript-ble/index.d.ts",
+        "assets": [
+          "packages/nativescript-ble/*.md",
+          "packages/nativescript-ble/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-ble/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-ble"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-ble"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-ble"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-ble/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

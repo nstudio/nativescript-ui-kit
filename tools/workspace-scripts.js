@@ -82,6 +82,13 @@ module.exports = {
 					description: '@nstudio/nativescript-coachmarks: Build',
 				},
 			},
+			// @nstudio/nativescript-ble
+			'nativescript-ble': {
+				build: {
+					script: 'nx run nativescript-ble:build.all',
+					description: '@nstudio/nativescript-ble: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -103,6 +110,10 @@ module.exports = {
       'nativescript-coachmarks': {
 				script: 'nx run nativescript-coachmarks:focus',
 				description: 'Focus on @nstudio/nativescript-coachmarks',
+			},
+			'nativescript-ble': {
+				script: 'nx run nativescript-ble:focus',
+				description: 'Focus on @nstudio/nativescript-ble',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

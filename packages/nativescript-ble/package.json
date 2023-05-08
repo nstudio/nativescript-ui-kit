@@ -1,0 +1,66 @@
+{
+  "name": "@nstudio/nativescript-ble",
+  "version": "3.1.15",
+  "description": "Connect to and interact with Bluetooth LE peripherals.",
+  "main": "index",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "ios": "6.0.0",
+      "android": "6.0.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstudio/nativescript-ui-kit.git"
+  },
+  "keywords": [
+    "ecosystem:NativeScript",
+    "NativeScript",
+    "iOS",
+    "Android",
+    "BLE",
+    "Bluetooth",
+    "Bluetooth LE",
+    "Bluetooth Smart",
+    "Bluetooth Low Energy",
+    "Angular"
+  ],
+  "author": {
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Brad Martin",
+      "email": "bmartin@nstudio.io",
+      "url": "https://github.com/bradmartin"
+    },
+    {
+      "name": "Martin Guillon",
+      "email": "martin.guillon@akyasl.fr"
+    },
+    {
+      "name": "Ryan Pendergast",
+      "email": "ryan.pendergast@gmail.com",
+      "url": "https://rynop.com"
+    },
+    {
+      "name": "nstudio",
+      "email": "oss@nstudio.io"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/nstudio/nativescript-ui-kit",
+  "readmeFilename": "README.md",
+  "bootstrapper": "@nativescript/plugin-seed",
+  "dependencies": {
+    "@nativescript-community/arraybuffers": "^1.1.1",
+    "@nativescript-community/observable": "^2.0.11",
+    "make-error": "1.3.6",
+    "p-queue": "~7.3.0"
+  }
+}
