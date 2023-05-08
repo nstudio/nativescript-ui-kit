@@ -86,7 +86,6 @@ export class FontIconFactory {
         let value = cleanValue(pair[1]);
         for (let key of keys) {
           key = key.trim().slice(1).split(':before')[0];
-          console.log('key:', key)
           FontIconFactory.css[FontIconFactory._currentName][key] = String.fromCharCode(parseInt(value.substring(2), 16));
           if (FontIconFactory.debug) {
             mappedCss += `${key}: ${value}\n`;
