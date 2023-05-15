@@ -5,7 +5,9 @@
       "~/*": ["src/*"],
       "@demo/shared": ["tools/demo/index.ts"],
       "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
-      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"]
+      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
+      "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
+      "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"]
     }
   },
   "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],

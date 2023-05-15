@@ -1,13 +1,8 @@
-# @nstudio/\* plugins
-
-```
-npm run setup
-npm start
-```
-
+- [@nstudio/nativescript-coachmarks](packages/nativescript-coachmarks/README.md)
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
 - [@nstudio/nativescript-rive](packages/nativescript-rive/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
+- [nativescript-fonticon](packages/nativescript-fonticon/README.md)
 
 # How to use?
 

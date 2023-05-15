@@ -9,7 +9,11 @@
     "noEmitHelpers": true,
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["ESNext", "dom"],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "types": ["node"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -21,10 +25,22 @@
     ],
     "paths": {
       "@demo/shared": ["tools/demo/index.ts"],
+      "@nstudio/nativescript-coachmarks": [
+        "packages/nativescript-coachmarks/index.d.ts"
+      ],
       "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
       "@nstudio/nativescript-rive": ["packages/nativescript-rive/index.d.ts"],
-      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"]
+      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
+      "nativescript-fonticon": [
+        "packages/nativescript-fonticon/index.ts"
+      ],
+      "nativescript-fonticon/angular": [
+        "packages/nativescript-fonticon/angular/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -80,6 +80,20 @@ module.exports = {
 				build: {
 					script: 'nx run nativescript-rive:build.all',
 					description: '@nstudio/nativescript-rive: Build',
+        }
+      },
+      // @nstudio/nativescript-coachmarks
+			'nativescript-coachmarks': {
+				build: {
+					script: 'nx run nativescript-coachmarks:build.all',
+					description: '@nstudio/nativescript-coachmarks: Build',
+				},
+			},
+			// nativescript-fonticon
+			'nativescript-fonticon': {
+				build: {
+					script: 'nx run nativescript-fonticon:build.all',
+					description: 'nativescript-fonticon: Build',
 				},
 			},
 			'build-all': {
@@ -103,6 +117,14 @@ module.exports = {
       'nativescript-rive': {
 				script: 'nx run nativescript-rive:focus',
 				description: 'Focus on @nstudio/nativescript-rive',
+      },
+      'nativescript-coachmarks': {
+				script: 'nx run nativescript-coachmarks:focus',
+				description: 'Focus on @nstudio/nativescript-coachmarks',
+			},
+			'nativescript-fonticon': {
+				script: 'nx run nativescript-fonticon:focus',
+				description: 'Focus on nativescript-fonticon',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
