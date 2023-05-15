@@ -1,14 +1,16 @@
 import { Application } from '@nativescript/core';
-import { FontIconFactory, fonticon } from 'nativescript-fonticon';
-import { fontAwesome } from './fontawesome';
-import { ionIcons } from './ionicons';
 
-FontIconFactory.debug = true;
-FontIconFactory.paths = {
-    fa: fontAwesome,
-    ion: ionIcons,
-};
-FontIconFactory.loadCss();
+// uncommennt to test fonticon:
+// import { fontAwesome } from './fontawesome';
+// import { ionIcons } from './ionicons';
+// import { FontIconFactory, fonticon } from 'nativescript-fonticon';
 
-Application.setResources({ fonticon });
+// FontIconFactory.debug = true;
+// FontIconFactory.paths = {
+//     fa: fontAwesome,
+//     ion: ionIcons,
+// };
+// FontIconFactory.loadCss();
+// Application.setResources({ fonticon });
+
 Application.run({ moduleName: 'app-root' });

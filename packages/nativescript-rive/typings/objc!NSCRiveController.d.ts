@@ -19,13 +19,13 @@ declare class NSCRiveController extends UIViewController {
 
 	setDelegateWithDelegate(delegate: RiveStateMachineDelegate): void;
 
-	setFit(fit: RiveFit): void;
+	setFit(fit: number): void;
 
 	setInputWithNameValue(name: string, value: boolean): void;
 
-	setModelResourceWithNameFit(name: string, fit: RiveFit): void;
+	setModelResourceWithNameFit(name: string, fit: number): void;
 
-	setModelWithFileFit(file: RiveFile, fit: RiveFit): void;
+	setModelWithFileFit(file: RiveFile, fit: number): void;
 
 	stop(): void;
 

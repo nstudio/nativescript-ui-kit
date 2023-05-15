@@ -5,13 +5,13 @@ import RiveRuntime
     @objc public var riveViewModel: RiveViewModel?
     @objc public var riveView: RiveView?
 
-    @objc public func setModelResource(name: String, fit: RiveFit) {        
+    @objc public func setModelResource(name: String, fit: NSNumber) {
         riveViewModel = RiveViewModel(fileName: name, autoPlay: false)
         setFit(fit)
         addRiveView()
     }
     
-    @objc public func setModel(file: RiveFile, fit: RiveFit) {
+    @objc public func setModel(file: RiveFile, fit: NSNumber) {
         riveViewModel = RiveViewModel(RiveModel(riveFile: file), autoPlay: false)
         setFit(fit)
         addRiveView()
@@ -92,9 +92,35 @@ import RiveRuntime
         }
     }
     
-    @objc public func setFit(_ fit: RiveFit) {
+    @objc public func setFit(_ fit: NSNumber) {
         if (riveViewModel != nil) {
-            riveViewModel?.fit = fit
+            switch (fit) {
+            case 0:
+                riveViewModel?.fit = .fill
+                break;
+            case 1:
+                riveViewModel?.fit = .contain
+                break;
+            case 2:
+                riveViewModel?.fit = .cover
+                break;
+            case 3:
+                riveViewModel?.fit = .fitWidth
+                break;
+            case 4:
+                riveViewModel?.fit = .fitHeight
+                break;
+            case 5:
+                riveViewModel?.fit = .noFit
+                break;
+            case 6:
+                riveViewModel?.fit = .scaleDown
+                break;
+            default:
+                riveViewModel?.fit = .contain
+                break;
+            }
+           
         }
     }
 }
