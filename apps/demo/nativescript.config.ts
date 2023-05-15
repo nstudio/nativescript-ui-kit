@@ -13,7 +13,7 @@ export default {
         name: 'RiveRuntime',
         libs: ['RiveRuntime'],
         repositoryURL: 'https://github.com/rive-app/rive-ios.git',
-        version: '3.1.8',
+        version: '3.1.12',
       },
     ],
   },
