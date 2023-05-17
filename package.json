@@ -33,11 +33,17 @@
     "@ngtools/webpack": "^15.0.0",
     "@types/react": "^16.14.34",
     "husky": "^8.0.0",
+    "nativescript-vue": "~2.9.0",
+    "nativescript-vue-template-compiler": "~2.9.0",
     "ng-packagr": "^15.0.0",
+    "react-nativescript": "4.0.0",
     "rxjs": "~7.8.0",
+    "svelte": "3.55.0",
+    "svelte-native": "~1.0.5",
     "typescript": "~4.9.0",
     "zone.js": "~0.13.0",
-    "@angular-devkit/build-angular": "^15.0.0"
+    "@angular-devkit/build-angular": "^15.0.0",
+    "vue": "~2.6.14"
   },
   "lint-staged": {
     "**/*.{js,ts,scss,json,html}": [
