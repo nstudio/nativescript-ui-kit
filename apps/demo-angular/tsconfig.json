@@ -7,7 +7,9 @@
       "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
       "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
       "@nstudio/ui-collectionview": ["packages/ui-collectionview/index.ios.ts"],
-      "@nstudio/ui-collectionview/angular": ["packages/ui-collectionview/angular/index.ts"]
+      "@nstudio/ui-collectionview/angular": ["packages/ui-collectionview/angular/index.ts"],
+      "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
+      "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"]
     }
   },
   "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],

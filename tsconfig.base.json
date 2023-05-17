@@ -13,8 +13,7 @@
       "ESNext",
       "dom"
     ],
-    "types": ["node", "svelte", "vue", "svelte-native"],
-    "jsx": "react",
+    "types": ["node"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -28,7 +27,9 @@
       "@demo/shared": [
         "tools/demo/index.ts"
       ],
-      "@nstudio/nativescript-coachmarks": ["packages/nativescript-coachmarks/index.d.ts"],
+      "@nstudio/nativescript-coachmarks": [
+        "packages/nativescript-coachmarks/index.d.ts"
+      ],
       "@nstudio/nativescript-label-marquee": [
         "packages/nativescript-label-marquee/index.d.ts"
       ],
@@ -40,6 +41,12 @@
       ],
       "@nstudio/ui-collectionview/angular": [
         "packages/ui-collectionview/angular/index.ts"
+      ],
+      "nativescript-fonticon": [
+        "packages/nativescript-fonticon/index.ts"
+      ],
+      "nativescript-fonticon/angular": [
+        "packages/nativescript-fonticon/angular/index.ts"
       ]
     }
   },

@@ -1,0 +1,44 @@
+<ActionBar title="nativescript-fonticon" class="action-bar"> </ActionBar>
+<StackLayout class="p-20">
+  <ScrollView class="h-full">
+    <StackLayout>
+      <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+        <Label row="0" col="0" class="fa" [text]="firstIcon$ | async | fonticonPure"></Label>
+        <Label row="0" col="1" class="fa" [text]="'fa-music' | fonticon"></Label>
+        <Label row="1" col="0" class="fa" [text]="'fa-search' | fonticon"></Label>
+        <Label row="1" col="1" class="fa" [text]="'fa-heart' | fonticon"></Label>
+        <Label row="2" col="0" class="fa" [text]="'fa-star' | fonticon"></Label>
+        <Label row="2" col="1" class="fa" [text]="'fa-user' | fonticon"></Label>
+        <Label row="3" col="0" class="fa" [text]="'fa-film' | fonticon"></Label>
+        <Label row="3" col="1" class="fa" [text]="'fa-check' | fonticon"></Label>
+        <Label row="4" col="0" class="fa" [text]="'fa-power-off' | fonticon"></Label>
+        <Label row="4" col="1" class="fa" [text]="'fa-signal' | fonticon"></Label>
+        <Label row="5" col="0" class="fa" [text]="'fa-gear' | fonticon"></Label>
+        <Label row="5" col="1" class="fa" [text]="'fa-bluetooth' | fonticon"></Label>
+        <Label row="6" col="0" class="fa" [text]="'fa-refresh' | fonticon"></Label>
+        <Label row="6" col="1" class="fa" [text]="'fa-lock' | fonticon"></Label>
+        <Label row="7" col="0" class="fa" [text]="'fa-flag' | fonticon"></Label>
+        <Label row="7" col="1" class="fa" [text]="'fa-headphones' | fonticon"></Label>
+      </GridLayout>
+      <ContentView height="1" class="m-y-10 c-bg-grey w-full"></ContentView>
+      <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+        <Label row="0" col="0" class="ion" [text]="firstIonIcon$ | async | fonticonPure"></Label>
+        <Label row="0" col="1" class="ion" [text]="'ion-ios-code' | fonticon"></Label>
+        <Label row="1" col="0" class="ion" [text]="'ion-ios-crop' | fonticon"></Label>
+        <Label row="1" col="1" class="ion" [text]="'ion-ios-document' | fonticon"></Label>
+        <Label row="2" col="0" class="ion" [text]="'ion-ios-earth' | fonticon"></Label>
+        <Label row="2" col="1" class="ion" [text]="'ion-ios-edit' | fonticon"></Label>
+        <Label row="3" col="0" class="ion" [text]="'ion-ios-flag' | fonticon"></Label>
+        <Label row="3" col="1" class="ion" [text]="'ion-ios-cafe' | fonticon"></Label>
+        <Label row="4" col="0" class="ion" [text]="'ion-ios-grid' | fonticon"></Label>
+        <Label row="4" col="1" class="ion" [text]="'ion-ios-hammer' | fonticon"></Label>
+        <Label row="5" col="0" class="ion" [text]="'ion-ios-musical-note' | fonticon"></Label>
+        <Label row="5" col="1" class="ion" [text]="'ion-ios-heart' | fonticon"></Label>
+        <Label row="6" col="0" class="ion" [text]="'ion-ios-home' | fonticon"></Label>
+        <Label row="6" col="1" class="ion" [text]="'ion-ios-images' | fonticon"></Label>
+        <Label row="7" col="0" class="ion" [text]="'ion-ios-brush' | fonticon"></Label>
+        <Label row="7" col="1" class="ion" [text]="'ion-ios-person' | fonticon"></Label>
+      </GridLayout>
+    </StackLayout>
+  </ScrollView>
+</StackLayout>
