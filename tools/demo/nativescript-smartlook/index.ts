@@ -1,9 +1,17 @@
 import { DemoSharedBase } from '../utils';
-import {  } from '@nstudio/nativescript-smartlook';
+import { Smartlook } from '@nstudio/nativescript-smartlook';
 
 export class DemoSharedNativescriptSmartlook extends DemoSharedBase {
 
-  testIt() {
-    console.log('test nativescript-smartlook!');
+  stop() {
+    Smartlook.stop();
+  }
+
+  start() {
+    Smartlook.start('<api-key>')
+  }
+
+  logSessionUrl() {
+    console.log(Smartlook.sessionUrl());
   }
 }
