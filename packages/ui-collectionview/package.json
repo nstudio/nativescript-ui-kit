@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/ui-collectionview",
-  "version": "5.1.7",
+  "version": "5.1.8",
   "description": "Customized NativeScript CollectionView for high performance lists. Supports vertical and horizontal modes, templating, and more.",
   "main": "index",
   "typings": "index.d.ts",
