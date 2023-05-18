@@ -10,5 +10,15 @@ export default {
 	appPath: 'src',
 	cli: {
 		packageManager: 'npm'
+	},
+	ios: {
+		SPMPackages: [
+			{
+				 name: "SmartlookAnalytics",
+				 libs: ["SmartlookAnalytics"],
+				 repositoryURL: "https://github.com/smartlook/analytics-swift-package.git",
+				 version: "2.2.4"
+			}
+		]
 	}
 } as NativeScriptConfig;

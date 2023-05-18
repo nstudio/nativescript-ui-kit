@@ -17,6 +17,9 @@ export class HomeComponent {
 	},
 	{
 		name: 'nativescript-shimmer'
+	},
+	{
+		name: 'nativescript-smartlook'
 	}
 ];
 }

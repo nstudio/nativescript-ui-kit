@@ -89,6 +89,13 @@ module.exports = {
 					description: 'nativescript-fonticon: Build',
 				},
 			},
+			// @nstudio/nativescript-smartlook
+			'nativescript-smartlook': {
+				build: {
+					script: 'nx run nativescript-smartlook:build.all',
+					description: '@nstudio/nativescript-smartlook: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -114,6 +121,10 @@ module.exports = {
 			'nativescript-fonticon': {
 				script: 'nx run nativescript-fonticon:focus',
 				description: 'Focus on nativescript-fonticon',
+			},
+			'nativescript-smartlook': {
+				script: 'nx run nativescript-smartlook:focus',
+				description: 'Focus on @nstudio/nativescript-smartlook',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

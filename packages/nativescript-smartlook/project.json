@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-smartlook",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-smartlook",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-smartlook",
+        "tsConfig": "packages/nativescript-smartlook/tsconfig.json",
+        "packageJson": "packages/nativescript-smartlook/package.json",
+        "main": "packages/nativescript-smartlook/index.d.ts",
+        "assets": [
+          "packages/nativescript-smartlook/*.md",
+          "packages/nativescript-smartlook/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-smartlook/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-smartlook"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-smartlook"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-smartlook"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-smartlook/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
