@@ -27,6 +27,10 @@ if (global.isIOS) {
   }
 
   Application.ios.delegate = AppDelegateImpl;
+} else {
+  Application.on(Application.launchEvent, () => {
+    Smartlook.start('<api-key>')
+  })
 }
 
 Application.run({ moduleName: 'app-root' });
