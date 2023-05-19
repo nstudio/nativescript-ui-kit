@@ -4,13 +4,18 @@
         </ActionBar>
     </Page.actionBar>
     <GridLayout>
-        <cv:CollectionView items="{{items}}" colWidth="50%" rowHeight="100">
+        <cv:CollectionView items="{{items}}" colWidth="50%" rowHeight="100" layoutStyle="headers">
             <cv:CollectionView.itemTemplate>
               <GridLayout backgroundColor="{{color}}">
                 <Label text="{{name}}" class="text-center"/>
                   
               </GridLayout>
             </cv:CollectionView.itemTemplate>
+            <!-- <cv:CollectionView.headerItemTemplate>
+              <GridLayout backgroundColor="#efefef">
+                <Label text="HEADER" class="text-center"/>
+              </GridLayout>
+            </cv:CollectionView.headerItemTemplate> -->
         </cv:CollectionView>
     </GridLayout>
 </Page>

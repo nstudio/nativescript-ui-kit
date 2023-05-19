@@ -54,7 +54,9 @@ const autoEffectiveColWidth = 0;
 // export * from 'ui/core/view';
 
 export enum ListViewViewTypes {
-    ItemView
+    HeaderView = 'HeaderView',
+	ItemView = 'ItemView',
+	FooterView = 'FooterView',
 }
 
 export namespace knownTemplates {
@@ -64,6 +66,8 @@ export namespace knownTemplates {
 export namespace knownMultiTemplates {
     export const itemTemplates = 'itemTemplates';
 }
+
+Builder.knownTemplates.add('itemTemplate').add('headerItemTemplate').add('footerItemTemplate');
 
 export interface Plugin {
     onLayout?: Function;
@@ -117,6 +121,8 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public orientation: CoreTypes.OrientationType;
     public itemTemplate: string | Template;
     public itemTemplates: string | KeyedTemplate[];
+    public headerItemTemplate: string;
+	public footerItemTemplate: string;
     public isItemsSourceIn: boolean;
     public rowHeight: CoreTypes.PercentLengthType;
     public colWidth: CoreTypes.PercentLengthType;
@@ -153,6 +159,8 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
 
     protected _itemTemplatesInternal: Map<string, KeyedTemplate>;
     protected _defaultTemplate: KeyedTemplate;
+    _headerTemplate: KeyedTemplate;
+    _footerTemplate: KeyedTemplate;
 
     constructor() {
         super();
@@ -165,8 +173,30 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
                 return undefined;
             }
         };
+        this._headerTemplate = {
+            key: 'header',
+            createView: () => {
+                console.log('createView here?')
+                if (this.headerItemTemplate) {
+                    return Builder.parse(this.headerItemTemplate, this);
+                }
+                return undefined;
+            }
+        };
+        this._footerTemplate = {
+            key: 'footer',
+            createView: () => {
+                if (this.footerItemTemplate) {
+                    return Builder.parse(this.footerItemTemplate, this);
+                }
+                return undefined;
+            }
+        };
         this._itemTemplatesInternal = new Map();
         this._itemTemplatesInternal.set(this._defaultTemplate.key, this._defaultTemplate);
+        // this._itemTemplatesInternal.set(this._headerTemplate.key, this._headerTemplate);
+        // this._itemTemplatesInternal.set(this._footerTemplate.key, this._footerTemplate);
+        
     }
     notifyForItemAtIndex(eventName: string, view: View, index: number, bindingContext?: any, native?: any) {
         throw new Error('Method not implemented.');
@@ -383,6 +413,13 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
                     // return this._getDefaultItemContent();
                 }
                 break;
+            case ListViewViewTypes.HeaderView: 
+                templateString = this.headerItemTemplate;
+                break;
+            case ListViewViewTypes.FooterView: 
+                templateString = this.footerItemTemplate;
+                break;
+                
         }
         return templateString === undefined ? undefined : this.resolveTemplateView(templateString);
     }
@@ -446,6 +483,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         }
     }
     onItemTemplatesChanged(oldValue, newValue) {
+        console.log('onItemTemplatesChanged:', newValue)
         this._itemTemplatesInternal = new Map();
         if (newValue) {
             newValue.forEach((t) => {

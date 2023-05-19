@@ -98,7 +98,13 @@ export class CollectionView extends CollectionViewBase {
         const view = UICollectionView.alloc().initWithFrameCollectionViewLayout(CGRectMake(0, 0, 0, 0), layout);
         view.backgroundColor = UIColor.clearColor;
         this._itemTemplatesInternal.forEach((t) => {
-            view.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // if (this._headerTemplate.key === t.key) {
+            //     view.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionHeader, this._headerTemplate.key);
+            // } else if (this._footerTemplate.key === t.key) {
+            //     view.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionFooter, this._footerTemplate.key);
+            // } else {
+                view.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // }
         });
         view.autoresizesSubviews = false;
         view.autoresizingMask = UIViewAutoresizing.None;
@@ -107,10 +113,55 @@ export class CollectionView extends CollectionViewBase {
         return view;
     }
 
+    setupHeaderFooter() {
+        // const headerRegistration = UICollectionViewSupplementaryRegistration.registrationWithSupplementaryClassElementKindConfigurationHandler(CollectionViewReusableView.class(), UICollectionElementKindSectionHeader, (headerView: UICollectionViewListCell, elementKind, indexPath) => {
+        //     // Obtain header item using index path
+        //     let headerItem = (<any>this._dataSource).snapshot().sectionIdentifiers[indexPath.section]
+                
+        //     // Configure header view content based on headerItem
+        //     var configuration = headerView.defaultContentConfiguration()
+        //     configuration.text = headerItem.title
+
+        //     // Customize header appearance to make it more eye-catching
+        //     configuration.textProperties.font = UIFont.boldSystemFontOfSize(16)
+        //     configuration.textProperties.color = UIColor.systemBlueColor
+        //     configuration.directionalLayoutMargins = NSDirectionalEdgeInsetsFromString('{20.0,0.0,10.0,0.0}');
+
+        //     // Apply the configuration to header view
+        //     headerView.contentConfiguration = configuration
+        // })
+
+        // const footerRegistration = UICollectionViewSupplementaryRegistration.registrationWithSupplementaryClassElementKindConfigurationHandler(CollectionViewReusableView.class(), UICollectionElementKindSectionFooter, (footerView: UICollectionViewListCell, elementKind, indexPath) => {
+    
+        //     // let headerItem = (<any>this._dataSource).snapshot().sectionIdentifiers[indexPath.section]
+        //     // let symbolCount = headerItem.symbols.count
+            
+        //     // Configure footer view content
+        //     var configuration = footerView.defaultContentConfiguration()
+        //     configuration.text = 'Hello';// "Symbol count: \(symbolCount)"
+        //     footerView.contentConfiguration = configuration
+        // });
+
+        // this._dataSource.supplementaryViewProvider = (view: UICollectionView, elementKind: string, indexPath: NSIndexPath): UICollectionReusableView => {
+        //     if (elementKind == UICollectionElementKindSectionHeader) {
+        //         return this.nativeViewProtected.dequeueConfiguredReusableSupplementaryViewWithRegistrationForIndexPath(headerRegistration, indexPath);
+        //     } else {
+        //         return this.nativeViewProtected.dequeueConfiguredReusableSupplementaryViewWithRegistrationForIndexPath(footerRegistration, indexPath);
+        //     }
+        // }
+
+    }
+
     onTemplateAdded(t) {
         super.onTemplateAdded(t);
         if (this.nativeViewProtected) {
-            this.nativeViewProtected.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // if (this._headerTemplate.key === t.key) {
+            //     this.nativeViewProtected.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionHeader, this._headerTemplate.key);
+            // } else if (this._footerTemplate.key === t.key) {
+            //     this.nativeViewProtected.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionFooter, this._footerTemplate.key);
+            // } else {
+                this.nativeViewProtected.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // }
         }
     }
 
@@ -536,7 +587,13 @@ export class CollectionView extends CollectionViewBase {
         }
         const view = this.nativeViewProtected;
         this._itemTemplatesInternal.forEach((t) => {
-            view.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // if (this._headerTemplate.key === t.key) {
+            //     view.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionHeader, this._headerTemplate.key);
+            // } else if (this._footerTemplate.key === t.key) {
+            //     view.registerClassForSupplementaryViewOfKindWithReuseIdentifier(CollectionViewReusableView.class(), UICollectionElementKindSectionFooter, this._footerTemplate.key);
+            // } else {
+                view.registerClassForCellWithReuseIdentifier(CollectionViewCell.class(), t.key.toLowerCase());
+            // }
         });
     }
 
@@ -657,8 +714,98 @@ export class CollectionView extends CollectionViewBase {
         }
         return type.toLowerCase();
     }
-    getItemTemplateContent(index, templateType) {
-        return this.getViewForViewType(ListViewViewTypes.ItemView, templateType);
+    getItemTemplateContent(index, templateType, listViewType: ListViewViewTypes = ListViewViewTypes.ItemView) {
+        console.log('getItemTemplateContent:', templateType)
+        return this.getViewForViewType(listViewType, templateType);
+    }
+    public disableIosOverflowSafeArea(parentView: View) {
+		if (parentView) {
+			parentView.iosOverflowSafeAreaEnabled = false;
+		}
+	}
+    public _prepareHeaderFooter(cell: CollectionViewReusableView, indexPath: NSIndexPath, templateType: string, notForCellSizeComp = true) {
+        let cellSize: [number, number];
+        try {
+            this._preparingCell = true;
+            const firstRender = !cell.view;
+            let view = cell.view;
+            const index = indexPath.row;
+            if (!view) {
+                view = this.getItemTemplateContent(index, templateType, templateType === this._headerTemplate.key ? ListViewViewTypes.HeaderView : ListViewViewTypes.FooterView);
+            }
+            const bindingContext = this._prepareItem(view, index);
+
+            if (Trace.isEnabled()) {
+                CLog(CLogTypes.log, '_prepareHeaderFooter', index, templateType, !!cell.view, !!view, cell.view !== view, notForCellSizeComp);
+            }
+            // const args = this.notifyForItemAtIndex(CollectionViewBase.itemLoadingEvent, view, indexPath.row, bindingContext, cell);
+            // view = args.view;
+            if (firstRender) {
+                view['iosIgnoreSafeArea'] = true;
+            }
+            view.bindingContext = bindingContext;
+
+            if (view instanceof ProxyViewContainer) {
+                const sp = new ContentView();
+                sp.content = view;
+                view = sp;
+            }
+
+            if (!cell.view) {
+                cell.owner = new WeakRef(view);
+            } else if (cell.view !== view) {
+                this._removeContainer(cell);
+                if (cell.view?.nativeViewProtected) {
+                    cell.view.nativeViewProtected.removeFromSuperview();
+                }
+                cell.owner = new WeakRef(view);
+            }
+            cell.currentIndex = indexPath.row;
+
+            // if (notForCellSizeComp) {
+            //     this._map.set(cell, view);
+            // }
+
+            if (view && !view.parent) {
+                this._addView(view);
+                const innerView = NSCellView.new() as NSCellView;
+                innerView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+                innerView.view = new WeakRef(view);
+                // if (notForCellSizeComp && this.autoReloadItemOnLayout) {
+                //     // for a cell to update correctly on cell layout change we need
+                //     // to do it ourself instead of "propagating it"
+                //     view['performLayout'] = () => {
+                //         if (!this._preparingCell) {
+                //             const index = cell.currentIndex;
+                //             const nativeView = this.nativeViewProtected;
+                //             const sizes: NSMutableArray<NSValue> = this._delegate instanceof UICollectionViewDelegateImpl ? this._delegate.cachedSizes : null;
+                //             if (sizes) {
+                //                 sizes.replaceObjectAtIndexWithObject(index, NSValue.valueWithCGSize(CGSizeZero));
+                //             }
+
+                //             nativeView.performBatchUpdatesCompletion(() => {
+                //                 this.measureCell(cell, view, index);
+                //                 this.notifyForItemAtIndex(CollectionViewBase.itemLoadingEvent, view, indexPath.row, view.bindingContext, cell);
+                //             }, null);
+                //             nativeView.collectionViewLayout.invalidateLayout();
+                //         }
+                //     };
+                // }
+                innerView.addSubview(view.nativeViewProtected);
+                cell.addSubview(innerView);
+            }
+            cellSize = this.measureCell(cell, view, indexPath.row);
+            // if (notForCellSizeComp) {
+            //     view.notify({ eventName: CollectionViewBase.bindedEvent });
+            // }
+
+            if (Trace.isEnabled()) {
+                CLog(CLogTypes.log, '_prepareCell done', index, cellSize);
+            }
+        } finally {
+            this._preparingCell = false;
+        }
+        return cellSize;
     }
     public _prepareCell(cell: CollectionViewCell, indexPath: NSIndexPath, templateType: string, notForCellSizeComp = true) {
         let cellSize: [number, number];
@@ -779,7 +926,7 @@ export class CollectionView extends CollectionViewBase {
     // public clearCellSize() {
     //     this._sizes = new Array<number[]>();
     // }
-    private measureCell(cell: CollectionViewCell, cellView: View, position: number): [number, number] {
+    private measureCell(cell: CollectionViewCell | CollectionViewReusableView, cellView: View, position: number): [number, number] {
         if (cellView) {
             let width = this._effectiveColWidth;
             let height = this._effectiveRowHeight;
@@ -815,7 +962,7 @@ export class CollectionView extends CollectionViewBase {
         }
         return undefined;
     }
-    layoutCell(index: number, cell: CollectionViewCell, cellView: View): any {
+    layoutCell(index: number, cell: CollectionViewCell | CollectionViewReusableView, cellView: View): any {
         // const cellSize = this.getCellSize(index);
         const size = cell.bounds.size;
         View.layoutChild(this, cellView, 0, 0, Utils.layout.toDevicePixels(size.width), Utils.layout.toDevicePixels(size.height));
@@ -842,7 +989,7 @@ export class CollectionView extends CollectionViewBase {
         }
     }
 
-    private _removeContainer(cell: CollectionViewCell): void {
+    private _removeContainer(cell: CollectionViewCell | CollectionViewReusableView): void {
         const view = cell.view;
         // This is to clear the StackLayout that is used to wrap ProxyViewContainer instances.
         if (!(view.parent instanceof CollectionView)) {
@@ -853,7 +1000,7 @@ export class CollectionView extends CollectionViewBase {
         this._preparingCell = true;
         view.parent._removeView(view);
         this._preparingCell = preparing;
-        this._map.delete(cell);
+        this._map.delete(<CollectionViewCell>cell);
     }
 
     private _setPadding(newPadding: { top?: number; right?: number; bottom?: number; left?: number }) {
@@ -900,6 +1047,26 @@ export class CollectionView extends CollectionViewBase {
         }
         return cell;
     }
+    // collectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView: UICollectionView, kind: string, indexPath: NSIndexPath): UICollectionReusableView {
+    //     const templateType = kind === UICollectionElementKindSectionHeader ? this._headerTemplate.key : this._footerTemplate.key;
+    //     let cell = collectionView.dequeueReusableSupplementaryViewOfKindWithReuseIdentifierForIndexPath(kind, templateType, indexPath) as CollectionViewReusableView;
+        
+    //     if (!cell) {
+    //         cell = CollectionViewReusableView.new() as CollectionViewReusableView;
+    //     }
+    //     const firstRender = !cell.view;
+    //     if (Trace.isEnabled()) {
+    //         CLog(CLogTypes.log, 'collectionViewViewForSupplementaryElementOfKindAtIndexPath', indexPath.row, templateType, !!cell.view, cell);
+    //     }
+    //     this._prepareHeaderFooter(cell, indexPath, templateType);
+
+    //     // the cell layout will be called from NSCellView layoutSubviews
+    //     const cellView: View = cell.view;
+    //     if (!firstRender && cellView['isLayoutRequired']) {
+    //         this.layoutCell(indexPath.row, cell, cellView);
+    //     }
+    //     return cell;
+    // }
     collectionViewWillDisplayCellForItemAtIndexPath(collectionView: UICollectionView, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         if (this.reverseLayout) {
             cell.transform = CGAffineTransformMakeRotation(-Math.PI);
@@ -1103,6 +1270,17 @@ class CollectionViewCell extends UICollectionViewCell {
 }
 
 @NativeClass
+class CollectionViewReusableView extends UICollectionReusableView {
+    owner: WeakRef<ItemView>;
+    currentIndex: number;
+
+    get view(): ItemView {
+        return this.owner ? this.owner.deref() : null;
+    }
+}
+
+@NativeClass
+// class CollectionViewDataSource extends UICollectionViewDiffableDataSource<any,any>  {
 class CollectionViewDataSource extends NSObject implements UICollectionViewDataSource {
     _owner: WeakRef<CollectionView>;
     public static ObjCProtocols = [UICollectionViewDataSource];
@@ -1161,6 +1339,14 @@ class CollectionViewDataSource extends NSObject implements UICollectionViewDataS
         }
         return false;
     }
+    // collectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView: UICollectionView, kind: string, indexPath: NSIndexPath): UICollectionReusableView {
+    //     console.log('collectionViewViewForSupplementaryElementOfKindAtIndexPath')
+    //     const owner = this._owner.deref();
+    //     if (owner) {
+    //         return owner.collectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView, kind, indexPath);
+    //     }
+    //     return null;
+    // }
 }
 @NativeClass
 class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayout implements UICollectionViewDelegate {
