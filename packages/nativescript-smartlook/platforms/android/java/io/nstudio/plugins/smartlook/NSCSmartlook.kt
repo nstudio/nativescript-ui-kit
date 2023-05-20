@@ -1,10 +1,9 @@
 package io.nstudio.plugins.smartlook
 
-import android.view.View;
-import com.smartlook.android.core.api.*;
-import com.smartlook.android.core.api.model.*;
-import com.smartlook.android.core.video.annotation.*;
-import com.smartlook.android.core.api.extension.*;
+import android.view.View
+import com.smartlook.android.core.api.Smartlook
+import com.smartlook.android.core.api.extension.isSensitive
+import com.smartlook.android.core.video.annotation.RenderingMode
 
 class NSCSmartlook {
 
@@ -27,11 +26,11 @@ class NSCSmartlook {
 
         @JvmStatic
         fun sessionUrl(withTimestamp: Boolean): String {
-            if (withTimestamp) {
-                return Smartlook.instance.user.session.urlWithTimestamp.toString()
-            } else {
-                return Smartlook.instance.user.session.url.toString()
-            }
+          return if (withTimestamp) {
+            Smartlook.instance.user.session.urlWithTimestamp.toString()
+          } else {
+            Smartlook.instance.user.session.url.toString()
+          }
         }
 
         @JvmStatic
@@ -43,14 +42,19 @@ class NSCSmartlook {
             }
         }
 
+
+/*
+// todo
         @JvmStatic
         fun getRenderingMode(): Int {
-            when (Smartlook.instance.state.renderingMode) {
-                RenderingMode.NATIVE -> return 0
-                RenderingMode.WIREFRAME -> return 1
-                RenderingMode.NO_RENDERING -> return 2
+            return when (Smartlook.instance.state.renderingMode) {
+                RenderingMode.NATIVE -> 0
+                RenderingMode.WIREFRAME -> 1
+                RenderingMode.NO_RENDERING -> 2
             }
         }
+*/
+        
 
         @JvmStatic
         fun setSensitivity(view: View, sensitive: Boolean) {

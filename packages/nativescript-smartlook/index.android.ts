@@ -1,8 +1,10 @@
 import { SmartlookCommon, SmartlookRenderMode } from './common';
 
+declare const com;
+
 export class Smartlook extends SmartlookCommon {
     static start(key: string) {
-        io.nstudio.plugins.smartlook.NSCSmartlook.start(key)
+        io.nstudio.plugins.smartlook.NSCSmartlook.start(key);
     }
 
     static stop() {
@@ -20,7 +22,18 @@ export class Smartlook extends SmartlookCommon {
         io.nstudio.plugins.smartlook.NSCSmartlook.setRenderingMode(mode);
     }
     static getRenderingMode(): number {
-        return io.nstudio.plugins.smartlook.NSCSmartlook.getRenderingMode();
+        const RenderingMode = com.smartlook.android.core.video.annotation.RenderingMode;
+
+        //return io.nstudio.plugins.smartlook.NSCSmartlook.getRenderingMode();
+
+        const mode = com.smartlook.android.core.api.Smartlook.getInstance().getState().getRenderingMode();
+
+        switch (mode) {
+            case RenderingMode.NATIVE: return 0;
+            case RenderingMode.WIREFRAME: return 1;
+            case RenderingMode.NO_RENDERING: return 2;
+        }
+
     }
     static setSensitivity(view: android.view.View, sensitive: boolean): void {
         io.nstudio.plugins.smartlook.NSCSmartlook.setSensitivity(view, sensitive);
