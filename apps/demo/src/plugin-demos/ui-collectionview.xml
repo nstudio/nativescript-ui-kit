@@ -4,7 +4,9 @@
         </ActionBar>
     </Page.actionBar>
     <GridLayout>
-        <cv:CollectionView items="{{items}}" colWidth="50%" rowHeight="100" layoutStyle="headers">
+    <!--colWidth="50%" rowHeight="100"-->
+    <!--colWidth="100%" rowHeight="55"-->
+        <cv:CollectionView items="{{items}}" colWidth="100%" rowHeight="100" layoutStyle="headers">
             <cv:CollectionView.itemTemplate>
               <GridLayout backgroundColor="{{color}}">
                 <Label text="{{name}}" class="text-center"/>
