@@ -7,7 +7,11 @@
         <ScrollView class="h-full">
           <StackLayout>
             <Button text="Log session url" tap="{{ logSessionUrl }}" class="btn btn-primary"/>
-
+            <Button text="Log rendering mode" tap="{{ logRenderingMode }}" class="btn btn-primary"/>
+            <Button text="Set User Properties" tap="{{ setUserProperties }}" class="btn btn-primary"/>
+            <GridLayout rows="" columns="" loaded="{{loadedSensitiveArea}}">
+                <Label text="I should be hidden" fontSize="20" />
+            </GridLayout>
           </StackLayout>
         </ScrollView>
     </StackLayout>

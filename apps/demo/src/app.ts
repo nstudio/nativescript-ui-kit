@@ -15,22 +15,8 @@ import { Application } from '@nativescript/core';
 
 // Uncomment to test Smartlook
 import { Smartlook } from '@nstudio/nativescript-smartlook';
-if (global.isIOS) {
-  @NativeClass()
-  class AppDelegateImpl extends UIResponder implements UIApplicationDelegate {
-    static ObjCProtocols = [UIApplicationDelegate];
-
-    applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary<string, any>): boolean {
-      Smartlook.start('<api-key>');
-      return true;
-    }
-  }
-
-  Application.ios.delegate = AppDelegateImpl;
-} else {
-  Application.on(Application.launchEvent, () => {
-    Smartlook.start('<api-key>')
-  })
-}
+Application.on(Application.launchEvent, () => {
+  Smartlook.start('<api-key>');
+});
 
 Application.run({ moduleName: 'app-root' });
