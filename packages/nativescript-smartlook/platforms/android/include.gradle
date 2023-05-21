@@ -1,0 +1,10 @@
+repositories {
+  maven {
+    url "https://sdk.smartlook.com/android/release"
+  }
+}
+
+
+dependencies {
+    implementation 'com.smartlook.android:smartlook-analytics:2.2.10'
+}

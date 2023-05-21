@@ -12,4 +12,11 @@ import { Application } from '@nativescript/core';
 // FontIconFactory.loadCss();
 
 // Application.setResources({ fonticon });
+
+// Uncomment to test Smartlook
+import { Smartlook } from '@nstudio/nativescript-smartlook';
+Application.on(Application.launchEvent, () => {
+  Smartlook.start('<api-key>');
+});
+
 Application.run({ moduleName: 'app-root' });
