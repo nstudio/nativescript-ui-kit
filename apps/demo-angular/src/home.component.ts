@@ -19,7 +19,10 @@ export class HomeComponent {
 		name: 'nativescript-shimmer'
 	},
 	{
-		name: 'ui-collectionview'
+		name: 'ui-collectionview',
+	},
+	{
+		name: 'nativescript-smartlook'
 	}
 ];
 }

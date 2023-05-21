@@ -3,8 +3,9 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/ui-collectionview": "file:../../dist/packages/ui-collectionview",
-    "nativescript-fonticon": "file:../../dist/packages/nativescript-fonticon",
+    "@nstudio/nativescript-smartlook": "file:../../dist/packages/nativescript-smartlook",
     "@nstudio/nativescript-coachmarks": "file:../../dist/packages/nativescript-coachmarks",
+    "nativescript-fonticon": "file:../../dist/packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer"
   },

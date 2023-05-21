@@ -13,6 +13,12 @@ import { Application } from '@nativescript/core';
 
 // Application.setResources({ fonticon });
 
+// Uncomment to test Smartlook
+// import { Smartlook } from '@nstudio/nativescript-smartlook';
+// Application.on(Application.launchEvent, () => {
+//   Smartlook.start('<api-key>');
+// });
+
 export function dateFormatter(value: Date): string {
   if (value) {
     return value.toDateString();
@@ -20,4 +26,5 @@ export function dateFormatter(value: Date): string {
   return '';
 }
 Application.setResources({ dateFormatter });
+
 Application.run({ moduleName: 'app-root' });

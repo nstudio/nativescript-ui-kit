@@ -48,6 +48,9 @@
       ],
       "nativescript-fonticon/angular": [
         "packages/nativescript-fonticon/angular/index.ts"
+      ],
+      "@nstudio/nativescript-smartlook": [
+        "packages/nativescript-smartlook/index.d.ts"
       ]
     }
   },
