@@ -122,6 +122,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public itemTemplate: string | Template;
     public itemTemplates: string | KeyedTemplate[];
     public headerItemTemplate: string;
+    public headerPinned: boolean;
 	public footerItemTemplate: string;
     public isItemsSourceIn: boolean;
     public rowHeight: CoreTypes.PercentLengthType;
@@ -390,13 +391,15 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         if (this._itemTemplatesInternal.has(key)) {
             return this._itemTemplatesInternal.get(key);
         }
-        return this._itemTemplatesInternal.get('default');
+        return null;
     }
     getViewForViewType(viewType: ListViewViewTypes, templateKey: string) {
         let newView;
         if (templateKey) {
             const template = this.getTemplateFromSelector(templateKey);
-            newView = template.createView();
+            if (template) {
+                newView = template.createView();
+            }
         }
         if (!newView && this._itemViewLoader !== undefined) {
             newView = this._itemViewLoader(templateKey);
@@ -408,10 +411,6 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         switch (viewType) {
             case ListViewViewTypes.ItemView:
                 templateString = this.itemTemplate;
-                if (templateString === undefined) {
-                    return undefined;
-                    // return this._getDefaultItemContent();
-                }
                 break;
             case ListViewViewTypes.HeaderView: 
                 templateString = this.headerItemTemplate;
@@ -491,6 +490,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
                     t.key = t._key;
                     delete t._key;
                 }
+                console.log('t.key:', t.key)
                 this._itemTemplatesInternal.set(t.key, t);
             });
         }
@@ -502,6 +502,14 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     // onItemTemplateSelectorPropertyChanged(oldValue, newValue) {
     //     this.onItemTemplateSelectorChanged(oldValue, newValue);
     // }
+
+    onHeaderItemTemplateChanged(oldValue: string | Template, newValue: string | Template): void {
+
+    }
+
+    onFooterItemTemplateChanged(oldValue: string | Template, newValue: string | Template): void {
+
+    }
 
     getItemSourceAtIndex(index: number) {
         return (this.items as ItemsSource).getItem(index);
@@ -529,6 +537,12 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     }
     onItemTemplatePropertyChanged(oldValue, newValue) {
         this.onItemTemplateChanged(oldValue, newValue);
+    }
+    onHeaderItemTemplatePropertyChanged(oldValue: string | Template, newValue: string | Template) {
+        this.onHeaderItemTemplateChanged(oldValue, newValue);
+    }
+    onFooterItemTemplatePropertyChanged(oldValue: string | Template, newValue: string | Template) {
+        this.onFooterItemTemplateChanged(oldValue, newValue);
     }
     onItemsChangedInternal = (oldValue, newValue) => {
         this.onItemsChanged(oldValue, newValue);
@@ -695,6 +709,24 @@ export const itemTemplatesProperty = new Property<CollectionViewBase, KeyedTempl
     }
 });
 itemTemplatesProperty.register(CollectionViewBase);
+
+export const headerItemTemplateProperty = new Property<CollectionViewBase, string | Template>({
+    name: "headerItemTemplate",
+    defaultValue: undefined,
+    valueChanged: (target, oldValue, newValue) => {
+        target.onHeaderItemTemplatePropertyChanged(oldValue, newValue);
+    },
+});
+headerItemTemplateProperty.register(CollectionViewBase);
+
+export const footerItemTemplateProperty = new Property<CollectionViewBase, string | Template>({
+    name: "footerItemTemplate",
+    defaultValue: undefined,
+    valueChanged: (target, oldValue, newValue) => {
+        target.onFooterItemTemplatePropertyChanged(oldValue, newValue);
+    },
+});
+footerItemTemplateProperty.register(CollectionViewBase);
 
 export const itemTemplateSelectorProperty = new Property<CollectionViewBase, Function>({
     name: 'itemTemplateSelector',

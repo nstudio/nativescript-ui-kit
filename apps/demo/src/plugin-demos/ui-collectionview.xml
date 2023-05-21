@@ -6,18 +6,118 @@
     <GridLayout>
     <!--colWidth="50%" rowHeight="100"-->
     <!--colWidth="100%" rowHeight="55"-->
-        <cv:CollectionView items="{{items}}" colWidth="100%" rowHeight="100" layoutStyle="headers">
+        <!-- <cv:CollectionView items="{{items}}" colWidth="100%" rowHeight="100" layoutStyle="header-and-footer">
             <cv:CollectionView.itemTemplate>
               <GridLayout backgroundColor="{{color}}">
                 <Label text="{{name}}" class="text-center"/>
                   
               </GridLayout>
-            </cv:CollectionView.itemTemplate>
+            </cv:CollectionView.itemTemplate> -->
             <!-- <cv:CollectionView.headerItemTemplate>
               <GridLayout backgroundColor="#efefef">
                 <Label text="HEADER" class="text-center"/>
               </GridLayout>
             </cv:CollectionView.headerItemTemplate> -->
-        </cv:CollectionView>
+        <!-- </cv:CollectionView> -->
+
+
+        <cv:CollectionView items="{{items}}" colWidth="100%" layoutStyle="swipe" itemTemplateSelector="{{itemTemplateSelector}}" headerPinned="{{true}}">
+          <cv:CollectionView.headerItemTemplate>
+              <GridLayout backgroundColor="#efefef">
+                <Label text="HEADER" class="text-center"/>
+              </GridLayout>
+            </cv:CollectionView.headerItemTemplate>
+            <cv:CollectionView.footerItemTemplate>
+              <GridLayout backgroundColor="yellow">
+                <Label text="FOOTER" class="text-center"/>
+              </GridLayout>
+            </cv:CollectionView.footerItemTemplate>
+          <cv:CollectionView.itemTemplates>
+            <template key="custom">
+              <GridLayout
+                rows="auto,auto"
+                class="p-l-8 p-r-8 p-y-8 c-bg-white"
+                android:borderBottomWidth="1"
+                android:borderBottomColor="#efefef"
+              >
+                <Label
+                  text="{{name}}"
+                  fontSize="17"
+                  class="c-black font-weight-bold align-middle"
+                ></Label>
+              </GridLayout>
+            </template>
+            <template key="default">
+              <GridLayout
+                rows="auto,auto,42"
+                class="p-l-8 p-r-8 p-y-8 c-bg-white"
+                android:borderBottomWidth="1"
+                android:borderBottomColor="#efefef"
+              >
+                <Label
+                  text="{{name}}"
+                  fontSize="17"
+                  class="c-black font-weight-bold align-middle"
+                ></Label>
+                <Label
+                  row="1"
+                  text="{{subject}}"
+                  class="c-black align-middle"
+                ></Label>
+                <Label
+                  row="2"
+                  text="{{body}}"
+                  class="c-black"
+                  maxLines="2"
+                  android:textWrap="true"
+                  opacity="0.5"
+                ></Label>
+                <GridLayout rowSpan="3" columns="auto,auto" class="v-top h-right">
+                  <Label
+                  text="{{date | dateFormatter}}"
+                  fontSize="12"
+                    class="align-middle c-black"
+                    opacity="0.5"
+                  ></Label>
+                </GridLayout>
+              </GridLayout>
+            </template>
+            </cv:CollectionView.itemTemplates>
+            <!-- <cv:CollectionView.itemTemplate>
+              <GridLayout
+                rows="auto,auto,42"
+                class="p-l-8 p-r-8 p-y-8 c-bg-white"
+                android:borderBottomWidth="1"
+                android:borderBottomColor="#efefef"
+              >
+                <Label
+                  text="{{name}}"
+                  fontSize="17"
+                  class="c-black font-weight-bold align-middle"
+                ></Label>
+                <Label
+                  row="1"
+                  text="{{subject}}"
+                  class="c-black align-middle"
+                ></Label>
+                <Label
+                  row="2"
+                  text="{{body}}"
+                  class="c-black"
+                  maxLines="2"
+                  android:textWrap="true"
+                  opacity="0.5"
+                ></Label>
+                <GridLayout rowSpan="3" columns="auto,auto" class="v-top h-right">
+                  <Label
+                  text="{{date | dateFormatter}}"
+                  fontSize="12"
+                    class="align-middle c-black"
+                    opacity="0.5"
+                  ></Label>
+                </GridLayout>
+              </GridLayout>
+            </cv:CollectionView.itemTemplate> -->
+          </cv:CollectionView>
     </GridLayout>
 </Page>

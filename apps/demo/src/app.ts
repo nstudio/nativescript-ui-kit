@@ -12,4 +12,12 @@ import { Application } from '@nativescript/core';
 // FontIconFactory.loadCss();
 
 // Application.setResources({ fonticon });
+
+export function dateFormatter(value: Date): string {
+  if (value) {
+    return value.toDateString();
+  }
+  return '';
+}
+Application.setResources({ dateFormatter });
 Application.run({ moduleName: 'app-root' });

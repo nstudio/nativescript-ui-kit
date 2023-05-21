@@ -74,3 +74,15 @@ Button {
   font-weight: 400;
   font-size: 30;
 }
+
+.v-center, .v-middle, .align-middle {
+  vertical-align: middle;
+}
+
+.v-top, .align-top {
+  vertical-align: top;
+}
+
+.h-right {
+  horizontal-align: right;
+}
