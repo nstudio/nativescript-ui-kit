@@ -1,32 +1,33 @@
 <ActionBar title="ui-collectionview" class="action-bar"> </ActionBar>
 <CollectionView
-  [items]="items"
-  [itemTemplateSelector]="templateSelector"
-  layoutStyle="swipe"
-  (itemTap)="itemTap($event)"
-  (loaded)="loaded($event)"
+  [items]="demoShared.items"
+  layoutStyle="header-and-footer"
+  (itemTap)="demoShared.itemTap($event)"
+  (loaded)="demoShared.loadedCollectionView($event)"
 >
-  <ng-template cvTemplateKey="default" let-item="item">
+<!--[itemTemplateSelector]="templateSelector" cvTemplateKey="default" -->
+  <ng-template let-item="item">
     <GridLayout
-      [nsRouterLink]="['/item', item.id]"
-      rows="auto,auto,auto"
-      class="pl-4 pt-2 pr-2 v-center"
+      rows="auto,auto,42"
+      class="pl-4 pr-2 py-2 align-middle bg-white"
+      android:borderBottomWidth="1"
+      android:borderBottomColor="#efefef"
     >
       <Label
         [text]="item.name"
-        class="text-[17px] font-bold align-middle"
+        class="text-[17px] text-black font-bold align-middle text-left"
       ></Label>
       <Label
         row="1"
         [text]="item.subject"
-        class="text-base leading-none align-middle"
+        class="text-base text-black leading-none align-middle"
       ></Label>
       <Label
         row="2"
         [text]="item.body"
         class="text-base leading-none text-gray-500"
         maxLines="2"
-        textWrap="true"
+        android:textWrap="true"
       ></Label>
       <GridLayout rowSpan="3" columns="auto,auto" class="align-top h-right">
         <Label
@@ -35,5 +36,17 @@
         ></Label>
       </GridLayout>
     </GridLayout>
+  </ng-template>
+  <ng-template cvTemplateHeader>
+    <StackLayout height="40" class="bg-slate-500">
+      <Label text="HELLO" class="text-black"></Label>
+      
+    </StackLayout>
+  </ng-template>
+  <ng-template cvTemplateFooter>
+    <StackLayout height="40" class="bg-yellow-200">
+      <Label text="FOOTER" class="text-black"></Label>
+      
+    </StackLayout>
   </ng-template>
 </CollectionView>

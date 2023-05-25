@@ -1,0 +1,46 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.v-center {
+  vertical-align: middle;
+}
+
+.h-right {
+  /* NativeScript specific */
+  horizontal-align: right;
+}
+
+/* button, label, stack-layout {
+    horizontal-align: center;
+} */
+
+button {
+    font-size: 36;
+}
+
+.title {
+    font-size: 30;
+    margin: 20;
+}
+
+.message {
+    font-size: 20;
+    color: #284848;
+    text-align: center;
+    margin: 0 20;
+} 
+
+.ion {
+    font-family: 'Ionicons', 'ionicons';
+    font-weight: 400;
+    vertical-align: middle;
+    font-size: 30;
+  }
+  
+.fa {
+    font-family: 'FontAwesome', 'fontawesome-webfont';
+    font-weight: 400;
+    font-size: 30;
+}
+  

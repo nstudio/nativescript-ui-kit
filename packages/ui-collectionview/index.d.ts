@@ -1,4 +1,4 @@
-import { EventData, View } from '@nativescript/core';
+import { View } from '@nativescript/core';
 import { Pointer } from '@nativescript/core/ui/gestures';
 import { CollectionViewBase } from './common';
 export * from './common';
@@ -16,27 +16,3 @@ export class CollectionView extends CollectionViewBase {
     startDragging(index: number, pointer?: Pointer);
 }
 
-export interface CollectionViewItemEventData extends EventData {
-    eventName: string;
-    object: CollectionView;
-    index: number;
-    view: View;
-    item: any;
-    bindingContext?: any;
-}
-
-export interface CollectionViewItemDisplayEventData extends EventData {
-    eventName: string;
-    object: CollectionView;
-    index: number;
-}
-
-/**
- * Defines the different view types that {@link RadListView} can display in various scenarios.
- */
-export enum ListViewViewTypes {
-    /**
-     * Identifies a view created using the {@link itemTemplate} value.
-     */
-    ItemView
-}

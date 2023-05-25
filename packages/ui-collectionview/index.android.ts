@@ -17,8 +17,7 @@ import {
     paddingTopProperty,
     profile
 } from '@nativescript/core';
-import { CollectionViewItemEventData, reorderLongPressEnabledProperty, reorderingEnabledProperty, reverseLayoutProperty, scrollBarIndicatorVisibleProperty } from '.';
-import { CLog, CLogTypes, CollectionViewBase, ListViewViewTypes, isScrollEnabledProperty, orientationProperty } from './common';
+import { CLog, CLogTypes, CollectionViewBase, CollectionViewItemEventData, ViewTemplateType, isScrollEnabledProperty, orientationProperty, reorderLongPressEnabledProperty, reorderingEnabledProperty, reverseLayoutProperty, scrollBarIndicatorVisibleProperty } from './common';
 
 export * from './common';
 
@@ -1056,7 +1055,7 @@ export class CollectionView extends CollectionViewBase {
 
     @profile
     public onCreateViewHolder(parent: android.view.ViewGroup, viewType: number) {
-        let view: View = this.getViewForViewType(ListViewViewTypes.ItemView, this.getKeyByValue(viewType));
+        let view: View = this.getViewForTemplateType(this.getKeyByValue(viewType), ViewTemplateType.Item);
         const isNonSync = view === undefined;
         // dont create unecessary StackLayout if template.createView returns. Will happend when not using Vue or angular
         if (isNonSync || view instanceof ProxyViewContainer) {

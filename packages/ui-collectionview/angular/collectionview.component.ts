@@ -1,5 +1,5 @@
 import { AfterContentInit, ChangeDetectionStrategy, Component, ComponentRef, ContentChild, Directive, DoCheck, ElementRef, EmbeddedViewRef, EventEmitter, Host, HostListener, Inject, Input, IterableDiffer, IterableDiffers, NgZone, OnDestroy, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { CLog, CLogTypes, CollectionView, CollectionViewItemEventData, ListViewViewTypes } from '@nstudio/ui-collectionview';
+import { CLog, CLogTypes, CollectionView, CollectionViewItemEventData, ViewTemplateType } from '@nstudio/ui-collectionview';
 import { DetachedLoader, NativeScriptRendererFactory, extractSingleViewRecursive, isListLikeIterable, registerElement } from '@nativescript/angular';
 import { KeyedTemplate, LayoutBase, ObservableArray, Trace, View } from '@nativescript/core';
 
@@ -28,10 +28,10 @@ export interface SetupItemViewArgs {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContentInit {
-  public get nativeElement(): any {
+  public get nativeElement() {
     return this._collectionView;
   }
-  public get listView(): any {
+  public get listView() {
     return this._collectionView;
   }
 
@@ -54,9 +54,23 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
   public get itemTemplate() {
     return this._itemTemplate;
   }
-  public set itemTemplate(value: any) {
+  public set itemTemplate(value: TemplateRef<ItemContext>) {
     this._itemTemplate = value;
-    this._collectionView.refresh();
+    // this._collectionView.refresh();
+  }
+  @Input()
+  public get headerItemTemplate() {
+    return this._headerTemplate;
+  }
+  public set headerItemTemplate(value: TemplateRef<ItemContext>) {
+    this._headerTemplate = value;
+  }
+  @Input()
+  public get footerItemTemplate() {
+    return this._footerTemplate;
+  }
+  public set footerItemTemplate(value: TemplateRef<ItemContext>) {
+    this._footerTemplate = value;
   }
   @Input()
   public get items() {
@@ -80,6 +94,10 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
   private _differ: IterableDiffer<KeyedTemplate>;
   private _itemTemplate: TemplateRef<ItemContext>;
   private _templateMap: Map<string, KeyedTemplate>;
+  private _headerTemplate: TemplateRef<ItemContext>;
+  private _headerTemplateMap: Map<string, KeyedTemplate>;
+  private _footerTemplate: TemplateRef<ItemContext>;
+  private _footerTemplateMap: Map<string, KeyedTemplate>;
   private _loaders: ComponentRef<DetachedLoader>[];
 
   constructor(@Inject(ElementRef) private _elementRef: ElementRef, @Inject(IterableDiffers) private _iterableDiffers: IterableDiffers, @Inject(NativeScriptRendererFactory) private _renderer: NativeScriptRendererFactory, @Inject(NgZone) private _ngZone: NgZone) {
@@ -90,18 +108,28 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     this._loaders = [];
   }
 
-  private itemViewLoader = (viewType) =>
+  private itemViewLoader = (viewType) => {
     this._ngZone.run(() => {
       switch (viewType) {
-        case ListViewViewTypes.ItemView:
-          if (this._itemTemplate && this.loader) {
-            const typedView = this.getOrCreate(this._itemTemplate);
-            return typedView;
+        case ViewTemplateType.Item:
+          if (this._itemTemplate) {
+            return this.getOrCreate(this._itemTemplate);
+          }
+          break;
+        case ViewTemplateType.Header:
+          if (this._headerTemplate) {
+            return this.getOrCreate(this._headerTemplate);
+          }
+          break;
+        case ViewTemplateType.Footer:
+          if (this._footerTemplate) {
+            return this.getOrCreate(this._footerTemplate);
           }
           break;
       }
       return null;
     });
+  };
 
   public ngAfterContentInit() {
     if (Trace.isEnabled()) {
@@ -125,7 +153,15 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     if (this._templateMap) {
       this._templateMap.clear();
     }
+    if (this._headerTemplateMap) {
+      this._headerTemplateMap.clear();
+    }
+    if (this._footerTemplateMap) {
+      this._footerTemplateMap.clear();
+    }
     this._templateMap = null;
+    this._headerTemplateMap = null;
+    this._footerTemplateMap = null;
   }
 
   public ngDoCheck() {
@@ -160,6 +196,35 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     };
 
     this._templateMap.set(key, keyedTemplate);
+  }
+
+  public registerTemplateSupplemental(key: string, template: TemplateRef<ItemContext>, type: 'header' | 'footer') {
+    if (Trace.isEnabled()) {
+      CLog(CLogTypes.info, 'registerTemplate for key: ' + key);
+    }
+
+    switch (type) {
+      case 'header':
+        // if (!this._headerTemplateMap) {
+        //   this._headerTemplateMap = new Map<string, KeyedTemplate>();
+        // }
+        // this._headerTemplateMap.set(key, keyedTemplate);
+        this._collectionView.headerKey = key;
+        this.headerItemTemplate = template;
+        this._collectionView.headerItemTemplate = this.getItemTemplateViewFactory(template);
+        break;
+      case 'footer':
+        // if (!this._footerTemplateMap) {
+        //   this._footerTemplateMap = new Map<string, KeyedTemplate>();
+        // }
+
+        // this._footerTemplateMap.set(key, keyedTemplate);
+
+        this._collectionView.footerKey = key;
+        this.footerItemTemplate = template;
+        this._collectionView.footerItemTemplate = this.getItemTemplateViewFactory(template);
+        break;
+    }
   }
 
   @HostListener('itemLoading', ['$event'])
@@ -258,12 +323,11 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     });
   }
 
-  protected getItemTemplateViewFactory(template: TemplateRef<ItemContext>): () => View {
+  getItemTemplateViewFactory(template: TemplateRef<ItemContext>): () => View {
     return () => {
       const viewRef = this.loader.createEmbeddedView(template, new ItemContext(), 0);
       const resultView = getItemViewRoot(viewRef);
       resultView[NG_VIEW] = viewRef;
-
       return resultView;
     };
   }
@@ -296,7 +360,6 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
       let viewRef = this.getView(templateRef);
       if (!viewRef) {
         const loader = this.detachedLoaderFactory();
-        // viewRef = this.loader.createEmbeddedView(templateRef, new ItemContext(), 0);
         viewRef = loader.instance.vc.createEmbeddedView(templateRef, new ItemContext(), 0);
         this.viewToLoader.set(viewRef, loader);
         this.viewToTemplate.set(viewRef, templateRef);
@@ -389,6 +452,42 @@ export class TemplateKeyDirective {
     }
     if (this.collectionView && this.templateRef) {
       this.collectionView.registerTemplate(value.toLowerCase(), this.templateRef);
+    }
+  }
+}
+
+@Directive({
+  selector: '[cvTemplateHeader]',
+})
+export class TemplateHeaderDirective {
+  constructor(private templateRef: TemplateRef<any>, @Host() private collectionView: CollectionViewComponent) {}
+
+  @Input()
+  set cvTemplateHeader(value: any) {
+    if (Trace.isEnabled()) {
+      CLog(CLogTypes.info, 'cvTemplateHeader: ' + value);
+    }
+    if (this.collectionView && this.templateRef) {
+      // TODO: allow keying of multiple headers per section
+      this.collectionView.registerTemplateSupplemental(value || ViewTemplateType.Header, this.templateRef, 'header');
+    }
+  }
+}
+
+@Directive({
+  selector: '[cvTemplateFooter]',
+})
+export class TemplateFooterDirective {
+  constructor(private templateRef: TemplateRef<any>, @Host() private collectionView: CollectionViewComponent) {}
+
+  @Input()
+  set cvTemplateFooter(value: any) {
+    if (Trace.isEnabled()) {
+      CLog(CLogTypes.info, 'cvTemplateFooter: ' + value);
+    }
+    if (this.collectionView && this.templateRef) {
+      // TODO: allow keying of multiple footers per section
+      this.collectionView.registerTemplateSupplemental(value || ViewTemplateType.Footer, this.templateRef, 'footer');
     }
   }
 }
