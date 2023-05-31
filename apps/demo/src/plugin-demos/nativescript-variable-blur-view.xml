@@ -11,7 +11,7 @@
         <ContentView height="400"></ContentView>
       </StackLayout>
     </ScrollView>
-    <ui:VariableBlurView height="200" width="100%" verticalAlignment="top" />
+    <ui:VariableBlurView height="200" width="100%" maxBlurRadius="{{maxBlurRadius}}" verticalAlignment="top" />
     <ui:VariableBlurView height="200" width="100%" verticalAlignment="bottom" scaleY="-1" />
   </GridLayout>
 

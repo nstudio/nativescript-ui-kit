@@ -31,67 +31,106 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-import { Utils, ContentView } from '@nativescript/core';
+import { Utils, ContentView, Property } from '@nativescript/core';
+
+type BlurFilterType = 'variableBlur' | 'gaussianBlur' | 'colorSaturate';
+let filterClass: NSObject;
 
 @NativeClass()
 export class VariableBlurUIView extends UIVisualEffectView {
+  gradientMask: UIImage;
+  defaultMask: UIImage;
+  maxBlurRadius: number;
+  filterType: string;
+  filterEffect: NSObject;
+  filters: NSArray<any>;
+
   constructor() {
     super({ effect: UIBlurEffect.effectWithStyle(UIBlurEffectStyle.Regular) });
+    this.defaultMask = defaultGradientMask();
   }
 
-  initEffect(gradientMask = defaultGradientMask(), maxBlurRadius = 20, filterType = 'variableBlur') {
-    // Private QuartzCore class, encoded in base64: CAFilter
-    const filterClassStringEncoded = 'Q0FGaWx0ZXI=';
-    const filterData = NSData.alloc().initWithBase64Encoding(filterClassStringEncoded);
-    const filterClassString = NSString.alloc().initWithDataEncoding(filterData, NSUTF8StringEncoding);
-    if (!filterClassString) {
-      console.error(`[VariableBlurView] couldn't decode the filter class string.`);
-    }
-
-    // @ts-ignore
-    const filterClass = NSClassFromString(filterClassString);
+  apply(options?: { gradientMask: UIImage; maxBlurRadius: number; filterType: BlurFilterType; force?: boolean }) {
+    options = {
+      gradientMask: options?.gradientMask || this.defaultMask,
+      maxBlurRadius: options?.maxBlurRadius || 20,
+      filterType: options?.filterType || 'variableBlur',
+      force: options?.force || false,
+    };
+    const changed = options.force || this.gradientMask !== options.gradientMask || this.maxBlurRadius !== options.maxBlurRadius || this.filterType !== options.filterType;
     if (!filterClass) {
-      console.error(`[VariableBlurView] couldn't create CAFilter class.`);
+      // Private QuartzCore class, encoded in base64: CAFilter
+      const filterClassStringEncoded = 'Q0FGaWx0ZXI=';
+      const filterData = NSData.alloc().initWithBase64Encoding(filterClassStringEncoded);
+      const filterClassString = NSString.alloc().initWithDataEncoding(filterData, NSUTF8StringEncoding);
+      if (!filterClassString) {
+        console.error(`[VariableBlurView] couldn't decode the filter class string.`);
+      }
+
+      // @ts-ignore
+      filterClass = NSClassFromString(filterClassString);
+      if (!filterClass) {
+        console.error(`[VariableBlurView] couldn't create CAFilter class.`);
+      }
     }
 
     /// Create the blur effect.
-    const variableBlur = filterClass['filterWithType'](filterType);
-    if (!variableBlur) {
-      console.error(`[VariableBlurView] Couldn't cast the blur filter.`);
-    }
-
-    /// The blur radius at each pixel depends on the alpha value of the corresponding pixel in the gradient mask.
-    /// An alpha of 1 results in the max blur radius, while an alpha of 0 is completely unblurred.
-    const gradientImageRef = gradientMask.CGImage;
-    if (!gradientImageRef) {
-      throw new Error('Could not decode gradient image');
-    }
-
-    variableBlur.setValueForKey(maxBlurRadius, 'inputRadius');
-    variableBlur.setValueForKey(gradientImageRef, 'inputMaskImage');
-    variableBlur.setValueForKey(true, 'inputNormalizeEdges');
-
-    /// Get rid of the visual effect view's dimming/tint view, so we don't see a hard line.
-    for (let i = 0; i < this.subviews.count; i++) {
-      if (i === 1) {
-        const tintOverlayView = this.subviews.objectAtIndex(i);
-        tintOverlayView.alpha = 0;
+    if (changed) {
+      this.filterType = options.filterType;
+      this.filterEffect = filterClass['filterWithType'](this.filterType);
+      if (!this.filterEffect) {
+        console.error(`[VariableBlurView] Couldn't cast the blur filter.`);
       }
     }
 
     /// We use a `UIVisualEffectView` here purely to get access to its `CABackdropLayer`,
     /// which is able to apply various, real-time CAFilters onto the views underneath.
-    const backdropLayer = this.subviews.firstObject.layer;
+    if (changed) {
+      this.maxBlurRadius = options.maxBlurRadius;
+      this.filterEffect.setValueForKey(this.maxBlurRadius, 'inputRadius');
+      /// The blur radius at each pixel depends on the alpha value of the corresponding pixel in the gradient mask.
+      /// An alpha of 1 results in the max blur radius, while an alpha of 0 is completely unblurred.
+      this.gradientMask = options.gradientMask;
+      this.filterEffect.setValueForKey(this.gradientMask.CGImage, 'inputMaskImage');
+      this.filterEffect.setValueForKey(true, 'inputNormalizeEdges');
+      this.filters = Utils.ios.collections.jsArrayToNSArray([this.filterEffect]);
 
-    /// Replace the standard filters (i.e. `gaussianBlur`, `colorSaturate`, etc.) with only the variableBlur.
-    backdropLayer.filters = Utils.ios.collections.jsArrayToNSArray([variableBlur]);
+      /// Get rid of the visual effect view's dimming/tint view, so we don't see a hard line.
+      if (this.subviews.count > 1) {
+        const tintOverlayView = this.subviews.objectAtIndex(1);
+        tintOverlayView.alpha = 0;
+      }
+
+      const backdropLayer = this.subviews.firstObject.layer;
+
+      /// Replace the standard filters (i.e. `gaussianBlur`, `colorSaturate`, etc.) with only the variableBlur.
+      backdropLayer.filters = this.filters;
+    }
+  }
+
+  cleanup() {
+    this.gradientMask = null;
+    this.defaultMask = null;
+    this.filterEffect = null;
+    this.filters = null;
   }
 }
+
+// allow change detection for live property modifications
+const maxBlurRadiusProperty = new Property<VariableBlurView, number>({
+  name: 'maxBlurRadius',
+  defaultValue: 20,
+  valueConverter: parseFloat,
+});
+const filterTypeProperty = new Property<VariableBlurView, BlurFilterType>({
+  name: 'filterType',
+  defaultValue: 'variableBlur',
+});
 
 export class VariableBlurView extends ContentView {
   gradientMask: UIImage;
   maxBlurRadius: number;
-  filterType: 'variableBlur' | 'gaussianBlur' | 'colorSaturate';
+  filterType: BlurFilterType;
   // @ts-ignore
   nativeView: VariableBlurUIView;
 
@@ -99,10 +138,46 @@ export class VariableBlurView extends ContentView {
     return new VariableBlurUIView();
   }
 
-  initNativeView() {
-    this.nativeView.initEffect(this.gradientMask, this.maxBlurRadius, this.filterType);
+  initNativeView(): void {
+    this.apply(true);
+  }
+
+  disposeNativeView() {
+    if (this.nativeView) {
+      this.nativeView.cleanup();
+    }
+    this.gradientMask = null;
+  }
+
+  onLoaded() {
+    if (!this.isLoaded) {
+      this.apply(true);
+    }
+    super.onLoaded();
+  }
+
+  apply(force?: boolean) {
+    if (this.nativeView) {
+      this.nativeView.apply({
+        gradientMask: this.gradientMask,
+        maxBlurRadius: this.maxBlurRadius,
+        filterType: this.filterType,
+        force,
+      });
+    }
+  }
+
+  [maxBlurRadiusProperty.setNative](value: number) {
+    this.apply();
+  }
+
+  [filterTypeProperty.setNative](value: BlurFilterType) {
+    this.apply();
   }
 }
+
+maxBlurRadiusProperty.register(VariableBlurView);
+filterTypeProperty.register(VariableBlurView);
 
 function defaultGradientMask(): UIImage {
   const data = NSData.alloc().initWithBase64EncodedStringOptions(defaultMaskImageString, NSDataBase64DecodingOptions.IgnoreUnknownCharacters);
