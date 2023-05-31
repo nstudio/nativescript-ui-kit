@@ -8,6 +8,21 @@ Comprehensive product analytics & visual user insights.
 npm install @nstudio/nativescript-smartlook
 ```
 
+For iOS, configure your `nativescript.config.ts` to use the Swift Package:
+
+```ts
+ios: {
+    SPMPackages: [
+        {
+            name: "SmartlookAnalytics",
+            libs: ["SmartlookAnalytics"],
+            repositoryURL: "https://github.com/smartlook/analytics-swift-package.git",
+            version: "2.2.4"
+        }
+    ]
+}
+```
+
 ## Usage
 
 Initialize the SDK with your api key before the app boots:

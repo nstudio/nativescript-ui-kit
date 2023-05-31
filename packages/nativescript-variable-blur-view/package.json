@@ -1,7 +1,7 @@
 {
-  "name": "@nstudio/nativescript-smartlook",
+  "name": "@nstudio/nativescript-variable-blur-view",
   "version": "1.0.1",
-  "description": "Smartlook SDK for NativeScript",
+  "description": "Variable Blur View for NativeScript",
   "main": "index",
   "typings": "index.d.ts",
   "nativescript": {
@@ -19,9 +19,7 @@
     "JavaScript",
     "TypeScript",
     "iOS",
-    "Android",
-    "Smartlook",
-    "Mobile qualitative analytics"
+    "Android"
   ],
   "author": {
     "name": "nstudio",
@@ -31,7 +29,7 @@
     "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/nstudio/nativescript-ui-kit",
+  "homepage": "https://github.com/nstudio/nativescript-ui-kit/tree/main/packages/nativescript-variable-blur-view",
   "readmeFilename": "README.md",
   "bootstrapper": "@nativescript/plugin-seed"
 }

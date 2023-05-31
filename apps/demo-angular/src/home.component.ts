@@ -23,6 +23,9 @@ export class HomeComponent {
 	},
 	{
 		name: 'ui-collectionview'
+	},
+	{
+		name: 'nativescript-variable-blur-view'
 	}
 ];
 }

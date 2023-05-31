@@ -1,0 +1,18 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:ui="@nstudio/nativescript-variable-blur-view">
+  <!-- <Page.actionBar>
+    <ActionBar title="nativescript-variable-blur-view" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar> -->
+  <GridLayout>
+    <ScrollView>
+      <StackLayout>
+        <Image src="{{url}}" stretch="aspectFit" class="h-center" borderRadius="6"></Image>
+        <ContentView height="400"></ContentView>
+      </StackLayout>
+    </ScrollView>
+    <ui:VariableBlurView height="200" width="100%" maxBlurRadius="{{maxBlurRadius}}" verticalAlignment="top" />
+    <ui:VariableBlurView height="200" width="100%" verticalAlignment="bottom" scaleY="-1" />
+  </GridLayout>
+
+</Page>

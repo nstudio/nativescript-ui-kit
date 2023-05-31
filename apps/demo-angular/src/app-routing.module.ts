@@ -13,6 +13,7 @@ const routes: Routes = [
 	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) },
 	{ path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then(m => m.NativescriptSmartlookModule) },
 	{ path: 'ui-collectionview', loadChildren: () => import('./plugin-demos/ui-collectionview.module').then(m => m.UiCollectionviewModule) }
+	{ path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then(m => m.NativescriptVariableBlurViewModule) }
 ];
 
 @NgModule({

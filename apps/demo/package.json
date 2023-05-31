@@ -6,6 +6,7 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/ui-collectionview": "file:../../packages/ui-collectionview",
+    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
     "nativescript-fonticon": "file:../../packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",

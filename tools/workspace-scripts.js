@@ -103,6 +103,13 @@ module.exports = {
 					description: '@nstudio/nativescript-smartlook: Build',
 				},
 			},
+			// @nstudio/nativescript-variable-blur-view
+			'nativescript-variable-blur-view': {
+				build: {
+					script: 'nx run nativescript-variable-blur-view:build.all',
+					description: '@nstudio/nativescript-variable-blur-view: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -136,6 +143,10 @@ module.exports = {
 			'nativescript-smartlook': {
 				script: 'nx run nativescript-smartlook:focus',
 				description: 'Focus on @nstudio/nativescript-smartlook',
+			},
+			'nativescript-variable-blur-view': {
+				script: 'nx run nativescript-variable-blur-view:focus',
+				description: 'Focus on @nstudio/nativescript-variable-blur-view',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
