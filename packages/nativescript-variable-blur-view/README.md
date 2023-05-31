@@ -2,13 +2,16 @@
 
 Variable Blur View for NativeScript. Inspired by [@jtrivedi](https://github.com/jtrivedi), [@aheze](https://github.com/aheze/VariableBlurView), and [https://github.com/candlefinance](https://github.com/candlefinance/blur-view)
 
-**Note**: iOS Only (*at the moment*)
+## Preview
+https://github.com/nstudio/nativescript-ui-kit/assets/457187/8d82d1b4-1dfc-421f-89b1-697c3c433b26
 
 ```javascript
 npm install @nstudio/nativescript-variable-blur-view
 ```
 
 ## Usage
+
+**Note**: iOS Only (*at the moment*)
 
 Register the element for usage in your markup:
 
