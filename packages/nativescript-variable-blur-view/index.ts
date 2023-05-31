@@ -39,7 +39,7 @@ export class VariableBlurUIView extends UIVisualEffectView {
     super({ effect: UIBlurEffect.effectWithStyle(UIBlurEffectStyle.Regular) });
   }
 
-  initEffect(gradientMask = defaultGradientMask(), maxBlurRadius = 20, filterType = 'variableBlur', invertMask?: boolean) {
+  initEffect(gradientMask = defaultGradientMask(), maxBlurRadius = 20, filterType = 'variableBlur') {
     // Private QuartzCore class, encoded in base64: CAFilter
     const filterClassStringEncoded = 'Q0FGaWx0ZXI=';
     const filterData = NSData.alloc().initWithBase64Encoding(filterClassStringEncoded);
@@ -62,10 +62,6 @@ export class VariableBlurUIView extends UIVisualEffectView {
 
     /// The blur radius at each pixel depends on the alpha value of the corresponding pixel in the gradient mask.
     /// An alpha of 1 results in the max blur radius, while an alpha of 0 is completely unblurred.
-    if (invertMask) {
-        console.log('invertMask:', invertMask)
-      gradientMask = UIImage.imageWithCGImageScaleOrientation(gradientMask.CGImage, gradientMask.scale, UIImageOrientation.DownMirrored);
-    }
     const gradientImageRef = gradientMask.CGImage;
     if (!gradientImageRef) {
       throw new Error('Could not decode gradient image');
@@ -96,7 +92,6 @@ export class VariableBlurView extends ContentView {
   gradientMask: UIImage;
   maxBlurRadius: number;
   filterType: 'variableBlur' | 'gaussianBlur' | 'colorSaturate';
-  invertMask: boolean;
   // @ts-ignore
   nativeView: VariableBlurUIView;
 
@@ -105,7 +100,7 @@ export class VariableBlurView extends ContentView {
   }
 
   initNativeView() {
-    this.nativeView.initEffect(this.gradientMask, this.maxBlurRadius, this.filterType, this.invertMask);
+    this.nativeView.initEffect(this.gradientMask, this.maxBlurRadius, this.filterType);
   }
 }
 
