@@ -1,6 +1,6 @@
 # @nstudio/nativescript-variable-blur-view
 
-Variable Blur View for NativeScript. Inspired by [@jtrivedi](https://github.com/jtrivedi), [@aheze](https://github.com/aheze/VariableBlurView), and [https://github.com/candlefinance](https://github.com/candlefinance/blur-view)
+Variable Blur View for NativeScript. Inspired by [@jtrivedi](https://github.com/jtrivedi), [@aheze](https://github.com/aheze/VariableBlurView), and [@candlefinance](https://github.com/candlefinance/blur-view)
 
 ## Preview
 https://github.com/nstudio/nativescript-ui-kit/assets/457187/8d82d1b4-1dfc-421f-89b1-697c3c433b26
