@@ -3,6 +3,7 @@
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 - [@nstudio/nativescript-smartlook](packages/nativescript-smartlook/README.md)
+- [@nstudio/nativescript-variable-blur-view](packages/nativescript-variable-blur-view/README.md)
 
 # How to use?
 
