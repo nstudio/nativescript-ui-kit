@@ -5,12 +5,14 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
+    "@nstudio/nativescript-water-ripple": "file:../../packages/nativescript-water-ripple",
+    "@nativescript/swift-ui": "1.1.0",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
     "nativescript-fonticon": "file:../../packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
-    "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook"
+    "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
+    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view"
   },
   "devDependencies": {
     "@nativescript/android": "~8.5.0",

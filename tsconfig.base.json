@@ -49,6 +49,9 @@
       ],
       "@nstudio/nativescript-variable-blur-view": [
         "packages/nativescript-variable-blur-view/index.ts"
+      ],
+      "@nstudio/nativescript-water-ripple": [
+        "packages/nativescript-water-ripple/index.d.ts"
       ]
     }
   },

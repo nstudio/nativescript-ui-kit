@@ -28,6 +28,7 @@
     "@nativescript/angular": "^15.0.0",
     "@nativescript/core": "~8.5.0",
     "@nativescript/plugin-tools": "5.1.0",
+    "@nativescript/swift-ui": "1.1.0",
     "@nativescript/types": "~8.5.0",
     "@nativescript/webpack": "~5.0.5",
     "@ngtools/webpack": "^15.0.0",

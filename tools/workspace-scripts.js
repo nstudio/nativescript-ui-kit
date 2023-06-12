@@ -103,6 +103,13 @@ module.exports = {
 					description: '@nstudio/nativescript-variable-blur-view: Build',
 				},
 			},
+			// @nstudio/nativescript-water-ripple
+			'nativescript-water-ripple': {
+				build: {
+					script: 'nx run nativescript-water-ripple:build.all',
+					description: '@nstudio/nativescript-water-ripple: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -136,6 +143,10 @@ module.exports = {
 			'nativescript-variable-blur-view': {
 				script: 'nx run nativescript-variable-blur-view:focus',
 				description: 'Focus on @nstudio/nativescript-variable-blur-view',
+			},
+			'nativescript-water-ripple': {
+				script: 'nx run nativescript-water-ripple:focus',
+				description: 'Focus on @nstudio/nativescript-water-ripple',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

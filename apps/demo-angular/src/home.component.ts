@@ -23,6 +23,9 @@ export class HomeComponent {
 	},
 	{
 		name: 'nativescript-variable-blur-view'
+	},
+	{
+		name: 'nativescript-water-ripple'
 	}
 ];
 }

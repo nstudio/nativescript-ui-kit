@@ -4,6 +4,7 @@
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 - [@nstudio/nativescript-smartlook](packages/nativescript-smartlook/README.md)
 - [@nstudio/nativescript-variable-blur-view](packages/nativescript-variable-blur-view/README.md)
+- [@nstudio/nativescript-water-ripple](packages/nativescript-water-ripple/README.md)
 
 # How to use?
 

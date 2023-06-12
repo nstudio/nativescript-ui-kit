@@ -12,7 +12,8 @@ const routes: Routes = [
 	{ path: 'nativescript-label-marquee', loadChildren: () => import('./plugin-demos/nativescript-label-marquee.module').then(m => m.NativescriptLabelMarqueeModule) },
 	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) },
 	{ path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then(m => m.NativescriptSmartlookModule) },
-	{ path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then(m => m.NativescriptVariableBlurViewModule) }
+	{ path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then(m => m.NativescriptVariableBlurViewModule) },
+	{ path: 'nativescript-water-ripple', loadChildren: () => import('./plugin-demos/nativescript-water-ripple.module').then(m => m.NativescriptWaterRippleModule) }
 ];
 
 @NgModule({

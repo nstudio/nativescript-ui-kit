@@ -1,0 +1,7 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:si="@nativescript/swift-ui">
+  <GridLayout>
+    <si:SwiftUI swiftId="waterRipple" data="{{waterRippleData}}" iosOverflowSafeArea="true">
+    </si:SwiftUI>
+  </GridLayout>
+</Page>

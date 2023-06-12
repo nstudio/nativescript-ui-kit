@@ -11,6 +11,7 @@
         <Button text="nativescript-shimmer" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
         <Button text="nativescript-smartlook" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
         <Button text="nativescript-variable-blur-view" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
+        <Button text="nativescript-water-ripple" tap="{{ viewDemo }}" class="btn btn-primary view-demo"/>
       </StackLayout>
     </ScrollView>
   </StackLayout>
