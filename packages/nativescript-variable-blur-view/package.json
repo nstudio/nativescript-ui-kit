@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-variable-blur-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Variable Blur View for NativeScript",
   "main": "index",
   "typings": "index.d.ts",
