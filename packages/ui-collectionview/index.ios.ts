@@ -77,7 +77,7 @@ export class CollectionView extends CollectionViewBase {
     draggingStartDelta: [number, number];
 
     nativeViewProtected: UICollectionView;
-    cellRegistration: UICollectionViewCellRegistration;
+    cellRegistrations: Record<string,UICollectionViewCellRegistration> = {};
     headerRegistration: UICollectionViewSupplementaryRegistration;
     footerRegistration: UICollectionViewSupplementaryRegistration;
 
@@ -134,24 +134,31 @@ export class CollectionView extends CollectionViewBase {
     }
 
     setupDataSource() {
-        this.cellRegistration = UICollectionViewCellRegistration.registrationWithCellClassConfigurationHandler(CollectionViewCell.class(), (view, indexPath, identifier) => {
-            const cell = <CollectionViewCell>view;
-            const templateType = this._getItemTemplateType(indexPath);
-            const firstRender = !cell.view;
-            if (Trace.isEnabled()) {
-                CLog(CLogTypes.log, 'collectionViewCellForItemAtIndexPath', indexPath.row, templateType, !!cell.view, cell);
-            }
-            this._prepareCell(cell, indexPath, templateType);
-
-            // the cell layout will be called from NSCellView layoutSubviews
-            const cellView: View = cell.view;
-            if (!firstRender && cellView['isLayoutRequired']) {
-                this.layoutCell(indexPath.row, cell, cellView);
-            }
-            return cell;
-        })
+        // Important: cell's must be registered before creating the datasource
+        // eg: they can *not* be created within the initWithCollectionViewCellProvider
+        const templateKeys = this._itemTemplatesInternal.keys();
+        for (const key of templateKeys) {
+            // register cell for each template type
+            this.cellRegistrations[key] = UICollectionViewCellRegistration.registrationWithCellClassConfigurationHandler(CollectionViewCell.class(), (view, indexPath, identifier) => {
+                const templateType = this._getItemTemplateType(indexPath);
+                // console.log('registrationWithCellClassConfigurationHandler templateType:', templateType)
+                const cell = <CollectionViewCell>view;
+                const firstRender = !cell.view;
+                if (Trace.isEnabled()) {
+                    CLog(CLogTypes.log, 'cellProvider for row:', indexPath.row, ' templateType:', templateType);
+                }
+                this._prepareCell(cell, indexPath, templateType);
+    
+                // the cell layout will be called from NSCellView layoutSubviews
+                const cellView: View = cell.view;
+                if (!firstRender && cellView['isLayoutRequired']) {
+                    this.layoutCell(indexPath.row, cell, cellView);
+                }
+                return cell;
+            })
+        }
         this._dataSource = UICollectionViewDiffableDataSource.alloc().initWithCollectionViewCellProvider(this.nativeView, (view, indexPath, identifier) => {
-            return this.nativeViewProtected.dequeueConfiguredReusableCellWithRegistrationForIndexPathItem(this.cellRegistration, indexPath, identifier)
+            return this.nativeViewProtected.dequeueConfiguredReusableCellWithRegistrationForIndexPathItem(this.cellRegistrations[this._getItemTemplateType(indexPath)], indexPath, identifier)
         })
         this.setupHeaderFooter();
 
@@ -730,12 +737,7 @@ export class CollectionView extends CollectionViewBase {
         return args as any;
     }
     _getItemTemplateType(indexPath) {
-        const selector = this._itemTemplateSelector;
-        let type = this._defaultTemplate.key;
-        if (selector) {
-            type = selector.call(this, this.getItemAtIndex(indexPath.item), indexPath.item, this.items);
-        }
-        return type.toLowerCase();
+        return (this._itemTemplateSelector ? this._itemTemplateSelector.call(this, this.getItemAtIndex(indexPath.row), indexPath.row, this.items) : this._defaultTemplate.key).toLowerCase();
     }
     public disableIosOverflowSafeArea(parentView: View) {
 		if (parentView) {

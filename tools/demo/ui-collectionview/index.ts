@@ -336,7 +336,7 @@ export class DemoSharedUiCollectionview extends DemoSharedBase {
   }
 
   itemTemplateSelector = (item: any, index: number, items: any) => {
-    if (item.name === 'Dr. Seuss') {
+    if (item.name === 'Snoopy') {
       return 'custom';
     } else {
       return 'default';

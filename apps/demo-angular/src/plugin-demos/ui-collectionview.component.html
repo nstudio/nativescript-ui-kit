@@ -4,9 +4,10 @@
   layoutStyle="header-and-footer"
   (itemTap)="demoShared.itemTap($event)"
   (loaded)="demoShared.loadedCollectionView($event)"
+  [itemTemplateSelector]="demoShared.itemTemplateSelector"
 >
 <!--[itemTemplateSelector]="templateSelector" cvTemplateKey="default" -->
-  <ng-template let-item="item">
+  <ng-template let-item="item" cvTemplateKey="default">
     <GridLayout
       rows="auto,auto,42"
       class="pl-4 pr-2 py-2 align-middle bg-white"
@@ -37,6 +38,41 @@
       </GridLayout>
     </GridLayout>
   </ng-template>
+
+  <ng-template let-item="item" cvTemplateKey="custom">
+    <GridLayout
+      rows="auto,auto,42"
+      class="pl-4 pr-2 py-2 align-middle"
+      backgroundColor="yellow"
+      android:borderBottomWidth="1"
+      android:borderBottomColor="#efefef"
+    >
+      
+      <Label
+        [text]="item.subject"
+        class="text-base text-black leading-none align-middle"
+      ></Label>
+      <Label
+        row="1"
+        [text]="item.name"
+        class="text-[17px] text-black font-bold align-middle text-left"
+      ></Label>
+      <Label
+        row="2"
+        [text]="item.body"
+        class="text-base leading-none text-gray-500"
+        maxLines="2"
+        android:textWrap="true"
+      ></Label>
+      <GridLayout rowSpan="3" columns="auto,auto" class="align-bottom h-right">
+        <Label
+          [text]="item.date | date : 'shortDate'"
+          class="text-sm align-middle text-gray-500"
+        ></Label>
+      </GridLayout>
+    </GridLayout>
+  </ng-template>
+
   <ng-template cvTemplateHeader>
     <StackLayout height="40" class="bg-slate-500">
       <Label text="HELLO" class="text-black"></Label>
