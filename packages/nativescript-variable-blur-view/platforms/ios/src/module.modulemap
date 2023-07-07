@@ -1,5 +1,4 @@
 module CAFilterModule {
     header "CAFilter.h"
     export *
-    module * { export * }
 }
