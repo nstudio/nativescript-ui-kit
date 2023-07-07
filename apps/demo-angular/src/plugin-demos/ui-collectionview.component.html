@@ -74,10 +74,16 @@
   </ng-template>
 
   <ng-template cvTemplateHeader>
-    <StackLayout height="40" class="bg-slate-500">
-      <Label text="HELLO" class="text-black"></Label>
-      
-    </StackLayout>
+    <GridLayout backgroundColor="#efefef" height="40">
+      <GridLayout rows="" columns="*,auto,auto,auto,auto,auto,auto,*">
+          <Label col="1" text="Load" (tap)="demoShared.loadItems()" class="mx-1"></Label>
+          <Label col="2" text="Update" (tap)="demoShared.updateItem()" class="mx-1"></Label>
+          <Label col="3" text="Delete" (tap)="demoShared.removeItem()" class="mx-1"></Label>
+          <Label col="4" text="Delete/R" (tap)="demoShared.removeItemAndReplace()" class="m-x-4"></Label>
+          <Label col="5" text="Add" (tap)="demoShared.addItem()" class="mx-1"></Label>
+          <Label col="6" text="Reload" (tap)="demoShared.reload()" class="mx-1"></Label>
+      </GridLayout>
+    </GridLayout>
   </ng-template>
   <ng-template cvTemplateFooter>
     <StackLayout height="40" class="bg-yellow-200">
