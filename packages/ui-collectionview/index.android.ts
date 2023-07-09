@@ -920,6 +920,15 @@ export class CollectionView extends CollectionViewBase {
         }
     }
 
+    scrollToOffset(offSetValue: number) {
+        if (this.nativeViewProtected && this.orientation === 'horizontal' && this.isScrollEnabled) {
+            this.nativeViewProtected.scrollBy(offSetValue, 0);
+        }
+        if (this.nativeViewProtected && this.orientation === 'vertical' && this.isScrollEnabled) {
+            this.nativeViewProtected.scrollBy(0, offSetValue);
+        }
+    }
+
     private _setPadding(newPadding: { top?: number; right?: number; bottom?: number; left?: number }) {
         const nativeView = this.nativeViewProtected;
         const padding = {

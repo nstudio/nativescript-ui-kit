@@ -1,5 +1,5 @@
 import { DemoSharedBase } from '../utils';
-import {  } from '@nstudio/nativescript-variable-blur-view';
+// import {  } from '@nstudio/nativescript-variable-blur-view';
 
 export class DemoSharedNativescriptVariableBlurView extends DemoSharedBase {
   url = `~/images/sample-image.jpg`;

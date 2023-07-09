@@ -1,5 +1,5 @@
 import { DemoSharedBase } from '../utils';
-import { ICoachMarkOptions, CoachMark, CoachMarks } from '@nstudio/nativescript-coachmarks';
+// import { ICoachMarkOptions, CoachMark, CoachMarks } from '@nstudio/nativescript-coachmarks';
 import { Color } from '@nativescript/core';
 
 export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
@@ -20,103 +20,103 @@ export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
     this._menu = args.object.ios;
     
 
-    CoachMarks.DEBUG = true; // view logs of coach marks setup
+    // CoachMarks.DEBUG = true; // view logs of coach marks setup
   }
 
   public startWithOptions() {
     // configure instance to wire up events
-    this._coachMarks = new CoachMarks();
+    // this._coachMarks = new CoachMarks();
     // required: ensure your desire to setup events
     this._coachMarks.initEvents();
     // wire them up
     this.setupEvents();
 
-    let options: ICoachMarkOptions = {
-      continueLabelText: 'Tap Screen for Next Tip',
-      skipButtonText: 'Exit',
-      lblSpacing: 20,
-      maskColor: global.isIOS ? UIColor.colorWithRedGreenBlueAlpha(0.30, 0.46, 0.89, .9) : null
-    };
-    CoachMarks.start(this.getMarks(), options, this._coachMarks);    
+    // let options: ICoachMarkOptions = {
+    //   continueLabelText: 'Tap Screen for Next Tip',
+    //   skipButtonText: 'Exit',
+    //   lblSpacing: 20,
+    //   maskColor: global.isIOS ? UIColor.colorWithRedGreenBlueAlpha(0.30, 0.46, 0.89, .9) : null
+    // };
+    // CoachMarks.start(this.getMarks(), options, this._coachMarks);    
   }
 
   private getMarks() {
    
 
-    if (global.isIOS) {
-      let menuPosition = this._menu.frame;
-      let firstPosition = this._first.ios.frame;
-      let secondPosition = this._second.ios.frame;
-      let thirdPosition = this._third.ios.frame;
-      return [
-        new CoachMark({
-          position: CGRectMake(
-            menuPosition.origin.x +164, 
-            menuPosition.origin.y + 58, 
-            menuPosition.size.width + 10, 
-            menuPosition.size.height
-          ),
-          caption: '1. Main menu.',
-          shape: CoachMark.SHAPES.DEFAULT,
-          labelPosition: CoachMark.LABEL_POSITIONS.RIGHT_BOTTOM,
-          labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
-          showArrow: true
-        }),
-        new CoachMark({
-          position: CGRectMake(
-            firstPosition.origin.x, 
-            firstPosition.origin.y, 
-            firstPosition.size.width, 
-            firstPosition.size.height
-          ),
-          caption: '2. View customer listings.',
-          shape: CoachMark.SHAPES.DEFAULT,
-          labelPosition: CoachMark.LABEL_POSITIONS.BOTTOM,
-          labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
-          showArrow: true
-        }),
-        new CoachMark({
-          position: CGRectMake(
-            thirdPosition.origin.x, 
-            thirdPosition.origin.y, 
-            thirdPosition.size.width, 
-            thirdPosition.size.height
-          ),
-          caption: '3. View account settings.',
-          shape: CoachMark.SHAPES.DEFAULT,
-          labelPosition: CoachMark.LABEL_POSITIONS.TOP,
-          labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
-          showArrow: true
-        }),
-        new CoachMark({
-          position: CGRectMake(
-            secondPosition.origin.x - 5, 
-            secondPosition.origin.y - 5, 
-            secondPosition.size.width + 10, 
-            secondPosition.size.height + 10
-          ),
-          caption: '4. Just a circular shape.',
-          shape: CoachMark.SHAPES.CIRCLE,
-          labelPosition: CoachMark.LABEL_POSITIONS.BOTTOM,
-          labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER
-        })
-      ];
-    } else {
-      return [
-        new CoachMark({
-          view: this._first,
-          caption: '1. View customer listings.',
-        }),
-        new CoachMark({
-          view: this._second,
-          caption: '2. View account settings.',
-        }),
-        new CoachMark({
-          view: this._third,
-          caption: '3. Just a circular shape.',
-        })
-      ];
-    }
+    // if (global.isIOS) {
+    //   let menuPosition = this._menu.frame;
+    //   let firstPosition = this._first.ios.frame;
+    //   let secondPosition = this._second.ios.frame;
+    //   let thirdPosition = this._third.ios.frame;
+    //   return [
+    //     new CoachMark({
+    //       position: CGRectMake(
+    //         menuPosition.origin.x +164, 
+    //         menuPosition.origin.y + 58, 
+    //         menuPosition.size.width + 10, 
+    //         menuPosition.size.height
+    //       ),
+    //       caption: '1. Main menu.',
+    //       shape: CoachMark.SHAPES.DEFAULT,
+    //       labelPosition: CoachMark.LABEL_POSITIONS.RIGHT_BOTTOM,
+    //       labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
+    //       showArrow: true
+    //     }),
+    //     new CoachMark({
+    //       position: CGRectMake(
+    //         firstPosition.origin.x, 
+    //         firstPosition.origin.y, 
+    //         firstPosition.size.width, 
+    //         firstPosition.size.height
+    //       ),
+    //       caption: '2. View customer listings.',
+    //       shape: CoachMark.SHAPES.DEFAULT,
+    //       labelPosition: CoachMark.LABEL_POSITIONS.BOTTOM,
+    //       labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
+    //       showArrow: true
+    //     }),
+    //     new CoachMark({
+    //       position: CGRectMake(
+    //         thirdPosition.origin.x, 
+    //         thirdPosition.origin.y, 
+    //         thirdPosition.size.width, 
+    //         thirdPosition.size.height
+    //       ),
+    //       caption: '3. View account settings.',
+    //       shape: CoachMark.SHAPES.DEFAULT,
+    //       labelPosition: CoachMark.LABEL_POSITIONS.TOP,
+    //       labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER,
+    //       showArrow: true
+    //     }),
+    //     new CoachMark({
+    //       position: CGRectMake(
+    //         secondPosition.origin.x - 5, 
+    //         secondPosition.origin.y - 5, 
+    //         secondPosition.size.width + 10, 
+    //         secondPosition.size.height + 10
+    //       ),
+    //       caption: '4. Just a circular shape.',
+    //       shape: CoachMark.SHAPES.CIRCLE,
+    //       labelPosition: CoachMark.LABEL_POSITIONS.BOTTOM,
+    //       labelAlignment: CoachMark.LABEL_ALIGNMENTS.CENTER
+    //     })
+    //   ];
+    // } else {
+    //   return [
+    //     new CoachMark({
+    //       view: this._first,
+    //       caption: '1. View customer listings.',
+    //     }),
+    //     new CoachMark({
+    //       view: this._second,
+    //       caption: '2. View account settings.',
+    //     }),
+    //     new CoachMark({
+    //       view: this._third,
+    //       caption: '3. Just a circular shape.',
+    //     })
+    //   ];
+    // }
   }
 
   private setupEvents() {

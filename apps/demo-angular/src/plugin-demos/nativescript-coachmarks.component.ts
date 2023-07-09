@@ -13,7 +13,7 @@ export class NativescriptCoachmarksComponent {
 	constructor(private _ngZone: NgZone) {}
 
   ngOnInit() {
-    this.demoShared = new DemoSharedNativescriptCoachmarks();
+    this.demoShared = new DemoSharedNativescriptCoachmarks(null, null, null);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { DemoSharedNativescriptSmartlook } from '@demo/shared';
-import { } from '@nstudio/nativescript-smartlook';
+// import { } from '@nstudio/nativescript-smartlook';
 
 @Component({
 	selector: 'demo-nativescript-smartlook',

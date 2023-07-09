@@ -1,0 +1,81 @@
+<ActionBar title="ui-collectionview-sean" class="action-bar"> </ActionBar>
+
+<StackLayout>
+  <StackLayout (tap)="addPlayers(10)">
+    <Label text="add players"></Label>
+  </StackLayout>
+  <ScrollView #tableMainBody orientation="horizontal">
+    <GridLayout columns="60,*" rows="54, *">
+      
+      <!-- Ids -->
+      <CollectionView #ids row="1" col="0" backgroundColor="white" [items]="items" width="90"
+        (scroll)="onScrollVertically($event)"
+        (loaded)="doLoadedRemoveBandingAnimation($event)"
+      >
+        <ng-container *ngFor="let item of items; let odd = odd">
+          <StackLayout class="cell-height">
+              <StackLayout class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                  <Label class="jumbo-text" [text]="item.id"></Label>
+              </StackLayout>
+          </StackLayout>
+        </ng-container>
+      </CollectionView>
+
+      <!-- Main table body -->
+      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="items" width="820"
+        (scroll)="onScrollVertically($event)"
+        (loaded)="doLoadedRemoveBandingAnimation($event)"
+      >
+        <ng-container *ngFor="let item of items; let odd = odd; let i = index">
+          <GridLayout columns="150 1 200 1 60 1 90 1 90 1 60 1 60">
+
+            <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.name"></Label>
+            </StackLayout>
+
+            <StackLayout col="1" class="horizontal-heading-divider"></StackLayout>
+
+
+            <StackLayout col="2" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.position"></Label>
+            </StackLayout>
+
+            <StackLayout col="3" class="horizontal-heading-divider"></StackLayout>
+
+
+            <StackLayout col="4" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.height"></Label>
+            </StackLayout>
+
+            <StackLayout col="5" class="horizontal-heading-divider"></StackLayout>
+
+            <StackLayout col="6" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.nationality"></Label>
+            </StackLayout>
+
+            <StackLayout col="7" class="horizontal-heading-divider"></StackLayout>
+
+            <StackLayout col="8" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.dob"></Label>
+            </StackLayout>
+
+            <StackLayout col="9" class="horizontal-heading-divider"></StackLayout>
+
+            <StackLayout col="10" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.goals"></Label>
+            </StackLayout>
+
+            <StackLayout col="1" class="horizontal-heading-divider"></StackLayout>
+
+            <StackLayout col="12" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+              <Label [text]="item.assists"></Label>
+            </StackLayout>
+
+          </GridLayout>
+        </ng-container>
+      </CollectionView>
+    </GridLayout>
+  </ScrollView>
+</StackLayout>
+
+

@@ -1,30 +1,4 @@
-import {
-    Builder,
-    CSSType,
-    ChangedData,
-    ContentView,
-    CoreTypes,
-    EventData,
-    KeyedTemplate,
-    Label,
-    Observable,
-    ObservableArray,
-    PercentLength,
-    Property,
-    ProxyViewContainer,
-    Template,
-    Trace,
-    Utils,
-    View,
-    addWeakEventListener,
-    booleanConverter,
-    heightProperty,
-    makeParser,
-    makeValidator,
-    profile,
-    removeWeakEventListener,
-    widthProperty
-} from '@nativescript/core';
+import { Builder, CSSType, ChangedData, CoreTypes, EventData, KeyedTemplate, Label, Observable, ObservableArray, PercentLength, Property, ProxyViewContainer, Template, Trace, Utils, View, addWeakEventListener, booleanConverter, heightProperty, makeParser, makeValidator, profile, removeWeakEventListener, widthProperty } from '@nativescript/core';
 import { CollectionView as CollectionViewDefinition } from '.';
 
 export const CollectionViewTraceCategory = 'NativescriptCollectionView';
@@ -234,38 +208,44 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public abstract refreshVisibleItems();
     public abstract isItemAtIndexVisible(index: number);
     public abstract scrollToIndex(index: number, animated: boolean);
+    public abstract scrollToOffset(value: number, animated?: boolean);
 
     protected updateInnerSize() {
         const width = this.getMeasuredWidth();
         const height = this.getMeasuredHeight();
-        this._innerWidth = width - this.effectivePaddingLeft - this.effectivePaddingRight;
+        const paddingLeft = this.effectivePaddingLeft;
+        const paddingRight = this.effectivePaddingRight;
+        const paddingTop = this.effectivePaddingTop;
+        const paddingBottom = this.effectivePaddingBottom;
+
+        this._innerWidth = width - paddingLeft - paddingRight;
+
         if (this.colWidth) {
             let newValue = toDevicePixels(this.colWidth, autoEffectiveColWidth, this._innerWidth); // We cannot use 0 for auto as it throws for android.
             if (global.isAndroid) {
                 newValue = Math.floor(newValue);
             }
-            if (newValue !== this._effectiveColWidth) {
-                this._effectiveColWidth = newValue;
-            }
+            this._effectiveColWidth = newValue;
         }
 
-        this._innerHeight = height - this.effectivePaddingTop - this.effectivePaddingBottom;
+        this._innerHeight = height - paddingTop - paddingBottom;
+
         if (this.rowHeight) {
             let newValue = toDevicePixels(this.rowHeight, autoEffectiveRowHeight, this._innerHeight);
             if (global.isAndroid) {
                 newValue = Math.floor(newValue);
             }
-            if (newValue !== this._effectiveRowHeight) {
-                this._effectiveRowHeight = newValue;
-            }
+            this._effectiveRowHeight = newValue;
         }
     }
+
     // public onLayout(left: number, top: number, right: number, bottom: number) {
     //     super.onLayout(left, top, right, bottom);
     //     // on ios and during device rotation the getMeasuredWidth and getMeasuredHeight are wrong
     //     // so we use left, top , right, bottom
     //     this.updateInnerSize();
     // }
+
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         // on ios and during device rotation the getMeasuredWidth and getMeasuredHeight are wrong
@@ -306,19 +286,21 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     items: any[] | ObservableArray<any>;
 
     @profile
-    public _prepareItem(view: View, index: number) {
+    _prepareItem(view: View, index: number) {
         const context = this.getItemAtIndex(index);
         if (view) {
             // we check old bindingContext to see if properties disappeared.
             // if so we set them to null for the View to update
-            if (view.bindingContext && view.bindingContext !== context && typeof context === 'object') {
-                Object.keys(view.bindingContext).forEach((k) => {
-                    if (!context.hasOwnProperty(k)) {
-                        context[k] = null;
-                    }
-                });
-                view.bindingContext = context;
+            if (view.bindingContext !== context && typeof context === 'object') {
+            for (const key in view.bindingContext) {
+                if (!(key in context)) {
+                context[key] = null;
+                }
             }
+            view.bindingContext = context;
+            }
+        } else {
+            return null;
         }
         return context;
     }
@@ -336,6 +318,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public isHorizontal() {
         return this.orientation === 'horizontal';
     }
+
     computeSpanCount() {
         let spanCount = 1;
         if (this.isHorizontal()) {
@@ -349,6 +332,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         }
         return spanCount;
     }
+    
     public _onRowHeightPropertyChanged(oldValue: CoreTypes.PercentLengthType, newValue: CoreTypes.PercentLengthType) {
         this.refresh();
     }
@@ -367,9 +351,11 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
             this.onItemViewLoaderChanged();
         }
     }
+
     get padding(): string | CoreTypes.LengthType {
         return this.style.padding;
     }
+
     set padding(value: string | CoreTypes.LengthType) {
         this.style.padding = value;
     }
@@ -377,6 +363,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     get paddingTop(): CoreTypes.LengthType {
         return this.style.paddingTop;
     }
+
     set paddingTop(value: CoreTypes.LengthType) {
         this.style.paddingTop = value;
     }
@@ -384,6 +371,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     get paddingRight(): CoreTypes.LengthType {
         return this.style.paddingRight;
     }
+
     set paddingRight(value: CoreTypes.LengthType) {
         this.style.paddingRight = value;
     }
@@ -391,6 +379,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     get paddingBottom(): CoreTypes.LengthType {
         return this.style.paddingBottom;
     }
+
     set paddingBottom(value: CoreTypes.LengthType) {
         this.style.paddingBottom = value;
     }
@@ -398,12 +387,15 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     get paddingLeft(): CoreTypes.LengthType {
         return this.style.paddingLeft;
     }
+
     set paddingLeft(value: CoreTypes.LengthType) {
         this.style.paddingLeft = value;
     }
+
     resolveTemplateView(template) {
         return Builder.parse(template, this);
     }
+
     _getDefaultItemContent() {
         const lbl = new Label();
         lbl['defaultItemView'] = true;
@@ -413,13 +405,13 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         });
         return lbl;
     }
+
     getTemplateFromSelector(templateKey) {
         const key = templateKey.toLowerCase();
-        if (this._itemTemplatesInternal.has(key)) {
-            return this._itemTemplatesInternal.get(key);
-        }
-        return null;
+        const template = this._itemTemplatesInternal.get(key) || this._itemTemplatesInternal.get('default');
+        return template;
     }
+
     getViewForTemplateType(templateKey: string, templateType: ViewTemplateType = ViewTemplateType.Item) {
         let newView;
         // console.log('getViewForTemplateType - templateKey: ', templateKey, ' templateType: ', templateType);
@@ -453,6 +445,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         }
         return templateString === undefined ? undefined : this.resolveTemplateView(templateString);
     }
+
     private _itemTemplateSelectorBindable;
     _itemTemplateSelector: Function;
     onItemTemplateSelectorChanged(oldValue, newValue) {
@@ -512,25 +505,27 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
             this.onTemplateRemoved(key);
         }
     }
+
     onItemTemplatesChanged(oldValue, newValue) {
-        console.log('onItemTemplatesChanged:', newValue)
-        if (!this._itemTemplatesInternal) {
-            this._itemTemplatesInternal = new Map();
-        }
+        const itemTemplatesInternal = new Map();
+
         if (newValue) {
-            newValue.forEach((t) => {
-                if (!t.key) {
-                    t.key = t._key;
-                    delete t._key;
+            for (const template of newValue) {
+                if (!template.key) {
+                    template.key = template._key;
+                    delete template._key;
                 }
-                console.log('t.key:', t.key)
-                this._itemTemplatesInternal.set(t.key, t);
-            });
+                itemTemplatesInternal.set(template.key, template);
+            }
         }
-        if (!this._itemTemplatesInternal.has(this._defaultTemplate.key)) {
-            this._itemTemplatesInternal.set(this._defaultTemplate.key, this._defaultTemplate);
+
+        if (!itemTemplatesInternal.has(this._defaultTemplate.key)) {
+            itemTemplatesInternal.set(this._defaultTemplate.key, this._defaultTemplate);
         }
+
+        this._itemTemplatesInternal = itemTemplatesInternal;
     }
+
     onItemTemplateChanged(oldValue, newValue) {
         // console.log('onItemTemplateChanged:', newValue)
     }
@@ -575,6 +570,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     getItemArrayAtIndex(index: number) {
         return this.items[index];
     }
+
     onItemsChanged(oldValue, newValue) {
         const getItem = newValue && (newValue as ObservableArray<any>).getItem;
         this.isItemsSourceIn = typeof getItem === 'function';
@@ -587,20 +583,19 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         if (newValue instanceof Observable) {
             addWeakEventListener(newValue, ObservableArray.changeEvent, this.onSourceCollectionChangedInternal, this);
         }
-        this.refresh();
+        this.refreshVisibleItems();
     }
-
     
     spanSize: (item, index: number) => number;
     onSpanSizeChangedInternal = (oldValue, newValue) => {
         this.spanSize = newValue;
-        this.refresh();
+        this.refreshVisibleItems();
     };
     _isDataDirty = false;
     onLoaded() {
         super.onLoaded();
         if (this._isDataDirty && this._effectiveColWidth !== undefined && this._effectiveRowHeight !== undefined) {
-            this.refresh();
+            this.refreshVisibleItems();
         }
     }
     onSourceCollectionChanged(event: ChangedData<any>) {
@@ -692,6 +687,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
 }
 
 const defaultRowHeight: CoreTypes.LengthType = 'auto';
+
 export const rowHeightProperty = new Property<CollectionViewBase, CoreTypes.PercentLengthType>({
     name: 'rowHeight',
     defaultValue: defaultRowHeight,
@@ -702,6 +698,7 @@ export const rowHeightProperty = new Property<CollectionViewBase, CoreTypes.Perc
         target._onRowHeightPropertyChanged(oldValue, newValue);
     }
 });
+
 rowHeightProperty.register(CollectionViewBase);
 
 const defaultColWidth: CoreTypes.PercentLengthType = { unit: '%', value: 1 };
