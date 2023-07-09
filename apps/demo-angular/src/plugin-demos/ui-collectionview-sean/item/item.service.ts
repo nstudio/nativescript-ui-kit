@@ -7,36 +7,36 @@ import { Item } from './item'
 })
 export class ItemService {
   items = new Array<Item>(
-    { id: 1, name: 'Hugo Lloris', position: 'Goalkeeper', height: 1.88, nationality: 'French', dob: '26/12/1986', appearances: 32, goals: 0, assists: 0  },
-    { id: 3, name: 'Oliver Skipp', position: 'Midfielder', height: 1.75, nationality: 'English', dob: '16/09//2000', appearances: 12, goals: 1, assists: 1 },
-    { id: 4, name: 'Dejan Kulusevski', position: 'Midfielder/Winger', height: 1.86, nationality: 'Swedish', dob:  '25/04/2000', appearances: 33, goals: 5, assists: 3},
-    { id: 5, name: 'Pierre-Emile Højbjerg', position: 'Midfielder', height: 1.87, nationality: 'Danish', dob: '05/08/1995', appearances: 36, goals: 2, assists: 5},
-    { id: 6, name: 'Pedro Porro', position: 'Right Back', height: 1.73, nationality: 'Spanish', dob: '13/09/1999', appearances: 8, goals: 1, assists: 0 },
-    { id: 7, name: 'Davinson Sánchez', position: 'Defender', height: 1.87, nationality: 'Columbian', dob: '12/06/1996', appearances: 16, goals: 0, assists: 1 },
-    { id: 8, name: 'Japhet Tanganga', position: 'Defender', height: 1.84, nationality: 'English', dob: '31/03/1999', appearances: 5, goals: 0, assists: 0 },
-    { id: 9, name: 'Son Heung-min', position: 'Forward', height: 1.83, nationality: 'South Korean', dob: '08/07/1992', appearances: 33, goals: 11, assists: 13 },
-    { id: 10, name: 'Lucas Moura', position: 'Forward', height: 1.72, nationality: 'Brazilian', dob: '13/08/1992', appearances: 12, goals: 3, assists: 2 },
-    { id: 11, name: 'Richarlison', position: 'Forward', height: 1.84, nationality: 'Brazilian', dob: '10/05/1997', appearances: 14, goals: 6, assists: 0 },
-    { id: 12, name: 'Pape Matar Sarr', position: 'Midfielder', height: 1.85, nationality: 'Senegalese', dob: '14/09/2002', appearances: 0, goals: 0, assists: 0 },
-    { id: 13, name: 'Harry Kane', position: 'Forward', height: 1.88, nationality: 'English', dob: '28/07/1993', appearances: 38, goals: 22, assists: 13 },
-    { id: 14, name: 'Rodrigo Bentancur', position: 'Midfield', height: 1.87, nationality: 'Uruguayian', dob: '25/06/1997', appearances: 26, goals: 3, assists: 4 },
-    { id: 17, name: 'Emerson Royal', position: 'Right Back/Wing Back', height: 1.81, nationality: 'Brazilian', dob: '14/01/1999', appearances: 19, goals: 1, assists: 4 },
-    { id: 18, name: 'Ben Davies', position: 'Defender', height: 1.81, nationality: 'Walsh', dob: '24/04/1993', appearances: 35, goals: 5, assists: 3 },
-    { id: 19, name: 'Ivan Perišić', position: 'Winger', height: 1.86, nationality: 'Croatian', dob: '02/02/1989', appearances: 32, goals: 7, assists: 11 },
-    { id: 20, name: 'Clément Lenglet', position: 'Defender', height: 1.86, nationality: 'French', dob: '17/06/1995', appearances: 21, goals: 1, assists: 2 },
-    { id: 21, name: 'Eric Dier', position: 'Defender/Defensive Midfielder', height: 1.88, nationality: 'English', dob: '15/01/1994', appearances: 35, goals: 3, assists: 0 },
-    { id: 22, name: 'Yves Bissouma', position: 'Midfielder', height: 1.82, nationality: 'Ivorian', dob: '30/08/1986', appearances: 11, goals: 0, assists: 0 },
-    { id: 23, name: 'Arnaut Danjuma', position: 'Winger', height: 1.78, nationality: 'Nigerian', dob: '31/01/1997', appearances: 0, goals: 0, assists: 0 },
-    { id: 24, name: 'Brandon Austin', position: 'Goalkeeper', height: 1.88, nationality: 'English', dob: '08/01/1999', appearances: 0, goals: 0, assists: 0 },
-    { id: 25, name: 'Fraser Forster', position: 'Goalkeeper', height: 2.01, nationality: 'English', dob: '17/03/1988', appearances: 5, goals: 0, assists: 0 },
-    { id: 26, name: 'Cristian Romero', position: 'Centre Back', height: 1.85, nationality: 'Argentine', dob: '27/04/1998', appearances: 28, goals: 3, assists: 0 },
-    { id: 27, name: 'Alfie Whiteman', position: 'Goalkeeper', height: 1.89, nationality: 'English', dob: '02/08/1998', appearances: 0, goals: 0, assists: 0 },
-    { id: 28, name: 'Ryan Sessegnon', position: 'Left Back/Left Midfield', height: 1.78, nationality: 'English', dob: '18/05/2000', appearances: 5, goals: 0, assists: 0 },
-    { id: 29, name: "William Harmon", position: "Wing Back", height: 1.87, nationality: 'English', dob: "22/11/1986", appearances: 170, goals: 44, assists: 28 },
+    { id: 1, name: 'Hugo Lloris', position: 'Goalkeeper', height: 1.88, nationality: 'France', dob: '26/12/1986', appearances: 32, goals: 0, assists: 0  },
+    { id: 3, name: 'Oliver Skipp', position: 'Midfielder', height: 1.75, nationality: 'England', dob: '16/09//2000', appearances: 12, goals: 1, assists: 1 },
+    { id: 4, name: 'Dejan Kulusevski', position: 'Midfielder/Winger', height: 1.86, nationality: 'Sweden', dob:  '25/04/2000', appearances: 33, goals: 5, assists: 3},
+    { id: 5, name: 'Pierre-Emile Højbjerg', position: 'Midfielder', height: 1.87, nationality: 'Denmark', dob: '05/08/1995', appearances: 36, goals: 2, assists: 5},
+    { id: 6, name: 'Pedro Porro', position: 'Right Back', height: 1.73, nationality: 'Spain', dob: '13/09/1999', appearances: 8, goals: 1, assists: 0 },
+    { id: 7, name: 'Davinson Sánchez', position: 'Defender', height: 1.87, nationality: 'Columbia', dob: '12/06/1996', appearances: 16, goals: 0, assists: 1 },
+    { id: 8, name: 'Japhet Tanganga', position: 'Defender', height: 1.84, nationality: 'England', dob: '31/03/1999', appearances: 5, goals: 0, assists: 0 },
+    { id: 9, name: 'Son Heung-min', position: 'Forward', height: 1.83, nationality: 'South Korea', dob: '08/07/1992', appearances: 33, goals: 11, assists: 13 },
+    { id: 10, name: 'Lucas Moura', position: 'Forward', height: 1.72, nationality: 'Brazil', dob: '13/08/1992', appearances: 12, goals: 3, assists: 2 },
+    { id: 11, name: 'Richarlison', position: 'Forward', height: 1.84, nationality: 'Brazil', dob: '10/05/1997', appearances: 14, goals: 6, assists: 0 },
+    { id: 12, name: 'Pape Matar Sarr', position: 'Midfielder', height: 1.85, nationality: 'Senegal', dob: '14/09/2002', appearances: 0, goals: 0, assists: 0 },
+    { id: 13, name: 'Harry Kane', position: 'Forward', height: 1.88, nationality: 'England', dob: '28/07/1993', appearances: 38, goals: 22, assists: 13 },
+    { id: 14, name: 'Rodrigo Bentancur', position: 'Midfield', height: 1.87, nationality: 'Uruguay', dob: '25/06/1997', appearances: 26, goals: 3, assists: 4 },
+    { id: 17, name: 'Emerson Royal', position: 'Right Back/Wing Back', height: 1.81, nationality: 'Brazil', dob: '14/01/1999', appearances: 19, goals: 1, assists: 4 },
+    { id: 18, name: 'Ben Davies', position: 'Defender', height: 1.81, nationality: 'Wales', dob: '24/04/1993', appearances: 35, goals: 5, assists: 3 },
+    { id: 19, name: 'Ivan Perišić', position: 'Winger', height: 1.86, nationality: 'Croatia', dob: '02/02/1989', appearances: 32, goals: 7, assists: 11 },
+    { id: 20, name: 'Clément Lenglet', position: 'Defender', height: 1.86, nationality: 'France', dob: '17/06/1995', appearances: 21, goals: 1, assists: 2 },
+    { id: 21, name: 'Eric Dier', position: 'Defender/Defensive Midfielder', height: 1.88, nationality: 'England', dob: '15/01/1994', appearances: 35, goals: 3, assists: 0 },
+    { id: 22, name: 'Yves Bissouma', position: 'Midfielder', height: 1.82, nationality: 'Ivory Coast', dob: '30/08/1986', appearances: 11, goals: 0, assists: 0 },
+    { id: 23, name: 'Arnaut Danjuma', position: 'Winger', height: 1.78, nationality: 'Nigeria', dob: '31/01/1997', appearances: 0, goals: 0, assists: 0 },
+    { id: 24, name: 'Brandon Austin', position: 'Goalkeeper', height: 1.88, nationality: 'England', dob: '08/01/1999', appearances: 0, goals: 0, assists: 0 },
+    { id: 25, name: 'Fraser Forster', position: 'Goalkeeper', height: 2.01, nationality: 'England', dob: '17/03/1988', appearances: 5, goals: 0, assists: 0 },
+    { id: 26, name: 'Cristian Romero', position: 'Centre Back', height: 1.85, nationality: 'Argentina', dob: '27/04/1998', appearances: 28, goals: 3, assists: 0 },
+    { id: 27, name: 'Alfie Whiteman', position: 'Goalkeeper', height: 1.89, nationality: 'England', dob: '02/08/1998', appearances: 0, goals: 0, assists: 0 },
+    { id: 28, name: 'Ryan Sessegnon', position: 'Left Back/Left Midfield', height: 1.78, nationality: 'England', dob: '18/05/2000', appearances: 5, goals: 0, assists: 0 },
+    { id: 29, name: "William Harmon", position: "Wing Back", height: 1.87, nationality: 'England', dob: "22/11/1986", appearances: 170, goals: 44, assists: 28 },
     { id: 30, name: "Diego Miller",
           position: "Defender",
           height: 1.98,
-          nationality: "Scottish",
+          nationality: "Scotland",
           dob: "16/11/1991",
           appearances: 305,
           goals: 32,
@@ -51,7 +51,7 @@ export class ItemService {
           appearances: 265,
           goals: 61,
           assists: 66,
-          nationality: null
+          nationality: "Argentina"
       },
       {
           id: 32,
@@ -62,7 +62,7 @@ export class ItemService {
           appearances: 245,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 33,
@@ -73,7 +73,7 @@ export class ItemService {
           appearances: 318,
           goals: 107,
           assists: 85,
-          nationality: null
+          nationality: "Italy"
       },
       {
           id: 34,
@@ -84,7 +84,7 @@ export class ItemService {
           appearances: 71,
           goals: 61,
           assists: 72,
-          nationality: null
+          nationality: "Uruguay"
       },
       {
           id: 35,
@@ -95,7 +95,7 @@ export class ItemService {
           appearances: 358,
           goals: 28,
           assists: 1,
-          nationality: null
+          nationality: "Canada"
       },
       {
           id: 36,
@@ -106,7 +106,7 @@ export class ItemService {
           appearances: 354,
           goals: 119,
           assists: 86,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 37,
@@ -117,7 +117,7 @@ export class ItemService {
           appearances: 99,
           goals: 98,
           assists: 91,
-          nationality: null
+          nationality: "Belgian"
       },
       {
           id: 38,
@@ -128,7 +128,7 @@ export class ItemService {
           appearances: 227,
           goals: 47,
           assists: 75,
-          nationality: null
+          nationality: "Cameroon"
       },
       {
           id: 39,
@@ -139,7 +139,7 @@ export class ItemService {
           appearances: 32,
           goals: 122,
           assists: 34,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 40,
@@ -150,7 +150,7 @@ export class ItemService {
           appearances: 116,
           goals: 5,
           assists: 70,
-          nationality: null
+          nationality: "France"
       },
       {
           id: 41,
@@ -161,7 +161,7 @@ export class ItemService {
           appearances: 110,
           goals: 44,
           assists: 6,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 42,
@@ -172,7 +172,7 @@ export class ItemService {
           appearances: 254,
           goals: 184,
           assists: 75,
-          nationality: null
+          nationality: "Northern Ireland"
       },
       {
           id: 43,
@@ -183,7 +183,7 @@ export class ItemService {
           appearances: 31,
           goals: 194,
           assists: 68,
-          nationality: null
+          nationality: "Argentina"
       },
       {
           id: 44,
@@ -194,7 +194,7 @@ export class ItemService {
           appearances: 313,
           goals: 162,
           assists: 28,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 45,
@@ -205,7 +205,7 @@ export class ItemService {
           appearances: 197,
           goals: 195,
           assists: 17,
-          nationality: null
+          nationality: "New Zealand"
       },
       {
           id: 46,
@@ -216,7 +216,7 @@ export class ItemService {
           appearances: 190,
           goals: 116,
           assists: 21,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 47, name: "Dominic Berry",
@@ -226,7 +226,7 @@ export class ItemService {
           appearances: 280,
           goals: 184,
           assists: 76,
-          nationality: null
+          nationality: "The Netherlands"
       },
       {
           id: 48,
@@ -237,7 +237,7 @@ export class ItemService {
           appearances: 163,
           goals: 141,
           assists: 10,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 49,
@@ -248,7 +248,7 @@ export class ItemService {
           appearances: 238,
           goals: 83,
           assists: 73,
-          nationality: null
+          nationality: "Republic of Ireland"
       },
       {
           id: 50,
@@ -259,7 +259,7 @@ export class ItemService {
           appearances: 69,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 51,
@@ -270,7 +270,7 @@ export class ItemService {
           appearances: 310,
           goals: 194,
           assists: 67,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 52,
@@ -281,7 +281,7 @@ export class ItemService {
           appearances: 140,
           goals: 199,
           assists: 18,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 53,
@@ -292,18 +292,18 @@ export class ItemService {
           appearances: 348,
           goals: 125,
           assists: 65,
-          nationality: null
+          nationality: "Germany"
       },
       {
           id: 54,
-          name: "Isaac Walsh",
+          name: "Isaac Wales",
           position: "Forward",
           height: 1.86,
           dob: "22/7/1993",
           appearances: 222,
           goals: 194,
           assists: 43,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 55,
@@ -314,7 +314,7 @@ export class ItemService {
           appearances: 242,
           goals: 83,
           assists: 83,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 56,
@@ -325,7 +325,7 @@ export class ItemService {
           appearances: 318,
           goals: 145,
           assists: 46,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 57,
@@ -336,7 +336,7 @@ export class ItemService {
           appearances: 110,
           goals: 189,
           assists: 61,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 58,
@@ -347,7 +347,7 @@ export class ItemService {
           appearances: 295,
           goals: 164,
           assists: 57,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 59,
@@ -358,7 +358,7 @@ export class ItemService {
           appearances: 394,
           goals: 141,
           assists: 50,
-          nationality: null
+          nationality: "Portugal"
       },
       {
           id: 60,
@@ -369,7 +369,7 @@ export class ItemService {
           appearances: 13,
           goals: 74,
           assists: 82,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 61,
@@ -380,7 +380,7 @@ export class ItemService {
           appearances: 53,
           goals: 7,
           assists: 18,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 62,
@@ -391,7 +391,7 @@ export class ItemService {
           appearances: 69,
           goals: 159,
           assists: 36,
-          nationality: null
+          nationality: "Northern Ireland"
       },
       {
           id: 63,
@@ -402,7 +402,7 @@ export class ItemService {
           appearances: 98,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Australia"
       },
       {
           id: 64,
@@ -413,7 +413,7 @@ export class ItemService {
           appearances: 368,
           goals: 3,
           assists: 35,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 65,
@@ -424,7 +424,7 @@ export class ItemService {
           appearances: 367,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 66,
@@ -435,7 +435,7 @@ export class ItemService {
           appearances: 236,
           goals: 37,
           assists: 97,
-          nationality: null
+          nationality: "Germany"
       },
       {
           id: 67,
@@ -446,7 +446,7 @@ export class ItemService {
           appearances: 128,
           goals: 74,
           assists: 77,
-          nationality: null
+          nationality: "Republic of Ireland"
       },
       {
           id: 68,
@@ -457,7 +457,7 @@ export class ItemService {
           appearances: 361,
           goals: 107,
           assists: 44,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 69,
@@ -468,7 +468,7 @@ export class ItemService {
           appearances: 302,
           goals: 70,
           assists: 18,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 70,
@@ -479,7 +479,7 @@ export class ItemService {
           appearances: 253,
           goals: 160,
           assists: 10,
-          nationality: null
+          nationality: "Canada"
       },
       {
           id: 71,
@@ -490,7 +490,7 @@ export class ItemService {
           appearances: 282,
           goals: 178,
           assists: 5,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 72,
@@ -501,7 +501,7 @@ export class ItemService {
           appearances: 133,
           goals: 140,
           assists: 83,
-          nationality: null
+          nationality: "Brazil"
       },
       {
           id: 73,
@@ -512,7 +512,7 @@ export class ItemService {
           appearances: 323,
           goals: 44,
           assists: 85,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 74,
@@ -523,7 +523,7 @@ export class ItemService {
           appearances: 110,
           goals: 56,
           assists: 32,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 75,
@@ -534,7 +534,7 @@ export class ItemService {
           appearances: 113,
           goals: 143,
           assists: 90,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 76,
@@ -545,7 +545,7 @@ export class ItemService {
           appearances: 155,
           goals: 43,
           assists: 70,
-          nationality: null
+          nationality: "Chile"
       },
       {
           id: 77,
@@ -556,7 +556,7 @@ export class ItemService {
           appearances: 345,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 78,
@@ -567,7 +567,7 @@ export class ItemService {
           appearances: 270,
           goals: 192,
           assists: 99,
-          nationality: null
+          nationality: "Australia"
       },
       {
           id: 79,
@@ -578,7 +578,7 @@ export class ItemService {
           appearances: 245,
           goals: 112,
           assists: 30,
-          nationality: null
+          nationality: "Argentina"
       },
       {
           id: 80,
@@ -589,7 +589,7 @@ export class ItemService {
           appearances: 356,
           goals: 23,
           assists: 91,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 81,
@@ -600,7 +600,7 @@ export class ItemService {
           appearances: 352,
           goals: 35,
           assists: 6,
-          nationality: null
+          nationality: "Republic of Ireland"
       },
       {
           id: 82,
@@ -611,7 +611,7 @@ export class ItemService {
           appearances: 212,
           goals: 134,
           assists: 50,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 83,
@@ -622,7 +622,7 @@ export class ItemService {
           appearances: 97,
           goals: 35,
           assists: 30,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 84,
@@ -633,7 +633,7 @@ export class ItemService {
           appearances: 228,
           goals: 15,
           assists: 10,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 85,
@@ -644,7 +644,7 @@ export class ItemService {
           appearances: 242,
           goals: 54,
           assists: 80,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 86,
@@ -655,7 +655,7 @@ export class ItemService {
           appearances: 300,
           goals: 162,
           assists: 21,
-          nationality: null
+          nationality: "Scotland"
       },
       {
           id: 87,
@@ -666,7 +666,7 @@ export class ItemService {
           appearances: 29,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "France"
       },
       {
           id: 88,
@@ -677,7 +677,7 @@ export class ItemService {
           appearances: 169,
           goals: 1,
           assists: 14,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 89,
@@ -688,7 +688,7 @@ export class ItemService {
           appearances: 246,
           goals: 60,
           assists: 32,
-          nationality: null
+          nationality: "Republic of Ireland"
       },
       {
           id: 90,
@@ -699,10 +699,10 @@ export class ItemService {
           appearances: 169,
           goals: 44,
           assists: 88,
-          nationality: null
+          nationality: "England"
       },
       {
-          id: 91, name: "Andrew Wolfe", position: "Winger", height: 1.84, dob: "2/4/1988", appearances: 304, goals: 191, assists: 14, nationality: null
+          id: 91, name: "Andrew Wolfe", position: "Winger", height: 1.84, dob: "2/4/1988", appearances: 304, goals: 191, assists: 14, nationality: "German"
       },
       {
           id: 92,
@@ -713,7 +713,7 @@ export class ItemService {
           appearances: 358,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 93,
@@ -724,7 +724,7 @@ export class ItemService {
           appearances: 65,
           goals: 181,
           assists: 49,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 94,
@@ -735,7 +735,7 @@ export class ItemService {
           appearances: 360,
           goals: 173,
           assists: 39,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 95,
@@ -746,7 +746,7 @@ export class ItemService {
           appearances: 188,
           goals: 100,
           assists: 75,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 96,
@@ -757,7 +757,7 @@ export class ItemService {
           appearances: 37,
           goals: 144,
           assists: 19,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 97,
@@ -768,7 +768,7 @@ export class ItemService {
           appearances: 130,
           goals: 46,
           assists: 64,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 98,
@@ -779,7 +779,7 @@ export class ItemService {
           appearances: 221,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 99,
@@ -790,7 +790,7 @@ export class ItemService {
           appearances: 64,
           goals: 119,
           assists: 41,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 100,
@@ -801,7 +801,7 @@ export class ItemService {
           appearances: 313,
           goals: 107,
           assists: 19,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 101,
@@ -812,7 +812,7 @@ export class ItemService {
           appearances: 249,
           goals: 144,
           assists: 78,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 102,
@@ -823,7 +823,7 @@ export class ItemService {
           appearances: 186,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 103,
@@ -834,7 +834,7 @@ export class ItemService {
           appearances: 356,
           goals: 58,
           assists: 22,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 104,
@@ -845,7 +845,7 @@ export class ItemService {
           appearances: 198,
           goals: 64,
           assists: 98,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 105,
@@ -856,7 +856,7 @@ export class ItemService {
           appearances: 346,
           goals: 12,
           assists: 25,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 106,
@@ -867,7 +867,7 @@ export class ItemService {
           appearances: 195,
           goals: 171,
           assists: 63,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 107,
@@ -878,7 +878,7 @@ export class ItemService {
           appearances: 316,
           goals: 60,
           assists: 20,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 108,
@@ -889,7 +889,7 @@ export class ItemService {
           appearances: 186,
           goals: 163,
           assists: 6,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 109,
@@ -900,7 +900,7 @@ export class ItemService {
           appearances: 117,
           goals: 185,
           assists: 91,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 110,
@@ -911,7 +911,7 @@ export class ItemService {
           appearances: 280,
           goals: 141,
           assists: 81,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 111,
@@ -922,7 +922,7 @@ export class ItemService {
           appearances: 245,
           goals: 24,
           assists: 52,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 112,
@@ -933,7 +933,7 @@ export class ItemService {
           appearances: 303,
           goals: 145,
           assists: 38,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 113,
@@ -944,7 +944,7 @@ export class ItemService {
           appearances: 183,
           goals: 127,
           assists: 27,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 114,
@@ -955,7 +955,7 @@ export class ItemService {
           appearances: 228,
           goals: 159,
           assists: 59,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 115,
@@ -966,7 +966,7 @@ export class ItemService {
           appearances: 40,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 116,
@@ -977,7 +977,7 @@ export class ItemService {
           appearances: 88,
           goals: 74,
           assists: 64,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 117,
@@ -988,7 +988,7 @@ export class ItemService {
           appearances: 27,
           goals: 14,
           assists: 7,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 118,
@@ -999,7 +999,7 @@ export class ItemService {
           appearances: 318,
           goals: 144,
           assists: 51,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 119,
@@ -1010,7 +1010,7 @@ export class ItemService {
           appearances: 322,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 120,
@@ -1021,7 +1021,7 @@ export class ItemService {
           appearances: 107,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 121,
@@ -1032,7 +1032,7 @@ export class ItemService {
           appearances: 329,
           goals: 68,
           assists: 9,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 122,
@@ -1043,7 +1043,7 @@ export class ItemService {
           appearances: 390,
           goals: 13,
           assists: 53,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 123,
@@ -1054,7 +1054,7 @@ export class ItemService {
           appearances: 150,
           goals: 9,
           assists: 70,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 124,
@@ -1065,7 +1065,7 @@ export class ItemService {
           appearances: 248,
           goals: 85,
           assists: 82,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 125,
@@ -1076,7 +1076,7 @@ export class ItemService {
           appearances: 326,
           goals: 64,
           assists: 81,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 126,
@@ -1087,7 +1087,7 @@ export class ItemService {
           appearances: 216,
           goals: 147,
           assists: 71,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 127,
@@ -1098,7 +1098,7 @@ export class ItemService {
           appearances: 390,
           goals: 48,
           assists: 43,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 128,
@@ -1109,7 +1109,7 @@ export class ItemService {
           appearances: 15,
           goals: 153,
           assists: 60,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 129,
@@ -1120,7 +1120,7 @@ export class ItemService {
           appearances: 7,
           goals: 184,
           assists: 99,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 130,
@@ -1131,7 +1131,7 @@ export class ItemService {
           appearances: 372,
           goals: 79,
           assists: 66,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 131,
@@ -1142,7 +1142,7 @@ export class ItemService {
           appearances: 152,
           goals: 104,
           assists: 83,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 132,
@@ -1153,7 +1153,7 @@ export class ItemService {
           appearances: 87,
           goals: 43,
           assists: 63,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 133,
@@ -1164,7 +1164,7 @@ export class ItemService {
           appearances: 126,
           goals: 126,
           assists: 81,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 134,
@@ -1175,7 +1175,7 @@ export class ItemService {
           appearances: 286,
           goals: 52,
           assists: 28,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 135,
@@ -1186,7 +1186,7 @@ export class ItemService {
           appearances: 296,
           goals: 53,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 136,
@@ -1197,7 +1197,7 @@ export class ItemService {
           appearances: 309,
           goals: 20,
           assists: 57,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 137,
@@ -1208,7 +1208,7 @@ export class ItemService {
           appearances: 20,
           goals: 198,
           assists: 91,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 138,
@@ -1219,7 +1219,7 @@ export class ItemService {
           appearances: 113,
           goals: 85,
           assists: 39,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 139,
@@ -1230,7 +1230,7 @@ export class ItemService {
           appearances: 208,
           goals: 30,
           assists: 56,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 140,
@@ -1241,7 +1241,7 @@ export class ItemService {
           appearances: 27,
           goals: 198,
           assists: 47,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 141,
@@ -1252,7 +1252,7 @@ export class ItemService {
           appearances: 314,
           goals: 66,
           assists: 3,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 142,
@@ -1263,7 +1263,7 @@ export class ItemService {
           appearances: 315,
           goals: 123,
           assists: 87,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 143,
@@ -1274,7 +1274,7 @@ export class ItemService {
           appearances: 23,
           goals: 47,
           assists: 53,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 144,
@@ -1285,7 +1285,7 @@ export class ItemService {
           appearances: 362,
           goals: 43,
           assists: 90,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 145,
@@ -1296,7 +1296,7 @@ export class ItemService {
           appearances: 134,
           goals: 23,
           assists: 72,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 146,
@@ -1307,7 +1307,7 @@ export class ItemService {
           appearances: 4,
           goals: 128,
           assists: 52,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 147,
@@ -1318,7 +1318,7 @@ export class ItemService {
           appearances: 65,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 148,
@@ -1329,7 +1329,7 @@ export class ItemService {
           appearances: 220,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 149,
@@ -1340,7 +1340,7 @@ export class ItemService {
           appearances: 106,
           goals: 186,
           assists: 8,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 150,
@@ -1351,7 +1351,7 @@ export class ItemService {
           appearances: 310,
           goals: 141,
           assists: 75,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 151,
@@ -1362,7 +1362,7 @@ export class ItemService {
           appearances: 361,
           goals: 195,
           assists: 62,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 152,
@@ -1373,7 +1373,7 @@ export class ItemService {
           appearances: 139,
           goals: 15,
           assists: 72,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 153,
@@ -1384,7 +1384,7 @@ export class ItemService {
           appearances: 13,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 154,
@@ -1395,7 +1395,7 @@ export class ItemService {
           appearances: 195,
           goals: 61,
           assists: 52,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 155,
@@ -1406,7 +1406,7 @@ export class ItemService {
           appearances: 128,
           goals: 111,
           assists: 96,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 156,
@@ -1417,7 +1417,7 @@ export class ItemService {
           appearances: 385,
           goals: 66,
           assists: 36,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 157,
@@ -1428,7 +1428,7 @@ export class ItemService {
           appearances: 196,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 158,
@@ -1439,7 +1439,7 @@ export class ItemService {
           appearances: 253,
           goals: 60,
           assists: 18,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 159,
@@ -1450,7 +1450,7 @@ export class ItemService {
           appearances: 330,
           goals: 60,
           assists: 80,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 160,
@@ -1461,7 +1461,7 @@ export class ItemService {
           appearances: 218,
           goals: 103,
           assists: 11,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 161,
@@ -1472,7 +1472,7 @@ export class ItemService {
           appearances: 373,
           goals: 174,
           assists: 88,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 162,
@@ -1483,7 +1483,7 @@ export class ItemService {
           appearances: 130,
           goals: 40,
           assists: 42,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 163,
@@ -1494,7 +1494,7 @@ export class ItemService {
           appearances: 294,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 164,
@@ -1505,7 +1505,7 @@ export class ItemService {
           appearances: 124,
           goals: 119,
           assists: 96,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 165,
@@ -1516,7 +1516,7 @@ export class ItemService {
           appearances: 160,
           goals: 16,
           assists: 73,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 166,
@@ -1527,7 +1527,7 @@ export class ItemService {
           appearances: 305,
           goals: 45,
           assists: 75,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 167,
@@ -1538,7 +1538,7 @@ export class ItemService {
           appearances: 301,
           goals: 190,
           assists: 51,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 168,
@@ -1549,7 +1549,7 @@ export class ItemService {
           appearances: 149,
           goals: 89,
           assists: 88,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 169,
@@ -1560,7 +1560,7 @@ export class ItemService {
           appearances: 130,
           goals: 163,
           assists: 7,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 170,
@@ -1571,7 +1571,7 @@ export class ItemService {
           appearances: 160,
           goals: 1,
           assists: 0,
-          nationality: null
+          nationality: "England"
       },
       {
           id: 171,
@@ -1582,7 +1582,7 @@ export class ItemService {
           appearances: 170,
           goals: 191,
           assists: 7,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 172,
@@ -1593,7 +1593,7 @@ export class ItemService {
           appearances: 62,
           goals: 93,
           assists: 85,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 173,
@@ -1604,7 +1604,7 @@ export class ItemService {
           appearances: 367,
           goals: 44,
           assists: 66,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 174,
@@ -1615,7 +1615,7 @@ export class ItemService {
           appearances: 37,
           goals: 7,
           assists: 57,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 175,
@@ -1626,7 +1626,7 @@ export class ItemService {
           appearances: 264,
           goals: 63,
           assists: 38,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 176,
@@ -1637,7 +1637,7 @@ export class ItemService {
           appearances: 121,
           goals: 60,
           assists: 85,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 177,
@@ -1648,7 +1648,7 @@ export class ItemService {
           appearances: 56,
           goals: 32,
           assists: 83,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 178,
@@ -1659,7 +1659,7 @@ export class ItemService {
           appearances: 69,
           goals: 116,
           assists: 44,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 179,
@@ -1670,7 +1670,7 @@ export class ItemService {
           appearances: 332,
           goals: 5,
           assists: 52,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 180,
@@ -1681,7 +1681,7 @@ export class ItemService {
           appearances: 47,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 181,
@@ -1692,7 +1692,7 @@ export class ItemService {
           appearances: 5,
           goals: 93,
           assists: 98,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 182,
@@ -1703,7 +1703,7 @@ export class ItemService {
           appearances: 44,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 183,
@@ -1714,7 +1714,7 @@ export class ItemService {
           appearances: 134,
           goals: 50,
           assists: 75,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 184,
@@ -1725,7 +1725,7 @@ export class ItemService {
           appearances: 12,
           goals: 110,
           assists: 82,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 185,
@@ -1736,7 +1736,7 @@ export class ItemService {
           appearances: 388,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 186,
@@ -1747,7 +1747,7 @@ export class ItemService {
           appearances: 223,
           goals: 165,
           assists: 72,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 187,
@@ -1758,7 +1758,7 @@ export class ItemService {
           appearances: 17,
           goals: 71,
           assists: 35,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 188,
@@ -1769,7 +1769,7 @@ export class ItemService {
           appearances: 39,
           goals: 53,
           assists: 19,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 189,
@@ -1780,7 +1780,7 @@ export class ItemService {
           appearances: 45,
           goals: 134,
           assists: 4,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 190,
@@ -1791,7 +1791,7 @@ export class ItemService {
           appearances: 21,
           goals: 0,
           assists: 43,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 191,
@@ -1802,7 +1802,7 @@ export class ItemService {
           appearances: 209,
           goals: 108,
           assists: 90,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 192,
@@ -1813,7 +1813,7 @@ export class ItemService {
           appearances: 126,
           goals: 5,
           assists: 24,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 193,
@@ -1824,7 +1824,7 @@ export class ItemService {
           appearances: 92,
           goals: 64,
           assists: 3,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 194,
@@ -1835,7 +1835,7 @@ export class ItemService {
           appearances: 91,
           goals: 71,
           assists: 46,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 195,
@@ -1846,7 +1846,7 @@ export class ItemService {
           appearances: 14,
           goals: 47,
           assists: 15,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 196,
@@ -1857,7 +1857,7 @@ export class ItemService {
           appearances: 235,
           goals: 117,
           assists: 29,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 197,
@@ -1868,7 +1868,7 @@ export class ItemService {
           appearances: 62,
           goals: 47,
           assists: 41,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 198,
@@ -1879,7 +1879,7 @@ export class ItemService {
           appearances: 156,
           goals: 60,
           assists: 20,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 199,
@@ -1890,7 +1890,7 @@ export class ItemService {
           appearances: 217,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 200,
@@ -1901,7 +1901,7 @@ export class ItemService {
           appearances: 102,
           goals: 15,
           assists: 43,
-          nationality: null
+          nationality: "Spain"
       },
       {
           id: 201,
@@ -1912,7 +1912,7 @@ export class ItemService {
           appearances: 310,
           goals: 181,
           assists: 87,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 202,
@@ -1923,7 +1923,7 @@ export class ItemService {
           appearances: 165,
           goals: 77,
           assists: 94,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 203,
@@ -1934,7 +1934,7 @@ export class ItemService {
           appearances: 292,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 204,
@@ -1945,7 +1945,7 @@ export class ItemService {
           appearances: 353,
           goals: 152,
           assists: 0,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 205,
@@ -1956,7 +1956,7 @@ export class ItemService {
           appearances: 39,
           goals: 41,
           assists: 31,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 206,
@@ -1967,7 +1967,7 @@ export class ItemService {
           appearances: 209,
           goals: 147,
           assists: 75,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 207,
@@ -1978,7 +1978,7 @@ export class ItemService {
           appearances: 294,
           goals: 66,
           assists: 96,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 208,
@@ -1989,7 +1989,7 @@ export class ItemService {
           appearances: 379,
           goals: 65,
           assists: 22,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 209,
@@ -2000,7 +2000,7 @@ export class ItemService {
           appearances: 397,
           goals: 177,
           assists: 17,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 210,
@@ -2011,7 +2011,7 @@ export class ItemService {
           appearances: 82,
           goals: 196,
           assists: 58,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 211,
@@ -2022,7 +2022,7 @@ export class ItemService {
           appearances: 336,
           goals: 199,
           assists: 20,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 212,
@@ -2033,7 +2033,7 @@ export class ItemService {
           appearances: 195,
           goals: 21,
           assists: 30,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 213,
@@ -2044,7 +2044,7 @@ export class ItemService {
           appearances: 221,
           goals: 23,
           assists: 18,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 214,
@@ -2055,7 +2055,7 @@ export class ItemService {
           appearances: 221,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 215,
@@ -2066,7 +2066,7 @@ export class ItemService {
           appearances: 233,
           goals: 74,
           assists: 15,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 216,
@@ -2077,7 +2077,7 @@ export class ItemService {
           appearances: 198,
           goals: 109,
           assists: 45,
-          nationality: null
+          nationality: "America"
       },
       {
           id: 217,
@@ -2088,7 +2088,7 @@ export class ItemService {
           appearances: 100,
           goals: 98,
           assists: 4,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 218,
@@ -2099,7 +2099,7 @@ export class ItemService {
           appearances: 388,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 219,
@@ -2110,7 +2110,7 @@ export class ItemService {
           appearances: 240,
           goals: 96,
           assists: 75,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 220,
@@ -2121,7 +2121,7 @@ export class ItemService {
           appearances: 109,
           goals: 126,
           assists: 98,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 221,
@@ -2132,7 +2132,7 @@ export class ItemService {
           appearances: 181,
           goals: 41,
           assists: 43,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 222,
@@ -2143,7 +2143,7 @@ export class ItemService {
           appearances: 399,
           goals: 172,
           assists: 55,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 223,
@@ -2154,7 +2154,7 @@ export class ItemService {
           appearances: 127,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 224,
@@ -2165,7 +2165,7 @@ export class ItemService {
           appearances: 218,
           goals: 68,
           assists: 31,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 225,
@@ -2176,7 +2176,7 @@ export class ItemService {
           appearances: 355,
           goals: 142,
           assists: 71,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 226,
@@ -2187,7 +2187,7 @@ export class ItemService {
           appearances: 208,
           goals: 15,
           assists: 65,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 227,
@@ -2198,7 +2198,7 @@ export class ItemService {
           appearances: 83,
           goals: 59,
           assists: 15,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 228,
@@ -2209,7 +2209,7 @@ export class ItemService {
           appearances: 17,
           goals: 93,
           assists: 55,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 229,
@@ -2220,7 +2220,7 @@ export class ItemService {
           appearances: 211,
           goals: 191,
           assists: 35,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 230,
@@ -2231,7 +2231,7 @@ export class ItemService {
           appearances: 176,
           goals: 110,
           assists: 68,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 231,
@@ -2242,7 +2242,7 @@ export class ItemService {
           appearances: 277,
           goals: 188,
           assists: 71,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 232,
@@ -2253,7 +2253,7 @@ export class ItemService {
           appearances: 121,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 233,
@@ -2264,7 +2264,7 @@ export class ItemService {
           appearances: 142,
           goals: 68,
           assists: 93,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 234,
@@ -2275,7 +2275,7 @@ export class ItemService {
           appearances: 51,
           goals: 32,
           assists: 57,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 235,
@@ -2286,7 +2286,7 @@ export class ItemService {
           appearances: 331,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Australian"
       },
       {
           id: 236,
@@ -2297,7 +2297,7 @@ export class ItemService {
           appearances: 3,
           goals: 165,
           assists: 74,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 237,
@@ -2308,7 +2308,7 @@ export class ItemService {
           appearances: 200,
           goals: 32,
           assists: 77,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 238,
@@ -2319,7 +2319,7 @@ export class ItemService {
           appearances: 239,
           goals: 103,
           assists: 2,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 239,
@@ -2330,7 +2330,7 @@ export class ItemService {
           appearances: 184,
           goals: 4,
           assists: 89,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 240,
@@ -2341,7 +2341,7 @@ export class ItemService {
           appearances: 51,
           goals: 171,
           assists: 93,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 241,
@@ -2352,7 +2352,7 @@ export class ItemService {
           appearances: 180,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 242,
@@ -2363,7 +2363,7 @@ export class ItemService {
           appearances: 182,
           goals: 86,
           assists: 63,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 243,
@@ -2374,7 +2374,7 @@ export class ItemService {
           appearances: 330,
           goals: 143,
           assists: 99,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 244,
@@ -2385,7 +2385,7 @@ export class ItemService {
           appearances: 276,
           goals: 166,
           assists: 8,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 245,
@@ -2396,7 +2396,7 @@ export class ItemService {
           appearances: 26,
           goals: 187,
           assists: 56,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 246,
@@ -2407,7 +2407,7 @@ export class ItemService {
           appearances: 358,
           goals: 126,
           assists: 61,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 247,
@@ -2418,7 +2418,7 @@ export class ItemService {
           appearances: 259,
           goals: 119,
           assists: 88,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 248,
@@ -2429,7 +2429,7 @@ export class ItemService {
           appearances: 118,
           goals: 68,
           assists: 42,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 249,
@@ -2440,7 +2440,7 @@ export class ItemService {
           appearances: 262,
           goals: 110,
           assists: 34,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 250,
@@ -2451,7 +2451,7 @@ export class ItemService {
           appearances: 234,
           goals: 55,
           assists: 14,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 251,
@@ -2462,7 +2462,7 @@ export class ItemService {
           appearances: 152,
           goals: 24,
           assists: 26,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 252,
@@ -2473,7 +2473,7 @@ export class ItemService {
           appearances: 199,
           goals: 182,
           assists: 18,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 253,
@@ -2484,7 +2484,7 @@ export class ItemService {
           appearances: 262,
           goals: 72,
           assists: 61,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 254,
@@ -2495,7 +2495,7 @@ export class ItemService {
           appearances: 46,
           goals: 114,
           assists: 91,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 255,
@@ -2506,7 +2506,7 @@ export class ItemService {
           appearances: 365,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 256,
@@ -2517,7 +2517,7 @@ export class ItemService {
           appearances: 392,
           goals: 136,
           assists: 31,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 257,
@@ -2528,18 +2528,18 @@ export class ItemService {
           appearances: 169,
           goals: 166,
           assists: 53,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 258,
-          name: "Christian Walsh",
+          name: "Christian Wales",
           position: "Defender",
           height: 1.75,
           dob: "24/7/1990",
           appearances: 327,
           goals: 62,
           assists: 58,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 259,
@@ -2550,7 +2550,7 @@ export class ItemService {
           appearances: 161,
           goals: 150,
           assists: 35,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 260,
@@ -2561,7 +2561,7 @@ export class ItemService {
           appearances: 365,
           goals: 25,
           assists: 40,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 261,
@@ -2572,7 +2572,7 @@ export class ItemService {
           appearances: 117,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 262,
@@ -2583,7 +2583,7 @@ export class ItemService {
           appearances: 108,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 263,
@@ -2594,7 +2594,7 @@ export class ItemService {
           appearances: 293,
           goals: 133,
           assists: 89,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 264,
@@ -2605,7 +2605,7 @@ export class ItemService {
           appearances: 98,
           goals: 150,
           assists: 31,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 265,
@@ -2616,7 +2616,7 @@ export class ItemService {
           appearances: 85,
           goals: 133,
           assists: 46,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 266,
@@ -2627,7 +2627,7 @@ export class ItemService {
           appearances: 134,
           goals: 126,
           assists: 85,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 267,
@@ -2638,7 +2638,7 @@ export class ItemService {
           appearances: 198,
           goals: 170,
           assists: 70,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 268,
@@ -2649,7 +2649,7 @@ export class ItemService {
           appearances: 27,
           goals: 7,
           assists: 36,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 269,
@@ -2660,7 +2660,7 @@ export class ItemService {
           appearances: 348,
           goals: 65,
           assists: 49,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 270,
@@ -2671,7 +2671,7 @@ export class ItemService {
           appearances: 62,
           goals: 85,
           assists: 97,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 271,
@@ -2682,7 +2682,7 @@ export class ItemService {
           appearances: 348,
           goals: 186,
           assists: 80,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 272,
@@ -2693,7 +2693,7 @@ export class ItemService {
           appearances: 295,
           goals: 0,
           assists: 0,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 273,
@@ -2704,7 +2704,7 @@ export class ItemService {
           appearances: 322,
           goals: 194,
           assists: 34,
-          nationality: null
+          nationality: "Wales"
       },
       {
           id: 274,
@@ -2714,7 +2714,7 @@ export class ItemService {
           dob: "13/4/1992",
           appearances: 272,
           goals: 72,
-          assists: 4, nationality: null
+          assists: 4, nationality: "Wales"
       },
       {
           id: 275,
@@ -2724,7 +2724,7 @@ export class ItemService {
           dob: "24/8/1981",
           appearances: 377,
           goals: 107,
-          assists: 62, nationality: null
+          assists: 62, nationality: "Sweden"
       },
       {
           id: 276,
@@ -2734,7 +2734,7 @@ export class ItemService {
           dob: "1/4/2004",
           appearances: 304,
           goals: 174,
-          assists: 16, nationality: null
+          assists: 16, nationality: "Sweden"
       },
       {
           id: 277,
@@ -2744,7 +2744,7 @@ export class ItemService {
           dob: "5/6/1984",
           appearances: 284,
           goals: 52,
-          assists: 86, nationality: null
+          assists: 86, nationality: "Sweden"
       },
       {
           id: 278,
@@ -2754,7 +2754,7 @@ export class ItemService {
           dob: "9/1/2005",
           appearances: 210,
           goals: 68,
-          assists: 88, nationality: null
+          assists: 88, nationality: "Sweden"
       }
     
   )
@@ -2810,7 +2810,7 @@ export class ItemService {
         'Holt', 'Lambert', 'Fletcher', 'Watts', 'Bates', 'Hale', 'Rhodes', 'Pena', 'Beck', 'Newman',
         'Haynes', 'Mcdaniel', 'Mendez', 'Bush', 'Vaughn', 'Parks', 'Dawson', 'Santiago', 'Norris', 'Hardy',
         'Love', 'Steele', 'Curry', 'Powers', 'Schultz', 'Barker', 'Guzman', 'Page', 'Munoz', 'Ball',
-        'Keller', 'Chandler', 'Weber', 'Leonard', 'Walsh', 'Lyons', 'Ramsey', 'Wolfe', 'Schneider', 'Mullins',
+        'Keller', 'Chandler', 'Weber', 'Leonard', 'Wales', 'Lyons', 'Ramsey', 'Wolfe', 'Schneider', 'Mullins',
         'Benson', 'Sharp', 'Bowen', 'Daniel', 'Barber', 'Cummings', 'Hines', 'Baldwin', 'Griffith', 'Valdez',
         'Hubbard', 'Salazar', 'Reeves', 'Warner', 'Stevenson', 'Burgess', 'Santos', 'Tate', 'Cross', 'Garner',
         'Mann', 'Mack', 'Moss', 'Thornton', 'Dennis', 'Mcgee', 'Farmer', 'Delgado', 'Aguilar', 'Vega',

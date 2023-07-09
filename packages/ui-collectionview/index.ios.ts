@@ -303,6 +303,11 @@ export class CollectionView extends CollectionViewBase {
         super.disposeNativeView();
     }
 
+    // _onSizeChanged() {
+    //     super._onSizeChanged();
+    //     this.onSizeChanged(this.getMeasuredWidth(), this.getMeasuredHeight());
+    // }
+
     get _childrenCount(): number {
         return this._map.size;
     }
@@ -502,7 +507,7 @@ export class CollectionView extends CollectionViewBase {
         });
     }
 
-    publiconLayout(left: number, top: number, right: number, bottom: number) {
+    public onLayout(left: number, top: number, right: number, bottom: number) {
         super.onLayout(left, top, right, bottom);
 
         const p = CollectionViewBase.plugins[this.layoutStyle];
@@ -562,8 +567,6 @@ export class CollectionView extends CollectionViewBase {
     public isHorizontal() {
         return this.orientation === 'horizontal';
     }
-
-    
 
     public onSourceCollectionChanged(event: ChangedData<any>) {
         const view = this.nativeViewProtected;

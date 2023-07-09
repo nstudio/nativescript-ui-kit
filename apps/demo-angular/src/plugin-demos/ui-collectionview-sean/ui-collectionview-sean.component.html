@@ -27,7 +27,7 @@
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
         <ng-container *ngFor="let item of items; let odd = odd; let i = index">
-          <GridLayout columns="150 1 200 1 60 1 90 1 90 1 60 1 60">
+          <GridLayout columns="180 1 200 1 60 1 110 1 160 1 60 1 60">
 
             <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
               <Label [text]="item.name"></Label>
@@ -65,7 +65,7 @@
               <Label [text]="item.goals"></Label>
             </StackLayout>
 
-            <StackLayout col="1" class="horizontal-heading-divider"></StackLayout>
+            <StackLayout col="11" class="horizontal-heading-divider"></StackLayout>
 
             <StackLayout col="12" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
               <Label [text]="item.assists"></Label>

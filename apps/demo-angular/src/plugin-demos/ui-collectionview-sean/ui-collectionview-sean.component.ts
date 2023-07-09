@@ -1,6 +1,6 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as stringConstants from './item/items.component.strings';
 import { ItemService } from './item/item.service';
 import { Item } from './item/item';
@@ -12,8 +12,8 @@ import { EventData, ObservableArray, ScrollView } from '@nativescript/core';
 @Component({
 	selector: 'ui-collectionview-sean',
 	templateUrl: 'ui-collectionview-sean.component.html',
-  styleUrls: ['./ui-collectionview-sean.component.scss']
-
+  styleUrls: ['./ui-collectionview-sean.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiCollectionviewSeanComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class UiCollectionviewSeanComponent implements OnInit {
     }
   };
 
-  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private itemService: ItemService) {
     if(isAndroid) {
       this.isAndroid = true;
     }
