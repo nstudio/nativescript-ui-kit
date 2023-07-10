@@ -22,12 +22,12 @@
       </CollectionView>
 
       <!-- Main table body -->
-      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="items" width="820"
+      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="items" width="815"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
         <ng-container *ngFor="let item of items; let odd = odd; let i = index">
-          <GridLayout columns="180 1 200 1 60 1 110 1 160 1 60 1 60">
+          <GridLayout columns="180 1 200 1 60 1 160 1 110 1 50 1 50">
 
             <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
               <Label [text]="item.name"></Label>

@@ -205,21 +205,11 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
 
     switch (type) {
       case 'header':
-        // if (!this._headerTemplateMap) {
-        //   this._headerTemplateMap = new Map<string, KeyedTemplate>();
-        // }
-        // this._headerTemplateMap.set(key, keyedTemplate);
         this._collectionView.headerKey = key;
         this.headerItemTemplate = template;
         this._collectionView.headerItemTemplate = this.getItemTemplateViewFactory(template);
         break;
       case 'footer':
-        // if (!this._footerTemplateMap) {
-        //   this._footerTemplateMap = new Map<string, KeyedTemplate>();
-        // }
-
-        // this._footerTemplateMap.set(key, keyedTemplate);
-
         this._collectionView.footerKey = key;
         this.footerItemTemplate = template;
         this._collectionView.footerItemTemplate = this.getItemTemplateViewFactory(template);
@@ -281,8 +271,6 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     if (!ngView && args.view instanceof LayoutBase && args.view.getChildrenCount() > 0) {
       ngView = args.view.getChildAt(0)[NG_VIEW];
     }
-    // console.log('recycling', args.view);
-
     if (ngView) {
       ngView.detach();
     }
@@ -371,6 +359,7 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
       return resultView;
     });
   }
+
   private getView(templateRef: TemplateRef<ItemContext>) {
     const pool = this.getViewPool(templateRef);
     while (pool.scrapHead.size > 0) {
