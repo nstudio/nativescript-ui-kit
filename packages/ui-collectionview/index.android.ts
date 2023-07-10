@@ -728,14 +728,17 @@ export class CollectionView extends CollectionViewBase {
         super.updateInnerSize();
         this._updateSpanCount();
     }
+
     _onColWidthPropertyChanged(oldValue: CoreTypes.PercentLengthType, newValue: CoreTypes.PercentLengthType) {
         this._updateSpanCount();
         super._onColWidthPropertyChanged(oldValue, newValue);
     }
+
     _onRowHeightPropertyChanged(oldValue: CoreTypes.PercentLengthType, newValue: CoreTypes.PercentLengthType) {
         this._updateSpanCount();
         super._onRowHeightPropertyChanged(oldValue, newValue);
     }
+
     public onLayout(left: number, top: number, right: number, bottom: number) {
         this._layedOut = true;
         super.onLayout(left, top, right, bottom);
@@ -755,6 +758,7 @@ export class CollectionView extends CollectionViewBase {
         }
         this._lastLayoutKey = layoutKey;
     }
+
     public onSourceCollectionChanged(event: ChangedData<any>) {
         if (!this._listViewAdapter || this._dataUpdatesSuspended) {
             return;
@@ -835,6 +839,7 @@ export class CollectionView extends CollectionViewBase {
             }
         });
     }
+
     refreshVisibleItems() {
         const view = this.nativeViewProtected;
         if (!view) {
@@ -846,6 +851,7 @@ export class CollectionView extends CollectionViewBase {
             .sort((a, b) => a - b);
         this._listViewAdapter.notifyItemRangeChanged(ids[0], ids[ids.length - 1] - ids[0] + 1);
     }
+
     public isItemAtIndexVisible(index: number): boolean {
         const view = this.nativeViewProtected;
         if (!view) {

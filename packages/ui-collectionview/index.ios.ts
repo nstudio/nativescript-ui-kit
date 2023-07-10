@@ -930,7 +930,6 @@ export class CollectionView extends CollectionViewBase {
             if (cell.view.nativeViewProtected) {
                 cell.view.nativeViewProtected.removeFromSuperview();
             }
-
             cell.owner = undefined;
         }
     }
@@ -1250,75 +1249,6 @@ class CollectionViewReusableView extends UICollectionReusableView {
     }
 }
 
-// @NativeClass
-// class CollectionViewDataSource extends UICollectionViewDiffableDataSource<any,any>  {
-// // class CollectionViewDataSource extends NSObject implements UICollectionViewDataSource {
-//     _owner: WeakRef<CollectionView>;
-//     public static ObjCProtocols = [UICollectionViewDataSource];
-
-//     static initWithOwner(owner: CollectionView) {
-//         const delegate = CollectionViewDataSource.new() as CollectionViewDataSource;
-//         delegate._owner = new WeakRef(owner);
-//         return delegate;
-//     }
-//     numberOfSectionsInCollectionView(collectionView: UICollectionView) {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             return owner.numberOfSectionsInCollectionView(collectionView);
-//         }
-//         return 0;
-//     }
-
-//     collectionViewNumberOfItemsInSection(collectionView: UICollectionView, section: number) {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             return owner.collectionViewNumberOfItemsInSection(collectionView, section);
-//         }
-//         return 0;
-//     }
-
-//     collectionViewCellForItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath): UICollectionViewCell {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             return owner.collectionViewCellForItemAtIndexPath(collectionView, indexPath);
-//         }
-//         return null;
-//     }
-//     collectionViewMoveItemAtIndexPathToIndexPath(collectionView: UICollectionView, sourceIndexPath: NSIndexPath, destinationIndexPath: NSIndexPath) {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             owner.reorderStartingRow = sourceIndexPath.row;
-//             owner.reorderEndingRow = destinationIndexPath.row;
-//             owner._reorderItemInSource(sourceIndexPath.row, destinationIndexPath.row, false);
-//         }
-//     }
-//     collectionViewTargetIndexPathForMoveFromItemAtIndexPathToProposedIndexPath?(collectionView: UICollectionView, originalIndexPath: NSIndexPath, proposedIndexPath: NSIndexPath): NSIndexPath {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             owner.reorderEndingRow = proposedIndexPath.row;
-//         }
-//         return proposedIndexPath;
-//     }
-//     collectionViewCanMoveItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath) {
-//         const owner = this._owner.deref();
-//         if (owner) {
-//             const result = owner.shouldMoveItemAtIndex(indexPath.row);
-//             if (result) {
-//                 owner.reorderStartingRow = indexPath.row;
-//             }
-//             return result;
-//         }
-//         return false;
-//     }
-//     // collectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView: UICollectionView, kind: string, indexPath: NSIndexPath): UICollectionReusableView {
-//     //     console.log('collectionViewViewForSupplementaryElementOfKindAtIndexPath')
-//     //     const owner = this._owner.deref();
-//     //     if (owner) {
-//     //         return owner.collectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView, kind, indexPath);
-//     //     }
-//     //     return null;
-//     // }
-// }
 @NativeClass
 class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayout implements UICollectionViewDelegate {
     _owner: WeakRef<CollectionView>;
@@ -1329,12 +1259,14 @@ class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayo
         delegate._owner = new WeakRef(owner);
         return delegate;
     }
+    
     collectionViewWillDisplayCellForItemAtIndexPath(collectionView: UICollectionView, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
         if (owner) {
             owner.collectionViewWillDisplayCellForItemAtIndexPath(collectionView, cell, indexPath);
         }
     }
+
     collectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
         if (owner) {
@@ -1342,6 +1274,7 @@ class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayo
         }
         return indexPath;
     }
+
     collectionViewLayoutComputedSizeForItemAtIndexPath(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
         if (owner) {
@@ -1349,30 +1282,35 @@ class UICollectionViewDelegateImpl extends UICollectionViewCacheDelegateFlowLayo
         }
         return CGSizeZero;
     }
+
     scrollViewDidScroll(scrollView: UIScrollView): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewDidScroll(scrollView);
         }
     }
+
     scrollViewWillBeginDragging(scrollView: UIScrollView): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewWillBeginDragging(scrollView);
         }
     }
+
     scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewDidEndDecelerating(scrollView);
         }
     }
+
     scrollViewWillEndDraggingWithVelocityTargetContentOffset?(scrollView: UIScrollView, velocity: CGPoint, targetContentOffset: interop.Pointer | interop.Reference<CGPoint>): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewWillEndDraggingWithVelocityTargetContentOffset(scrollView, velocity, targetContentOffset);
         }
     }
+
     scrollViewDidEndDraggingWillDecelerate(scrollView: UIScrollView, decelerate: boolean): void {
         const owner = this._owner.deref();
         if (owner) {
@@ -1398,12 +1336,14 @@ class UICollectionViewDelegateFixedSizeImpl extends NSObject implements UICollec
         delegate._owner = new WeakRef(owner);
         return delegate;
     }
+
     collectionViewWillDisplayCellForItemAtIndexPath(collectionView: UICollectionView, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
         if (owner) {
             owner.collectionViewWillDisplayCellForItemAtIndexPath(collectionView, cell, indexPath);
         }
     }
+
     collectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
         if (owner) {
@@ -1411,30 +1351,35 @@ class UICollectionViewDelegateFixedSizeImpl extends NSObject implements UICollec
         }
         return indexPath;
     }
+
     scrollViewDidScroll(scrollView: UIScrollView): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewDidScroll(scrollView);
         }
     }
+
     scrollViewWillBeginDragging(scrollView: UIScrollView): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewWillBeginDragging(scrollView);
         }
     }
+
     scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewDidEndDecelerating(scrollView);
         }
     }
+
     scrollViewWillEndDraggingWithVelocityTargetContentOffset?(scrollView: UIScrollView, velocity: CGPoint, targetContentOffset: interop.Pointer | interop.Reference<CGPoint>): void {
         const owner = this._owner.deref();
         if (owner) {
             owner.scrollViewWillEndDraggingWithVelocityTargetContentOffset(scrollView, velocity, targetContentOffset);
         }
     }
+
     scrollViewDidEndDraggingWillDecelerate(scrollView: UIScrollView, decelerate: boolean): void {
         const owner = this._owner.deref();
         if (owner) {
