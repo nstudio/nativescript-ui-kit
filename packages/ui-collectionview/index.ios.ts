@@ -552,6 +552,7 @@ export class CollectionView extends CollectionViewBase {
         // console.log(' >')
         const sectionIdentifier = this._dataSource.sectionIdentifierForIndex(0);
         // console.log(' sectionIdentifier:', sectionIdentifier)
+        const contentOffset = view.contentOffset;
 
         switch (event.action) {
             case ChangeType.Delete: {
@@ -590,46 +591,46 @@ export class CollectionView extends CollectionViewBase {
                 return;
             }
             case ChangeType.Splice: {
-                    const added = event.addedCount;
-                    const removed = (event.removed && event.removed.length) || 0;
-                    if (added > 0 && added === removed) {
-                        const identifiers = [];
-                        for (let index = 0; index < added; index++) {
-                            const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
-                            const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
-                            // console.log(' splice, update identifier:', identifier)
-                            identifiers.push(identifier);
-                        }
-                        this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier);
-                    } else {
-                        if (event.removed && event.removed.length > 0) {
-                            const identifiers = [];
-                            for (let index = 0; index < event.removed.length; index++) {
-                                const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
-                                const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
-                                // console.log(' splice, remove identifier:', identifier)
-                                identifiers.push(identifier);
-                            }
-                            this.unbindUnusedCells(event.removed);
-
-                            this.modifyDataSourceSnapshot(ChangeType.Delete, identifiers, sectionIdentifier);
-                        }
-                        if (event.addedCount > 0) {
-                            const identifiers = [];
-                            for (let index = 0; index < event.addedCount; index++) {
-                                const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
-                                const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
-                                // console.log(' splice, add identifier:', identifier)
-                                identifiers.push(identifier);
-                            }
-                            this.modifyDataSourceSnapshot(ChangeType.Add, identifiers, sectionIdentifier);
-                        }
+                const added = event.addedCount;
+                const removed = (event.removed && event.removed.length) || 0;
+                if (added > 0 && added === removed) {
+                    const addIdentifiers = [];
+                    for (let index = 0; index < added; index++) {
+                        const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
+                        const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
+                        // console.log(' splice, update identifier:', identifier)
+                        addIdentifiers.push(identifier);
                     }
-                    // view.collectionViewLayout.invalidateLayout();
-                return;
+                    this.modifyDataSourceSnapshot(ChangeType.Update, addIdentifiers, sectionIdentifier);
+                } else {
+                    if (event.removed && event.removed.length > 0) {
+                        const deleteIdentifiers = [];
+                        for (let index = 0; index < event.removed.length; index++) {
+                            const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
+                            const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
+                            // console.log(' splice, remove identifier:', identifier)
+                            deleteIdentifiers.push(identifier);
+                        }
+                        this.unbindUnusedCells(event.removed);
+
+                        this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier, false, false);
+                    }
+                    if (event.addedCount > 0) {
+                        const addIdentifiers = [];
+                        for (let index = 0; index < event.addedCount; index++) {
+                            const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
+                            const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
+                            // console.log(' splice, add identifier:', identifier)
+                            addIdentifiers.push(identifier);
+                        }
+                        this.modifyDataSourceSnapshot(ChangeType.Add, addIdentifiers, sectionIdentifier, false, false);
+                    }
+                }
+                break;
             }
         }
-        this.refresh();
+        view.contentOffset = contentOffset;
+        //this.refresh();
     }
 
     protected clearEmbeddedViews() {

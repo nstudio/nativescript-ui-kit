@@ -89,6 +89,13 @@ module.exports = {
 					description: '@nstudio/ui-collectionview: Build',
 				},
 			},
+      // @nstudio/ui-collectionview-sean
+			'ui-collectionview-sean': {
+				build: {
+					script: 'nx run ui-collectionview-sean:build.all',
+					description: '@nstudio/ui-collectionview-sean: Build',
+				},
+			},
 			// nativescript-fonticon
 			'nativescript-fonticon': {
 				build: {
@@ -131,6 +138,10 @@ module.exports = {
       'ui-collectionview': {
 				script: 'nx run ui-collectionview:focus',
 				description: 'Focus on @nstudio/ui-collectionview',
+      },
+      'ui-collectionview-sean': {
+				script: 'nx run ui-collectionview-sean:focus',
+				description: 'Focus on @nstudio/ui-collectionview-sean',
       },
       'nativescript-coachmarks': {
 				script: 'nx run nativescript-coachmarks:focus',
