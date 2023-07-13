@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 
-import { Item } from './item'
+import { ItemVM } from './item'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ItemService {
-  items = new Array<Item>(
+
+  idCounter: number = 278;
+  items = new Array<ItemVM>(
     { id: 1, name: 'Hugo Lloris', position: 'Goalkeeper', height: 1.88, nationality: 'France', dob: '26/12/1986', appearances: 32, goals: 0, assists: 0  },
     { id: 3, name: 'Oliver Skipp', position: 'Midfielder', height: 1.75, nationality: 'England', dob: '16/09//2000', appearances: 12, goals: 1, assists: 1 },
     { id: 4, name: 'Dejan Kulusevski', position: 'Midfielder/Winger', height: 1.86, nationality: 'Sweden', dob:  '25/04/2000', appearances: 33, goals: 5, assists: 3},
@@ -44,7 +46,6 @@ export class ItemService {
     { id: 38, name: "Chase Nguyen", position: "Forward", height: 1.8, dob: "28/10/1983", appearances: 227, goals: 47, assists: 75, nationality: "Cameroon" },
     { id: 39, name: "Carter Day", position: "Forward", height: 1.9, dob: "5/5/2004", appearances: 32, goals: 122, assists: 34, nationality: "England" },
     { id: 40, name: "Gavin Chandler", position: "Defender", height: 1.75, dob: "1/2/2005", appearances: 116, goals: 5, assists: 70, nationality: "France" },
-    { id: 41, name: "Cole Lopez", position: "Wing Back", height: 2, dob: "16/5/2000", appearances: 110, goals: 44, assists: 6, nationality: "Spain" },
     { id: 41, name: "Cole Lopez", position: "Wing Back", height: 2, dob: "16/5/2000", appearances: 110, goals: 44, assists: 6, nationality: "Spain" },
     { id: 42, name: "Alex Higgins", position: "Winger", height: 1.96, dob: "10/6/2004", appearances: 254, goals: 184, assists: 75, nationality: "Northern Ireland" },
     { id: 43, name: "Daniel Herrera", position: "Forward", height: 1.85, dob: "10/12/1984", appearances: 31, goals: 194, assists: 68, nationality: "Argentina" },
@@ -285,11 +286,11 @@ export class ItemService {
     {id: 278, name: "Carter Brewer", position: "Midfielder", height: 1.77, dob: "9/1/2005", appearances: 210, goals: 68, assists: 88, nationality: "Sweden"},
   )
 
-  getItems(): Array<Item> {
-    return this.items
+  getItems(): Array<ItemVM> {
+    return this.items;
   }
 
-  generateRandomPlayer(): Item {
+  generateRandomPlayer(): ItemVM {
     const firstNames = [
         'Liam', 'Noah', 'Ethan', 'Mason', 'Logan', 'Lucas', 'Henry', 'Benjamin', 'Samuel', 'Jackson',
         'David', 'Joseph', 'Michael', 'Gabriel', 'Alexander', 'Daniel', 'Matthew', 'William', 'Andrew', 'Anthony',
@@ -442,10 +443,11 @@ export class ItemService {
     const randomSurNamesIndex = Math.floor(Math.random() * surnames.length);
     const surName = surnames[randomSurNamesIndex];
 
-    const newPlayer: Item = new Item;
-    newPlayer.id = this.items[this.items.length-1].id + 1;
+    const newPlayer: ItemVM = new ItemVM;
+    newPlayer.id = this.idCounter++;
     newPlayer.name = `${firstName} ${surName}`;
     newPlayer.position = positions[Math.floor(Math.random() * positions.length)];
+    newPlayer.nationality = nationality;
     newPlayer.height = Math.floor(Math.random() * 30 + 175) / 100; // Random height between 1.6 and 1.9 meters
     newPlayer.dob = Math.floor(Math.random() * 28 + 1) + '/' + Math.floor(Math.random() * 12 + 1) + '/' + (Math.floor(Math.random() * 30) + 1980); // Random date of birth
     newPlayer.appearances = Math.floor(Math.random() * 400); // Random number of appearances
@@ -459,7 +461,7 @@ export class ItemService {
     return newPlayer;
   };
 
-  getItem(id: number): Item {
+  getItem(id: number): ItemVM {
     return this.items.filter((item) => item.id === id)[0]
   }
 }

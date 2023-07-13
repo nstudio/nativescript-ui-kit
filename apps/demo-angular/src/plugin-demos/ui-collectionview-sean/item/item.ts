@@ -1,6 +1,5 @@
-export class Item {
+export class ItemVM {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
   id: number

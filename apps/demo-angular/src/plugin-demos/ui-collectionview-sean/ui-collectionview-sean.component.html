@@ -1,14 +1,15 @@
 <ActionBar title="ui-collectionview-sean" class="action-bar"> </ActionBar>
 
 <StackLayout>
-  <StackLayout (tap)="addPlayers(10)">
-    <Label text="add players"></Label>
+
+  <StackLayout (tap)="addPlayers(10)" class="button-container">
+    <Button text="Generate Players" class="button"></Button>
   </StackLayout>
   <ScrollView #tableMainBody orientation="horizontal">
     <GridLayout columns="60,*" rows="54, *">
       
       <!-- Ids -->
-      <CollectionView #ids row="1" col="0" backgroundColor="white" [items]="items" width="90"
+      <CollectionView #ids row="1" col="0" backgroundColor="white" [items]="itemsOnScreen" width="90"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
@@ -22,9 +23,10 @@
       </CollectionView>
 
       <!-- Main table body -->
-      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="items" width="815"
+      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="itemsOnScreen" width="815"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
+        (loadMoreItems)="loadMoreRows()"
       >
         <ng-container *ngFor="let item of items; let odd = odd; let i = index">
           <GridLayout columns="180 1 200 1 60 1 160 1 110 1 50 1 50">

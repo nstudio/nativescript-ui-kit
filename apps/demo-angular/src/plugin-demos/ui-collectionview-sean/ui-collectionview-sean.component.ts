@@ -1,9 +1,7 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
-/* eslint-disable @typescript-eslint/no-inferrable-types */
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as stringConstants from './item/items.component.strings';
 import { ItemService } from './item/item.service';
-import { Item } from './item/item';
+import { ItemVM } from './item/item';
 import { throttle } from '@nativescript/core/utils';
 import { isAndroid } from "@nativescript/core/platform";
 import { CollectionView } from '@nstudio/ui-collectionview';
@@ -33,13 +31,16 @@ export class UiCollectionviewSeanComponent implements OnInit {
     }
   };
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef) {
     if(isAndroid) {
       this.isAndroid = true;
     }
   }
 
-  items: ObservableArray<Item> = new ObservableArray();
+  items: ItemVM[] = [];
+  itemsOnScreen: ObservableArray<ItemVM> = new ObservableArray();
+
+  rowsDisplayed: number = 20;
 
   id: string = stringConstants.id;
   name: string = stringConstants.name;
@@ -52,7 +53,20 @@ export class UiCollectionviewSeanComponent implements OnInit {
 
 
   ngOnInit() {
-    this.items = new ObservableArray(this.itemService.getItems());
+    this.items = this.itemService.getItems();
+    this.itemsOnScreen.splice(0, this.items.length, ...(this.items.slice(0, this.rowsDisplayed)));
+
+    this.changeDetectorRef.detectChanges();
+  }
+
+  loadMoreRows() {
+    if (this.rowsDisplayed <= this.items.length) {
+      this.rowsDisplayed = this.rowsDisplayed + 10;
+      this.rowsDisplayed = Math.min(this.rowsDisplayed, this.items.length);
+      this.itemsOnScreen.splice(0, this.itemsOnScreen.length, ...this.items.slice(0, this.rowsDisplayed));
+
+    }
+    this.changeDetectorRef.detectChanges();
   }
 
   addPlayers(amount: number) {

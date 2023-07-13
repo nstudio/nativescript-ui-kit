@@ -527,8 +527,10 @@ export class CollectionView extends CollectionViewBase {
         if (Trace.isEnabled()) {
           CLog(CLogTypes.log, 'onItemsChanged', ChangeType.Update, event.action, event.index, event.addedCount, event.removed && event.removed.length);
         }
+      
         const sectionIdentifier = this._dataSource.sectionIdentifierForIndex(0);
-
+        const contentOffset = view.contentOffset;
+      
         switch (event.action) {
             case ChangeType.Delete: {
                 const identifiers = [];
@@ -536,32 +538,31 @@ export class CollectionView extends CollectionViewBase {
                     const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
                     const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
                     identifiers.push(identifier);
-                    // console.log(' delete identifier:', identifier)
                 }
                 this.unbindUnusedCells(event.removed);
         
-                this.modifyDataSourceSnapshot(ChangeType.Delete, identifiers, sectionIdentifier);
-                return;
-            }
-            case ChangeType.Update: {
+                this.modifyDataSourceSnapshot(ChangeType.Delete, identifiers, sectionIdentifier, false, false);
+                break;
+          }
+          case ChangeType.Update: {
                 const indexPath = NSIndexPath.indexPathForRowInSection(event.index, sectionIdentifier);
                 const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
                 const identifiers = [identifier];
 
-                this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier);
-                return;
-            }
-            case ChangeType.Add: {
+                this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier, false, false);
+                break;
+          }
+          case ChangeType.Add: {
                 const identifiers = [];
                 for (let index = 0; index < event.addedCount; index++) {
                     const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
                     const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
                     identifiers.push(identifier);
                 }
-                this.modifyDataSourceSnapshot(ChangeType.Add, identifiers, sectionIdentifier);
-                return;
-            }
-            case ChangeType.Splice: {
+                this.modifyDataSourceSnapshot(ChangeType.Add, identifiers, sectionIdentifier, false, false);
+                break;
+          }
+          case ChangeType.Splice: {
                 const added = event.addedCount;
                 const removed = (event.removed && event.removed.length) || 0;
         
@@ -572,36 +573,34 @@ export class CollectionView extends CollectionViewBase {
                         const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
                         identifiers.push(identifier);
                     }
-                    this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier);
+                    this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier, false, false);
                 } else {
-                if (event.removed && event.removed.length > 0) {
-                    const deleteIdentifiers = [];
-                    for (let index = 0; index < event.removed.length; index++) {
-                    const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
-                    const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
-                    deleteIdentifiers.push(identifier);
+                    if (event.removed && event.removed.length > 0) {
+                        const deleteIdentifiers = [];
+                        for (let index = 0; index < event.removed.length; index++) {
+                            const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
+                            const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
+                            deleteIdentifiers.push(identifier);
+                        }
+                        this.unbindUnusedCells(event.removed);
+            
+                        this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier, false, false);
                     }
-                    this.unbindUnusedCells(event.removed);
-        
-                    this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier);
-                }
-                if (event.addedCount > 0) {
-                    const addIdentifiers = [];
-                    for (let index = 0; index < event.addedCount; index++) {
-                        const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
-                        const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
-                        addIdentifiers.push(identifier);
+                    if (event.addedCount > 0) {
+                        const addIdentifiers = [];
+                        for (let index = 0; index < event.addedCount; index++) {
+                            const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
+                            const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
+                            addIdentifiers.push(identifier);
+                        }
+                        this.modifyDataSourceSnapshot(ChangeType.Add, addIdentifiers, sectionIdentifier, false, false);
                     }
-                    this.modifyDataSourceSnapshot(ChangeType.Add, addIdentifiers, sectionIdentifier);
                 }
-                }
-                return;
+                break;
             }
-            }
-      
-        this.refreshVisibleItems();
-      }
-      
+        }
+        view.contentOffset = contentOffset;
+    }
 
     protected clearEmbeddedViews() {
         this.clearRealizedCells();
@@ -1002,6 +1001,7 @@ export class CollectionView extends CollectionViewBase {
         const loadMoreThreshold = this.loadMoreThreshold;
         const lastIndex = items.length - 1;
 
+
         if (items && indexPath.row === lastIndex - loadMoreThreshold && items.length && this.hasListeners(CollectionViewBase.loadMoreItemsEvent)) {
             this.notify({
                 eventName: CollectionViewBase.loadMoreItemsEvent,
@@ -1339,6 +1339,7 @@ class UICollectionViewDelegateFixedSizeImpl extends NSObject implements UICollec
 
     collectionViewWillDisplayCellForItemAtIndexPath(collectionView: UICollectionView, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         const owner = this._owner.deref();
+        indexPath.row = cell.currentIndex;
         if (owner) {
             owner.collectionViewWillDisplayCellForItemAtIndexPath(collectionView, cell, indexPath);
         }
