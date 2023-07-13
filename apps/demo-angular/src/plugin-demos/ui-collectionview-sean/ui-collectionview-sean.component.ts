@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as stringConstants from './item/items.component.strings';
 import { ItemService } from './item/item.service';
 import { ItemVM } from './item/item';
@@ -31,7 +31,7 @@ export class UiCollectionviewSeanComponent implements OnInit {
     }
   };
 
-  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private itemService: ItemService) {
     if(isAndroid) {
       this.isAndroid = true;
     }
@@ -55,8 +55,6 @@ export class UiCollectionviewSeanComponent implements OnInit {
   ngOnInit() {
     this.items = this.itemService.getItems();
     this.itemsOnScreen.splice(0, this.items.length, ...(this.items.slice(0, this.rowsDisplayed)));
-
-    this.changeDetectorRef.detectChanges();
   }
 
   loadMoreRows() {
@@ -64,9 +62,7 @@ export class UiCollectionviewSeanComponent implements OnInit {
       this.rowsDisplayed = this.rowsDisplayed + 10;
       this.rowsDisplayed = Math.min(this.rowsDisplayed, this.items.length);
       this.itemsOnScreen.splice(0, this.itemsOnScreen.length, ...this.items.slice(0, this.rowsDisplayed));
-
     }
-    this.changeDetectorRef.detectChanges();
   }
 
   addPlayers(amount: number) {

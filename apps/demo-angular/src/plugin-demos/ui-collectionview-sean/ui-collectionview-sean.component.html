@@ -23,12 +23,13 @@
       </CollectionView>
 
       <!-- Main table body -->
-      <CollectionView #main row="1" col="1" backgroundColor="white" [items]="itemsOnScreen" width="815"
+      <CollectionView #main row="1" col="1" backgroundColor="white" width="815"
+        [items]="itemsOnScreen"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
         (loadMoreItems)="loadMoreRows()"
       >
-        <ng-container *ngFor="let item of items; let odd = odd; let i = index">
+        <ng-template cvListItemTemplate let-item="item" let-i="index" let-odd="odd">
           <GridLayout columns="180 1 200 1 60 1 160 1 110 1 50 1 50">
 
             <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
@@ -74,7 +75,7 @@
             </StackLayout>
 
           </GridLayout>
-        </ng-container>
+        </ng-template>
       </CollectionView>
     </GridLayout>
   </ScrollView>
