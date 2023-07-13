@@ -160,6 +160,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public isBounceEnabled: boolean;
     public isScrollEnabled: boolean;
     public reverseLayout: boolean;
+    public loadingMore: boolean;
     public orientation: CoreTypes.OrientationType;
     public itemTemplate: string | Template;
     public itemTemplates: string | KeyedTemplate[];

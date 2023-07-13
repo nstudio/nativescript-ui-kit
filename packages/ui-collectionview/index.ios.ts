@@ -221,7 +221,7 @@ export class CollectionView extends CollectionViewBase {
                     this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
                     break;
             }
-            this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, animate);
+            this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
         }
     }
 
@@ -552,6 +552,7 @@ export class CollectionView extends CollectionViewBase {
         // console.log(' >')
         const sectionIdentifier = this._dataSource.sectionIdentifierForIndex(0);
         // console.log(' sectionIdentifier:', sectionIdentifier)
+        const contentOffset = view.contentOffset;
 
         switch (event.action) {
             case ChangeType.Delete: {
@@ -629,7 +630,9 @@ export class CollectionView extends CollectionViewBase {
                 return;
             }
         }
-        this.refresh();
+        // this.refresh();
+        view.contentOffset = contentOffset;
+        this.loadingMore = false;
     }
 
     protected clearEmbeddedViews() {
@@ -1055,6 +1058,7 @@ export class CollectionView extends CollectionViewBase {
         if (this.items) {
             const loadMoreItemIndex = this.items.length - this.loadMoreThreshold;
             if (indexPath.row === loadMoreItemIndex && this.hasListeners(CollectionViewBase.loadMoreItemsEvent)) {
+                this.loadingMore = true;
                 this.notify<EventData>({
                     eventName: CollectionViewBase.loadMoreItemsEvent,
                     object: this
