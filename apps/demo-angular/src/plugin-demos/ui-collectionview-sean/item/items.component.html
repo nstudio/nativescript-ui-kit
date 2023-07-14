@@ -1,0 +1,115 @@
+<ActionBar title="My App"> </ActionBar>
+
+
+<ScrollView #tableMainBody orientation="horizontal">
+  <MDSwitch></MDSwitch>
+
+  <GridLayout columns="60,*" rows="54, *">
+
+    <CollectionView row="0" col="1">
+    </CollectionView>
+
+    <!-- Ids -->
+    <CollectionView row="1" col="0" backgroundColor="white" [items]="items">
+      <ng-container *ngFor="let item of items; let odd = odd">
+        <StackLayout class="cell-height">
+            <StackLayout class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label class="jumbo-text" [text]="item.id"></Label>
+            </StackLayout>
+        </StackLayout>
+      </ng-container>
+    </CollectionView>
+
+    <!-- Main table body -->
+    <CollectionView row="1" col="1" backgroundColor="white" [items]="items">
+      <ng-container *ngFor="let item of items; let odd = odd">
+        <GridLayout columns="150 200 60 90 90 60 60" rows="auto">
+          <ng-container *ngTemplateOutlet="odd ? oddCellTemplate : evenCellTemplate; context: { $implicit: item }"></ng-container>
+        </GridLayout>
+      </ng-container>
+    
+      <ng-template #oddCellTemplate let-item>
+        <StackLayout [nsRouterLink]="['/item', item.id]" class="cell light-grey-cell">
+          <Label [text]="item.name"></Label>
+        </StackLayout>
+        <StackLayout col="1" class="cell light-grey-cell">
+          <Label [text]="item.position"></Label>
+        </StackLayout>
+        <StackLayout col="2" class="cell light-grey-cell">
+          <Label [text]="item.height"></Label>
+        </StackLayout>
+        <StackLayout col="3" class="cell light-grey-cell">
+          <Label [text]="item.nationality"></Label>
+        </StackLayout>
+        <StackLayout col="4" class="cell light-grey-cell">
+          <Label [text]="item.dob"></Label>
+        </StackLayout>
+        <StackLayout col="5" class="cell light-grey-cell">
+          <Label [text]="item.goals"></Label>
+        </StackLayout>
+        <StackLayout col="6" class="cell light-grey-cell">
+          <Label [text]="item.assists"></Label>
+        </StackLayout>
+      </ng-template>
+    
+      <ng-template #evenCellTemplate let-item>
+        <StackLayout [nsRouterLink]="['/item', item.id]" class="cell white-cell">
+          <Label [text]="item.name"></Label>
+        </StackLayout>
+        <StackLayout col="1" class="cell white-cell">
+          <Label [text]="item.position"></Label>
+        </StackLayout>
+        <StackLayout col="2" class="cell white-cell">
+          <Label [text]="item.height"></Label>
+        </StackLayout>
+        <StackLayout col="3" class="cell white-cell">
+          <Label [text]="item.nationality"></Label>
+        </StackLayout>
+        <StackLayout col="4" class="cell white-cell">
+          <Label [text]="item.dob"></Label>
+        </StackLayout>
+        <StackLayout col="5" class="cell white-cell">
+          <Label [text]="item.goals"></Label>
+        </StackLayout>
+        <StackLayout col="6" class="cell white-cell">
+          <Label [text]="item.assists"></Label>
+        </StackLayout>
+      </ng-template>
+    </CollectionView>
+    
+    <!-- <CollectionView row="1" col="1" backgroundColor="white" [items]="items">
+      <ng-container *ngFor="let item of items; let odd = odd">
+        <GridLayout columns="150 200 60 90 90 60 60">
+          <StackLayout [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.name"></Label>
+          </StackLayout>
+          <StackLayout col="1" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.position"></Label>
+          </StackLayout>
+          <StackLayout col="2" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.height"></Label>
+          </StackLayout>
+          <StackLayout col="3" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.nationality"></Label>
+          </StackLayout>
+          <StackLayout col="4" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.dob"></Label>
+          </StackLayout>
+          <StackLayout col="5" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.goals"></Label>
+          </StackLayout>
+          <StackLayout col="6" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+            <Label [text]="item.assists"></Label>
+          </StackLayout>
+        </GridLayout>
+      </ng-container>
+    </CollectionView> -->
+
+</GridLayout>
+
+
+</ScrollView>
+
+
+
+

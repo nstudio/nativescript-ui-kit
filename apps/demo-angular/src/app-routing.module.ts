@@ -12,7 +12,8 @@ const routes: Routes = [
 	{ path: 'nativescript-label-marquee', loadChildren: () => import('./plugin-demos/nativescript-label-marquee.module').then(m => m.NativescriptLabelMarqueeModule) },
 	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) },
 	{ path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then(m => m.NativescriptSmartlookModule) },
-	{ path: 'ui-collectionview', loadChildren: () => import('./plugin-demos/ui-collectionview.module').then(m => m.UiCollectionviewModule) }
+	{ path: 'ui-collectionview', loadChildren: () => import('./plugin-demos/ui-collectionview.module').then(m => m.UiCollectionviewModule) },
+	{ path: 'ui-collectionview-sean', loadChildren: () => import('./plugin-demos/ui-collectionview-sean/ui-collectionview-sean.module').then(m => m.UiCollectionviewSeanModule) },
 	{ path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then(m => m.NativescriptVariableBlurViewModule) }
 ];
 
