@@ -283,7 +283,7 @@ export class ItemService {
     {id: 275, name: "David Howell", position: "Winger", height: 2.04, dob: "24/8/1981", appearances: 377, goals: 107, assists: 62, nationality: "Sweden"},
     {id: 276, name: "Adam Kim", position: "Striker", height: 1.97, dob: "1/4/2004", appearances: 304, goals: 174, assists: 16, nationality: "Sweden"},
     {id: 277, name: "Calvin Dunn", position: "Wing Back", height: 1.77, dob: "5/6/1984", appearances: 284, goals: 52, assists: 86, nationality: "Sweden"},
-    {id: 278, name: "Carter Brewer", position: "Midfielder", height: 1.77, dob: "9/1/2005", appearances: 210, goals: 68, assists: 88, nationality: "Sweden"},
+    {id: 278, name: "Carter Brewer", position: "Midfielder", height: 1.77, dob: "9/1/2005", appearances: 210, goals: 68, assists: 88, nationality: "Sweden"}
   )
 
   getItems(): Array<ItemVM> {

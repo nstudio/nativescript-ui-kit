@@ -6,3 +6,4 @@ export const nationality = "Nationality";
 export const appearances = "Appearances";
 export const goals = "Goals";
 export const assists = "Assists";
+export const generatePlayers = "Generate Players";

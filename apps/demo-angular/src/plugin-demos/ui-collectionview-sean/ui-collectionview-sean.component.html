@@ -2,12 +2,12 @@
 
 <StackLayout>
 
-  <StackLayout (tap)="addPlayers(10)" class="button-container">
-    <Button text="Generate Players" class="button"></Button>
+  <StackLayout (tap)="addPlayers()" class="button-container">
+    <Button [text]="generatePlayers" class="button"></Button>
   </StackLayout>
-    <GridLayout columns="60,1,*" rows="54, *">
-      <StackLayout row="0" col="0" class="table-header">
-        <Label text="ID"></Label>
+    <GridLayout columns="60 1 *" rows="54 *">
+      <StackLayout row="0" col="0" class="table-header" (tap)="sortTableById()">
+        <Label [text]="id"></Label>
       </StackLayout>
       <StackLayout row="0" col="1" width="1" class="horizontal-heading-divider"></StackLayout>
 
@@ -23,7 +23,7 @@
                 <Label text="Name"></Label>
               </StackLayout>
               <StackLayout class="table-header" col="2">
-                <Label text="Nationality"></Label>
+                <Label text="Position"></Label>
               </StackLayout>
               <StackLayout class="table-header" col="4">
                 <Label text="Height"></Label>
@@ -45,7 +45,7 @@
       </StackLayout>
 
       <!-- Ids -->
-      <CollectionView #ids row="1" col="0" backgroundColor="white" [items]="itemsOnScreen" width="90"
+      <CollectionView #ids row="1" col="0" [items]="itemsOnScreen"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
