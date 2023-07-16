@@ -280,7 +280,7 @@ export class CollectionView extends CollectionViewBase {
 
     // _onSizeChanged() {
     //     super._onSizeChanged();
-    //     this.onSizeChanged(this.getMeasuredWidth(), this.getMeasuredHeight());
+    //     this.onSizeChanged(this.getM geasuredWidth(), this.getMeasuredHeight());
     // }
 
     get _childrenCount(): number {
@@ -566,7 +566,7 @@ export class CollectionView extends CollectionViewBase {
                 }
                 this.unbindUnusedCells(event.removed);
                 
-                this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier,);
+                this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier);
                 return;
             }
             case ChangeType.Update: {
