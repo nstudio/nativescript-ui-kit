@@ -1,6 +1,6 @@
 import { ContentView, ItemEventData, View, profile } from '@nativescript/core';
 import { NativeViewElementNode, TemplateElement, ViewNode, createElement, registerElement } from 'svelte-native/dom';
-// import { flush } from 'svelte/internal';
+import { flush } from 'svelte/internal';
 import { CollectionView } from '..';
 
 const SVELTE_VIEW = '_svelteViewRef';
@@ -144,7 +144,7 @@ export default class CollectionViewViewElement extends NativeViewElementNode<Col
             _view.__CollectionViewCurrentIndex__ = args.index;
             _view._batchUpdate(() => {
                 componentInstance.$set(props);
-                // flush(); // we need to flush to make sure update is applied right away
+                flush(); // we need to flush to make sure update is applied right away
             });
         }
     }
