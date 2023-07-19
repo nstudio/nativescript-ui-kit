@@ -1,0 +1,59 @@
+.horizontal-heading-divider {
+    width: 1;
+    background-color: rgb(203, 203, 203);
+}
+
+.cell {
+    height:45;
+    vertical-align: center;
+    horizontal-align: center;
+    width: 100%;
+    padding-left: 3;
+    text-align: center;
+}
+
+.cell-height {
+    height: 45;
+}
+
+.button {
+    background-color: rgb(45, 105, 45);
+    border-radius: 12;
+    font-size: 20;
+    color: white;
+}
+
+.button-container {
+    width: 220;
+    margin-top: 30;
+    height: 50;
+}
+
+.horizontal-divider-dark {
+    width: 1;
+    background-color: rgb(76, 76, 76);
+}
+
+.white-cell {
+    background-color: white;
+}
+
+.light-grey-cell {
+    background-color: rgb(248, 248, 248);
+}
+
+.table-header {
+    font-size: 18dp;
+    font-weight: 600;
+    background-color: white;
+    padding-left: 3;
+    padding-right: 3;
+    padding-top: 4;
+    padding-bottom: 4;
+    horizontal-align: center;
+    vertical-align: center;
+    font-size: 15dp;
+    width: 100%;
+    text-align: center;
+    padding-left: 7;
+}

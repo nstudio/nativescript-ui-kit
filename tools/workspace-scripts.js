@@ -89,6 +89,13 @@ module.exports = {
 					description: '@nstudio/ui-collectionview: Build',
 				},
 			},
+      // @nstudio/ui-collectionview-sean
+			'ui-collectionview-sean': {
+				build: {
+					script: 'nx run ui-collectionview-sean:build.all',
+					description: '@nstudio/ui-collectionview-sean: Build',
+				},
+			},
 			// nativescript-fonticon
 			'nativescript-fonticon': {
 				build: {

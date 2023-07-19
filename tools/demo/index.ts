@@ -6,3 +6,4 @@ export * from './nativescript-shimmer';
 export * from './nativescript-smartlook';
 export * from './nativescript-variable-blur-view';
 export * from './ui-collectionview';
+export * from './ui-collectionview-sean';

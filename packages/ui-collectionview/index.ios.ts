@@ -183,7 +183,7 @@ export class CollectionView extends CollectionViewBase {
         }
     }
 
-    modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false) {
+    modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = false, reload = false) {
         if (this.items) {
             if (!this._dataSourceSnapshot || reload) {
                 this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
@@ -280,7 +280,7 @@ export class CollectionView extends CollectionViewBase {
 
     // _onSizeChanged() {
     //     super._onSizeChanged();
-    //     this.onSizeChanged(this.getMeasuredWidth(), this.getMeasuredHeight());
+    //     this.onSizeChanged(this.getM geasuredWidth(), this.getMeasuredHeight());
     // }
 
     get _childrenCount(): number {
@@ -556,64 +556,64 @@ export class CollectionView extends CollectionViewBase {
 
         switch (event.action) {
             case ChangeType.Delete: {
-                const identifiers = [];
+                const deleteIdentifiers = [];
                 for (let index = 0; index < event.addedCount; index++) {
                     const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
                     const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
                     
                     // console.log(' delete identifier:', identifier)
-                    identifiers.push(identifier);
+                    deleteIdentifiers.push(identifier);
                 }
                 this.unbindUnusedCells(event.removed);
                 
-                this.modifyDataSourceSnapshot(ChangeType.Delete, identifiers, sectionIdentifier);
+                this.modifyDataSourceSnapshot(ChangeType.Delete, deleteIdentifiers, sectionIdentifier);
                 return;
             }
             case ChangeType.Update: {
-                const identifiers = [];
+                const updateIdentifiers = [];
                 const indexPath = NSIndexPath.indexPathForRowInSection(event.index, sectionIdentifier);
                 const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
                 // console.log(' update identifier:', identifier)
-                identifiers.push(identifier);
+                updateIdentifiers.push(identifier);
 
-                this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier);
+                this.modifyDataSourceSnapshot(ChangeType.Update, updateIdentifiers, sectionIdentifier);
                 return;
             }
             case ChangeType.Add: {
-                const identifiers = [];
+                const addIdentifiers = [];
                 for (let index = 0; index < event.addedCount; index++) {
                     const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
                     const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
                     // console.log(' add identifier:', identifier)
-                    identifiers.push(identifier);
+                    addIdentifiers.push(identifier);
                 }
-                this.modifyDataSourceSnapshot(ChangeType.Add, identifiers, sectionIdentifier);
+                this.modifyDataSourceSnapshot(ChangeType.Add, addIdentifiers, sectionIdentifier);
                 return;
             }
             case ChangeType.Splice: {
                     const added = event.addedCount;
                     const removed = (event.removed && event.removed.length) || 0;
                     if (added > 0 && added === removed) {
-                        const identifiers = [];
+                        const spliceIdentifiers = [];
                         for (let index = 0; index < added; index++) {
                             const indexPath = NSIndexPath.indexPathForRowInSection(event.index + index, sectionIdentifier);
                             const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
                             // console.log(' splice, update identifier:', identifier)
-                            identifiers.push(identifier);
+                            spliceIdentifiers.push(identifier);
                         }
-                        this.modifyDataSourceSnapshot(ChangeType.Update, identifiers, sectionIdentifier);
+                        this.modifyDataSourceSnapshot(ChangeType.Update, spliceIdentifiers, sectionIdentifier);
                     } else {
                         if (event.removed && event.removed.length > 0) {
-                            const identifiers = [];
+                            const removeIdentifiers = [];
                             for (let index = 0; index < event.removed.length; index++) {
                                 const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
                                 const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath);
                                 // console.log(' splice, remove identifier:', identifier)
-                                identifiers.push(identifier);
+                                removeIdentifiers.push(identifier);
                             }
                             this.unbindUnusedCells(event.removed);
 
-                            this.modifyDataSourceSnapshot(ChangeType.Delete, identifiers, sectionIdentifier);
+                            this.modifyDataSourceSnapshot(ChangeType.Delete, removeIdentifiers, sectionIdentifier);
                         }
                         if (event.addedCount > 0) {
                             const identifiers = [];
@@ -627,7 +627,7 @@ export class CollectionView extends CollectionViewBase {
                         }
                     }
                     // view.collectionViewLayout.invalidateLayout();
-                return;
+                break;
             }
         }
         // this.refresh();
