@@ -8,5 +8,4 @@ export function navigatingTo(args: EventData) {
 }
 
 export class DemoModel extends DemoSharedUiCollectionview {
-
 }

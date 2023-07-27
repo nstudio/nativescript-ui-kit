@@ -22,7 +22,7 @@
 
 
         <!--itemTemplateSelector="{{itemTemplateSelector}}"-->
-        <cv:CollectionView items="{{items}}" colWidth="100%" layoutStyle="swipe" headerPinned="{{true}}" loaded="{{loadedCollectionView}}" itemTemplateSelector="{{itemTemplateSelector}}">
+        <cv:CollectionView items="{{items}}" colWidth="100%" layoutStyle="swipe" headerPinned="{{true}}" loaded="{{loadedCollectionView}}" itemTemplateSelector="{{itemTemplateSelector}}" isAnimationEnabled="{{isAnimationEnabled}}" scrollBarIndicatorVisible="{{scrollBarIndicatorVisible}}">
           <cv:CollectionView.headerItemTemplate>
               <GridLayout backgroundColor="#efefef" height="40">
                 <GridLayout rows="" columns="*,auto,auto,auto,auto,auto,auto,*">

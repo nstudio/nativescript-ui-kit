@@ -221,7 +221,11 @@ export class CollectionView extends CollectionViewBase {
                     this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
                     break;
             }
-            this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
+            if (this.isAnimationEnabled) {
+                this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
+            } else {
+                this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+            }
         }
     }
 
@@ -1204,12 +1208,12 @@ export class CollectionView extends CollectionViewBase {
     }
     stopScrolling(scrollView: UIScrollView) {
         if (this.isScrolling) {
-            this.isScrolling = false;
-            this.notify(this.computeScrollEventData(scrollView, CollectionViewBase.scrollEndEvent));
+            this.isScrolling = false;      
         }
     }
     scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         this.stopScrolling(scrollView);
+        this.notify(this.computeScrollEventData(scrollView, CollectionViewBase.scrollEndEvent));
     }
     scrollViewWillEndDraggingWithVelocityTargetContentOffset?(scrollView: UIScrollView, velocity: CGPoint, targetContentOffset: interop.Pointer | interop.Reference<CGPoint>): void {
         this.stopScrolling(scrollView);

@@ -16,6 +16,8 @@ type SupplementalOptions = { header?: NSCollectionLayoutBoundarySupplementaryIte
 
 export class DemoSharedUiCollectionview extends DemoSharedBase {
   collectionView: CollectionView;
+  // isAnimationEnabled = false;
+  scrollBarIndicatorVisible = false;
   headerText = 'HEADER';
   bodyCnt = 0;
   // items = [
@@ -69,10 +71,27 @@ export class DemoSharedUiCollectionview extends DemoSharedBase {
   ];
   items: ObservableArray<Item> = new ObservableArray([]);
 
+  cnt = 0;
   constructor() {
     super();
     this.registerLayouts();
     this.loadItems();
+
+    // Stress testing (requires isAnimationEnabled=false above to perform properly)
+    // setInterval(() => {
+    //   const changedItems = [];
+    //   this.items.forEach((item, index) => {
+    //     this.cnt++;
+    //     changedItems.push({
+    //       ...item,
+    //       name: this.defaultItems[Math.floor(Math.random() * (22 - 1 + 1) + 1)].name
+    //     });
+
+    //   })
+    //   this.items.splice(0, this.items.length, ...changedItems)
+    // }, 100);
+
+    // Sequenced change testing
     // setTimeout(() => {
     //   // test delayed hydration
     //   this.loadItems();
@@ -127,6 +146,7 @@ export class DemoSharedUiCollectionview extends DemoSharedBase {
 
   loadedCollectionView(args) {
     this.collectionView = args.object;
+    console.log('this.collectionView.isAnimationEnabled:', this.collectionView.isAnimationEnabled)
   }
 
   addItem() {
