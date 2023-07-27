@@ -183,7 +183,7 @@ export class CollectionView extends CollectionViewBase {
         }
     }
 
-    modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = false, reload = false) {
+    modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false) {
         if (this.items) {
             if (!this._dataSourceSnapshot || reload) {
                 this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
@@ -284,7 +284,7 @@ export class CollectionView extends CollectionViewBase {
 
     // _onSizeChanged() {
     //     super._onSizeChanged();
-    //     this.onSizeChanged(this.getM geasuredWidth(), this.getMeasuredHeight());
+    //     this.onSizeChanged(this.getMeasuredWidth(), this.getMeasuredHeight());
     // }
 
     get _childrenCount(): number {
