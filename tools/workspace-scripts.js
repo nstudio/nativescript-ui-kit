@@ -103,6 +103,13 @@ module.exports = {
 					description: '@nstudio/nativescript-variable-blur-view: Build',
 				},
 			},
+			// @nstudio/nativescript-fluid-segmented-bar
+			'nativescript-fluid-segmented-bar': {
+				build: {
+					script: 'nx run nativescript-fluid-segmented-bar:build.all',
+					description: '@nstudio/nativescript-fluid-segmented-bar: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -136,6 +143,10 @@ module.exports = {
 			'nativescript-variable-blur-view': {
 				script: 'nx run nativescript-variable-blur-view:focus',
 				description: 'Focus on @nstudio/nativescript-variable-blur-view',
+			},
+			'nativescript-fluid-segmented-bar': {
+				script: 'nx run nativescript-fluid-segmented-bar:focus',
+				description: 'Focus on @nstudio/nativescript-fluid-segmented-bar',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

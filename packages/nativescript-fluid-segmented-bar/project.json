@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-fluid-segmented-bar",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-fluid-segmented-bar",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-fluid-segmented-bar",
+        "tsConfig": "packages/nativescript-fluid-segmented-bar/tsconfig.json",
+        "packageJson": "packages/nativescript-fluid-segmented-bar/package.json",
+        "main": "packages/nativescript-fluid-segmented-bar/index.d.ts",
+        "assets": [
+          "packages/nativescript-fluid-segmented-bar/*.md",
+          "packages/nativescript-fluid-segmented-bar/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-fluid-segmented-bar/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-fluid-segmented-bar"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-fluid-segmented-bar"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-fluid-segmented-bar"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-fluid-segmented-bar/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
