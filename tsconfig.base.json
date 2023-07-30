@@ -54,6 +54,9 @@
       ],
       "@nstudio/nativescript-variable-blur-view": [
         "packages/nativescript-variable-blur-view/index.ts"
+      ],
+      "@nstudio/nativescript-fluid-segmented-bar": [
+        "packages/nativescript-fluid-segmented-bar/index.d.ts"
       ]
     }
   },

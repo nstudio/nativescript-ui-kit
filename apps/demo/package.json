@@ -6,12 +6,13 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/ui-collectionview": "file:../../packages/ui-collectionview",
-    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
+    "@nstudio/nativescript-fluid-segmented-bar": "file:../../packages/nativescript-fluid-segmented-bar",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
     "nativescript-fonticon": "file:../../packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
-    "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook"
+    "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
+    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view"
   },
   "devDependencies": {
     "@nativescript/android": "~8.5.0",

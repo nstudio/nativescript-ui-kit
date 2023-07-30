@@ -10,6 +10,9 @@ export class HomeComponent {
 		name: 'nativescript-coachmarks'
 	},
 	{
+		name: 'nativescript-fluid-segmented-bar'
+	},
+	{
 		name: 'nativescript-fonticon'
 	},
 	{

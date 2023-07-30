@@ -1,0 +1,49 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:ns="@nstudio/nativescript-fluid-segmented-bar">
+
+  <GridLayout rows="*,400" iosOverflowSafeArea="true">
+
+    <ScrollView id="background" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/background.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="water" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/water.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="clouds-back" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/clouds-back.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="land" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/land.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="birds" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/birds.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="rocks-right" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/rocks-right.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="road" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/road.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="road-sign" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/road-sign.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="rocks-left" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/rocks-left.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+    <ScrollView id="girl-bike" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
+      <Image src="~/images/girl-bike.png" stretch="aspectFit" iosOverflowSafeArea="true" verticalAlignment="bottom" height="400" />
+    </ScrollView>
+
+
+    <ContentView rowSpan="2" class="bg-sky" height="400" verticalAlignment="top"/>
+    <ContentView row="1" height="55" verticalAlignment="top" class="blue-top" />
+    <!--backgroundColor="rgba(0,0,0,.2)" class="blue-top"-->
+    <Image row="0" src="~/images/fluid-segmented-bar.png" stretch="aspectFit" height="300" verticalAlignment="middle" />
+
+
+    <GridLayout rowSpan="2" class="p-x-10 h-center" marginTop="350" verticalAlignment="top" height="60">
+
+      <ns:FluidSegmentedBar row="1" color="#fff" items="{{items}}" gradientColorSides="{{gradientColorSides}}" selectedIndexChanged="{{selectedIndexChanged}}" didScrollOffset="{{didScrollOffset}}"/>
+    </GridLayout>
+  </GridLayout>
+</Page>
