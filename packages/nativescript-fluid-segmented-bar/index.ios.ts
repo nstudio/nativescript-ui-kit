@@ -1,7 +1,43 @@
-import { Color, Utils, colorProperty } from '@nativescript/core';
-import { FluidSegmentedBarCommon, FluidSegmentedBarDidScrollEvent, FluidSegmentedBarItem, itemsProperty, selectedIndexProperty } from './common';
+import { CoercibleProperty, Color, Property, Utils, colorProperty } from '@nativescript/core';
+import { FluidSegmentedBarCommon, FluidSegmentedBarDidScrollEvent, FluidSegmentedBarGradientColorSides, FluidSegmentedBarIndexChangedEvent, FluidSegmentedBarItem } from './common';
 
 const gradientClear = Utils.ios.collections.jsArrayToNSArray([UIColor.clearColor]);
+// Note: can move to ./common once supported on both
+const itemsProperty = new Property<FluidSegmentedBar, Array<FluidSegmentedBarItem>>({
+  name: 'items',
+});
+const gradientColorSidesProperty = new Property<FluidSegmentedBar, FluidSegmentedBarGradientColorSides>({
+  name: 'gradientColorSides',
+});
+const selectedIndexProperty = new CoercibleProperty<FluidSegmentedBar, number>({
+  name: 'selectedIndex',
+  defaultValue: -1,
+  valueChanged: (target, oldValue, newValue) => {
+    target.notify(<FluidSegmentedBarIndexChangedEvent>{
+      eventName: FluidSegmentedBar.selectedIndexChangedEvent,
+      object: target,
+      oldIndex: oldValue,
+      newIndex: newValue,
+    });
+  },
+  coerceValue: (target, value) => {
+    const items = target.items;
+    if (items) {
+      const max = items.length - 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > max) {
+        value = max;
+      }
+    } else {
+      value = -1;
+    }
+
+    return value;
+  },
+  valueConverter: (v) => parseInt(v),
+});
 
 @NativeClass()
 class FluidSegmentedBarDataSource extends NSObject implements SJFluidSegmentedControlDataSource {
@@ -126,3 +162,7 @@ export class FluidSegmentedBar extends FluidSegmentedBarCommon {
     selectedIndexProperty.coerce(this);
   }
 }
+
+selectedIndexProperty.register(FluidSegmentedBar);
+itemsProperty.register(FluidSegmentedBar);
+gradientColorSidesProperty.register(FluidSegmentedBar);
