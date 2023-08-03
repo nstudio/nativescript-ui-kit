@@ -8,10 +8,13 @@ const routes: Routes = [
    { path: '', redirectTo: '/home', pathMatch: 'full' },
    { path: 'home', component: HomeComponent },
 	{ path: 'nativescript-coachmarks', loadChildren: () => import('./plugin-demos/nativescript-coachmarks.module').then(m => m.NativescriptCoachmarksModule) },
+	{ path: 'nativescript-fluid-segmented-bar', loadChildren: () => import('./plugin-demos/nativescript-fluid-segmented-bar.module').then(m => m.NativescriptFluidSegmentedBarModule) },
 	{ path: 'nativescript-fonticon', loadChildren: () => import('./plugin-demos/nativescript-fonticon.module').then(m => m.NativescriptFonticonModule) },
 	{ path: 'nativescript-label-marquee', loadChildren: () => import('./plugin-demos/nativescript-label-marquee.module').then(m => m.NativescriptLabelMarqueeModule) },
 	{ path: 'nativescript-rive', loadChildren: () => import('./plugin-demos/nativescript-rive.module').then(m => m.NativescriptRiveModule) },
-	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) }
+	{ path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then(m => m.NativescriptShimmerModule) },
+	{ path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then(m => m.NativescriptSmartlookModule) },
+	{ path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then(m => m.NativescriptVariableBlurViewModule) }
 ];
 
 @NgModule({

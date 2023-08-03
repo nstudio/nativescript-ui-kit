@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-variable-blur-view",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-variable-blur-view",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-variable-blur-view",
+        "tsConfig": "packages/nativescript-variable-blur-view/tsconfig.json",
+        "packageJson": "packages/nativescript-variable-blur-view/package.json",
+        "main": "packages/nativescript-variable-blur-view/index.d.ts",
+        "assets": [
+          "packages/nativescript-variable-blur-view/*.md",
+          "packages/nativescript-variable-blur-view/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-variable-blur-view/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-variable-blur-view"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-variable-blur-view"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-variable-blur-view"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-variable-blur-view/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

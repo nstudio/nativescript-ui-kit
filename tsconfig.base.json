@@ -13,7 +13,9 @@
       "ESNext",
       "dom"
     ],
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -36,6 +38,15 @@
       ],
       "nativescript-fonticon/angular": [
         "packages/nativescript-fonticon/angular/index.ts"
+      ],
+      "@nstudio/nativescript-smartlook": [
+        "packages/nativescript-smartlook/index.d.ts"
+      ],
+      "@nstudio/nativescript-variable-blur-view": [
+        "packages/nativescript-variable-blur-view/index.ts"
+      ],
+      "@nstudio/nativescript-fluid-segmented-bar": [
+        "packages/nativescript-fluid-segmented-bar/index.d.ts"
       ]
     }
   },

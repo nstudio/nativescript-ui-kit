@@ -9,7 +9,8 @@
       "@nstudio/nativescript-label-marquee": ["../../packages/nativescript-label-marquee/index.d.ts"],
       "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"],
       "@nstudio/nativescript-rive": ["../../packages/nativescript-rive/index.d.ts"],
-      "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"]
+      "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"],
+      "@nstudio/nativescript-variable-blur-view": ["../../packages/nativescript-variable-blur-view/index.ts"]
     }
   },
   "include": ["../../packages/nativescript-rive/index.android.ts"]

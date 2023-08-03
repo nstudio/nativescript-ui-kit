@@ -1,8 +1,11 @@
 - [@nstudio/nativescript-coachmarks](packages/nativescript-coachmarks/README.md)
+- [@nstudio/nativescript-fluid-segmented-bar](packages/nativescript-fluid-segmented-bar/README.md)
+- [nativescript-fonticon](packages/nativescript-fonticon/README.md)
 - [@nstudio/nativescript-label-marquee](packages/nativescript-label-marquee/README.md)
 - [@nstudio/nativescript-rive](packages/nativescript-rive/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
-- [nativescript-fonticon](packages/nativescript-fonticon/README.md)
+- [@nstudio/nativescript-smartlook](packages/nativescript-smartlook/README.md)
+- [@nstudio/nativescript-variable-blur-view](packages/nativescript-variable-blur-view/README.md)
 
 # How to use?
 

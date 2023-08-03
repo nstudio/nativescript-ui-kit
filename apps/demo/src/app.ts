@@ -1,9 +1,8 @@
 import { Application } from '@nativescript/core';
-
-// uncommennt to test fonticon:
+// Uncomment to test fonticon:
+// import { FontIconFactory, fonticon } from 'nativescript-fonticon';
 // import { fontAwesome } from './fontawesome';
 // import { ionIcons } from './ionicons';
-// import { FontIconFactory, fonticon } from 'nativescript-fonticon';
 
 // FontIconFactory.debug = true;
 // FontIconFactory.paths = {
@@ -11,6 +10,13 @@ import { Application } from '@nativescript/core';
 //     ion: ionIcons,
 // };
 // FontIconFactory.loadCss();
+
 // Application.setResources({ fonticon });
+
+// Uncomment to test Smartlook
+// import { Smartlook } from '@nstudio/nativescript-smartlook';
+// Application.on(Application.launchEvent, () => {
+//   Smartlook.start('<api-key>');
+// });
 
 Application.run({ moduleName: 'app-root' });
