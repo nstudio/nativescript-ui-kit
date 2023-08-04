@@ -8,6 +8,10 @@ npm install @nstudio/nativescript-rive
 
 ## Usage
 
+You can configure both iOS and Android for Rive usage.
+
+### iOS
+
 For iOS, configure your `nativescript.config.ts` to use the Swift Package:
 
 ```ts
@@ -17,11 +21,22 @@ ios: {
             name: 'RiveRuntime',
             libs: ['RiveRuntime'],
             repositoryURL: 'https://github.com/rive-app/rive-ios.git',
-            version: '3.1.8',
+            version: '5.0.0',
         },
     ],
 },
 ```
+
+#### Swift Package version note
+
+If you encounter a build error related to a specified version as follows:
+```bash
+xcodebuild: error: Could not resolve package dependencies:
+  Dependencies could not be resolved because no versions of 'rive-ios' match the requirement 5.1.12..<6.0.0 and root depends on 'rive-ios' 5.1.12..<6.0.0.
+```
+You can use the base major version, `5.0.0`, instead of the precise version. It will still resolve the latest in the major version series.
+
+### Android
 
 For Android, add this provider to your `AndroidManifest.xml` inside the `application` tag:
 
