@@ -1,7 +1,18 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" backgroundColor="black" xmlns:ns="@nstudio/nativescript-label-glitch" xmlns:exo="@nstudio/nativescript-exoplayer">
-    <GridLayout rows="*" columns="*,auto,*">
-        <ns:LabelGlitch col="1" text="{{text}}" textAlignment="center" fontSize="35" verticalAlignment="middle" fontFamily="Helvetica" fontWeight="bold" width="100%" horitzontalAlignment="center" loaded="{{loadedLabel}}" />
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" backgroundColor="black"
+  xmlns:ns="@nstudio/nativescript-label-glitch"
+  xmlns:exo="@nstudio/nativescript-exoplayer">
+  <GridLayout rows="*" columns="*">
+    <ns:LabelGlitch text="{{text}}" textAlignment="center" fontSize="35" verticalAlignment="middle" fontFamily="Helvetica" fontWeight="bold" color="white" horitzontalAlignment="center" loaded="{{loadedLabel}}" />
 
-        <!-- <exo:Video src="~/videos/tv-static-off.mp4" stretch="aspectFill" class="w-full h-full" loaded="{{loadedVideo}}"/> -->
+    
+
+    <GridLayout rows="auto" columns="auto" horizontalAlignment="center" verticalAlignment="top" marginTop="75" ios:height="70" android:height="90" width="240">
+      <ContentView ios:boxShadow="0 6px 20px 4px rgba(255,255,255,.6)" android:boxShadow="0 8px 75px 8px rgba(255,255,255,.4)" ios:height="94%" android:height="71%" ios:width="94%" android:width="91%" horizontalAlignment="center" verticalAlignment="middle" loaded="{{loadedShadow}}"/>
+      <GridLayout borderWidth="2" borderColor="#fff" borderRadius="8" backgroundColor="#1c1c1c" ios:padding="15" android:padding="12 15 12 15">
+        <Label text="{{elementName}}" ios:fontSize="30" android:fontSize="29" color="#c805c8" textAlignment="center" verticalAlignment="middle" />
+      </GridLayout>
     </GridLayout>
+
+    <exo:Video src="~/videos/tv-static-off.mp4" fill="fill" class="w-full h-full" loaded="{{loadedVideo}}" controls="false" iosOverflowSafeArea="true" zIndex="10"/>
+  </GridLayout>
 </Page>

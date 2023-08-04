@@ -10,6 +10,7 @@ export class LabelGlitch extends LabelGlitchCommon {
   listener: android.view.animation.Animation.AnimationListener;
 
   initNativeView() {
+    this.style.zIndex = 5;
     this.colors = [new Color('#ff0000'), new Color('#00ff00'), new Color('#0000ff')];
     for (let i = 0; i < this.colors.length; i++) {
       // TextView textView = getTextView(colors.get(i));
@@ -31,6 +32,16 @@ export class LabelGlitch extends LabelGlitchCommon {
       this.animationSet.cancel();
       this.animationSet.setAnimationListener(null);
       this.listener = null;
+      for (const label of this.labels) {
+        (this.parent as GridLayout)._removeView(label);
+        }
+    }
+  }
+
+  _setNativeText(reset = false): void {
+    super._setNativeText(reset);
+    for (const label of this.labels) {
+        label.text = this.text;
     }
   }
 
@@ -40,19 +51,20 @@ export class LabelGlitch extends LabelGlitchCommon {
     label.style.fontSize = 35;
     label.style.color = this.colors[index];
     label.style.fontFamily = 'Helvetica';
+    label.style.textAlignment = this.style.textAlignment;
     label.width = { unit: '%', value: 100 };
     label.height = 100;
+    label.style.zIndex = 1;
     label.on('loaded', () => {
-        console.log('loaded label!')
+        // console.log('loaded label!')
         label.parent.requestLayout();
         this.animateLabel(label.android, this.noise + (index / 2) * 2);
     })
-    // label.style = this.style;
     return label;
   }
 
   private animateLabel(textView: android.widget.TextView, noise: number) {
-    console.log('animateLabel:', textView, ' noise:', noise)
+    // console.log('animateLabel:', textView, ' noise:', noise)
     this.animationSet = new android.view.animation.AnimationSet(false);
     const TranslateAnimation = android.view.animation.TranslateAnimation;
     const trans = new TranslateAnimation(0, 0, TranslateAnimation.ABSOLUTE, this.reverse ? 1 * noise : -1 * noise, 0, 0, TranslateAnimation.ABSOLUTE, this.reverse ? -1 * noise : noise);

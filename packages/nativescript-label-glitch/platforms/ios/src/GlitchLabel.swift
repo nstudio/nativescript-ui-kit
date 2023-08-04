@@ -51,7 +51,19 @@ open class GlitchLabel: UILabel {
             x0 *= CGFloat(glitchAmplitude)
         }
         
-        let x1 = CGFloat(Int(bounds.origin.x))
+        var startX = bounds.width / 2.0
+        switch (textAlignment) {
+            case .center:
+                startX = startX - startX/2
+                break
+
+            case .right:
+                startX = startX + startX/2
+                break
+            default:
+                startX = bounds.origin.x
+        }
+        let x1 = CGFloat(Int(startX))//CGFloat(Int(bounds.origin.x))
         let x2 = x1 + x0
         let x3 = x1 - x0
         
