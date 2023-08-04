@@ -16,6 +16,9 @@ export class HomeComponent {
 		name: 'nativescript-fonticon'
 	},
 	{
+		name: 'nativescript-label-glitch'
+	},
+	{
 		name: 'nativescript-label-marquee'
 	},
 	{

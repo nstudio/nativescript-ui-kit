@@ -110,6 +110,13 @@ module.exports = {
 					description: '@nstudio/nativescript-fluid-segmented-bar: Build',
 				},
 			},
+			// @nstudio/nativescript-label-glitch
+			'nativescript-label-glitch': {
+				build: {
+					script: 'nx run nativescript-label-glitch:build.all',
+					description: '@nstudio/nativescript-label-glitch: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -147,6 +154,10 @@ module.exports = {
 			'nativescript-fluid-segmented-bar': {
 				script: 'nx run nativescript-fluid-segmented-bar:focus',
 				description: 'Focus on @nstudio/nativescript-fluid-segmented-bar',
+			},
+			'nativescript-label-glitch': {
+				script: 'nx run nativescript-label-glitch:focus',
+				description: 'Focus on @nstudio/nativescript-label-glitch',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

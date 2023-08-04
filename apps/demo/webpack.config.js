@@ -19,6 +19,12 @@ module.exports = (env) => {
   });
 
   webpack.Utils.addCopyRule({
+    from: '../../../tools/assets/videos', 
+		to: 'videos',
+    context: webpack.Utils.project.getProjectFilePath('node_modules')
+  });
+
+  webpack.Utils.addCopyRule({
     from: '../../../tools/assets/fonts',
     to: 'fonts',
     context: webpack.Utils.project.getProjectFilePath('node_modules'),

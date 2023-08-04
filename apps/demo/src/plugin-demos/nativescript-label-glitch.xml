@@ -1,0 +1,7 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" backgroundColor="black" xmlns:ns="@nstudio/nativescript-label-glitch" xmlns:exo="@nstudio/nativescript-exoplayer">
+    <GridLayout rows="*" columns="*,auto,*">
+        <ns:LabelGlitch col="1" text="{{text}}" textAlignment="center" fontSize="35" verticalAlignment="middle" fontFamily="Helvetica" fontWeight="bold" width="100%" horitzontalAlignment="center" loaded="{{loadedLabel}}" />
+
+        <!-- <exo:Video src="~/videos/tv-static-off.mp4" stretch="aspectFill" class="w-full h-full" loaded="{{loadedVideo}}"/> -->
+    </GridLayout>
+</Page>
