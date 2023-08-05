@@ -1,4 +1,3 @@
-
 declare class NSCRiveController extends UIViewController {
 
 	static alloc(): NSCRiveController; // inherited from NSObject
@@ -21,7 +20,9 @@ declare class NSCRiveController extends UIViewController {
 
 	setFit(fit: number): void;
 
-	setInputWithNameValue(name: string, value: boolean): void;
+	setInputWithNameNumber(name: string, number: number): void;
+
+	setInputWithNameBinary(name: string, binary: boolean): void;
 
 	setModelResourceWithNameFit(name: string, fit: number): void;
 

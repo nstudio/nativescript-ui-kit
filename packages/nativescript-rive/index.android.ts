@@ -116,9 +116,22 @@ export class RiveView extends RiveViewBase {
     this.nativeViewProtected.setAlignment(value);
   }
 
-  [inputValueProperty.setNative](value: boolean) {
+  [inputValueProperty.setNative](value: string | boolean | number | null) {
+    this.setInputValue(value);
+  }
+
+  setInputValue(value: string | boolean | number | null) {
     if (this.input) {
-      this.nativeViewProtected.setBooleanState(this.stateMachine, this.input, value === true);
+      console.log('typeof value:', typeof value);
+      console.log('inputValue:', value);
+      if (Utils.isBoolean(value) || ['true', 'false'].includes(value as string)) {
+        this.nativeViewProtected.setBooleanState(this.stateMachine, this.input, value === true || value === 'true');
+      } else {
+        const number = Number(value);
+        if (!isNaN(number)) {
+          this.nativeViewProtected.setNumberState(this.stateMachine, this.input, number);
+        }
+      }
     }
   }
 
@@ -127,7 +140,7 @@ export class RiveView extends RiveViewBase {
       this.nativeViewProtected.reset();
       this.nativeViewProtected.setRiveBytes(this.bytes, this.artboard, this.animation, this.stateMachine, this.autoPlay, this.getFit(this.fit), this.getAlignment(this.alignment), this.getLoop(this.loop));
       if (this.input) {
-        this.nativeViewProtected.setBooleanState(this.stateMachine, this.input, this.inputValue === true);
+        this.setInputValue(this.inputValue);
       }
     }
   }
@@ -185,18 +198,6 @@ export class RiveView extends RiveViewBase {
   public fireState(stateMachineName: string, inputName: string): void {
     if (this.nativeViewProtected) {
       this.nativeViewProtected.fireState(stateMachineName, inputName);
-    }
-  }
-
-  public setBooleanState(stateMachineName: string, inputName: string, value): void {
-    if (this.nativeViewProtected) {
-      this.nativeViewProtected.setBooleanState(stateMachineName, inputName, value);
-    }
-  }
-
-  public setNumberState(stateMachineName: string, inputName: string, value): void {
-    if (this.nativeViewProtected) {
-      this.nativeViewProtected.setNumberState(stateMachineName, inputName, value);
     }
   }
 

@@ -9,7 +9,7 @@ export declare class RiveView extends View {
   readonly android: any;
 
   /**
-   * AnimationView
+   * NSCRiveController
    */
   readonly ios: any;
 
@@ -56,10 +56,6 @@ export declare class RiveView extends View {
   public reset(): void;
 
   public fireState(stateMachineName: string, inputName: string): void;
-
-  public setBooleanState(stateMachineName: string, inputName: string, value: boolean): void;
-
-  public setNumberState(stateMachineName: string, inputName: string, value: number): void;
 
   public isPlaying(): boolean;
 

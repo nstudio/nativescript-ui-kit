@@ -65,6 +65,8 @@ declare class RiveArtboard extends NSObject {
 	stateMachineFromNameError(name: string): RiveStateMachineInstance;
 
 	stateMachineNames(): NSArray<string>;
+
+	textRun(name: string): RiveTextValueRun;
 }
 
 declare const enum RiveDirection {
@@ -288,10 +290,6 @@ declare class RiveRendererView extends MTKView {
 
 	static new(): RiveRendererView; // inherited from NSObject
 
-	metalDevice: MTLDevice;
-
-	metalQueue: MTLCommandQueue;
-
 	alignWithRectContentRectAlignmentFit(rect: CGRect, contentRect: CGRect, alignment: RiveAlignment, fit: RiveFit): void;
 
 	artboardLocationFromTouchLocationInArtboardFitAlignment(touchLocation: CGPoint, artboardRect: CGRect, fit: RiveFit, alignment: RiveAlignment): CGPoint;
@@ -411,6 +409,17 @@ declare class RiveStateMachineInstance extends NSObject {
 	touchEndedAtLocation(touchLocation: CGPoint): void;
 
 	touchMovedAtLocation(touchLocation: CGPoint): void;
+}
+
+declare class RiveTextValueRun extends NSObject {
+
+	static alloc(): RiveTextValueRun; // inherited from NSObject
+
+	static new(): RiveTextValueRun; // inherited from NSObject
+
+	setText(newValue: string): void;
+
+	text(): string;
 }
 
 declare class RiveUnknownState extends RiveLayerState {

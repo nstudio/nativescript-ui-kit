@@ -171,20 +171,6 @@ export abstract class RiveViewBase extends View {
    * */
   public abstract fireState(stateMachineName: string, inputName: string): void;
 
-  /**
-   * Update the state of the Boolea input called inputName on all active matching state machines
-   * to [value]
-   */
-  public abstract setBooleanState(stateMachineName: string, inputName: string, value: boolean): void;
-
-  /*
-   * Update the state of the Number input called inputName on all active matching state machines
-   * stateMachineName - Specifies state machine name which will be matched against all active state machines.
-   * inputName - Specifies name of the input which state should be updated.
-   * value - Specifies a value that the input state should be set to.
-   * */
-  public abstract setNumberState(stateMachineName: string, inputName: string, value: number): void;
-
   public abstract isPlaying(): boolean;
 
   /**
@@ -242,7 +228,7 @@ export const stateMachineProperty = new Property<RiveViewBase, string | null>({
   defaultValue: null,
 });
 stateMachineProperty.register(RiveViewBase);
-export const inputValueProperty = new Property<RiveViewBase, string | null>({
+export const inputValueProperty = new Property<RiveViewBase, string | boolean | number | null>({
   name: 'inputValue',
   defaultValue: null,
 });

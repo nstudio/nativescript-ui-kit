@@ -75,16 +75,27 @@ export class RiveView extends RiveViewBase {
     // this.nativeViewProtected.setAlignment(value);
   }
 
-  [inputValueProperty.setNative](value: boolean) {
+  [inputValueProperty.setNative](value: string | boolean | number | null) {
+    this.setInputValue(value);
+  }
+
+  setInputValue(value: string | boolean | number | null) {
     if (this.input) {
-      this.ctrl.setInputWithNameValue(this.input, value);
+      if (Utils.isBoolean(value) || ['true', 'false'].includes(value as string)) {
+        this.ctrl.setInputWithNameBinary(this.input, value === true || value === 'true');
+      } else {
+        const number = Number(value);
+        if (!isNaN(number)) {
+          this.ctrl.setInputWithNameNumber(this.input, number);
+        }
+      }
     }
   }
 
   private _init() {
     // console.log('init autoPlay:', this.autoPlay);
     // console.log('init this.fit:', this.fit);
-    
+
     if (this.riveFile) {
       this.ctrl.setModelWithFileFit(this.riveFile, this.getFit(this.fit));
     } else if (this.fileName) {
@@ -97,7 +108,7 @@ export class RiveView extends RiveViewBase {
     this.ctrl.setDelegateWithDelegate(this.riveStateMachineDelegate);
     if (this.input) {
       if (this.inputValue) {
-        this.ctrl.setInputWithNameValue(this.input, this.inputValue);
+        this.setInputValue(this.inputValue);
       } else {
         this.ctrl.triggerInputWithName(this.input);
       }
@@ -116,7 +127,7 @@ export class RiveView extends RiveViewBase {
 
   public play(loop = TypeRiveLoop.AUTO, direction = TypeRiveDirection.AUTO, settleInitialState = true) {
     if (this.ctrl) {
-      console.log('looop:', loop)
+      // console.log('looop:', loop)
       this.ctrl.playWithDirectionLoopName(this.getDirection(direction), this.getLoop(loop), null);
     }
   }
@@ -329,47 +340,47 @@ class RiveStateMachineDelegateImpl extends NSObject implements RiveStateMachineD
     console.log('stateMachineDidChangeState:', stateName);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.stateChangedEvent, { stateMachine, stateName });
+      owner.events.notifyEvent(RiveEvents.stateChangedEvent, { stateMachine, stateName });
     }
   }
 
-	stateMachineReceivedInput?(stateMachine: RiveStateMachineInstance, input: StateMachineInput): void {
+  stateMachineReceivedInput?(stateMachine: RiveStateMachineInstance, input: StateMachineInput): void {
     console.log('stateMachineReceivedInput:', input);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.receivedInputEvent, { stateMachine, input });
+      owner.events.notifyEvent(RiveEvents.receivedInputEvent, { stateMachine, input });
     }
   }
 
-	touchBeganOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+  touchBeganOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
     console.log('touchBeganOnArtboardAtLocation:', location);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.touchBeganEvent, { artboard, location });
+      owner.events.notifyEvent(RiveEvents.touchBeganEvent, { artboard, location });
     }
   }
 
-	touchCancelledOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+  touchCancelledOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
     console.log('touchCancelledOnArtboardAtLocation:', location);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.touchCancelledEvent, { artboard, location });
+      owner.events.notifyEvent(RiveEvents.touchCancelledEvent, { artboard, location });
     }
   }
 
-	touchEndedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+  touchEndedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
     console.log('touchEndedOnArtboardAtLocation:', location);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.touchEndedEvent, { artboard, location });
+      owner.events.notifyEvent(RiveEvents.touchEndedEvent, { artboard, location });
     }
   }
 
-	touchMovedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
+  touchMovedOnArtboardAtLocation?(artboard: RiveArtboard, location: CGPoint): void {
     console.log('touchMovedOnArtboardAtLocation:', location);
     const owner = this._owner.deref();
     if (owner) {
-        owner.events.notifyEvent(RiveEvents.touchMovedEvent, { artboard, location });
+      owner.events.notifyEvent(RiveEvents.touchMovedEvent, { artboard, location });
     }
   }
 }

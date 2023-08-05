@@ -44,8 +44,16 @@ import RiveRuntime
         riveView?.stateMachineDelegate = delegate
     }
     
-    @objc public func setInput(name: String, value: Bool) {
-        riveViewModel?.setInput(name, value: value)
+    @objc public func setInput(name: String, binary: Bool) {
+        riveViewModel?.setInput(name, value: binary)
+    }
+    
+    @objc public func setInput(name: String, number: NSNumber) {
+        if let numFloat = number as? Float {
+            riveViewModel?.setInput(name, value: numFloat)
+        } else if let numDouble = number as? Double {
+            riveViewModel?.setInput(name, value: numDouble)
+        }
     }
     
     @objc public func triggerInput(name: String) {
