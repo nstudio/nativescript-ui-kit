@@ -1,4 +1,3 @@
-import { Label } from "@nativescript/core";
 import { LabelGlitchCommon } from "./common";
 
 export class LabelGlitch extends LabelGlitchCommon {
@@ -10,13 +9,7 @@ export class LabelGlitch extends LabelGlitchCommon {
         glitchLabel.sizeToFit();
         glitchLabel.blendMode = CGBlendMode.kCGBlendModeDifference;
         return glitchLabel;
-
     }
-
-    // initNativeView() {
-    //     this.nativeView.sizeToFit();
-    //     this.nativeView.blendMode = CGBlendMode.kCGBlendModeDifference;
-    // }
 
     onLoaded() {
         super.onLoaded();

@@ -13,17 +13,9 @@ export class LabelGlitch extends LabelGlitchCommon {
     this.style.zIndex = 5;
     this.colors = [new Color('#ff0000'), new Color('#00ff00'), new Color('#0000ff')];
     for (let i = 0; i < this.colors.length; i++) {
-      // TextView textView = getTextView(colors.get(i));
-      // addView(textView);
       const label = this.getTextView(i);
       this.labels.push(label);
       (this.parent as GridLayout).addChild(label);
-    //   this.parent.requestLayout();
-      // textViews.add(textView);
-      
-      // if(i+1!=colors.size()) {
-      //     animate(textView, noise + (i/2*2));
-      // }
     }
   }
 
