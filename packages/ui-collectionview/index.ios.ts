@@ -991,10 +991,10 @@ export class CollectionView extends CollectionViewBase {
     private _setPadding(newPadding: { top?: number; right?: number; bottom?: number; left?: number }) {
         const layout = this._layout;
         const padding = {
-            top: layout['sectionInset'].top,
-            right: layout['sectionInset'].right,
-            bottom: layout['sectionInset'].bottom,
-            left: layout['sectionInset'].left
+            top: layout['sectionInset']?.top || 0,
+            right: layout['sectionInset']?.right || 0,
+            bottom: layout['sectionInset']?.bottom || 0,
+            left: layout['sectionInset']?.left || 0
         };
         // tslint:disable-next-line:prefer-object-spread
         const newValue = Object.assign(padding, newPadding);
