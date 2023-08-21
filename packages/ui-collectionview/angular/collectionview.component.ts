@@ -242,12 +242,7 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
       CLog(CLogTypes.info, `onItemLoading: ${index} - Reusing existing view`);
     }
 
-    viewRef = args.view[NG_VIEW];
-    // Getting angular view from original element (in cases when ProxyViewContainer
-    // is used NativeScript internally wraps it in a StackLayout)
-    if (!viewRef && args.view instanceof LayoutBase && args.view.getChildrenCount() > 0) {
-      viewRef = args.view.getChildAt(0)[NG_VIEW];
-    }
+    viewRef = this.getNgView(args.view);
 
     if (!viewRef && Trace.isEnabled()) {
       if (Trace.isEnabled()) {
@@ -274,17 +269,23 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     if (!args.view) {
       return;
     }
-    let ngView: EmbeddedViewRef<any> = args.view[NG_VIEW];
-
-    // Getting angular view from original element (in cases when ProxyViewContainer
-    // is used NativeScript internally wraps it in a StackLayout)
-    if (!ngView && args.view instanceof LayoutBase && args.view.getChildrenCount() > 0) {
-      ngView = args.view.getChildAt(0)[NG_VIEW];
-    }
+    const ngView = this.getNgView(args.view);
     // console.log('recycling', args.view);
 
     if (ngView) {
       ngView.detach();
+    }
+  }
+
+  @HostListener('displayItem', ['$event'])
+  public onItemDisplayInternal(args: CollectionViewItemEventData) {
+    if (!args.view) {
+      return;
+    }
+    const ngView = this.getNgView(args.view);
+
+    if (ngView) {
+      ngView.reattach();
     }
   }
 
@@ -293,18 +294,22 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
     if (!args.view) {
       return;
     }
-    let ngView: EmbeddedViewRef<any> = args.view[NG_VIEW];
-
-    // Getting angular view from original element (in cases when ProxyViewContainer
-    // is used NativeScript internally wraps it in a StackLayout)
-    if (!ngView && args.view instanceof LayoutBase && args.view.getChildrenCount() > 0) {
-      ngView = args.view.getChildAt(0)[NG_VIEW];
-    }
+    const ngView = this.getNgView(args.view);
 
     if (ngView) {
       ngView.detach();
       this.storeViewRef(ngView);
     }
+  }
+
+  private getNgView(view: View): EmbeddedViewRef<unknown> {
+    const ngView = view[NG_VIEW];
+    // Getting angular view from original element (in cases when ProxyViewContainer
+    // is used NativeScript internally wraps it in a StackLayout)
+    if (!ngView && view instanceof LayoutBase && view.getChildrenCount() > 0) {
+      return view.getChildAt(0)[NG_VIEW];
+    }
+    return ngView;
   }
 
   public setupViewRef(view: EmbeddedViewRef<ItemContext>, data: any, index: number): void {
