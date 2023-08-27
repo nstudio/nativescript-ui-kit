@@ -21,5 +21,6 @@ export class UiCollectionviewComponent {
 
   ngOnInit() {
     this.demoShared = new DemoSharedUiCollectionview();
+    console.log('demoShared', this.demoShared);
   }
 }
