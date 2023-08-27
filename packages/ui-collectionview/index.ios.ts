@@ -1360,12 +1360,14 @@ scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     owner.scrollViewDidEndDecelerating(scrollView);
   }
 }
+
 scrollViewWillEndDraggingWithVelocityTargetContentOffset?(scrollView: UIScrollView, velocity: CGPoint, targetContentOffset: interop.Pointer | interop.Reference<CGPoint>): void {
   const owner = this._owner.deref();
   if (owner) {
     owner.scrollViewWillEndDraggingWithVelocityTargetContentOffset(scrollView, velocity, targetContentOffset);
   }
 }
+
 scrollViewDidEndDraggingWillDecelerate(scrollView: UIScrollView, decelerate: boolean): void {
   const owner = this._owner.deref();
   if (owner) {
