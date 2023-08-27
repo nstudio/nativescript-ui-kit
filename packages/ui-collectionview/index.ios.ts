@@ -35,45 +35,45 @@ defaultValue: ContentInsetAdjustmentBehavior.Automatic,
 });
 
 export class CollectionView extends CollectionViewBase {
-private _layout: UICollectionViewLayout;
-private _dataSource: UICollectionViewDiffableDataSource<any, any>;
-private _dataSourceSnapshot: NSDiffableDataSourceSnapshot<string, string>;
-private _delegate: UICollectionViewDelegateImpl | UICollectionViewDelegateFixedSizeImpl;
-private _preparingCellFlag: boolean;
-private _map: Map<CollectionViewCell, ItemView>;
-private _visibleCells = new Set<CollectionViewCell>();
-_measureCellMap: Map<string, { cell: CollectionViewCell; view: View }>;
-_lastLayoutKey: string;
+  private _layout: UICollectionViewLayout;
+  private _dataSource: UICollectionViewDiffableDataSource<any, any>;
+  private _dataSourceSnapshot: NSDiffableDataSourceSnapshot<string, string>;
+  private _delegate: UICollectionViewDelegateImpl | UICollectionViewDelegateFixedSizeImpl;
+  private _preparingCellFlag: boolean;
+  private _map: Map<CollectionViewCell, ItemView>;
+  private _visibleCells = new Set<CollectionViewCell>();
+  _measureCellMap: Map<string, { cell: CollectionViewCell; view: View }>;
+  _lastLayoutKey: string;
 
-reorderLongPressGesture: UILongPressGestureRecognizer;
-reorderLongPressHandler: ReorderLongPressImpl;
-reorderStartingRow = -1;
-reorderEndingRow = -1;
+  reorderLongPressGesture: UILongPressGestureRecognizer;
+  reorderLongPressHandler: ReorderLongPressImpl;
+  reorderStartingRow = -1;
+  reorderEndingRow = -1;
 
-manualDragging = false;
-scrollEnabledBeforeDragging = true;
-draggingStartDelta: [number, number];
+  manualDragging = false;
+  scrollEnabledBeforeDragging = true;
+  draggingStartDelta: [number, number];
 
-nativeViewProtected: UICollectionView;
-cellRegistrations: Record<string, UICollectionViewCellRegistration> = {};
-headerRegistration: UICollectionViewSupplementaryRegistration;
-footerRegistration: UICollectionViewSupplementaryRegistration;
+  nativeViewProtected: UICollectionView;
+  cellRegistrations: Record<string, UICollectionViewCellRegistration> = {};
+  headerRegistration: UICollectionViewSupplementaryRegistration;
+  footerRegistration: UICollectionViewSupplementaryRegistration;
 
-constructor() {
-  super();
-  this._map = new Map<CollectionViewCell, View>();
-}
+  constructor() {
+    super();
+    this._map = new Map<CollectionViewCell, View>();
+  }
 
   public createNativeView() {
     let layout: UICollectionViewLayout;
     if (CollectionViewBase.layoutStyles[this.layoutStyle]) {
-        layout = this._layout = CollectionViewBase.layoutStyles[this.layoutStyle].createLayout(this);
+      layout = this._layout = CollectionViewBase.layoutStyles[this.layoutStyle].createLayout(this);
     } else {
-        layout = this._layout = UICollectionViewFlowLayout.alloc().init();
+      layout = this._layout = UICollectionViewFlowLayout.alloc().init();
     }
     if (layout instanceof UICollectionViewFlowLayout) {
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
+      layout.minimumLineSpacing = 0;
+      layout.minimumInteritemSpacing = 0;
     }
     const view = UICollectionView.alloc().initWithFrameCollectionViewLayout(CGRectMake(0, 0, 0, 0), layout);
     view.backgroundColor = UIColor.clearColor;
@@ -156,51 +156,51 @@ constructor() {
     }
   }
 
-modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = false, reload = false) {
-  if (this.items) {
-    if (!this._dataSourceSnapshot || reload) {
-      this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
-      this._dataSourceSnapshot.appendSectionsWithIdentifiers(this.sections.map(s => s.identifier));
-    } else {
-      this._dataSourceSnapshot = this._dataSource.snapshot();
-    }
+  modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = false, reload = false) {
+    if (this.items) {
+      if (!this._dataSourceSnapshot || reload) {
+        this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
+        this._dataSourceSnapshot.appendSectionsWithIdentifiers(this.sections.map(s => s.identifier));
+      } else {
+        this._dataSourceSnapshot = this._dataSource.snapshot();
+      }
 
-    if (Trace.isEnabled()) {
-        CLog(CLogTypes.info, 'modifyDataSourceSnapshot identifiers: ', type, identifiers);
-    }
-    // console.log('modifyDataSourceSnapshot identifiers: ', type, identifiers);
-    switch(type) {
-      case ChangeType.Add:
-        const itemIdentifiers = [];
-        if (reload) {
-          this.items.forEach(() => {
-            // forEach works well with ObservableArray and Array
-            itemIdentifiers.push(getUUID());
-          });
-        }
-        if (identifiers.length) {
-          itemIdentifiers.push(...identifiers);
-        }
-        if (sectionIdentifier) {
-          this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
-        } else {
-            this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
-        }
-        break;
-      case ChangeType.Update:
-        this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
-        break;
-      case ChangeType.Delete:
-        this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
-        break;
-    }
-    if (this.isAnimationEnabled) {
-        this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
-    } else {
-        this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+      if (Trace.isEnabled()) {
+          CLog(CLogTypes.info, 'modifyDataSourceSnapshot identifiers: ', type, identifiers);
+      }
+      // console.log('modifyDataSourceSnapshot identifiers: ', type, identifiers);
+      switch(type) {
+        case ChangeType.Add:
+          const itemIdentifiers = [];
+          if (reload) {
+            this.items.forEach(() => {
+              // forEach works well with ObservableArray and Array
+              itemIdentifiers.push(getUUID());
+            });
+          }
+          if (identifiers.length) {
+            itemIdentifiers.push(...identifiers);
+          }
+          if (sectionIdentifier) {
+            this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
+          } else {
+              this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
+          }
+          break;
+        case ChangeType.Update:
+          this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
+          break;
+        case ChangeType.Delete:
+          this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
+          break;
+      }
+      if (this.isAnimationEnabled) {
+          this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
+      } else {
+          this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+      }
     }
   }
-}
 
   getDefaultSectionIdentifier() {
     // each collectionview must have at least 1 section
