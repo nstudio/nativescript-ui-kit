@@ -46,6 +46,7 @@
 
       <!-- Ids -->
       <CollectionView #ids row="1" col="0" [items]="itemsOnScreen"
+        isAnimationEnabled="false"
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
@@ -70,6 +71,7 @@
       >
 
         <CollectionView #main backgroundColor="white" [items]="itemsOnScreen" width="1006"
+          isAnimationEnabled="false"
           (scroll)="onScrollVertically($event)"
           (loaded)="doLoadedRemoveBandingAnimation($event)"
           (loadMoreItems)="loadMoreRows()"
