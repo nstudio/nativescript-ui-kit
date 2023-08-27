@@ -75,11 +75,11 @@
           (scroll)="onScrollVertically($event)"
           (loaded)="doLoadedRemoveBandingAnimation($event)"
           (loadMoreItems)="loadMoreRows()"
-          [itemTemplateSelector]="onTemplateSelector"
-        >
-          <ng-template let-item="item" cvTemplateKey="default">
-          </ng-template>
-          <ng-template cvTemplateKey="goalkeeper" let-item="item" let-odd="odd" let-i="index">
+          >
+          <!-- [itemTemplateSelector]="onTemplateSelector" -->
+          <!-- <ng-template let-item="item" cvTemplateKey="default">
+          </ng-template> -->
+          <ng-template let-item="item" let-odd="odd" let-i="index">
             <GridLayout columns="180 1 200 1 180 1 160 1 110 1 90 1 80">
 
               <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
@@ -124,7 +124,7 @@
 
             </GridLayout>
           </ng-template>
-          <ng-template cvTemplateKey="defender" let-item="item" let-odd="odd" let-i="index">
+          <!-- <ng-template cvTemplateKey="defender" let-item="item" let-odd="odd" let-i="index">
             <GridLayout columns="180 1 200 1 180 1 160 1 110 1 90 1 80">
 
               <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
@@ -168,7 +168,7 @@
               </StackLayout>
 
             </GridLayout>
-          </ng-template>
+          </ng-template> -->
         </CollectionView>
       </ScrollView>
     </GridLayout>

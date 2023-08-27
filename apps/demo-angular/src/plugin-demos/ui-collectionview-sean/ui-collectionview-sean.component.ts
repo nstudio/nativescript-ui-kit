@@ -7,7 +7,7 @@ import { isAndroid } from "@nativescript/core/platform";
 import { CollectionView } from '@nstudio/ui-collectionview';
 import { TableSortType } from './enums/table-sort-type';
 import { Color, EventData, Label, ObservableArray, ScrollEventData, ScrollView } from '@nativescript/core';
-import { Item } from '@demo/shared';
+import { Device } from '@nativescript/core';
 
 @Component({
 	selector: 'ui-collectionview-sean',
@@ -17,6 +17,7 @@ import { Item } from '@demo/shared';
 })
 export class UiCollectionviewSeanComponent implements OnInit {
 
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   isAndroid: boolean = false;
 
   @ViewChild('idHeader') idHeader: ElementRef;
@@ -53,10 +54,46 @@ export class UiCollectionviewSeanComponent implements OnInit {
     if(isAndroid) {
       this.isAndroid = true;
     }
+    
+    if (UIDevice.currentDevice.userInterfaceIdiom === UIUserInterfaceIdiom.Phone) {
+        const deviceModel = Device.model;
+        console.log('Device model:', deviceModel);
+        const screenHeight = UIScreen.mainScreen.bounds.size.height;
+        console.log('screenHeight', screenHeight);
+
+        const systemVersion = UIDevice.currentDevice.systemVersion;
+        console.log('systemVersion:', systemVersion);
+        
+        if(Device.os === 'iOS') {
+          if(deviceModel === 'iPhone') {
+            if (screenHeight === 480) {
+               console.log('iPhone 4s or earlier');
+            } else if (screenHeight === 568) {
+              console.log('iPhone 5, SE');
+            } else if (screenHeight === 667) {
+              console.log('iPhone 6, 6s, 7, 8');
+            } else if (screenHeight === 736) {
+              console.log('iPhone 6 Plus, 6s Plus, 7 Plus, 8 Plus');
+            } else if (screenHeight === 812) {
+              console.log('iPhone X, XS, 11 Pro');
+            } else if (screenHeight === 896) {
+              console.log('iPhone XR, XS Max, 11, 11 Pro Max');
+            } else if( screenHeight === 844) {
+              console.log('iPhone 12, 12 Pro, 13, 13 Pro, 14');
+            } else {
+              console.log('Unknown iPhone model');
+            }
+          }
+        }
+    } else {
+        console.log('iPad or other iOS device');
+    }
   }
 
   itemsOnScreen: ObservableArray<ItemVM> = new ObservableArray();
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   rowsDisplayed: number = 20;
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   scrollOffsetX: number = 0;
 
   readonly id: string = stringConstants.id;
@@ -82,6 +119,7 @@ export class UiCollectionviewSeanComponent implements OnInit {
 
   ngOnInit() {
     this.itemsOnScreen.splice(0, this.itemService.items.length, ...(this.itemService.items.slice(0, this.rowsDisplayed)));
+    
   }
 
   setVerticalOffsetsToZero(): void {
@@ -132,11 +170,13 @@ export class UiCollectionviewSeanComponent implements OnInit {
     }
   }
 
-  onTemplateSelector = (item: Item, index: number, items: Item[]) => {
-    if (item.role === 'Goalkeeper') {
+  onTemplateSelector = (item: any, index: number, items: any[]) => {
+    if (item.position === 'Goalkeeper') {
       return 'goalkeeper';
-    } else if(item.role === 'Defender') {
+    } else if(item.position === 'Defender') {
       return 'defender';
+    } else  {
+      return 'default';
     }
   };
 
