@@ -353,10 +353,10 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         return spanCount;
     }
     public _onRowHeightPropertyChanged(oldValue: CoreTypes.PercentLengthType, newValue: CoreTypes.PercentLengthType) {
-        this.refresh();
+        this.refreshVisibleItems()
     }
     public _onColWidthPropertyChanged(oldValue: CoreTypes.PercentLengthType, newValue: CoreTypes.PercentLengthType) {
-        this.refresh();
+        this.refreshVisibleItems();
     }
     onItemViewLoaderChanged() {}
     _itemViewLoader;
@@ -423,25 +423,28 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         }
         return null;
     }
+
     getViewForTemplateType(templateKey: string, templateType: ViewTemplateType = ViewTemplateType.Item) {
         let newView;
-        // console.log('getViewForTemplateType - templateKey: ', templateKey, ' templateType: ', templateType);
+
         if (templateType) {
             const template = this.getTemplateFromSelector(templateKey);
-            // console.log('template:', template)
+
             if (template && template.createView) {
                 newView = template.createView();
             }
-            
         }
+
         if (!newView && this._itemViewLoader !== undefined) {
-            // console.log('...using _itemViewLoader...')
             newView = this._itemViewLoader(templateType);
         }
+
         if (newView) {
             return newView;
         }
+
         let templateString;
+
         switch (templateType) {
             case ViewTemplateType.Item:
                 templateString = this.itemTemplate;
@@ -452,10 +455,10 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
             case ViewTemplateType.Footer: 
                 templateString = this.footerItemTemplate;
                 break;
-                
         }
         return templateString === undefined ? undefined : this.resolveTemplateView(templateString);
     }
+
     private _itemTemplateSelectorBindable;
     _itemTemplateSelector: Function;
     onItemTemplateSelectorChanged(oldValue, newValue) {
@@ -590,24 +593,25 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
         if (newValue instanceof Observable) {
             addWeakEventListener(newValue, ObservableArray.changeEvent, this.onSourceCollectionChangedInternal, this);
         }
-        this.refresh();
+        this.refreshVisibleItems();
     }
 
     
     spanSize: (item, index: number) => number;
+    
     onSpanSizeChangedInternal = (oldValue, newValue) => {
         this.spanSize = newValue;
-        this.refresh();
+        this.refreshVisibleItems();
     };
     _isDataDirty = false;
     onLoaded() {
         super.onLoaded();
         if (this._isDataDirty && this._effectiveColWidth !== undefined && this._effectiveRowHeight !== undefined) {
-            this.refresh();
+            this.refreshVisibleItems();
         }
     }
     onSourceCollectionChanged(event: ChangedData<any>) {
-        this.refresh();
+        this.refreshVisibleItems();
     }
     onSourceCollectionChangedInternal(event: ChangedData<any>) {
         if (this._dataUpdatesSuspended === false) {
@@ -633,7 +637,7 @@ export abstract class CollectionViewBase extends View implements CollectionViewD
     public resumeUpdates(refresh: boolean) {
         this._dataUpdatesSuspended = false;
         if (refresh === true) {
-            this.refresh();
+            this.refreshVisibleItems();
         }
     }
     abstract getViewForItemAtIndex(index: number): View;
@@ -728,7 +732,7 @@ export const orientationProperty = new Property<CollectionViewBase, CoreTypes.Or
     defaultValue: 'vertical',
     affectsLayout: true,
     valueChanged: (target: CollectionViewBase, oldValue: CoreTypes.OrientationType, newValue: CoreTypes.OrientationType) => {
-        target.refresh();
+        target.refreshVisibleItems();
     },
     valueConverter: converter
 });
