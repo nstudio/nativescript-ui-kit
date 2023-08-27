@@ -7,6 +7,7 @@ import { isAndroid } from "@nativescript/core/platform";
 import { CollectionView } from '@nstudio/ui-collectionview';
 import { TableSortType } from './enums/table-sort-type';
 import { Color, EventData, Label, ObservableArray, ScrollEventData, ScrollView } from '@nativescript/core';
+import { Item } from '@demo/shared';
 
 @Component({
 	selector: 'ui-collectionview-sean',
@@ -130,6 +131,15 @@ export class UiCollectionviewSeanComponent implements OnInit {
       this.itemsOnScreen.splice(0, this.itemsOnScreen.length, ...this.itemService.items.slice(0, this.rowsDisplayed));
     }
   }
+
+  onTemplateSelector = (item: Item, index: number, items: Item[]) => {
+    if (item.role === 'Goalkeeper') {
+      return 'goalkeeper';
+    } else if(item.role === 'Defender') {
+      return 'defender';
+    }
+  };
+
 
   addPlayers(amount: number = 10) {
     for(let i = 0; i < amount; i++) {

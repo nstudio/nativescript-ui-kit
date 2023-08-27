@@ -50,7 +50,7 @@
         (scroll)="onScrollVertically($event)"
         (loaded)="doLoadedRemoveBandingAnimation($event)"
       >
-        <ng-template cvListItemTemplate let-item let-odd="odd">
+        <ng-template let-item="item" let-odd="odd">
           <StackLayout class="cell-height">
             <StackLayout class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
               <Label class="jumbo-text" [text]="item.id"></Label>
@@ -75,8 +75,56 @@
           (scroll)="onScrollVertically($event)"
           (loaded)="doLoadedRemoveBandingAnimation($event)"
           (loadMoreItems)="loadMoreRows()"
+          [itemTemplateSelector]="onTemplateSelector"
         >
-          <ng-template cvListItemTemplate let-item let-odd="odd" let-i="index">
+          <ng-template let-item="item" cvTemplateKey="default">
+          </ng-template>
+          <ng-template cvTemplateKey="goalkeeper" let-item="item" let-odd="odd" let-i="index">
+            <GridLayout columns="180 1 200 1 180 1 160 1 110 1 90 1 80">
+
+              <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.name"></Label>
+              </StackLayout>
+
+              <StackLayout col="1" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="2" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.position"></Label>
+              </StackLayout>
+
+              <StackLayout col="3" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="4" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.height"></Label>
+              </StackLayout>
+
+              <StackLayout col="5" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="6" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.nationality"></Label>
+              </StackLayout>
+
+              <StackLayout col="7" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="8" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.dob"></Label>
+              </StackLayout>
+
+              <StackLayout col="9" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="10" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.goals"></Label>
+              </StackLayout>
+
+              <StackLayout col="11" class="horizontal-heading-divider"></StackLayout>
+
+              <StackLayout col="12" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
+                <Label [text]="item.assists"></Label>
+              </StackLayout>
+
+            </GridLayout>
+          </ng-template>
+          <ng-template cvTemplateKey="defender" let-item="item" let-odd="odd" let-i="index">
             <GridLayout columns="180 1 200 1 180 1 160 1 110 1 90 1 80">
 
               <StackLayout col="0" [nsRouterLink]="['/item', item.id]" class="cell" [class.light-grey-cell]="odd" [class.white-cell]="!odd">
