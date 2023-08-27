@@ -7,7 +7,7 @@
   </StackLayout>
     <GridLayout columns="60 1 *" rows="54 *">
       <StackLayout row="0" col="0" class="table-header" (tap)="sortTableById()">
-        <Label [text]="id"></Label>
+        <Label #idHeader class="headerLabel" [text]="id"></Label>
       </StackLayout>
       <StackLayout row="0" col="1" width="1" class="horizontal-heading-divider"></StackLayout>
 

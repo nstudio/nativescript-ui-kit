@@ -164,51 +164,51 @@ export class CollectionView extends CollectionViewBase {
     }
   }
 
-  modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false) {
-    if (this.items) {
-      if (!this._dataSourceSnapshot || reload) {
-        this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
-        this._dataSourceSnapshot.appendSectionsWithIdentifiers(this.sections.map((s) => s.identifier));
-      } else {
-        this._dataSourceSnapshot = this._dataSource.snapshot();
-      }
-
-      if (Trace.isEnabled()) {
-        CLog(CLogTypes.info, 'modifyDataSourceSnapshot identifiers: ', type, identifiers);
-      }
-      // console.log('modifyDataSourceSnapshot identifiers: ', type, identifiers);
-      switch (type) {
-        case ChangeType.Add:
-          const itemIdentifiers = [];
-          if (reload) {
-            this.items.forEach(() => {
-              // forEach works well with ObservableArray and Array
-              itemIdentifiers.push(getUUID());
-            });
-          }
-          if (identifiers.length) {
-            itemIdentifiers.push(...identifiers);
-          }
-          if (sectionIdentifier) {
-            this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
-          } else {
-            this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
-          }
-          break;
-        case ChangeType.Update:
-          this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
-          break;
-        case ChangeType.Delete:
-          this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
-          break;
-      }
-      if (this.isAnimationEnabled) {
-        this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
-      } else {
-        this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
-      }
+    modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false) {
+        if (this.items) {
+            if (!this._dataSourceSnapshot || reload) {
+                this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
+                this._dataSourceSnapshot.appendSectionsWithIdentifiers(this.sections.map(s => s.identifier));
+            } else {
+                this._dataSourceSnapshot = this._dataSource.snapshot();
+            }
+     
+            if (Trace.isEnabled()) {
+                CLog(CLogTypes.info, 'modifyDataSourceSnapshot identifiers: ', type, identifiers);
+            }
+            // console.log('modifyDataSourceSnapshot identifiers: ', type, identifiers);
+            switch (type) {
+                case ChangeType.Add:
+                    const itemIdentifiers = [];
+                    if (reload) {
+                        this.items.forEach(() => {
+                            // forEach works well with ObservableArray and Array
+                            itemIdentifiers.push(getUUID());
+                        });
+                    }
+                    if (identifiers.length) {
+                        itemIdentifiers.push(...identifiers);
+                    }
+                    if (sectionIdentifier) {
+                        this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
+                    } else {
+                        this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
+                    }
+                    break;
+                case ChangeType.Update:
+                    this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
+                    break;
+                case ChangeType.Delete:
+                    this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
+                    break;
+            }
+            if (this.isAnimationEnabled) {
+                this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
+            } else {
+                this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+            }
+        }
     }
-  }
 
   getDefaultSectionIdentifier() {
     // each collectionview must have at least 1 section

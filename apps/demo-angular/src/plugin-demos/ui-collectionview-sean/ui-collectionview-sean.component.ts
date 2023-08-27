@@ -6,7 +6,7 @@ import { throttle } from '@nativescript/core/utils';
 import { isAndroid } from "@nativescript/core/platform";
 import { CollectionView } from '@nstudio/ui-collectionview';
 import { TableSortType } from './enums/table-sort-type';
-import { EventData, ObservableArray, ScrollEventData, ScrollView } from '@nativescript/core';
+import { Color, EventData, Label, ObservableArray, ScrollEventData, ScrollView } from '@nativescript/core';
 
 @Component({
 	selector: 'ui-collectionview-sean',
@@ -17,6 +17,8 @@ import { EventData, ObservableArray, ScrollEventData, ScrollView } from '@native
 export class UiCollectionviewSeanComponent implements OnInit {
 
   isAndroid: boolean = false;
+
+  @ViewChild('idHeader') idHeader: ElementRef;
 
   idsCollectionView: CollectionView;
   @ViewChild('ids') set idsColumnsContent( idsColumn: ElementRef) {
@@ -89,6 +91,13 @@ export class UiCollectionviewSeanComponent implements OnInit {
 
   sortTableById(): void {
 
+    const viewContent = <Label>this.idHeader.nativeElement;
+
+    viewContent.style.opacity = 0; // Start with 0 opacity
+    viewContent.animate({ opacity: 1, backgroundColor: new Color('rgb(45, 105, 45)'), duration: 100 })
+    .then( () => {
+      viewContent.animate({ backgroundColor: new Color('white'), duration: 75 })
+    });
     switch (this.columnSorting.get('ID')) {
       case TableSortType.Default:
       case TableSortType.Descending:
@@ -111,7 +120,7 @@ export class UiCollectionviewSeanComponent implements OnInit {
 
     this.setVerticalOffsetsToZero();
     this.itemsOnScreen.splice(0, this.itemService.items.length, ...(this.itemService.items.slice(0, this.rowsDisplayed)
-        .map(animal => (animal && animal.id !== undefined ? animal : { ...animal, SelectionType: undefined }))));
+      .map(animal => (animal && animal.id !== undefined ? animal : { ...animal, SelectionType: undefined }))));
   }
 
   loadMoreRows() {
