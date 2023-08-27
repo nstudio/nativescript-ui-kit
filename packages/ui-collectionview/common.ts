@@ -830,7 +830,7 @@ export const isBounceEnabledProperty = new Property<CollectionViewBase, boolean>
 isBounceEnabledProperty.register(CollectionViewBase);
 export const isAnimationEnabledProperty = new Property<CollectionViewBase, boolean>({
     name: 'isAnimationEnabled',
-    defaultValue: true,
+    defaultValue: false,
     valueConverter: booleanConverter
 });
 isAnimationEnabledProperty.register(CollectionViewBase);
