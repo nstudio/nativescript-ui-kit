@@ -273,23 +273,22 @@ export class CollectionView extends CollectionViewBase {
         this.refresh();
     }
     public disposeNativeView() {
-        // clear the cache
-        // this.eachChildView((view) => {
-        //     view.parent._removeView(view);
-        //     return true;
-        // });
-        // this._realizedItems.clear();
-
         const nativeView = this.nativeViewProtected;
+
+        // Clear the cache
         nativeView.setRecyclerListener(null);
         nativeView.setRecycledViewPool(null);
         this.recycledViewPoolDisposeListener = null;
         this.recycledViewPool = null;
+
+        // Remove the scroll listener
         if (nativeView.scrollListener) {
             this.nativeView.removeOnScrollListener(nativeView.scrollListener);
             nativeView.scrollListener = null;
             this._nScrollListener = null;
         }
+
+        // Clean up other references
         nativeView.sizeChangedListener = null;
         nativeView.layoutManager = null;
         this._listViewAdapter = null;
@@ -300,13 +299,14 @@ export class CollectionView extends CollectionViewBase {
         this._vlayoutParams = null;
         this.clearTemplateTypes();
 
+        // Call super last
         super.disposeNativeView();
     }
 
     onLoaded() {
         super.onLoaded();
         this.attachScrollListener();
-        this.refresh();
+        this.refreshVisibleItems();
     }
 
     _getSpanSize: (item, index) => number;
@@ -385,44 +385,38 @@ export class CollectionView extends CollectionViewBase {
         if (!this || !this.scrolling) {
             return;
         }
+    
         if (this.needsScrollStartEvent) {
             this.needsScrollStartEvent = false;
             if (this.hasListeners(CollectionViewBase.scrollStartEvent)) {
                 this.notify(this.computeScrollEventData(view, CollectionViewBase.scrollStartEvent, dx, dy));
             }
         }
-
-        if (this.hasListeners(CollectionViewBase.scrollEvent)) {
-            this.notify(this.computeScrollEventData(view, CollectionViewBase.scrollEvent, dx, dy));
+    
+        if (!this.hasListeners(CollectionViewBase.scrollEvent)) {
+            return;
         }
-
-        if (this.hasListeners(CollectionViewBase.loadMoreItemsEvent) && this.items) {
-            const layoutManager = view.getLayoutManager();
-            if (layoutManager['findLastCompletelyVisibleItemPosition']) {
-                const lastVisibleItemPos = layoutManager['findLastCompletelyVisibleItemPosition']();
-                const loadMoreItemIndex = this.items.length - this.loadMoreThreshold;
-                if (lastVisibleItemPos === loadMoreItemIndex) {
-                    this.loadingMore = true;
-                    this.notify({ eventName: CollectionViewBase.loadMoreItemsEvent });
-                }
-            } else if (layoutManager['findLastCompletelyVisibleItemPositions'] && layoutManager['getSpanCount']) {
-                let positions = Array.create('int', layoutManager['getSpanCount']());
-                positions = layoutManager['findLastCompletelyVisibleItemPositions'](positions);
-                let lastVisibleItemPos = 0;
-                for (let i = 0; i < positions.length; i++) {
-                    if (positions[i] > lastVisibleItemPos) {
-                        lastVisibleItemPos = positions[i];
-                    }
-                }
-                const loadMoreItemIndex = this.items.length - this.loadMoreThreshold;
-                if (lastVisibleItemPos >= loadMoreItemIndex) {
-                    this.loadingMore = true;
-                    this.notify({ eventName: CollectionViewBase.loadMoreItemsEvent });
-                }
-            }
+    
+        this.notify(this.computeScrollEventData(view, CollectionViewBase.scrollEvent, dx, dy));
+    
+        if (!this.hasListeners(CollectionViewBase.loadMoreItemsEvent) || !this.items) {
+            return;
+        }
+    
+        const layoutManager = view.getLayoutManager();
+        if (!layoutManager) {
+            return;
+        }
+    
+        const lastVisibleItemPos = layoutManager['findLastCompletelyVisibleItemPosition']();
+        const loadMoreItemIndex = this.items.length - this.loadMoreThreshold;
+    
+        if (lastVisibleItemPos === loadMoreItemIndex) {
+            this.loadingMore = true;
+            this.notify({ eventName: CollectionViewBase.loadMoreItemsEvent });
         }
     }
-
+    
     public onScrollStateChanged(view: androidx.recyclerview.widget.RecyclerView, newState: number) {
         if (this.scrolling && newState === 0) {
             // SCROLL_STATE_IDLE
@@ -676,22 +670,22 @@ export class CollectionView extends CollectionViewBase {
 
     onItemViewLoaderChanged() {
         if (this.itemViewLoader) {
-            this.refresh();
+            this.refreshVisibleItems();
         }
     }
     onItemTemplateSelectorChanged(oldValue, newValue) {
         super.onItemTemplateSelectorChanged(oldValue, newValue);
         this.clearTemplateTypes();
-        this.refresh();
+        this.refreshVisibleItems();
     }
 
     onItemTemplateChanged(oldValue, newValue) {
         super.onItemTemplateChanged(oldValue, newValue); // TODO: update current template with the new one
-        this.refresh();
+        this.refreshVisibleItems();
     }
     onItemTemplatesChanged(oldValue, newValue) {
         super.onItemTemplatesChanged(oldValue, newValue); // TODO: update current template with the new one
-        this.refresh();
+        this.refreshVisibleItems();
     }
 
     private setOnLayoutChangeListener() {
