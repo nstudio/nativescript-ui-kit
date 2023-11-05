@@ -140,7 +140,6 @@ export class CollectionView extends CollectionViewBase {
       return this.nativeViewProtected.dequeueConfiguredReusableCellWithRegistrationForIndexPathItem(this.cellRegistrations[this._getItemTemplateType(indexPath)], indexPath, identifier);
     });
     this.setupHeaderFooter();
-
     if (!this.sections) {
       // every collectionview must have at least 1 section
       this.sections = [
@@ -164,7 +163,7 @@ export class CollectionView extends CollectionViewBase {
     }
   }
 
-  modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false) {
+  modifyDataSourceSnapshot(type: ChangeType, identifiers: Array<string>, sectionIdentifier: string, animate = true, reload = false, ignoreApply = false) {
     if (this.items) {
       if (!this._dataSourceSnapshot || reload) {
         this._dataSourceSnapshot = NSDiffableDataSourceSnapshot.alloc<string, string>().init();
@@ -177,35 +176,78 @@ export class CollectionView extends CollectionViewBase {
         CLog(CLogTypes.info, 'modifyDataSourceSnapshot identifiers: ', type, identifiers);
       }
       // console.log('modifyDataSourceSnapshot identifiers: ', type, identifiers);
+      const checkIfSubsetOrAdding = (updating?: boolean): { adding?: boolean; subset?: boolean } => {
+        if (identifiers.length === 0) {
+          // nothing to handle
+          return {
+            subset: false,
+          };
+        } else if (this._dataSourceSnapshot.itemIdentifiers.count === 0) {
+          if (updating) {
+            // when there are none existing, just adding
+            return {
+              adding: true,
+            };
+          } else {
+            // nothing to handle
+            return {
+              subset: false,
+            };
+          }
+        }
+        const existing = NSSet.setWithArray(this._dataSourceSnapshot.itemIdentifiers);
+        const current = NSSet.setWithArray(identifiers);
+        return {
+          subset: current.isSubsetOfSet(existing),
+        };
+      };
+      const addNewItems = () => {
+        const itemIdentifiers = [];
+        if (reload) {
+          this.items.forEach(() => {
+            // forEach works well with ObservableArray and Array
+            itemIdentifiers.push(getUUID());
+          });
+        }
+        if (identifiers.length) {
+          itemIdentifiers.push(...identifiers);
+        }
+        if (sectionIdentifier) {
+          this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
+        } else {
+          this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
+        }
+      };
       switch (type) {
         case ChangeType.Add:
-          const itemIdentifiers = [];
-          if (reload) {
-            this.items.forEach(() => {
-              // forEach works well with ObservableArray and Array
-              itemIdentifiers.push(getUUID());
-            });
-          }
-          if (identifiers.length) {
-            itemIdentifiers.push(...identifiers);
-          }
-          if (sectionIdentifier) {
-            this._dataSourceSnapshot.appendItemsWithIdentifiersIntoSectionWithIdentifier(itemIdentifiers, sectionIdentifier);
-          } else {
-            this._dataSourceSnapshot.appendItemsWithIdentifiers(itemIdentifiers);
-          }
+          addNewItems();
           break;
         case ChangeType.Update:
-          this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
+          const { adding, subset: subsetUpdate } = checkIfSubsetOrAdding(true);
+          if (adding) {
+            addNewItems();
+          } else if (subsetUpdate) {
+            this._dataSourceSnapshot.reloadItemsWithIdentifiers(identifiers);
+          }
           break;
         case ChangeType.Delete:
-          this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
+          const { subset } = checkIfSubsetOrAdding();
+          if (subset) {
+            this._dataSourceSnapshot.deleteItemsWithIdentifiers(identifiers);
+          }
           break;
+      }
+      if (ignoreApply) {
+        return;
       }
       if (this.isAnimationEnabled) {
         this._dataSource.applySnapshotAnimatingDifferences(this._dataSourceSnapshot, this.loadingMore ? false : animate);
       } else {
-        this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+        Utils.executeOnUIThread(() => {
+          if (this._dataSource && this._dataSourceSnapshot) {
+            this._dataSource.applySnapshotUsingReloadData(this._dataSourceSnapshot);
+          }
+        });
       }
     }
   }
@@ -292,6 +334,25 @@ export class CollectionView extends CollectionViewBase {
     }
 
     return result;
+  }
+  toggleReorder(enable: boolean) {
+    if (this._dataSource) {
+      if (enable) {
+        this._dataSource.reorderingHandlers.canReorderItemHandler = (item) => true;
+        this._dataSource.reorderingHandlers.didReorderHandler = (transaction) => {
+          console.log('didreorder:', transaction.finalSnapshot.itemIdentifiers);
+          console.log('transaction.difference.insertions.count: ', transaction.difference.insertions.count);
+          console.log('transaction.difference.removals.count: ', transaction.difference.removals.count);
+          if (this._dataSource) {
+            this._dataSource.applySnapshotUsingReloadData(transaction.finalSnapshot);
+          }
+          // this._callItemReorderedEvent(transaction.fromIndexPath.row, transaction.toIndexPath.row, this.getItemAtIndex(transaction.fromIndexPath.row));
+        };
+      } else {
+        this._dataSource.reorderingHandlers.canReorderItemHandler = null;
+        this._dataSource.reorderingHandlers.didReorderHandler = null;
+      }
+    }
   }
   public startDragging(index: number, pointer?: Pointer) {
     if (this.reorderEnabled && this.nativeViewProtected) {
@@ -427,6 +488,7 @@ export class CollectionView extends CollectionViewBase {
       if (!this.reorderLongPressGesture) {
         this.reorderLongPressHandler = ReorderLongPressImpl.initWithOwner(new WeakRef(this));
         this.reorderLongPressGesture = UILongPressGestureRecognizer.alloc().initWithTargetAction(this.reorderLongPressHandler, 'longPress');
+        this.reorderLongPressGesture.minimumPressDuration = 0.3;
         this.nativeViewProtected.addGestureRecognizer(this.reorderLongPressGesture);
       } else {
         this.reorderLongPressGesture.enabled = true;
@@ -439,10 +501,15 @@ export class CollectionView extends CollectionViewBase {
   }
   [reorderingEnabledProperty.setNative](value: boolean) {
     if (value) {
-      this.on('touch', this.onReorderingTouch, this);
+      this.toggleReorder(true);
     } else {
-      this.off('touch', this.onReorderingTouch, this);
+      this.toggleReorder(false);
     }
+    // if (value) {
+    //   this.on('touch', this.onReorderingTouch, this);
+    // } else {
+    //   this.off('touch', this.onReorderingTouch, this);
+    // }
   }
   [scrollBarIndicatorVisibleProperty.getDefault](): boolean {
     return true;
@@ -598,15 +665,15 @@ export class CollectionView extends CollectionViewBase {
             }
             this.unbindUnusedCells(event.removed);
 
-            this.modifyDataSourceSnapshot(ChangeType.Delete, removeIdentifiers, sectionIdentifier);
+            this.modifyDataSourceSnapshot(ChangeType.Delete, removeIdentifiers, sectionIdentifier, false, false, event.addedCount > 0);
           }
           if (event.addedCount > 0) {
             const identifiers = [];
             for (let index = 0; index < event.addedCount; index++) {
-              const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
-              const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
+              // const indexPath = NSIndexPath.indexPathForItemInSection(event.index + index, sectionIdentifier);
+              // const identifier = this._dataSource.itemIdentifierForIndexPath(indexPath) || getUUID();
               // console.log(' splice, add identifier:', identifier)
-              identifiers.push(identifier);
+              identifiers.push(getUUID()); //identifier);
             }
             this.modifyDataSourceSnapshot(ChangeType.Add, identifiers, sectionIdentifier);
           }
