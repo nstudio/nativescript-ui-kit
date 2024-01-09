@@ -11,7 +11,7 @@
     "@nstudio/nativescript-variable-blur-view": "file:../../dist/packages/nativescript-variable-blur-view"
   },
   "devDependencies": {
-    "@nativescript/android": "~8.5.0",
-    "@nativescript/ios": "~8.5.0"
+    "@nativescript/android": "~8.6.0",
+    "@nativescript/ios": "~8.6.0"
   }
 }
