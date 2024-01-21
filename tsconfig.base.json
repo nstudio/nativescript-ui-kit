@@ -52,6 +52,9 @@
       ],
       "@nstudio/nativescript-fluid-segmented-bar": [
         "packages/nativescript-fluid-segmented-bar/index.d.ts"
+      ],
+      "@nstudio/nativescript-liquid-swipe": [
+        "packages/nativescript-liquid-swipe/index.d.ts"
       ]
     }
   },

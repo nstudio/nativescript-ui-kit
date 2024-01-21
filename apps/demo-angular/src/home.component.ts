@@ -19,6 +19,9 @@ export class HomeComponent {
 		name: 'nativescript-label-marquee'
 	},
 	{
+		name: 'nativescript-liquid-swipe'
+	},
+	{
 		name: 'nativescript-shimmer'
 	},
 	{

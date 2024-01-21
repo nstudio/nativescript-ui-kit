@@ -110,6 +110,13 @@ module.exports = {
 					description: '@nstudio/nativescript-fluid-segmented-bar: Build',
 				},
 			},
+			// @nstudio/nativescript-liquid-swipe
+			'nativescript-liquid-swipe': {
+				build: {
+					script: 'nx run nativescript-liquid-swipe:build.all',
+					description: '@nstudio/nativescript-liquid-swipe: Build',
+				},
+			},
 			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -147,6 +154,10 @@ module.exports = {
 			'nativescript-fluid-segmented-bar': {
 				script: 'nx run nativescript-fluid-segmented-bar:focus',
 				description: 'Focus on @nstudio/nativescript-fluid-segmented-bar',
+			},
+			'nativescript-liquid-swipe': {
+				script: 'nx run nativescript-liquid-swipe:focus',
+				description: 'Focus on @nstudio/nativescript-liquid-swipe',
 			},
 			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

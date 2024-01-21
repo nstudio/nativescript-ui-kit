@@ -5,8 +5,9 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-fluid-segmented-bar": "file:../../packages/nativescript-fluid-segmented-bar",
+    "@nstudio/nativescript-liquid-swipe": "file:../../packages/nativescript-liquid-swipe",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
+    "@nstudio/nativescript-fluid-segmented-bar": "file:../../packages/nativescript-fluid-segmented-bar",
     "nativescript-fonticon": "file:../../packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
