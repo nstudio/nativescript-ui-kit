@@ -17,7 +17,7 @@ export default {
 				 name: "SmartlookAnalytics",
 				 libs: ["SmartlookAnalytics"],
 				 repositoryURL: "https://github.com/smartlook/analytics-swift-package.git",
-				 version: "2.2.4"
+				 version: "2.2.9"
 			}
 		]
 	}
