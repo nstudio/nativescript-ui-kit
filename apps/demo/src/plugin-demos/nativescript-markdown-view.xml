@@ -1,0 +1,44 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:mv="@nstudio/nativescript-markdown-view">
+  <Page.actionBar>
+    <ActionBar title="nativescript-markdown-view" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
+  <StackLayout>
+    <ScrollView class="h-full">
+      <StackLayout class="p-y-20 p-x-30">
+        <Label class="h2" text="Headings" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{headings}}"/>
+
+        <Label class="h2" text="Code" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{code}}" />
+
+        <Label class="h2" text="Emphasis" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{emphasis}}"/>
+
+        <Label class="h2" text="Lists" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{lists}}"/>
+
+        <Label class="h2" text="Link" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{link}}"/>
+
+        <Label class="h2" text="Quote" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{quote}}"/>
+
+        <Label class="h2" text="Text" style="margin-top: 10; margin-bottom: 10;"/>
+        <mv:MarkdownView textWrap="true" markdown="{{text}}" class="large"/>
+        <mv:MarkdownView textWrap="true" markdown="{{text}}"/>
+        <mv:MarkdownView textWrap="true" markdown="{{text}}" class="small"/>
+
+        <Label class="h2" text="IMG" style="margin-top: 10; margin-bottom: 10;"/>
+
+        <mv:MarkdownView textWrap="true" markdown="{{img}}" />
+
+
+
+
+
+      </StackLayout>
+    </ScrollView>
+  </StackLayout>
+</Page>

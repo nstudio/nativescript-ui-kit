@@ -1,0 +1,73 @@
+{
+  "name": "nativescript-markdown-view",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-markdown-view",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-markdown-view",
+        "tsConfig": "packages/nativescript-markdown-view/tsconfig.json",
+        "packageJson": "packages/nativescript-markdown-view/package.json",
+        "main": "packages/nativescript-markdown-view/index.d.ts",
+        "assets": [
+          "packages/nativescript-markdown-view/*.md",
+          "packages/nativescript-markdown-view/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-markdown-view/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts nativescript-markdown-view"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/nativescript-markdown-view"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages nativescript-markdown-view"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/nativescript-markdown-view/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
