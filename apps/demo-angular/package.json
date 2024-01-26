@@ -2,8 +2,9 @@
   "main": "./src/main.ts",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-fluid-segmented-bar": "file:../../dist/packages/nativescript-fluid-segmented-bar",
+    "@nstudio/nativescript-markdown-view": "file:../../dist/packages/nativescript-markdown-view",
     "@nstudio/nativescript-coachmarks": "file:../../dist/packages/nativescript-coachmarks",
+    "@nstudio/nativescript-fluid-segmented-bar": "file:../../dist/packages/nativescript-fluid-segmented-bar",
     "nativescript-fonticon": "file:../../dist/packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer",
