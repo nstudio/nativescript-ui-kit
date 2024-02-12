@@ -5,17 +5,17 @@ import SmartlookAnalytics
 @objc public class NSCSmartlook: NSObject {
     @objc public static func start(_ key: String) {
         Smartlook.instance.preferences.projectKey = key
-        Smartlook.instance.start() 
+        Smartlook.instance.start()
     }
 
     @objc public static func stop() {
-        Smartlook.instance.stop() 
+        Smartlook.instance.stop()
     }
 
     @objc public static func isRecording() -> Bool {
         return Smartlook.instance.state.status == .recording
     }
-    
+
     @objc public static func setUser(id: String, name: String?, email: String?, extraData: NSDictionary?) {
         Smartlook.instance.user.identifier = id
         if (name != nil) {
@@ -28,7 +28,7 @@ import SmartlookAnalytics
             for (key, value) in extraData! {
                 Smartlook.instance.user.setProperty(key as! String, to: value as? String)
             }
-            
+
         }
     }
 
@@ -54,7 +54,7 @@ import SmartlookAnalytics
         default:
             Smartlook.instance.preferences.renderingMode = .native
             break;
-            
+
         }
     }
 
@@ -70,12 +70,12 @@ import SmartlookAnalytics
             return 0;
         }
     }
-    
+
     @objc public static func setSensitivity(_ view: UIView, sensitive: Bool) {
         view.slSensitive = sensitive
     }
-    
-    @objc public static func trackEvent(_ name: String, properties: NSDictionary?) {
+
+    @objc public static func trackEventProperties(_ name: String, properties: NSDictionary?) {
         if (properties != nil) {
             let props = Properties()
             for (key, value) in properties! {
@@ -86,8 +86,16 @@ import SmartlookAnalytics
             Smartlook.instance.track(event: name)
         }
     }
-    
-    @objc public static func trackNavigationEvent(_ name: String) {
-        Smartlook.instance.track(navigationEvent: name)
+
+    @objc public static func trackNavigationEvent(_ name: String, properties: NSDictionary?) {
+        if (properties != nil) {
+            let props = Properties()
+            for (key, value) in properties! {
+                props.setProperty(key as! String, to: value as? String)
+            }
+            Smartlook.instance.track(navigationEvent: name, properties: props)
+        } else {
+            Smartlook.instance.track(navigationEvent: name)
+        }
     }
 }

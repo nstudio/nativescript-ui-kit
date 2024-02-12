@@ -4,6 +4,7 @@ import android.view.View
 import com.smartlook.android.core.api.Smartlook
 import com.smartlook.android.core.api.extension.isSensitive
 import com.smartlook.android.core.video.annotation.RenderingMode
+import com.smartlook.android.core.api.model.Properties
 
 class NSCSmartlook {
 
@@ -54,7 +55,7 @@ class NSCSmartlook {
             }
         }
 */
-        
+
 
         @JvmStatic
         fun setSensitivity(view: View, sensitive: Boolean) {
@@ -76,6 +77,33 @@ class NSCSmartlook {
                 }
             }
         }
+
+        @JvmStatic
+        fun trackEventProperties(eventName: String, mapProperties: HashMap<String, String>?) {
+            val properties = propertiesFromMap(mapProperties)
+
+            Smartlook.instance.trackEvent(eventName, properties)
+        }
+
+        @JvmStatic
+        fun trackNavigationEvent(screenName: String, mapProperties: HashMap<String, String>?) {
+            val properties = propertiesFromMap(mapProperties)
+
+            Smartlook.instance.trackNavigationEnter(screenName, properties)
+        }
+
+        private fun propertiesFromMap(propertiesMap: HashMap<String, String>?): Properties? {
+            if (propertiesMap == null) {
+                return null
+            }
+
+            val properties = Properties()
+
+            for (prop in propertiesMap) {
+                properties.putString(prop.key, prop.value)
+            }
+
+            return properties
+        }
     }
 }
-
