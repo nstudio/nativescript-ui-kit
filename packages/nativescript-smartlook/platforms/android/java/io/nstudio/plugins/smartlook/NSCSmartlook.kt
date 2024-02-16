@@ -79,7 +79,7 @@ class NSCSmartlook {
         }
 
         @JvmStatic
-        fun trackEventProperties(eventName: String, mapProperties: HashMap<String, String>?) {
+        fun trackEvent(eventName: String, mapProperties: HashMap<String, String>?) {
             val properties = propertiesFromMap(mapProperties)
 
             Smartlook.instance.trackEvent(eventName, properties)

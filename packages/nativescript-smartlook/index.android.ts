@@ -49,7 +49,7 @@ export class Smartlook extends SmartlookCommon {
   }
 
   static trackEvent(name: string, properties?: any): void {
-    io.nstudio.plugins.smartlook.NSCSmartlook.trackEventProperties(name, Utils.dataSerialize(properties));
+    io.nstudio.plugins.smartlook.NSCSmartlook.trackEvent(name, Utils.dataSerialize(properties));
   }
 
   static trackNavigationEvent(name, properties?: any): void {

@@ -75,7 +75,7 @@ import SmartlookAnalytics
         view.slSensitive = sensitive
     }
 
-    @objc public static func trackEventProperties(_ name: String, properties: NSDictionary?) {
+    @objc public static func trackEvent(_ name: String, properties: NSDictionary?) {
         if (properties != nil) {
             let props = Properties()
             for (key, value) in properties! {

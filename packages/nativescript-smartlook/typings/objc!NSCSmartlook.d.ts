@@ -21,5 +21,5 @@ declare class NSCSmartlook extends NSObject {
 
   static trackEventProperties(name: string, properties: NSDictionary<any, any>): void;
 
-  static trackNavigationEvent(name: string, properties: NSDictionary<any, any>): void;
+  static trackNavigationEventProperties(name: string, properties: NSDictionary<any, any>): void;
 }

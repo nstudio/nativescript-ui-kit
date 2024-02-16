@@ -13,7 +13,7 @@ declare module io {
           public static isRecording(): boolean;
           public static stop(): void;
           public static setUser(param0: string, param1: string, param2: string, param3: java.util.HashMap<string, string>): void;
-          public static trackEventProperties(param0: string, param1: java.util.HashMap<string, string>): void;
+          public static trackEvent(param0: string, param1: java.util.HashMap<string, string>): void;
           public static trackNavigationEvent(param0: string, param1: java.util.HashMap<string, string>): void;
         }
         export module NSCSmartlook {

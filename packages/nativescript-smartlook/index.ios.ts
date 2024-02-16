@@ -43,6 +43,6 @@ export class Smartlook extends SmartlookCommon {
   }
 
   static trackNavigationEvent(name: string, properties?: any) {
-    NSCSmartlook.trackNavigationEvent(name, properties);
+    NSCSmartlook.trackNavigationEventProperties(name, properties);
   }
 }
