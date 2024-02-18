@@ -3,13 +3,12 @@ import { DemoSharedBase } from '../utils';
 import { Smartlook } from '@nstudio/nativescript-smartlook';
 
 export class DemoSharedNativescriptSmartlook extends DemoSharedBase {
-
   stop() {
     Smartlook.stop();
   }
 
   start() {
-    Smartlook.start('<api-key>')
+    Smartlook.start('<api-key>');
   }
 
   logSessionUrl() {
@@ -23,8 +22,8 @@ export class DemoSharedNativescriptSmartlook extends DemoSharedBase {
   setUserProperties() {
     Smartlook.setUser('12345-abcde', 'Testing Account', 'testing@bigtest.org', {
       extra: 'details',
-      moreInfo: 'hello'
-    })
+      moreInfo: 'hello',
+    });
   }
 
   setViewSensitivity(view: View) {
@@ -33,5 +32,19 @@ export class DemoSharedNativescriptSmartlook extends DemoSharedBase {
 
   loadedSensitiveArea(args) {
     this.setViewSensitivity(args.object);
+  }
+
+  trackEvent() {
+    Smartlook.trackEvent('testEvent', {
+      some: 'properties',
+      more: 'info',
+    });
+  }
+
+  trackNavigationEvent() {
+    Smartlook.trackNavigationEvent('testNavigationEvent', {
+      some: 'properties',
+      more: 'info',
+    });
   }
 }

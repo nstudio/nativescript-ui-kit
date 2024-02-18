@@ -43,14 +43,16 @@ export class Smartlook extends SmartlookCommon {
       io.nstudio.plugins.smartlook.NSCSmartlook.setSensitivity(view.android, sensitive);
     }
   }
+
   static setUser(id: string, name?: string, email?: string, extraData?: any): void {
     io.nstudio.plugins.smartlook.NSCSmartlook.setUser(id, name, email, Utils.dataSerialize(extraData));
   }
 
   static trackEvent(name: string, properties?: any): void {
-    console.log('to do');
+    io.nstudio.plugins.smartlook.NSCSmartlook.trackEvent(name, Utils.dataSerialize(properties));
   }
-  static trackNavigationEvent(name: string): void {
-    console.log('to do');
+
+  static trackNavigationEvent(name, properties?: any): void {
+    io.nstudio.plugins.smartlook.NSCSmartlook.trackNavigationEvent(name, Utils.dataSerialize(properties));
   }
 }
