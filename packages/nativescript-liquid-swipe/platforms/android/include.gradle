@@ -1,0 +1,3 @@
+dependencies {
+    implementation 'com.cuberto:liquid-swipe:1.0.0'
+}
