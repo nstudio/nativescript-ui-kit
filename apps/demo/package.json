@@ -12,7 +12,8 @@
     "@nstudio/nativescript-label-marquee": "file:../../packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
-    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view"
+    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
+    "@nstudio/nativescript-parallax": "file:../../packages/nativescript-parallax"
   },
   "devDependencies": {
     "@nativescript/android": "~8.6.0",

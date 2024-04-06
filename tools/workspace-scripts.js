@@ -117,6 +117,13 @@ module.exports = {
           description: '@nstudio/nativescript-markdown-view: Build',
         },
       },
+      // @nstudio/nativescript-parallax
+      'nativescript-parallax': {
+        build: {
+          script: 'nx run nativescript-parallax:build.all',
+          description: '@nstudio/nativescript-parallax: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -158,6 +165,10 @@ module.exports = {
       'nativescript-markdown-view': {
         script: 'nx run nativescript-markdown-view:focus',
         description: 'Focus on @nstudio/nativescript-markdown-view',
+      },
+      'nativescript-parallax': {
+        script: 'nx run nativescript-parallax:focus',
+        description: 'Focus on @nstudio/nativescript-parallax',
       },
       reset: {
         script: 'nx g @nstudio/plugin-tools:focus-packages',
