@@ -3,9 +3,10 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "packages/nativescript-markdown-view",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "options": {
         "outputPath": "dist/packages/nativescript-markdown-view",
         "tsConfig": "packages/nativescript-markdown-view/tsconfig.json",
@@ -32,42 +33,29 @@
     "build.all": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "node tools/scripts/build-finish.ts nativescript-markdown-view"
-        ],
+        "commands": ["node tools/scripts/build-finish.ts nativescript-markdown-view"],
         "parallel": false
       },
-      "outputs": [
-        "dist/packages/nativescript-markdown-view"
-      ],
+      "outputs": ["{workspaceRoot}/dist/packages/nativescript-markdown-view"],
       "dependsOn": [
         {
           "target": "build.all",
-          "projects": "dependencies"
+          "dependencies": true
         },
         {
-          "target": "build",
-          "projects": "self"
+          "target": "build"
         }
       ]
     },
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx g @nativescript/plugin-tools:focus-packages nativescript-markdown-view"
-        ],
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-markdown-view"],
         "parallel": false
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/nativescript-markdown-view/**/*.ts"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": []
+  }
 }

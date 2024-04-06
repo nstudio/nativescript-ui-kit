@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
   xmlns:ui="@nstudio/nativescript-variable-blur-view">
-  <!-- <Page.actionBar>
-    <ActionBar title="nativescript-variable-blur-view" icon="" class="action-bar">
+  <Page.actionBar>
+    <ActionBar title="Variable Blur View" class="action-bar">
     </ActionBar>
-  </Page.actionBar> -->
+  </Page.actionBar>
   <GridLayout>
     <ScrollView>
       <StackLayout>

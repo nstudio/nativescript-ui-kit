@@ -1,6 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
   xmlns:ns="@nstudio/nativescript-fluid-segmented-bar">
-
+  <Page.actionBar>
+    <ActionBar title="Fluid Segmented Bar" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
   <GridLayout rows="*,400" iosOverflowSafeArea="true">
 
     <ScrollView id="background" row="1" translateY="35" loaded="{{loadedScroll}}" orientation="horizontal">
