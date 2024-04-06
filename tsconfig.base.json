@@ -30,7 +30,9 @@
       "@nstudio/nativescript-smartlook": ["packages/nativescript-smartlook/index.d.ts"],
       "@nstudio/nativescript-variable-blur-view": ["packages/nativescript-variable-blur-view/index.ts"],
       "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
-      "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"]
+      "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"],
+      "@nstudio/*": ["packages/*"],
+      "@nstudio/nativescript-parallax": ["packages/nativescript-parallax/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
