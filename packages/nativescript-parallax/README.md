@@ -4,6 +4,8 @@
 npm install @nstudio/nativescript-parallax
 ```
 
+https://github.com/nstudio/nativescript-ui-kit/assets/457187/b62ebc72-61fa-425e-8734-cf07e151ed6f
+
 ## Usage
 
 Example XML:
