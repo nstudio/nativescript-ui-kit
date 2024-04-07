@@ -10,10 +10,9 @@
         "outputPath": "dist/packages/nativescript-parallax",
         "tsConfig": "packages/nativescript-parallax/tsconfig.json",
         "packageJson": "packages/nativescript-parallax/package.json",
-        "main": "packages/nativescript-parallax/index.d.ts",
+        "main": "packages/nativescript-parallax/index.ts",
         "assets": [
           "packages/nativescript-parallax/*.md",
-          "packages/nativescript-parallax/index.d.ts",
           "LICENSE",
           {
             "glob": "**/*",
