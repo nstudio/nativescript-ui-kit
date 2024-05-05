@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-parallax",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "NativeScript Parallax View Plugin",
   "main": "index",
   "typings": "index.d.ts",
