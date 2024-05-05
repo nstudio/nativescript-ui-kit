@@ -85,7 +85,10 @@ export class FontIconFactory {
       if (pair[1]) {
         let value = cleanValue(pair[1]);
         for (let key of keys) {
-          key = key.trim().slice(1).split(':before')[0];
+          key = key.trim()
+                  .slice(1)
+                  .split(':before')[0]
+                  .replace(/:/g, ''); // remove any extra colon characters, i.e., '::before'
           FontIconFactory.css[FontIconFactory._currentName][key] = String.fromCharCode(parseInt(value.substring(2), 16));
           if (FontIconFactory.debug) {
             mappedCss += `${key}: ${value}\n`;
