@@ -31,6 +31,10 @@ Button {
   }
 }
 
+.h2 {
+  font-weight: 600;
+}
+
 .action-bar {
   background-color: #333;
   color: white;
@@ -40,26 +44,26 @@ Button {
 .msg {
   color: #000;
   horizontal-align: center;
-  padding:20;
-  font-size:30;
+  padding: 20;
+  font-size: 30;
 }
 
 .msg2 {
-  background-color:#7C3FE8;
+  background-color: #7c3fe8;
   border-radius: 39;
-  width:78;
-  color:#fff;
-  padding:30;
+  width: 78;
+  color: #fff;
+  padding: 30;
   text-align: center;
 }
 
 .msg3 {
-  margin-top:50;
+  margin-top: 50;
 }
 
 .msg4 {
-  margin-top:100;
-  font-size:18;
+  margin-top: 100;
+  font-size: 18;
 }
 
 .ion {
@@ -75,11 +79,14 @@ Button {
   font-size: 30;
 }
 
-.v-center, .v-middle, .align-middle {
+.v-center,
+.v-middle,
+.align-middle {
   vertical-align: middle;
 }
 
-.v-top, .align-top {
+.v-top,
+.align-top {
   vertical-align: top;
 }
 
@@ -92,4 +99,56 @@ Button {
 
 .bg-sky {
   background-color: #3145e0;
+}
+
+// Parallax demo
+ParallaxView {
+  margin-top: -20;
+}
+
+#headerLabel2 {
+  font-size: 20;
+  horizontal-align: center;
+  color: #b2ebf2;
+  margin-top: 20;
+}
+#headerLabel {
+  font-size: 40;
+  horizontal-align: center;
+  color: #b2ebf2;
+  margin-top: 20;
+}
+.header-template {
+  background-color: #212121;
+  background-image: url('~/images/mountains.png');
+  background-size: cover;
+  background-position: center center;
+  height: 200;
+}
+.body-template {
+  font-size: 20;
+  padding: 15;
+}
+.anchor {
+  height: 70;
+  width: 100%;
+  background-color: #1770de;
+}
+
+.anchor Label {
+  vertical-align: center;
+}
+
+.header {
+  font-size: 25;
+  color: #a0a0a0;
+  margin-bottom: 20;
+  margin-top: 5;
+}
+
+#titleLabel {
+  font-weight: bold;
+  font-size: 25;
+  padding: 5 15;
+  color: #fff;
 }

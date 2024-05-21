@@ -524,7 +524,10 @@ import UIKit
     @objc fileprivate func tapWasRecognized(_ recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: self)
         self.isUserInteractionEnabled = false
-        setCurrentSegmentIndex(segmentFromTapPoint(point), animated: true)
+        let index = segmentFromTapPoint(point)
+        setCurrentSegmentIndex(index, animated: true)
+        // immediately trigger event change for snappy UI expectations
+        delegate?.segmentedControl?(self, didChangeFromSegmentAtIndex: currentSegment, toSegmentAtIndex: index)
     }
     
     // MARK: - Setup Constraints

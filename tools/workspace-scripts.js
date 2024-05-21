@@ -80,51 +80,65 @@ module.exports = {
         build: {
           script: 'nx run nativescript-coachmarks:build.all',
           description: '@nstudio/nativescript-coachmarks: Build',
-        }
-      },      
+        },
+      },
+      // nativescript-fonticon
+      'nativescript-fonticon': {
+        build: {
+          script: 'nx run nativescript-fonticon:build.all',
+          description: 'nativescript-fonticon: Build',
+        },
+      },
+      // @nstudio/nativescript-smartlook
+      'nativescript-smartlook': {
+        build: {
+          script: 'nx run nativescript-smartlook:build.all',
+          description: '@nstudio/nativescript-smartlook: Build',
+        },
+      },
       // @nstudio/ui-collectionview
-			'ui-collectionview': {
-				build: {
-					script: 'nx run ui-collectionview:build.all',
-					description: '@nstudio/ui-collectionview: Build',
-				},
-			},
+      'ui-collectionview': {
+        build: {
+          script: 'nx run ui-collectionview:build.all',
+          description: '@nstudio/ui-collectionview: Build',
+        },
+      },
       // @nstudio/ui-collectionview-sean
-			'ui-collectionview-sean': {
-				build: {
-					script: 'nx run ui-collectionview-sean:build.all',
-					description: '@nstudio/ui-collectionview-sean: Build',
-				},
-			},
-			// nativescript-fonticon
-			'nativescript-fonticon': {
-				build: {
-					script: 'nx run nativescript-fonticon:build.all',
-					description: 'nativescript-fonticon: Build',
-				},
-			},
-			// @nstudio/nativescript-smartlook
-			'nativescript-smartlook': {
-				build: {
-					script: 'nx run nativescript-smartlook:build.all',
-					description: '@nstudio/nativescript-smartlook: Build',
-				},
-			},
-			// @nstudio/nativescript-variable-blur-view
-			'nativescript-variable-blur-view': {
-				build: {
-					script: 'nx run nativescript-variable-blur-view:build.all',
-					description: '@nstudio/nativescript-variable-blur-view: Build',
-				},
-			},
-			// @nstudio/nativescript-fluid-segmented-bar
-			'nativescript-fluid-segmented-bar': {
-				build: {
-					script: 'nx run nativescript-fluid-segmented-bar:build.all',
-					description: '@nstudio/nativescript-fluid-segmented-bar: Build',
-				},
-			},
-			'build-all': {
+      'ui-collectionview-sean': {
+        build: {
+          script: 'nx run ui-collectionview-sean:build.all',
+          description: '@nstudio/ui-collectionview-sean: Build',
+        },
+      },
+      // @nstudio/nativescript-variable-blur-view
+      'nativescript-variable-blur-view': {
+        build: {
+          script: 'nx run nativescript-variable-blur-view:build.all',
+          description: '@nstudio/nativescript-variable-blur-view: Build',
+        },
+      },
+      // @nstudio/nativescript-fluid-segmented-bar
+      'nativescript-fluid-segmented-bar': {
+        build: {
+          script: 'nx run nativescript-fluid-segmented-bar:build.all',
+          description: '@nstudio/nativescript-fluid-segmented-bar: Build',
+        },
+      },
+      // @nstudio/nativescript-markdown-view
+      'nativescript-markdown-view': {
+        build: {
+          script: 'nx run nativescript-markdown-view:build.all',
+          description: '@nstudio/nativescript-markdown-view: Build',
+        },
+      },
+      // @nstudio/nativescript-parallax
+      'nativescript-parallax': {
+        build: {
+          script: 'nx run nativescript-parallax:build.all',
+          description: '@nstudio/nativescript-parallax: Build',
+        },
+      },
+      'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -143,31 +157,39 @@ module.exports = {
         description: 'Focus on @nstudio/nativescript-shimmer',
       },
       'ui-collectionview': {
-				script: 'nx run ui-collectionview:focus',
-				description: 'Focus on @nstudio/ui-collectionview',
+        script: 'nx run ui-collectionview:focus',
+        description: 'Focus on @nstudio/ui-collectionview',
       },
       'nativescript-coachmarks': {
-				script: 'nx run nativescript-coachmarks:focus',
-				description: 'Focus on @nstudio/nativescript-coachmarks',
-			},
-			'nativescript-fonticon': {
-				script: 'nx run nativescript-fonticon:focus',
-				description: 'Focus on nativescript-fonticon',
-			},
-			'nativescript-smartlook': {
-				script: 'nx run nativescript-smartlook:focus',
-				description: 'Focus on @nstudio/nativescript-smartlook',
-			},
-			'nativescript-variable-blur-view': {
-				script: 'nx run nativescript-variable-blur-view:focus',
-				description: 'Focus on @nstudio/nativescript-variable-blur-view',
-			},
-			'nativescript-fluid-segmented-bar': {
-				script: 'nx run nativescript-fluid-segmented-bar:focus',
-				description: 'Focus on @nstudio/nativescript-fluid-segmented-bar',
-			},
-			reset: {
-        script: 'nx g @nativescript/plugin-tools:focus-packages',
+        script: 'nx run nativescript-coachmarks:focus',
+        description: 'Focus on @nstudio/nativescript-coachmarks',
+      },
+      'nativescript-fonticon': {
+        script: 'nx run nativescript-fonticon:focus',
+        description: 'Focus on nativescript-fonticon',
+      },
+      'nativescript-smartlook': {
+        script: 'nx run nativescript-smartlook:focus',
+        description: 'Focus on @nstudio/nativescript-smartlook',
+      },
+      'nativescript-variable-blur-view': {
+        script: 'nx run nativescript-variable-blur-view:focus',
+        description: 'Focus on @nstudio/nativescript-variable-blur-view',
+      },
+      'nativescript-fluid-segmented-bar': {
+        script: 'nx run nativescript-fluid-segmented-bar:focus',
+        description: 'Focus on @nstudio/nativescript-fluid-segmented-bar',
+      },
+      'nativescript-markdown-view': {
+        script: 'nx run nativescript-markdown-view:focus',
+        description: 'Focus on @nstudio/nativescript-markdown-view',
+      },
+      'nativescript-parallax': {
+        script: 'nx run nativescript-parallax:focus',
+        description: 'Focus on @nstudio/nativescript-parallax',
+      },
+      reset: {
+        script: 'nx g @nstudio/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },
     },

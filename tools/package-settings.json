@@ -3,13 +3,7 @@
     "type": "git",
     "url": "https://github.com/nstudio/nativescript-ui-kit.git"
   },
-  "keywords": [
-    "NativeScript",
-    "JavaScript",
-    "TypeScript",
-    "iOS",
-    "Android"
-  ],
+  "keywords": ["NativeScript", "JavaScript", "TypeScript", "iOS", "Android"],
   "author": {
     "name": "nstudio",
     "email": "oss@nstudio.io"
@@ -18,5 +12,6 @@
     "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/nstudio/nativescript-ui-kit"
+  "homepage": "https://github.com/nstudio/nativescript-ui-kit",
+  "name": "@nstudio"
 }

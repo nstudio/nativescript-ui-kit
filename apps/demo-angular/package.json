@@ -3,17 +3,18 @@
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "@nstudio/ui-collectionview": "file:../../dist/packages/ui-collectionview",
-    "@nstudio/nativescript-fluid-segmented-bar": "file:../../dist/packages/nativescript-fluid-segmented-bar",
+    "@nstudio/nativescript-markdown-view": "file:../../dist/packages/nativescript-markdown-view",
     "@nstudio/nativescript-coachmarks": "file:../../dist/packages/nativescript-coachmarks",
+    "@nstudio/nativescript-fluid-segmented-bar": "file:../../dist/packages/nativescript-fluid-segmented-bar",
     "nativescript-fonticon": "file:../../dist/packages/nativescript-fonticon",
     "@nstudio/nativescript-label-marquee": "file:../../dist/packages/nativescript-label-marquee",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../dist/packages/nativescript-smartlook",
-    "@nstudio/nativescript-variable-blur-view": "file:../../dist/packages/nativescript-variable-blur-view"
+    "@nstudio/nativescript-variable-blur-view": "file:../../dist/packages/nativescript-variable-blur-view",
+    "@nstudio/nativescript-parallax": "file:../../dist/packages/nativescript-parallax"
   },
   "devDependencies": {
-    "@nativescript/android": "~8.5.0",
-    "@nativescript/ios": "~8.5.0",
-    "@nativescript/tailwind": "^2.0.1"
+    "@nativescript/android": "~8.7.0",
+    "@nativescript/ios": "~8.7.0"
   }
 }

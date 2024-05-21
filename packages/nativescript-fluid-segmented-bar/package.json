@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-fluid-segmented-bar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fluid Segmented Bar",
   "main": "index",
   "typings": "index.d.ts",
