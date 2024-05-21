@@ -254,14 +254,9 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
       if (Trace.isEnabled()) {
         CLog(CLogTypes.info, `onItemLoading: ${index} - Creating view from template`);
       }
-
-      viewRef = this.loader.createEmbeddedView(this.itemTemplate, new ItemContext(), 0);
-      args.view = getItemViewRoot(viewRef);
-      args.view[NG_VIEW] = viewRef;
+      viewRef = this.getOrCreate(this.itemTemplate) as any;
     }
-
     this.setupViewRef(viewRef, currentItem, index);
-
     this.detectChangesOnChild(viewRef, index);
   }
   @HostListener('itemRecycling', ['$event'])
@@ -330,10 +325,7 @@ export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContent
 
   getItemTemplateViewFactory(template: TemplateRef<ItemContext>): () => View {
     return () => {
-      const viewRef = this.loader.createEmbeddedView(template, new ItemContext(), 0);
-      const resultView = getItemViewRoot(viewRef);
-      resultView[NG_VIEW] = viewRef;
-      return resultView;
+      return this.getOrCreate(template);
     };
   }
   viewPool = new Map<
