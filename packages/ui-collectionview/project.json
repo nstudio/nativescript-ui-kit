@@ -32,14 +32,10 @@
     "build.all": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "node tools/scripts/build-finish.ts ui-collectionview"
-        ],
+        "commands": ["node tools/scripts/build-finish.ts ui-collectionview"],
         "parallel": false
       },
-      "outputs": [
-        "dist/packages/ui-collectionview"
-      ],
+      "outputs": ["{workspaceRoot}/dist/packages/ui-collectionview"],
       "dependsOn": [
         {
           "target": "build.all",
@@ -54,18 +50,14 @@
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx g @nativescript/plugin-tools:focus-packages ui-collectionview"
-        ],
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages ui-collectionview"],
         "parallel": false
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/ui-collectionview/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/ui-collectionview/**/*.ts"]
       }
     }
   },
