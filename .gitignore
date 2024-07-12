@@ -52,3 +52,4 @@ packages/**/angular/dist
 shimmer-android
 
 .nx/cache
+.nx/workspace-data
