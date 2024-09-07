@@ -244,6 +244,7 @@ Property |  Description
 `labelPosition: number` | Use `CoachMark.LABEL_POSITIONS`. Supports: BOTTOM, LEFT, TOP, RIGHT, RIGHT_BOTTOM.
 `labelAlignment: number` | Use `CoachMark.LABEL_ALIGNMENTS`. Supports: CENTER, LEFT, RIGHT.
 `showArrow: boolean` | Show arrow or not.
+`closeOnCutOutTap?: boolean;` | Close coachmarks session completely when tapping on any cut out. Defaults to false.
 `view:View` | View to highlight . Android only
 
 ## License

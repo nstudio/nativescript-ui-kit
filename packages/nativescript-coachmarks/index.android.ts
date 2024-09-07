@@ -58,6 +58,7 @@ export class CoachMark {
   public labelAlignment: number;
   public showArrow: boolean;
   public view: any;
+  closeOnCutOutTap?: boolean;
 
   static SHAPES: ICoachMarkShape = {};
 
