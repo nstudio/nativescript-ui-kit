@@ -5,7 +5,7 @@
               <ActionItem id="menu" text="Menu" />
           </ActionBar.actionItems> -->
       <ActionBar.titleView>
-        <GridLayout paddingLeft="5" paddingRight="5" loaded="{{loadedMenuItem}}">
+        <GridLayout paddingLeft="5" paddingRight="5" loaded="{{loadedMenuItem}}" columns="50, *">
           <Label id="menu" text="Menu"/>
         </GridLayout>
       </ActionBar.titleView>
