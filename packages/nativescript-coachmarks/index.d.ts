@@ -1,12 +1,20 @@
-import { Observable } from '@nativescript/core';
+import { Color, Observable } from '@nativescript/core';
 export interface ICoachMarkOptions {
   enableContinueLabel?: boolean;
   enableSkipButton?: boolean;
   continueLabelText?: string;
+  continueLabelTextColor?: Color | string;
+  continueLabelBackgroundColor?: Color | string;
+  continueLabelOffset?: { x?: number; y?: number };
+  continueLabelSize?: { width?: number; height?: number };
   skipButtonText?: string;
+  skipButtonTextColor?: Color | string;
+  skipButtonBackgroundColor?: Color | string;
+  skipButtonOffset?: { x?: number; y?: number };
   animationDuration?: number;
   continueLocation?: number;
   lblSpacing?: number;
+  lblTextColor?: Color | string;
   cutoutRadius?: number;
   maskColor?: any;
   maxLblWidth?: number;

@@ -255,7 +255,7 @@ class CoachMarksDelegateImpl extends NSObject implements MPCoachMarksViewDelegat
         instance: coachMarksView,
         index,
       };
-      owner.events.notify(owner.cleanupEvent);
+      owner.events.notify(owner.clickEvent);
     }
   }
 
