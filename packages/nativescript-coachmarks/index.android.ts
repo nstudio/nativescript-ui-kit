@@ -163,20 +163,20 @@ export class CoachMarks {
       if (CoachMarks.DEBUG) console.log(`Setting up mark --`);
       let target = new com.takusemba.spotlight.Target.Builder();
 
-      if ('position' in mark && 'x' in mark.position && 'y' in mark.position) {
+      if (mark?.position && 'x' in mark.position && 'y' in mark.position) {
         target.setAnchor(mark.position.x, mark.position.y);
       }
 
-      if ('view' in mark) {
+      if (mark?.view) {
         mark.view instanceof android.view.View ? target.setAnchor(mark.view) : target.setAnchor(mark.view.nativeView);
       }
 
       let width = 100;
       let height = 100;
-      if ('position' in mark && 'width' in mark.position && 'height' in mark.position) {
+      if (mark?.position && 'width' in mark.position && 'height' in mark.position) {
         width = mark.position.width;
         height = mark.position.height;
-      } else if ('view' in mark) {
+      } else if (mark?.view) {
         width = mark.view.getMeasuredWidth();
         height = mark.view.getMeasuredHeight();
       }
@@ -410,11 +410,11 @@ export class CoachMarks {
           }
         }
 
-        if ('x' in options.skipButtonOffset) {
+        if (options.skipButtonOffset && 'x' in options.skipButtonOffset) {
           skipButton.translateX = options.skipButtonOffset.x;
         }
 
-        if ('y' in options.skipButtonOffset) {
+        if (options.skipButtonOffset && 'y' in options.skipButtonOffset) {
           skipButton.translateY = options.skipButtonOffset.y;
         }
 
@@ -480,11 +480,11 @@ export class CoachMarks {
             break;
         }
 
-        if ('x' in options.continueLabelOffset) {
+        if (options.continueLabelOffset && 'x' in options.continueLabelOffset) {
           continueLabel.translateX = options.continueLabelOffset.x;
         }
 
-        if ('y' in options.continueLabelOffset) {
+        if (options.continueLabelOffset && 'y' in options.continueLabelOffset) {
           continueLabel.translateY = options.continueLabelOffset.y;
         }
 
