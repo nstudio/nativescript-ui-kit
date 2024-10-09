@@ -1,4 +1,4 @@
-import { Observable, EventData, Frame, ApplicationSettings, Application, Screen, Color, GridLayout, Utils, Button, GridUnitType, ItemSpec, StackLayout, View, Label, ImageSource, Image } from '@nativescript/core';
+import { Observable, EventData, Frame, ApplicationSettings, Application, Screen, Color, GridLayout, Utils, Button, GridUnitType, ItemSpec, StackLayout, View, Label, ImageSource, Image, fromObject } from '@nativescript/core';
 // declare const com;
 export interface ICoachMarkOptions {
   enableContinueLabel?: boolean; // true
@@ -156,7 +156,7 @@ export class CoachMarks {
     const targets = new java.util.ArrayList(marks.length);
 
     const activity = Utils.android.getCurrentActivity();
-    const that = new WeakRef(this);
+    const that = instance ? new WeakRef(instance) : null;
     for (let i = 0; i < marks.length; i++) {
       let build: com.takusemba.spotlight.Target;
       const mark = marks[i];
@@ -371,18 +371,15 @@ export class CoachMarks {
       });
 
       overlay.on('tap', () => {
-        const owner = that.deref();
-        if (owner) {
-          if (owner.events) {
-            owner._clickEvent = {
-              eventName: 'click',
-              object: owner,
-              data: {},
-            };
-            owner.events.notify(owner._clickEvent);
-          }
-          owner._showCase?.next?.();
+        if (this.events) {
+          this._clickEvent = {
+            eventName: 'click',
+            object: this,
+            data: {},
+          };
+          this.events.notify(this._clickEvent);
         }
+        this._showCase?.next?.();
       });
 
       if (options.enableSkipButton ?? true) {
@@ -425,13 +422,10 @@ export class CoachMarks {
           if (CoachMarks.DEBUG) {
             console.log('coachMarks is about to cleanup, prepare any final adjustments if needed.');
           }
-          const owner = that.deref();
-          if (owner) {
-            if (owner?.events) {
-              owner.events.notify(owner._willCleanupEvent);
-            }
-            owner._showCase?.finish?.();
+          if (this.events) {
+            this.events.notify(this._willCleanupEvent);
           }
+          this._showCase?.finish?.();
         });
         overlay.addChild(skipButton);
       }
@@ -507,7 +501,7 @@ export class CoachMarks {
               if (CoachMarks.DEBUG) {
                 console.log('coachMarks is about to cleanup, prepare any final adjustments if needed.');
               }
-              const owner = that.deref();
+              const owner = that?.deref();
               if (owner?.events) {
                 owner.events.notify(owner._willCleanupEvent);
               }
@@ -535,7 +529,7 @@ export class CoachMarks {
             if (CoachMarks.DEBUG) {
               console.log(`will navigate to index: ${index}`);
             }
-            const owner = that.get();
+            const owner = that?.deref();
             if (owner?.events) {
               owner._willNavigateEvent.data = {
                 instance: owner,
@@ -548,7 +542,7 @@ export class CoachMarks {
             if (CoachMarks.DEBUG) {
               console.log(`navigated to index: ${index}`);
             }
-            const owner = that.get();
+            const owner = that?.deref();
             if (owner?.events) {
               owner._navigateEvent.data = {
                 instance: owner,
@@ -561,7 +555,7 @@ export class CoachMarks {
             if (CoachMarks.DEBUG) {
               console.log('coachMarks did cleanup, clear your instances if you have any');
             }
-            const owner = that.get();
+            const owner = that?.deref();
             if (owner?.events) {
               owner._cleanupEvent = {
                 eventName: 'cleanup',
