@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-coachmarks",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Display user coach marks with a couple of shape cutouts over an existing UI for NativeScript.",
   "main": "index",
   "typings": "index.d.ts",
