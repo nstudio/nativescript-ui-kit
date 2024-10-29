@@ -18,5 +18,7 @@
 
     <Button text="Start with Custom Options" tap="{{startWithOptions}}" class="message msg msg4" id="fourth" />
 
+      <Button text="Show Modal" tap="{{showModal}}" class="message msg msg4" />
+
   </StackLayout>
 </Page>
