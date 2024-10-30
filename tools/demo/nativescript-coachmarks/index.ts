@@ -1,6 +1,6 @@
 import { DemoSharedBase } from '../utils';
 import { ICoachMarkOptions, CoachMark, CoachMarks } from '@nstudio/nativescript-coachmarks';
-import { Color, Screen } from '@nativescript/core';
+import { Color, Page, Screen, ShowModalOptions } from '@nativescript/core';
 
 export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
   private _coachMarks;
@@ -8,12 +8,24 @@ export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
   private _first;
   private _second;
   private _third;
+  page: Page;
 
   constructor(first: any, second: any, third: any) {
     super();
     this._first = first;
     this._second = second;
     this._third = third;
+  }
+
+  showModal() {
+    const options: ShowModalOptions = {
+      fullscreen: true,
+      context: { name: 'Modal Test' },
+      closeCallback(args: { name: string }) {
+        console.log('Modal closed', args.name);
+      },
+    };
+    this.page.showModal('~/modal/coach-marks', options);
   }
 
   loadedMenuItem(args) {

@@ -4,7 +4,9 @@ import {} from '@nstudio/nativescript-coachmarks';
 
 export function navigatingTo(args: EventData) {
   const page = <Page>args.object;
-  page.bindingContext = new DemoModel(getViewById(page, 'first'), getViewById(page, 'second'), getViewById(page, 'third'));
+  const demo = new DemoModel(getViewById(page, 'first'), getViewById(page, 'second'), getViewById(page, 'third'));
+  demo.page = page;
+  page.bindingContext = demo;
 }
 
 export class DemoModel extends DemoSharedNativescriptCoachmarks {}

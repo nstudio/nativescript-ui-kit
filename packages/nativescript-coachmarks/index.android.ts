@@ -155,7 +155,24 @@ export class CoachMarks {
     }
     const targets = new java.util.ArrayList(marks.length);
 
-    const activity = Utils.android.getCurrentActivity();
+    const view = Frame.topmost()?.android?.rootViewGroup || Frame.topmost()?.currentPage?.android;
+    const activity = Utils.android.getCurrentActivity() as any;
+    let container: android.view.ViewGroup;
+    if (view) {
+      // !view.hasWindowFocus?.() showing a modal w/o frame
+      // !activity.hasWindowFocus?.() showing a modal with frame
+      if (!view.hasWindowFocus?.() || !activity.hasWindowFocus?.()) {
+        const fragments: java.util.List<androidx.fragment.app.Fragment> = activity instanceof androidx.fragment.app.FragmentActivity ? activity?.getSupportFragmentManager()?.getFragments() : activity?.getFragmentManager()?.getFragments();
+        const count = fragments?.size();
+        const last = count - 1;
+        if (last !== -1) {
+          const dialog = fragments.get(last);
+          const dialogView = dialog?.getView?.();
+          container = dialogView?.getParent?.() ?? dialogView;
+        }
+      }
+    }
+
     const that = instance ? new WeakRef(instance) : null;
     for (let i = 0; i < marks.length; i++) {
       let build: com.takusemba.spotlight.Target;
@@ -518,9 +535,9 @@ export class CoachMarks {
     this._targets = targets;
 
     const background = options.maskColor instanceof Color ? options.maskColor : new Color('rgba(0, 0, 0, 0.5)');
-    this._showCase = new com.takusemba.spotlight.Spotlight.Builder(activity)
+    let showCaseBuilder = new com.takusemba.spotlight.Spotlight.Builder(activity)
       .setBackgroundColor(background.argb)
-      .setDuration(300)
+      .setDuration((options?.animationDuration ?? 0.3) * 1000)
       .setTargets(targets)
       .setOnSpotlightListener(
         new com.takusemba.spotlight.OnSpotlightListener({
@@ -566,66 +583,13 @@ export class CoachMarks {
             }
           },
         })
-      )
-      .build();
+      );
 
-    if (this.marks[this.nextView] && this.marks[this.nextView].caption) {
-      //  this.setCaption(this.marks[this.nextView].caption);
+    if (container) {
+      showCaseBuilder = showCaseBuilder.setContainer(container);
     }
 
-    if (options.skipButtonText) {
-      //  this.setButton(options.skipButtonText);
-    }
-    /*
-    this._showCase.setOnShowcaseEventListener(
-      new com.github.amlcurran.showcaseview.OnShowcaseEventListener({
-        owner: that.get(),
-        onShowcaseViewHide: function (showcaseView) {},
-        onShowcaseViewDidHide: function (showcaseView) {
-          if (this.owner.events) {
-            this.owner._cleanupEvent = {
-              eventName: 'cleanup',
-              object: this.owner,
-              data: {},
-            };
-            this.owner.events.notify(this.owner._cleanupEvent);
-          }
-        },
-        onShowcaseViewShow: function (showcaseView) {
-          if (this.owner.marks[this.owner.nextView] && this.owner.marks[this.owner.nextView].caption) {
-            this.owner.setCaption(this.owner.marks[this.owner.nextView].caption);
-          }
-
-          if (this.owner.events) {
-            this.owner._navigateEvent.data = {
-              instance: this.owner,
-              index: this.owner.nextView,
-            };
-            this.owner.events.notify(this.owner._navigateEvent);
-          }
-        },
-        onShowcaseViewTouchBlocked: function (motionEvent) {
-          if (motionEvent.getAction() === android.view.MotionEvent.ACTION_UP) {
-            this.owner.nextView++;
-            if (this.owner.events) {
-              this.owner._clickEvent = {
-                eventName: 'click',
-                object: this.owner,
-                data: {},
-              };
-              this.owner.events.notify(this.owner._clickEvent);
-            }
-            if (this.owner.nextView < this.owner.marks.length) {
-              this.owner._showCase.setTarget(new com.github.amlcurran.showcaseview.targets.ViewTarget(this.owner.marks[this.owner.nextView].view.android));
-              this.owner._showCase.show();
-            } else {
-              this.owner._showCase.hide();
-            }
-          }
-        },
-      }),
-    );
-    */
+    this._showCase = showCaseBuilder.build();
 
     this._showCase.start();
   }
