@@ -1,0 +1,10 @@
+<GridLayout loaded="onLoaded"  height="200">
+<ListView items="{{ items }}" id="lv">
+  <ListView.itemTemplate>
+    <GridLayout padding="16" columns="20, *" id="{{ id }}" loaded="itemLoaded">
+      <ContentView width="20" height="20" borderRadius="20" backgroundColor="#65adf1" />
+      <Label text="{{ title }}" col="1" textWrap="true" marginLeft="8" />
+    </GridLayout>
+  </ListView.itemTemplate>
+</ListView>
+</GridLayout>
