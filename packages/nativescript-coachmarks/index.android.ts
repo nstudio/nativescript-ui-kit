@@ -1,4 +1,4 @@
-import { Observable, EventData, Frame, ApplicationSettings, Application, Screen, Color, GridLayout, Utils, Button, GridUnitType, ItemSpec, StackLayout, View, Label, ImageSource, Image, fromObject } from '@nativescript/core';
+import { Observable, EventData, Frame, Screen, Color, Utils, View, Label, ImageSource, Image, AbsoluteLayout } from '@nativescript/core';
 // declare const com;
 export interface ICoachMarkOptions {
   enableContinueLabel?: boolean; // true
@@ -216,8 +216,7 @@ export class CoachMarks {
 
       //target.setEffect(new com.takusemba.spotlight.effet.RippleEffect(100, 200, color.argb));
 
-      const overlay = new GridLayout();
-
+      const overlay = new AbsoluteLayout();
       const lblCaption = new Label();
       lblCaption.verticalAlignment = 'top';
       lblCaption.horizontalAlignment = 'left';
@@ -226,6 +225,9 @@ export class CoachMarks {
       lblCaption.color = (options.lblTextColor ?? new Color('white')) as never;
 
       overlay.addChild(lblCaption);
+
+      const skipButton = new Label();
+      const continueLabel = new Label();
 
       overlay.on(View.layoutChangedEvent, (args: EventData) => {
         let x = 0;
@@ -247,6 +249,11 @@ export class CoachMarks {
           width: overlay.getMeasuredWidth(),
           height: overlay.getMeasuredHeight(),
         };
+
+        skipButton.left = (bounds.width - skipButton.getMeasuredWidth()) / Screen.mainScreen.scale;
+        skipButton.top = (bounds.height - skipButton.getMeasuredHeight()) / Screen.mainScreen.scale;
+
+        continueLabel.top = (bounds.height - continueLabel.getMeasuredHeight()) / Screen.mainScreen.scale;
 
         switch (mark.labelAlignment) {
           case 1:
@@ -400,7 +407,6 @@ export class CoachMarks {
       });
 
       if (options.enableSkipButton ?? true) {
-        const skipButton = new Label();
         skipButton.fontSize = 13;
         skipButton.height = 30;
 
@@ -449,7 +455,6 @@ export class CoachMarks {
 
       // continue label
       if (i === 0 && (options.enableContinueLabel ?? true)) {
-        const continueLabel = new Label();
         continueLabel.fontSize = 13;
         continueLabel.height = 30;
         if (options.enableSkipButton ?? true) {
