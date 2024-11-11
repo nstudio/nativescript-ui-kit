@@ -1,6 +1,6 @@
 import { DemoSharedBase } from '../utils';
 import { ICoachMarkOptions, CoachMark, CoachMarks } from '@nstudio/nativescript-coachmarks';
-import { Color, Page, Screen, ShowModalOptions } from '@nativescript/core';
+import { Color, Frame, Observable, Page, Screen, ShowModalOptions } from '@nativescript/core';
 
 export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
   private _coachMarks;
@@ -15,6 +15,23 @@ export class DemoSharedNativescriptCoachmarks extends DemoSharedBase {
     this._first = first;
     this._second = second;
     this._third = third;
+  }
+
+  showBottomsheet(args) {
+    const mainView = args.object;
+    const context = new Observable();
+    context.set('items', [
+      { title: 'Facebook', id: 'fb' },
+      { title: 'Google', id: 'google' },
+      { title: 'X', id: 'x' },
+    ]);
+    const fullscreen = true;
+    mainView.showBottomSheet({
+      view: '~/modal/coach-marks-bottom',
+      context,
+      closeCallback: () => {},
+      fullscreen,
+    });
   }
 
   showModal() {

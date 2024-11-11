@@ -20,5 +20,7 @@
 
       <Button text="Show Modal" tap="{{showModal}}" class="message msg msg4" />
 
+          <Button text="Show Bottomsheet" tap="{{showBottomsheet}}" class="message msg msg4" />
+
   </StackLayout>
 </Page>
