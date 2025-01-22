@@ -43,6 +43,9 @@ export class MarkdownView extends MarkdownViewBase {
   }
 
   private _updateStyling() {
+    // use fallback defaults to avoid undefined dictionary inserts
+    this._fontSize = this._fontSize || 15;
+    this._color = this._color || UIColor.blackColor;
     const defaultAttributes = NSDictionary.dictionaryWithObjectsForKeys([UIFont.systemFontOfSize(this._fontSize), this._color], [NSFontAttributeName, NSForegroundColorAttributeName]);
     const emphasisAttributes = NSDictionary.dictionaryWithObjectsForKeys([UIFont.italicSystemFontOfSize(this._fontSize)], [NSFontAttributeName]);
     const strongAttributes = NSDictionary.dictionaryWithObjectsForKeys([UIFont.boldSystemFontOfSize(this._fontSize)], [NSFontAttributeName]);
