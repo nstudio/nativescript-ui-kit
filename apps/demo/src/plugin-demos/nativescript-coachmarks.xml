@@ -5,7 +5,7 @@
               <ActionItem id="menu" text="Menu" />
           </ActionBar.actionItems> -->
       <ActionBar.titleView>
-        <GridLayout paddingLeft="5" paddingRight="5" loaded="{{loadedMenuItem}}">
+        <GridLayout paddingLeft="5" paddingRight="5" loaded="{{loadedMenuItem}}" columns="50, *">
           <Label id="menu" text="Menu"/>
         </GridLayout>
       </ActionBar.titleView>
@@ -17,6 +17,10 @@
     <Button text="Account Settings" class="message msg msg3" id="third" />
 
     <Button text="Start with Custom Options" tap="{{startWithOptions}}" class="message msg msg4" id="fourth" />
+
+      <Button text="Show Modal" tap="{{showModal}}" class="message msg msg4" />
+
+          <Button text="Show Bottomsheet" tap="{{showBottomsheet}}" class="message msg msg4" />
 
   </StackLayout>
 </Page>

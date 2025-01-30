@@ -9,12 +9,8 @@
     "noEmitHelpers": true,
     "target": "ES2020",
     "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
-    "types": ["node", "svelte", "vue", "svelte-native"],
-    "jsx": "react",
+    "lib": ["ESNext", "dom"],
+    "types": ["node"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -25,34 +21,21 @@
       }
     ],
     "paths": {
-      "@demo/shared": [
-        "tools/demo/index.ts"
-      ],
-      "@nstudio/nativescript-coachmarks": [
-        "packages/nativescript-coachmarks/index.d.ts"
-      ],
-      "@nstudio/nativescript-label-marquee": [
-        "packages/nativescript-label-marquee/index.d.ts"
-      ],
-      "@nstudio/nativescript-shimmer": [
-        "packages/nativescript-shimmer/index.d.ts"
-      ],
-      "@nstudio/ui-collectionview": [
-        "packages/ui-collectionview/index.d.ts"
-      ],
-      "@nstudio/ui-collectionview/angular": [
-        "packages/ui-collectionview/angular/index.ts"
-      ],
-      "nativescript-fonticon": [
-        "packages/nativescript-fonticon/index.ts"
-      ],
-      "nativescript-fonticon/angular": [
-        "packages/nativescript-fonticon/angular/index.ts"
-      ]
+      "@demo/shared": ["tools/demo/index.ts"],
+      "@nstudio/*": ["packages/*"],
+      "@nstudio/nativescript-coachmarks": ["packages/nativescript-coachmarks/index.d.ts"],
+      "@nstudio/nativescript-fluid-segmented-bar": ["packages/nativescript-fluid-segmented-bar/index.d.ts"],
+      "@nstudio/nativescript-label-marquee": ["packages/nativescript-label-marquee/index.d.ts"],
+      "@nstudio/nativescript-markdown-view": ["packages/nativescript-markdown-view/index.d.ts"],
+      "@nstudio/nativescript-parallax": ["packages/nativescript-parallax/index.d.ts"],
+      "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
+      "@nstudio/nativescript-smartlook": ["packages/nativescript-smartlook/index.d.ts"],
+      "@nstudio/nativescript-variable-blur-view": ["packages/nativescript-variable-blur-view/index.ts"],
+      "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
+      "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"],
+      "@nstudio/ui-collectionview": ["packages/ui-collectionview/index.d.ts"],
+      "@nstudio/ui-collectionview/angular": ["packages/ui-collectionview/angular/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

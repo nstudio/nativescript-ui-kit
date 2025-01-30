@@ -8,7 +8,9 @@
       "@demo/shared": ["../../tools/demo/index.ts"],
       "@nstudio/nativescript-label-marquee": ["../../packages/nativescript-label-marquee/index.d.ts"],
       "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"],
-      "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"]
+      "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"],
+      "@nstudio/nativescript-variable-blur-view": ["../../packages/nativescript-variable-blur-view/index.ts"],
+      "@nstudio/nativescript-parallax": ["../../packages/nativescript-parallax/index.ts"]
     }
   }
 }

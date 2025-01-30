@@ -50,3 +50,6 @@ packages/**/angular/dist
 
 # experiments
 shimmer-android
+
+.nx/cache
+.nx/workspace-data

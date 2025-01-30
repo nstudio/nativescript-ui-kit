@@ -1,0 +1,8 @@
+<Page navigatedTo="onShownModally" >
+<ActionBar title="MyApp" />
+  <StackLayout>
+    <TextField text="{{ name }}" id="input" />
+     <Button width="50%" backgroundColor="red" text="Show Marks" tap="{{ startWithOptions }}" id="showView"/>
+    <Button text="Close" tap="{{ onClose }}" id="closeView"/>
+  </StackLayout>
+</Page>

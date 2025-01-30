@@ -6,7 +6,7 @@ export class FontIconFactory {
   static paths: any = {};
   static filesLoaded: BehaviorSubject<any> = new BehaviorSubject(null);
   // font icon collections containing maps of classnames to unicode
-  static css: any = {}; 
+  static css: any = {};
   static _currentName: string;
 
   static loadCss() {
@@ -74,7 +74,15 @@ export class FontIconFactory {
     let sets = data.split('}');
     let mappedCss = '';
     let cleanValue = (val: string) => {
-      let v = val.replace(/\r\n|\n/g, '').split('content:')[1].toLowerCase().replace(/\\e/, '\\ue').replace(/\\f/, '\\uf').trim().replace(/\"/g, '').replace(/;/g, '');
+      let v = val
+        .replace(/\r\n|\n/g, '')
+        .split('content:')[1]
+        .toLowerCase()
+        .replace(/\\e/, '\\ue')
+        .replace(/\\f/, '\\uf')
+        .trim()
+        .replace(/\"/g, '')
+        .replace(/;/g, '');
       return v;
     };
 
@@ -85,7 +93,7 @@ export class FontIconFactory {
       if (pair[1]) {
         let value = cleanValue(pair[1]);
         for (let key of keys) {
-          key = key.trim().slice(1).split(':before')[0];
+          key = key.trim().slice(1).split(':before')[0].replace(/:/g, ''); // remove any extra colon characters, i.e., '::before'
           FontIconFactory.css[FontIconFactory._currentName][key] = String.fromCharCode(parseInt(value.substring(2), 16));
           if (FontIconFactory.debug) {
             mappedCss += `${key}: ${value}\n`;

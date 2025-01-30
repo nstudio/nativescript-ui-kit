@@ -41,6 +41,7 @@ export interface ICoachMark {
   labelPosition?: number;
   labelAlignment?: number;
   showArrow?: boolean;
+  closeOnCutOutTap?: boolean;
 }
 
 export interface ICONTINUE_LOCATION {
@@ -56,6 +57,7 @@ export class CoachMark {
   labelPosition: number;
   labelAlignment: number;
   showArrow: boolean;
+  closeOnCutOutTap?: boolean;
 
   static SHAPES: ICoachMarkShape = {
     DEFAULT: MaskShape.DEFAULT,
@@ -122,6 +124,7 @@ export class CoachMarks {
       if (mark.labelPosition) markObj.position = NSNumber.numberWithInt(mark.labelPosition);
       if (mark.labelAlignment) markObj.alignment = NSNumber.numberWithInt(mark.labelAlignment);
       if (mark.showArrow) markObj.showArrow = NSNumber.numberWithBool(mark.showArrow);
+      if (mark.closeOnCutOutTap) markObj.closeOnCutOutTap = NSNumber.numberWithBool(mark.closeOnCutOutTap);
 
       let markDictionary = NSDictionary.dictionaryWithDictionary(markObj);
       if (CoachMarks.DEBUG) console.log(`Adding mark with caption: ${markObj.caption}`);
@@ -252,7 +255,7 @@ class CoachMarksDelegateImpl extends NSObject implements MPCoachMarksViewDelegat
         instance: coachMarksView,
         index,
       };
-      owner.events.notify(owner.cleanupEvent);
+      owner.events.notify(owner.clickEvent);
     }
   }
 
