@@ -5,6 +5,7 @@ import { FontIconService } from './fonticon.service';
 @Pipe({
   name: 'fonticon',
   pure: false,
+  standalone: false,
 })
 export class FontIconPipe implements PipeTransform, OnDestroy {
   private _collectionName: string;
@@ -51,6 +52,7 @@ export class FontIconPipe implements PipeTransform, OnDestroy {
 // Can be used for optimal performance, however requires usage of Observable values with the async pipe, see demo (app.ts) for example
 @Pipe({
   name: 'fonticonPure',
+  standalone: false,
 })
 export class FontIconPurePipe implements PipeTransform {
   private _collectionName: string;
