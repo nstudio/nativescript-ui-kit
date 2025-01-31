@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/ui-collectionview",
-  "version": "5.1.8",
+  "version": "5.1.9",
   "description": "Customized NativeScript CollectionView for high performance lists. Supports vertical and horizontal modes, templating, and more.",
   "main": "index",
   "typings": "index.d.ts",
@@ -52,5 +52,8 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/nstudio/nativescript-ui-kit",
   "readmeFilename": "README.md",
-  "bootstrapper": "@nativescript/plugin-seed"
+  "bootstrapper": "@nativescript/plugin-seed",
+  "dependencies": {
+    "@nativescript-community/arraybuffers": "^1.1.5"
+  }
 }

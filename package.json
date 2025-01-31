@@ -16,6 +16,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@nativescript-community/arraybuffers": "^1.1.5",
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/animations": "^19.0.0",
     "@angular/common": "^19.0.0",
