@@ -26,6 +26,7 @@ export interface SetupItemViewArgs {
     </DetachedContainer>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CollectionViewComponent implements DoCheck, OnDestroy, AfterContentInit {
   public get nativeElement(): any {
@@ -378,7 +379,7 @@ export function getItemViewRoot(viewRef: ComponentView, rootLocator: RootLocator
   return rootView;
 }
 
-@Directive({ selector: '[cvTemplateKey]' })
+@Directive({ selector: '[cvTemplateKey]', standalone: false })
 export class TemplateKeyDirective {
   constructor(private templateRef: TemplateRef<any>, @Host() private collectionView: CollectionViewComponent) {}
 

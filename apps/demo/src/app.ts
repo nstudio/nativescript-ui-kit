@@ -1,5 +1,5 @@
 import { Application } from '@nativescript/core';
-import { install } from '@nativescript-community/ui-material-bottomsheet';
+// import { install } from '@nativescript-community/ui-material-bottomsheet';
 // Uncomment to test fonticon:
 // import { FontIconFactory, fonticon } from 'nativescript-fonticon';
 // import { fontAwesome } from './fontawesome';
@@ -20,6 +20,6 @@ import { install } from '@nativescript-community/ui-material-bottomsheet';
 //   Smartlook.start('<api-key>');
 // });
 
-install();
+// install();
 
 Application.run({ moduleName: 'app-root' });
