@@ -111,6 +111,7 @@ export class CoachMarks {
   private marks: any[];
   private _willNavigateEvent: any;
   private _willCleanupEvent: any;
+  private _skipEvent: any;
 
   static CONTINUE_LOCATIONS: ICONTINUE_LOCATION = {
     TOP: 0,
@@ -443,10 +444,10 @@ export class CoachMarks {
         skipButton.textAlignment = 'center';
         skipButton.on('tap', () => {
           if (CoachMarks.DEBUG) {
-            console.log('coachMarks is about to cleanup, prepare any final adjustments if needed.');
+            console.log('coachMarks skip button clicked.');
           }
           if (this.events) {
-            this.events.notify(this._willCleanupEvent);
+            this.events.notify(this._skipEvent);
           }
           this._showCase?.finish?.();
         });
@@ -579,11 +580,6 @@ export class CoachMarks {
             }
             const owner = that?.deref();
             if (owner?.events) {
-              owner._cleanupEvent = {
-                eventName: 'cleanup',
-                object: owner,
-                data: {},
-              };
               owner.events.notify(owner._cleanupEvent);
             }
           },
@@ -623,6 +619,12 @@ export class CoachMarks {
     };
     this._willCleanupEvent = {
       eventName: 'willCleanup',
+      object: this,
+      data: {},
+    };
+
+    this._skipEvent = {
+      eventName: 'skip',
       object: this,
       data: {},
     };
