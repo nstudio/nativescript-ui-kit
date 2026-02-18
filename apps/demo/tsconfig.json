@@ -10,7 +10,8 @@
       "@nstudio/nativescript-shimmer": ["../../packages/nativescript-shimmer/index.d.ts"],
       "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"],
       "@nstudio/nativescript-variable-blur-view": ["../../packages/nativescript-variable-blur-view/index.ts"],
-      "@nstudio/nativescript-parallax": ["../../packages/nativescript-parallax/index.ts"]
+      "@nstudio/nativescript-parallax": ["../../packages/nativescript-parallax/index.ts"],
+      "@nstudio/nativescript-menu": ["../../packages/nativescript-menu/index.d.ts"]
     }
   }
 }

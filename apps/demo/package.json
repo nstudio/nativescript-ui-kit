@@ -14,7 +14,8 @@
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
     "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
-    "@nstudio/nativescript-parallax": "file:../../packages/nativescript-parallax"
+    "@nstudio/nativescript-parallax": "file:../../packages/nativescript-parallax",
+    "@nstudio/nativescript-menu": "file:../../packages/nativescript-menu"
   },
   "devDependencies": {
     "@nativescript/android": "~9.0.0",

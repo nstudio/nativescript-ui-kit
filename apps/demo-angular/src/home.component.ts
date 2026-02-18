@@ -22,6 +22,9 @@ export class HomeComponent {
       name: 'nativescript-markdown-view',
     },
     {
+      name: 'nativescript-menu',
+    },
+    {
       name: 'nativescript-parallax',
     },
     {

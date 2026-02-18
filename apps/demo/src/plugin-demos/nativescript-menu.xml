@@ -1,0 +1,22 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:nm="@nstudio/nativescript-menu">
+  <!-- <Page.actionBar>
+    <ActionBar title="nativescript-menu" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar> -->
+  <GridLayout rows="auto,*" columns="*" class="p-4 gap-3 bg-slate-100 dark:bg-slate-950">
+
+    <StackLayout row="0" class="pt-1 px-1">
+      <Label text="Contextual Menus" class="text-[30] font-semibold text-slate-900 dark:text-slate-100"></Label>
+      <Label text="Menu with nested actions, selection states, and haptics." class="mt-1 text-[13] text-slate-600 dark:text-slate-300" textWrap="true"></Label>
+    </StackLayout>
+
+    <GridLayout row="1" rows="*,auto,*" columns="*" class="my-4 rounded-3xl border border-slate-200/80 dark:border-slate-700/70 bg-white/40 dark:bg-slate-900/30">
+      <StackLayout row="1" horizontalAlignment="center" class="items-center py-2">
+        <nm:MenuImage src="{{imageIcon}}" options="{{addOptions}}" selected="{{selectOption}}" class="dark:bg-slate-800/60 bg-slate-200/70 rounded-full w-10 h-10" iosSymbolScale="small" tintColor="white"></nm:MenuImage>
+        <Label text="Primary Trigger" class="mt-3 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400"></Label>
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
+</Page>

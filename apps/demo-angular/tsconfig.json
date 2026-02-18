@@ -8,7 +8,8 @@
       "@nstudio/nativescript-shimmer": ["packages/nativescript-shimmer/index.d.ts"],
       "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
       "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"],
-      "@nstudio/*": ["../../dist/packages/*"]
+      "@nstudio/*": ["../../dist/packages/*"],
+      "@nstudio/nativescript-menu": ["../../packages/nativescript-menu/index.d.ts"]
     }
   },
   "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],
