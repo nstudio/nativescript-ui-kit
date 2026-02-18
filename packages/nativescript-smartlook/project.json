@@ -15,6 +15,7 @@
         "assets": [
           "packages/nativescript-smartlook/*.md",
           "packages/nativescript-smartlook/index.d.ts",
+          "packages/nativescript-smartlook/nativescript.config.ts",
           "LICENSE",
           {
             "glob": "**/*",
