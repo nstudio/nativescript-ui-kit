@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'nativescript-fonticon', loadChildren: () => import('./plugin-demos/nativescript-fonticon.module').then((m) => m.NativescriptFonticonModule) },
   { path: 'nativescript-label-marquee', loadChildren: () => import('./plugin-demos/nativescript-label-marquee.module').then((m) => m.NativescriptLabelMarqueeModule) },
   { path: 'nativescript-markdown-view', loadChildren: () => import('./plugin-demos/nativescript-markdown-view.module').then((m) => m.NativescriptMarkdownViewModule) },
+  { path: 'nativescript-menu', loadChildren: () => import('./plugin-demos/nativescript-menu.module').then((m) => m.NativescriptMenuModule) },
   { path: 'nativescript-parallax', loadChildren: () => import('./plugin-demos/nativescript-parallax.module').then((m) => m.NativescriptParallaxModule) },
   { path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then((m) => m.NativescriptShimmerModule) },
   { path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then((m) => m.NativescriptSmartlookModule) },

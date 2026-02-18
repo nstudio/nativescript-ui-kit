@@ -4,6 +4,7 @@ export * from './nativescript-fluid-segmented-bar';
 export * from './nativescript-fonticon';
 export * from './nativescript-label-marquee';
 export * from './nativescript-markdown-view';
+export * from './nativescript-menu';
 export * from './nativescript-parallax';
 export * from './nativescript-shimmer';
 export * from './nativescript-smartlook';

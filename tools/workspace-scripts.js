@@ -124,6 +124,13 @@ module.exports = {
           description: '@nstudio/nativescript-parallax: Build',
         },
       },
+      // @nstudio/nativescript-menu
+      'nativescript-menu': {
+        build: {
+          script: 'nx run nativescript-menu:build.all',
+          description: '@nstudio/nativescript-menu: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -170,8 +177,12 @@ module.exports = {
         script: 'nx run nativescript-parallax:focus',
         description: 'Focus on @nstudio/nativescript-parallax',
       },
+      'nativescript-menu': {
+        script: 'nx run nativescript-menu:focus',
+        description: 'Focus on @nstudio/nativescript-menu',
+      },
       reset: {
-        script: 'nx g @nstudio/plugin-tools:focus-packages',
+        script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },
     },
