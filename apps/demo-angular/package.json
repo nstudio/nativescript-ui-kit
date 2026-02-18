@@ -13,7 +13,7 @@
     "@nstudio/nativescript-parallax": "file:../../dist/packages/nativescript-parallax"
   },
   "devDependencies": {
-    "@nativescript/android": "~8.8.0",
-    "@nativescript/ios": "~8.8.0"
+    "@nativescript/android": "~9.0.0",
+    "@nativescript/ios": "~9.0.0"
   }
 }
