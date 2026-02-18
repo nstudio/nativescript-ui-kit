@@ -1,3 +1,13 @@
+## 1.0.1 (2026-02-18)
+
+### 🩹 Fixes
+
+- **menu:** core event handler ([d6b4d2c](https://github.com/nstudio/nativescript-ui-kit/commit/d6b4d2c))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 # 1.0.0 (2026-02-18)
 
 ### 🚀 Features
