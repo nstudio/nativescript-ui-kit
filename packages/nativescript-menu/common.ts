@@ -1,7 +1,7 @@
 import { Color, View } from '@nativescript/core';
 
 export interface MenuSelectedEvent<T = MenuAction> {
-  eventName: 'menuSelected';
+  eventName: 'selected';
   object: View;
   data: {
     option: T;

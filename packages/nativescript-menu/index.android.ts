@@ -3,6 +3,8 @@ import { MenuAction, MenuSelectedEvent } from './common';
 
 export * from './common';
 
+const SELECTED_EVENT = 'selected';
+
 declare const org: any;
 
 type MenuControllerState = {
@@ -191,10 +193,10 @@ function updateSingleSelectionState(options: Array<MenuAction>, path: number[]) 
 
 function emitMenuSelected(targetView: View, option: MenuAction) {
   targetView.notify({
-    eventName: 'selected',
+    eventName: SELECTED_EVENT,
     object: targetView,
     data: { option },
-  } as any);
+  } as MenuSelectedEvent);
 
   if (option.action) {
     option.action(option);
@@ -358,12 +360,16 @@ const contextMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
 contextMenuProperty.register(View);
 
 export class MenuButton extends Button {
+  static selectedEvent = SELECTED_EVENT;
+
   set options(value: Array<MenuAction> | MenuAction) {
     this.set('menu', value);
   }
 }
 
 export class MenuImage extends Image {
+  static selectedEvent = SELECTED_EVENT;
+
   set options(value: Array<MenuAction> | MenuAction) {
     this.set('menu', value);
   }

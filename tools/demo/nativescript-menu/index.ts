@@ -64,7 +64,6 @@ export class DemoSharedNativescriptMenu extends DemoSharedBase {
   ];
 
   selectOption(args: MenuSelectedEvent) {
-    console.log('selectOption:', args);
     const option = args.data.option;
     console.log('Selected option:', option);
   }

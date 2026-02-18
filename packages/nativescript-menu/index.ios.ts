@@ -3,6 +3,8 @@ import { MenuAction, MenuSelectedEvent } from './common';
 
 export * from './common';
 
+const SELECTED_EVENT = 'selected';
+
 // icon helpers
 
 function getColorFromUIColor(uiColor: UIColor): Color {
@@ -151,7 +153,7 @@ function buildMenu(options: Array<MenuAction> | MenuAction, onSelect: (option: M
 
 function emitMenuSelected(targetView: View, option: MenuAction) {
   targetView.notify({
-    eventName: 'menuSelected',
+    eventName: SELECTED_EVENT,
     object: targetView,
     data: { option },
   } as MenuSelectedEvent);
@@ -286,25 +288,17 @@ const contextMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
 contextMenuProperty.register(View);
 
 export class MenuButton extends Button {
+  static selectedEvent = SELECTED_EVENT;
+
   set options(value: Array<MenuAction> | MenuAction) {
     this.set('menu', value);
-
-    if (!this.hasListeners('menuSelected')) {
-      this.on('menuSelected', (args) => {
-        this.notify({ ...args, eventName: 'selected' });
-      });
-    }
   }
 }
 
 export class MenuImage extends Image {
+  static selectedEvent = SELECTED_EVENT;
+
   set options(value: Array<MenuAction> | MenuAction) {
     this.set('menu', value);
-
-    if (!this.hasListeners('menuSelected')) {
-      this.on('menuSelected', (args) => {
-        this.notify({ ...args, eventName: 'selected' });
-      });
-    }
   }
 }
