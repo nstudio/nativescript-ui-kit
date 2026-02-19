@@ -85,7 +85,14 @@ registerElement('MenuImage', () => MenuImage);
 - `menu`: tap-to-open menu configuration on any `View`
 - `contextMenu`: long-press menu configuration on any `View`
 - `options`: convenience setter exposed by `MenuButton`/`MenuImage`
+- `androidBackgroundOpacity`: Android-only menu glass opacity (`0..1`)
 - `selected`: emitted when a menu item is chosen
+
+Android opacity usage example:
+
+```ts
+menuImage.androidBackgroundOpacity = 0.9;
+```
 
 Core menu item shape:
 

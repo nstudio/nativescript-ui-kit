@@ -1,5 +1,5 @@
 import { Button, Color, Image, Property, View } from '@nativescript/core';
-import { MenuAction, MenuSelectedEvent } from './common';
+import { MenuAction, MenuSelectedEvent, MenuView } from './common';
 
 export * from './common';
 
@@ -13,11 +13,25 @@ type MenuControllerState = {
   clickListener?: android.view.View.OnClickListener;
   longClickListener?: android.view.View.OnLongClickListener;
   options?: Array<MenuAction> | MenuAction;
+  backgroundOpacity?: number;
   unloadBound?: boolean;
 };
 
 const BUTTON_MENU_SYMBOL = Symbol('buttonMenu');
 const CONTEXT_MENU_SYMBOL = Symbol('contextMenu');
+
+function normalizeAndroidBackgroundOpacity(value: unknown): number | undefined {
+  if (value === null || value === undefined || value === '') {
+    return undefined;
+  }
+
+  const parsed = typeof value === 'number' ? value : Number(value);
+  if (Number.isNaN(parsed)) {
+    return undefined;
+  }
+
+  return Math.max(0, Math.min(1, parsed));
+}
 
 function makeColor(color: Color | string | undefined, destructive?: boolean): Color {
   if (!color) {
@@ -191,7 +205,7 @@ function updateSingleSelectionState(options: Array<MenuAction>, path: number[]) 
   });
 }
 
-function emitMenuSelected(targetView: View, option: MenuAction) {
+function emitMenuSelected(targetView: MenuView, option: MenuAction) {
   targetView.notify({
     eventName: SELECTED_EVENT,
     object: targetView,
@@ -203,9 +217,11 @@ function emitMenuSelected(targetView: View, option: MenuAction) {
   }
 }
 
-function getOrCreateController(target: View, symbol: symbol): MenuControllerState {
+function getOrCreateController(target: MenuView, symbol: symbol): MenuControllerState {
   target[symbol] ??= {};
   const state: MenuControllerState = target[symbol];
+
+  state.backgroundOpacity = normalizeAndroidBackgroundOpacity(target.get?.('androidBackgroundOpacity'));
 
   if (!state.controller && target._context) {
     state.controller = new org.nativescript.menu.GlassAnchoredMenuController(target._context);
@@ -227,7 +243,11 @@ function getOrCreateController(target: View, symbol: symbol): MenuControllerStat
 
         if (keepsMenuOpen && state.controller) {
           const serialized = JSON.stringify(menuOptions.map(serializeOption));
-          state.controller.show(target.android, serialized, state.selectionListener);
+          if (typeof state.backgroundOpacity === 'number') {
+            state.controller.show(target.android, serialized, state.selectionListener, state.backgroundOpacity);
+          } else {
+            state.controller.show(target.android, serialized, state.selectionListener);
+          }
         }
       },
       onDismiss: () => {},
@@ -237,7 +257,7 @@ function getOrCreateController(target: View, symbol: symbol): MenuControllerStat
   return state;
 }
 
-function clearMenuState(target: View, symbol: symbol) {
+function clearMenuState(target: MenuView, symbol: symbol) {
   const state: MenuControllerState = target[symbol];
   if (!state) {
     return;
@@ -258,7 +278,7 @@ function clearMenuState(target: View, symbol: symbol) {
   delete target[symbol];
 }
 
-function showMenu(target: View, symbol: symbol) {
+function showMenu(target: MenuView, symbol: symbol) {
   const state = getOrCreateController(target, symbol);
   const options = toMenuArray(state.options);
   if (!state.controller || !target.android || !options.length) {
@@ -266,10 +286,14 @@ function showMenu(target: View, symbol: symbol) {
   }
 
   const serialized = JSON.stringify(options.map(serializeOption));
-  state.controller.show(target.android, serialized, state.selectionListener);
+  if (typeof state.backgroundOpacity === 'number') {
+    state.controller.show(target.android, serialized, state.selectionListener, state.backgroundOpacity);
+  } else {
+    state.controller.show(target.android, serialized, state.selectionListener);
+  }
 }
 
-function applyButtonMenu(target: View, options: Array<MenuAction> | MenuAction) {
+function applyButtonMenu(target: MenuView, options: Array<MenuAction> | MenuAction) {
   if (!options) {
     clearMenuState(target, BUTTON_MENU_SYMBOL);
     return;
@@ -277,6 +301,7 @@ function applyButtonMenu(target: View, options: Array<MenuAction> | MenuAction) 
 
   const state = getOrCreateController(target, BUTTON_MENU_SYMBOL);
   state.options = options;
+  state.backgroundOpacity = normalizeAndroidBackgroundOpacity(target.get?.('androidBackgroundOpacity'));
 
   if (!target.android) {
     target.once('loaded', () => applyButtonMenu(target, options));
@@ -300,7 +325,7 @@ function applyButtonMenu(target: View, options: Array<MenuAction> | MenuAction) 
   }
 }
 
-function applyContextMenu(target: View, options: Array<MenuAction> | MenuAction) {
+function applyContextMenu(target: MenuView, options: Array<MenuAction> | MenuAction) {
   if (!options || (Array.isArray(options) && options.length === 0)) {
     clearMenuState(target, CONTEXT_MENU_SYMBOL);
     return;
@@ -308,6 +333,7 @@ function applyContextMenu(target: View, options: Array<MenuAction> | MenuAction)
 
   const state = getOrCreateController(target, CONTEXT_MENU_SYMBOL);
   state.options = options;
+  state.backgroundOpacity = normalizeAndroidBackgroundOpacity(target.get?.('androidBackgroundOpacity'));
 
   if (!target.android) {
     target.once('loaded', () => applyContextMenu(target, options));
@@ -335,7 +361,7 @@ function applyContextMenu(target: View, options: Array<MenuAction> | MenuAction)
   }
 }
 
-const buttonMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
+const buttonMenuProperty = new Property<MenuView, Array<MenuAction> | MenuAction>({
   name: 'menu',
   valueChanged(target, _oldValue, newValue) {
     if (!target.android) {
@@ -347,7 +373,7 @@ const buttonMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
 });
 buttonMenuProperty.register(View);
 
-const contextMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
+const contextMenuProperty = new Property<MenuView, Array<MenuAction> | MenuAction>({
   name: 'contextMenu',
   valueChanged(target, _oldValue, newValue) {
     if (!target.android) {
@@ -358,6 +384,25 @@ const contextMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
   },
 });
 contextMenuProperty.register(View);
+
+const androidBackgroundOpacityProperty = new Property<MenuView, number>({
+  name: 'androidBackgroundOpacity',
+  valueConverter: (value) => normalizeAndroidBackgroundOpacity(value),
+  valueChanged(target, _oldValue, newValue) {
+    const opacity = normalizeAndroidBackgroundOpacity(newValue);
+
+    const buttonState: MenuControllerState = target[BUTTON_MENU_SYMBOL];
+    if (buttonState) {
+      buttonState.backgroundOpacity = opacity;
+    }
+
+    const contextState: MenuControllerState = target[CONTEXT_MENU_SYMBOL];
+    if (contextState) {
+      contextState.backgroundOpacity = opacity;
+    }
+  },
+});
+androidBackgroundOpacityProperty.register(View);
 
 export class MenuButton extends Button {
   static selectedEvent = SELECTED_EVENT;

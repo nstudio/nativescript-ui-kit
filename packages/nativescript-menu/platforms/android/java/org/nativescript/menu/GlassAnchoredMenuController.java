@@ -120,6 +120,7 @@ public class GlassAnchoredMenuController {
     private SelectionListener listener;
     private boolean notifyingDismiss;
     private View hostWindowAnchor;
+    private Float androidBackgroundOpacity;
 
     public GlassAnchoredMenuController(Context context) {
         this.context = context;
@@ -138,6 +139,16 @@ public class GlassAnchoredMenuController {
     }
 
     public void show(View anchor, String json, SelectionListener listener) {
+        this.androidBackgroundOpacity = null;
+        showInternal(anchor, json, listener);
+    }
+
+    public void show(View anchor, String json, SelectionListener listener, double androidBackgroundOpacity) {
+        this.androidBackgroundOpacity = clampOpacity(androidBackgroundOpacity);
+        showInternal(anchor, json, listener);
+    }
+
+    private void showInternal(View anchor, String json, SelectionListener listener) {
         dismiss();
         this.listener = listener;
         this.hostWindowAnchor = resolveHostWindowAnchor(anchor);
@@ -981,10 +992,26 @@ public class GlassAnchoredMenuController {
 
     private int resolveGlassBackgroundColor(boolean submenu) {
         int alphaBoost = submenu ? 36 : 0;
-        if (isDarkTheme()) {
-            return Color.argb(Math.min(255, 179 + alphaBoost), 28, 28, 30);
+        int baseAlpha;
+        if (androidBackgroundOpacity != null) {
+            baseAlpha = Math.round(255f * androidBackgroundOpacity);
+        } else {
+            baseAlpha = isDarkTheme() ? 179 : 191;
         }
-        return Color.argb(Math.min(255, 191 + alphaBoost), 255, 255, 255);
+        int alpha = Math.min(255, Math.max(0, baseAlpha + alphaBoost));
+
+        if (isDarkTheme()) {
+            return Color.argb(alpha, 28, 28, 30);
+        }
+        return Color.argb(alpha, 255, 255, 255);
+    }
+
+    private Float clampOpacity(double value) {
+        if (Double.isNaN(value)) {
+            return null;
+        }
+        float floatValue = (float) value;
+        return Math.max(0f, Math.min(1f, floatValue));
     }
 
     private int resolveGlassStrokeColor() {

@@ -1,5 +1,5 @@
 import { Button, Color, Font, Image, ImageSource, Property, Utils, View } from '@nativescript/core';
-import { MenuAction, MenuSelectedEvent } from './common';
+import { MenuAction, MenuSelectedEvent, MenuView } from './common';
 
 export * from './common';
 
@@ -151,7 +151,7 @@ function buildMenu(options: Array<MenuAction> | MenuAction, onSelect: (option: M
   return buildAction(rootMenu, onSelect) as UIMenu;
 }
 
-function emitMenuSelected(targetView: View, option: MenuAction) {
+function emitMenuSelected(targetView: MenuView, option: MenuAction) {
   targetView.notify({
     eventName: SELECTED_EVENT,
     object: targetView,
@@ -167,7 +167,7 @@ function emitMenuSelected(targetView: View, option: MenuAction) {
 
 const BUTTON_MENU_SYMBOL = Symbol('buttonMenu');
 
-function applyButtonMenu(target: View, options: Array<MenuAction> | MenuAction) {
+function applyButtonMenu(target: MenuView, options: Array<MenuAction> | MenuAction) {
   target[BUTTON_MENU_SYMBOL] ??= { fakeButton: undefined };
   const state = target[BUTTON_MENU_SYMBOL];
 
@@ -204,7 +204,7 @@ function applyButtonMenu(target: View, options: Array<MenuAction> | MenuAction) 
   targetButton.showsMenuAsPrimaryAction = true;
 }
 
-const buttonMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
+const buttonMenuProperty = new Property<MenuView, Array<MenuAction> | MenuAction>({
   name: 'menu',
   valueChanged(target, _oldValue, newValue) {
     if (!target.ios) {
@@ -251,7 +251,7 @@ class ContextMenuDelegate extends NSObject implements UIContextMenuInteractionDe
   }
 }
 
-function applyContextMenu(target: View, options: Array<MenuAction> | MenuAction) {
+function applyContextMenu(target: MenuView, options: Array<MenuAction> | MenuAction) {
   target[CONTEXT_MENU_SYMBOL] ??= { delegate: undefined, interaction: undefined };
   const state = target[CONTEXT_MENU_SYMBOL];
 
@@ -275,7 +275,7 @@ function applyContextMenu(target: View, options: Array<MenuAction> | MenuAction)
   nativeView.addInteraction(state.interaction);
 }
 
-const contextMenuProperty = new Property<View, Array<MenuAction> | MenuAction>({
+const contextMenuProperty = new Property<MenuView, Array<MenuAction> | MenuAction>({
   name: 'contextMenu',
   valueChanged(target, _oldValue, newValue) {
     if (!target.ios) {
