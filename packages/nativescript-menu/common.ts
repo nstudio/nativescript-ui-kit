@@ -1,8 +1,12 @@
 import { Color, View } from '@nativescript/core';
 
+export interface MenuView extends View {
+  androidBackgroundOpacity?: number;
+}
+
 export interface MenuSelectedEvent<T = MenuAction> {
   eventName: 'selected';
-  object: View;
+  object: MenuView;
   data: {
     option: T;
   };
