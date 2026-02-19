@@ -1,3 +1,13 @@
+## 1.0.2 (2026-02-19)
+
+### 🚀 Features
+
+- **menu:** ability to customize androidBackgroundOpacity per case ([#39](https://github.com/nstudio/nativescript-ui-kit/pull/39))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 ## 1.0.1 (2026-02-18)
 
 ### 🩹 Fixes
