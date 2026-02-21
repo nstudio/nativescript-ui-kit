@@ -7,12 +7,10 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -55,9 +53,11 @@ public class GlassAnchoredMenuController {
     private static final int ROOT_VERTICAL_OFFSET_DP = 8;
     private static final int SUBMENU_HORIZONTAL_OFFSET_DP = 6;
     private static final int WINDOW_MARGIN_DP = 12;
-    private static final int ARROW_WIDTH_DP = 18;
-    private static final int ARROW_HEIGHT_DP = 10;
     private static final int CARD_CORNER_RADIUS_DP = 28;
+    private static final int CARD_SHADOW_ELEVATION_DP = 12;
+    private static final int CARD_SHADOW_PADDING_MIN_DP = 8;
+    private static final int CARD_SOFT_SHADOW_BLUR_DP = 14;
+    private static final int CARD_SOFT_SHADOW_OFFSET_Y_DP = 2;
 
     public interface SelectionListener {
         void onSelected(String path, boolean keepsMenuOpen);
@@ -232,7 +232,10 @@ public class GlassAnchoredMenuController {
         LinearLayout card = new LinearLayout(context);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(dp(8), dp(8), dp(8), dp(8));
-        card.setElevation(dp(12));
+        card.setElevation(dp(CARD_SHADOW_ELEVATION_DP));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            card.setTranslationZ(dp(2));
+        }
 
         int glassColor = resolveGlassBackgroundColor(!root);
 
@@ -241,6 +244,11 @@ public class GlassAnchoredMenuController {
         background.setColor(glassColor);
         background.setStroke(dp(1), resolveGlassStrokeColor());
         card.setBackground(background);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            card.setOutlineAmbientShadowColor(resolveCardAmbientShadowColor());
+            card.setOutlineSpotShadowColor(resolveCardSpotShadowColor());
+        }
 
         IndexedMenuItem paletteGroup = null;
         List<IndexedMenuItem> visibleItems = new ArrayList<>();
@@ -271,8 +279,9 @@ public class GlassAnchoredMenuController {
             final IndexedMenuItem indexedItem = visibleItems.get(i);
             final int index = indexedItem.originalIndex;
             final MenuItem item = indexedItem.item;
+            boolean rowHasIcon = hasVisibleIcon(item);
 
-            final View row = createMenuRow(item);
+            final View row = createMenuRow(item, rowHasIcon);
             row.setEnabled(!item.disabled);
             row.setAlpha(item.disabled ? 0.45f : 1f);
 
@@ -306,7 +315,7 @@ public class GlassAnchoredMenuController {
                 View divider = new View(context);
                 divider.setBackgroundColor(resolveDividerColor());
                 LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(1));
-                dividerParams.leftMargin = dp(52);
+                dividerParams.leftMargin = dp(rowHasIcon ? 52 : 14);
                 menuRows.addView(divider, dividerParams);
             }
         }
@@ -321,32 +330,40 @@ public class GlassAnchoredMenuController {
             card.addView(menuRows);
         }
 
+        SoftShadowLayout cardShadowHost = new SoftShadowLayout(context);
+        cardShadowHost.setClipChildren(false);
+        cardShadowHost.setClipToPadding(false);
+        float shadowBlur = dp(CARD_SOFT_SHADOW_BLUR_DP);
+        float shadowDx = 0f;
+        float shadowDy = dp(CARD_SOFT_SHADOW_OFFSET_Y_DP);
+        int minShadowPad = dp(CARD_SHADOW_PADDING_MIN_DP);
+        int shadowPadLeft = Math.max(minShadowPad, (int) Math.ceil(shadowBlur + Math.max(0f, -shadowDx)));
+        int shadowPadTop = Math.max(minShadowPad, (int) Math.ceil(shadowBlur + Math.max(0f, -shadowDy)));
+        int shadowPadRight = Math.max(minShadowPad, (int) Math.ceil(shadowBlur + Math.max(0f, shadowDx)));
+        int shadowPadBottom = Math.max(minShadowPad, (int) Math.ceil(shadowBlur + Math.max(0f, shadowDy)));
+        cardShadowHost.setPadding(shadowPadLeft, shadowPadTop, shadowPadRight, shadowPadBottom);
+        cardShadowHost.setCornerRadius(dp(CARD_CORNER_RADIUS_DP));
+        cardShadowHost.setShadow(
+            shadowBlur,
+            shadowDx,
+            shadowDy,
+            resolveCardSoftShadowColor(),
+            resolveCardSoftFillColor()
+        );
+        cardShadowHost.addView(card, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
         ScrollView scroll = new ScrollView(context);
         scroll.setVerticalScrollBarEnabled(false);
         scroll.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        scroll.addView(card, new ScrollView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        scroll.setClipToPadding(false);
+        scroll.addView(cardShadowHost, new ScrollView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        int arrowWidth = root ? dp(ARROW_WIDTH_DP) : 0;
-        int arrowHeight = root ? dp(ARROW_HEIGHT_DP) : 0;
         FrameLayout container = new FrameLayout(context);
         container.setClipChildren(false);
         container.setClipToPadding(false);
 
         FrameLayout.LayoutParams scrollParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        if (root) {
-            scrollParams.topMargin = arrowHeight;
-        }
         container.addView(scroll, scrollParams);
-
-        TriangleArrowView arrowView = null;
-        FrameLayout.LayoutParams arrowParams = null;
-        if (root) {
-            arrowView = new TriangleArrowView(context);
-            arrowView.setColors(glassColor, resolveGlassStrokeColor());
-            arrowParams = new FrameLayout.LayoutParams(arrowWidth, arrowHeight);
-            arrowParams.gravity = Gravity.TOP | Gravity.START;
-            container.addView(arrowView, arrowParams);
-        }
 
         container.measure(
                 View.MeasureSpec.makeMeasureSpec(dp(MAX_MENU_WIDTH_DP), View.MeasureSpec.AT_MOST),
@@ -355,21 +372,11 @@ public class GlassAnchoredMenuController {
 
         Placement placement = calculatePlacement(anchor, container.getMeasuredWidth(), container.getMeasuredHeight(), root);
 
-        if (root && arrowView != null && arrowParams != null) {
-            updateArrowLayout(container, scroll, scrollParams, arrowView, arrowParams, placement, arrowWidth, arrowHeight);
-            container.measure(
-                    View.MeasureSpec.makeMeasureSpec(dp(MAX_MENU_WIDTH_DP), View.MeasureSpec.AT_MOST),
-                    View.MeasureSpec.makeMeasureSpec(dp(MAX_MENU_HEIGHT_DP), View.MeasureSpec.AT_MOST)
-            );
-            placement = calculatePlacement(anchor, container.getMeasuredWidth(), container.getMeasuredHeight(), true);
-            updateArrowLayout(container, scroll, scrollParams, arrowView, arrowParams, placement, arrowWidth, arrowHeight);
-        }
-
         final PopupWindow popup = new PopupWindow(container, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popup.setTouchable(true);
         popup.setOutsideTouchable(true);
         popup.setClippingEnabled(false);
-        popup.setElevation(dp(18));
+        popup.setElevation(dp(2));
         popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popup.setTouchInterceptor(new View.OnTouchListener() {
             @Override
@@ -493,7 +500,7 @@ public class GlassAnchoredMenuController {
         return row;
     }
 
-    private View createMenuRow(MenuItem item) {
+    private View createMenuRow(MenuItem item, boolean reserveIconSpace) {
         LinearLayout row = new LinearLayout(context);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
@@ -519,14 +526,16 @@ public class GlassAnchoredMenuController {
             }
         });
 
-        View iconView = createIconView(item);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dp(26), dp(22));
-        iconParams.gravity = Gravity.CENTER_VERTICAL;
-        row.addView(iconView, iconParams);
+        if (reserveIconSpace) {
+            View iconView = createIconView(item);
+            LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dp(26), dp(22));
+            iconParams.gravity = Gravity.CENTER_VERTICAL;
+            row.addView(iconView, iconParams);
+        }
 
         LinearLayout textWrap = new LinearLayout(context);
         textWrap.setOrientation(LinearLayout.VERTICAL);
-        textWrap.setPadding(dp(12), 0, dp(8), 0);
+        textWrap.setPadding(dp(reserveIconSpace ? 12 : 0), 0, dp(8), 0);
 
         TextView title = new TextView(context);
         title.setText(TextUtils.isEmpty(item.name) ? "Untitled" : item.name);
@@ -559,6 +568,19 @@ public class GlassAnchoredMenuController {
         trailing.setGravity(Gravity.CENTER_VERTICAL);
         row.addView(trailing);
         return row;
+    }
+
+    private boolean hasVisibleIcon(MenuItem item) {
+        if (item == null) {
+            return false;
+        }
+        if (resolveIconRes(item) != 0) {
+            return true;
+        }
+        if ("font".equals(item.iconType)) {
+            return !TextUtils.isEmpty(item.iconText);
+        }
+        return !TextUtils.isEmpty(resolveIconGlyph(item.icon));
     }
 
     private Placement calculatePlacement(final View anchor, int popupWidth, int popupHeight, boolean root) {
@@ -624,39 +646,6 @@ public class GlassAnchoredMenuController {
         float anchorY = openAbove ? anchorRect.top : anchorRect.bottom;
         placement.distance = Math.abs(anchorY - y);
         return placement;
-    }
-
-    private void updateArrowLayout(
-            FrameLayout container,
-            ScrollView scroll,
-            FrameLayout.LayoutParams scrollParams,
-            TriangleArrowView arrowView,
-            FrameLayout.LayoutParams arrowParams,
-            Placement placement,
-            int arrowWidth,
-            int arrowHeight
-    ) {
-        int width = placement.popupWidth;
-        int leftInset = dp(CARD_CORNER_RADIUS_DP - 8);
-        int maxLeft = Math.max(leftInset, width - leftInset - arrowWidth);
-        int desiredArrowLeft = placement.anchorCenterX - placement.x - (arrowWidth / 2);
-        int arrowLeft = Math.max(leftInset, Math.min(maxLeft, desiredArrowLeft));
-
-        arrowView.setPointingUp(!placement.openAbove);
-        arrowParams.leftMargin = arrowLeft;
-        if (placement.openAbove) {
-            arrowParams.topMargin = Math.max(0, placement.popupHeight - arrowHeight);
-            scrollParams.topMargin = 0;
-            scrollParams.bottomMargin = arrowHeight;
-        } else {
-            arrowParams.topMargin = 0;
-            scrollParams.topMargin = arrowHeight;
-            scrollParams.bottomMargin = 0;
-        }
-
-        arrowView.setLayoutParams(arrowParams);
-        scroll.setLayoutParams(scrollParams);
-        container.requestLayout();
     }
 
     private void animateEntrance(final View content, Placement placement, boolean root) {
@@ -1038,6 +1027,22 @@ public class GlassAnchoredMenuController {
         return Color.argb(245, 220, 38, 38);
     }
 
+    private int resolveCardAmbientShadowColor() {
+        return isDarkTheme() ? Color.argb(84, 0, 0, 0) : Color.argb(46, 0, 0, 0);
+    }
+
+    private int resolveCardSpotShadowColor() {
+        return isDarkTheme() ? Color.argb(70, 0, 0, 0) : Color.argb(36, 0, 0, 0);
+    }
+
+    private int resolveCardSoftShadowColor() {
+        return isDarkTheme() ? Color.argb(46, 0, 0, 0) : Color.argb(30, 15, 23, 42);
+    }
+
+    private int resolveCardSoftFillColor() {
+        return isDarkTheme() ? Color.argb(8, 0, 0, 0) : Color.argb(6, 15, 23, 42);
+    }
+
     private boolean isDarkTheme() {
         int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         return nightModeFlags == Configuration.UI_MODE_NIGHT_YES;
@@ -1212,50 +1217,46 @@ public class GlassAnchoredMenuController {
         }
     }
 
-    private static class TriangleArrowView extends View {
-        private final Paint fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        private final Paint strokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        private final Path path = new Path();
-        private boolean pointingUp = true;
+    private static class SoftShadowLayout extends FrameLayout {
+        private final android.graphics.Paint shadowPaint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        private final RectF rect = new RectF();
+        private float cornerRadius;
+        private float shadowRadius;
+        private float shadowDx;
+        private float shadowDy;
 
-        TriangleArrowView(Context context) {
+        SoftShadowLayout(Context context) {
             super(context);
-            fillPaint.setStyle(Paint.Style.FILL);
-            strokePaint.setStyle(Paint.Style.STROKE);
-            strokePaint.setStrokeWidth(1.5f);
+            setWillNotDraw(false);
+            setLayerType(LAYER_TYPE_SOFTWARE, null);
+            shadowPaint.setStyle(android.graphics.Paint.Style.FILL);
         }
 
-        void setPointingUp(boolean pointingUp) {
-            this.pointingUp = pointingUp;
+        void setCornerRadius(float cornerRadius) {
+            this.cornerRadius = cornerRadius;
             invalidate();
         }
 
-        void setColors(int fill, int stroke) {
-            fillPaint.setColor(fill);
-            strokePaint.setColor(stroke);
+        void setShadow(float radius, float dx, float dy, int shadowColor, int fillColor) {
+            this.shadowRadius = radius;
+            this.shadowDx = dx;
+            this.shadowDy = dy;
+            shadowPaint.setColor(fillColor);
+            shadowPaint.setShadowLayer(radius, dx, dy, shadowColor);
             invalidate();
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            float w = getWidth();
-            float h = getHeight();
-            path.reset();
-
-            if (pointingUp) {
-                path.moveTo(w / 2f, 0f);
-                path.lineTo(w, h);
-                path.lineTo(0f, h);
-            } else {
-                path.moveTo(0f, 0f);
-                path.lineTo(w, 0f);
-                path.lineTo(w / 2f, h);
+        protected void dispatchDraw(android.graphics.Canvas canvas) {
+            View child = getChildCount() > 0 ? getChildAt(0) : null;
+            if (child != null && child.getVisibility() == VISIBLE) {
+                rect.set(child.getLeft(), child.getTop(), child.getRight(), child.getBottom());
+                if (shadowRadius > 0f) {
+                    canvas.drawRoundRect(rect, cornerRadius, cornerRadius, shadowPaint);
+                }
             }
-
-            path.close();
-            canvas.drawPath(path, fillPaint);
-            canvas.drawPath(path, strokePaint);
+            super.dispatchDraw(canvas);
         }
     }
+
 }
