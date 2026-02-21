@@ -1,3 +1,13 @@
+## 1.0.4 (2026-02-21)
+
+### 🩹 Fixes
+
+- **menu:** android positioning ([d61431d](https://github.com/nstudio/nativescript-ui-kit/commit/d61431d))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 ## 1.0.3 (2026-02-21)
 
 ### 🚀 Features
