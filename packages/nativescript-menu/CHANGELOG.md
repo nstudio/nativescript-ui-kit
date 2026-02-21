@@ -1,3 +1,13 @@
+## 1.0.3 (2026-02-21)
+
+### 🚀 Features
+
+- **android:** shadow support and ability to omit icon to have no space in front of label ([#41](https://github.com/nstudio/nativescript-ui-kit/pull/41))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 ## 1.0.2 (2026-02-19)
 
 ### 🚀 Features
