@@ -370,7 +370,16 @@ public class GlassAnchoredMenuController {
                 View.MeasureSpec.makeMeasureSpec(dp(MAX_MENU_HEIGHT_DP), View.MeasureSpec.AT_MOST)
         );
 
-        Placement placement = calculatePlacement(anchor, container.getMeasuredWidth(), container.getMeasuredHeight(), root);
+        Placement placement = calculatePlacement(
+            anchor,
+            container.getMeasuredWidth(),
+            container.getMeasuredHeight(),
+            root,
+            shadowPadLeft,
+            shadowPadTop,
+            shadowPadRight,
+            shadowPadBottom
+        );
 
         final PopupWindow popup = new PopupWindow(container, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popup.setTouchable(true);
@@ -583,7 +592,16 @@ public class GlassAnchoredMenuController {
         return !TextUtils.isEmpty(resolveIconGlyph(item.icon));
     }
 
-    private Placement calculatePlacement(final View anchor, int popupWidth, int popupHeight, boolean root) {
+    private Placement calculatePlacement(
+            final View anchor,
+            int popupWidth,
+            int popupHeight,
+            boolean root,
+            int contentInsetLeft,
+            int contentInsetTop,
+            int contentInsetRight,
+            int contentInsetBottom
+    ) {
         Placement placement = new Placement();
         placement.popupWidth = popupWidth;
         placement.popupHeight = popupHeight;
@@ -608,23 +626,29 @@ public class GlassAnchoredMenuController {
         int margin = dp(WINDOW_MARGIN_DP);
         int x;
         int y;
+        int contentWidth = Math.max(1, popupWidth - contentInsetLeft - contentInsetRight);
+        int contentHeight = Math.max(1, popupHeight - contentInsetTop - contentInsetBottom);
 
         int spaceBelow = size.y - anchorRect.bottom - margin;
         int spaceAbove = anchorRect.top - margin;
-        boolean openAbove = spaceBelow < popupHeight && spaceAbove > spaceBelow;
+        boolean openAbove = spaceBelow < contentHeight && spaceAbove > spaceBelow;
         placement.openAbove = openAbove;
 
         if (root) {
-            x = anchorRect.centerX() - (popupWidth / 2);
-            y = openAbove ? (anchorRect.top - popupHeight - dp(ROOT_VERTICAL_OFFSET_DP)) : (anchorRect.bottom + dp(ROOT_VERTICAL_OFFSET_DP));
+            x = anchorRect.centerX() - (contentWidth / 2) - contentInsetLeft;
+            y = openAbove
+                    ? (anchorRect.top - contentHeight - dp(ROOT_VERTICAL_OFFSET_DP) - contentInsetTop)
+                    : (anchorRect.bottom + dp(ROOT_VERTICAL_OFFSET_DP) - contentInsetTop);
         } else {
-            x = anchorRect.right + dp(SUBMENU_HORIZONTAL_OFFSET_DP);
+            x = anchorRect.right + dp(SUBMENU_HORIZONTAL_OFFSET_DP) - contentInsetLeft;
             placement.openRight = true;
             if (x + popupWidth > size.x - margin) {
-                x = anchorRect.left - popupWidth - dp(SUBMENU_HORIZONTAL_OFFSET_DP);
+                x = anchorRect.left - contentWidth - dp(SUBMENU_HORIZONTAL_OFFSET_DP) - contentInsetLeft;
                 placement.openRight = false;
             }
-            y = openAbove ? (anchorRect.bottom - popupHeight) : anchorRect.top;
+            y = openAbove
+                    ? (anchorRect.bottom - contentHeight - contentInsetTop)
+                    : (anchorRect.top - contentInsetTop);
         }
 
         if (x < margin) {
@@ -644,7 +668,8 @@ public class GlassAnchoredMenuController {
         placement.x = x;
         placement.y = y;
         float anchorY = openAbove ? anchorRect.top : anchorRect.bottom;
-        placement.distance = Math.abs(anchorY - y);
+        float popupEdgeY = openAbove ? (y + contentInsetTop + contentHeight) : (y + contentInsetTop);
+        placement.distance = Math.abs(anchorY - popupEdgeY);
         return placement;
     }
 
