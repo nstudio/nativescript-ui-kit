@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-menu",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Fully native contextual menus with nested actions, selection states, and haptics.",
   "main": "index",
   "types": "index.d.ts",

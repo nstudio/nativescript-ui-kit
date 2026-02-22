@@ -1,3 +1,13 @@
+## 1.0.5 (2026-02-22)
+
+### 🚀 Features
+
+- **menu:** improve font icon renderer by implementing typeface caching and resolution method ([#42](https://github.com/nstudio/nativescript-ui-kit/pull/42))
+
+### ❤️ Thank You
+
+- Kang Cahya @dyazincahya
+
 ## 1.0.4 (2026-02-21)
 
 ### 🩹 Fixes
