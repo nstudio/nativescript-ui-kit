@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -117,6 +118,7 @@ public class GlassAnchoredMenuController {
 
     private final Context context;
     private final List<PopupRecord> stack = new ArrayList<>();
+    private final HashMap<String, Typeface> typefaceCache = new HashMap<>();
     private SelectionListener listener;
     private boolean notifyingDismiss;
     private View hostWindowAnchor;
@@ -805,7 +807,7 @@ public class GlassAnchoredMenuController {
         if ("font".equals(item.iconType) && !TextUtils.isEmpty(item.iconText)) {
             textIcon.setText(item.iconText);
             if (!TextUtils.isEmpty(item.iconFontFamily)) {
-                Typeface typeface = Typeface.create(item.iconFontFamily, item.iconFontWeight >= 600 ? Typeface.BOLD : Typeface.NORMAL);
+                Typeface typeface = resolveTypeface(item.iconFontFamily, item.iconFontWeight);
                 if (typeface != null) {
                     textIcon.setTypeface(typeface);
                 }
@@ -817,6 +819,72 @@ public class GlassAnchoredMenuController {
         textIcon.setTextColor(iconColor);
         textIcon.setGravity(Gravity.CENTER_VERTICAL);
         return textIcon;
+    }
+
+    private Typeface resolveTypeface(String spec, int weight) {
+        if (TextUtils.isEmpty(spec)) {
+            return null;
+        }
+
+        boolean bold = weight >= 600;
+        String cacheKey = spec + "|" + (bold ? "b" : "n");
+        Typeface cached = typefaceCache.get(cacheKey);
+        if (cached != null) {
+            return cached;
+        }
+
+        Typeface typeface = null;
+        String normalized = spec.replace("\\", "/");
+        if (normalized.startsWith("~/")) {
+            normalized = normalized.substring(2);
+        }
+        if (normalized.startsWith("@/")) {
+            normalized = normalized.substring(2);
+        }
+        if (normalized.startsWith("./")) {
+            normalized = normalized.substring(2);
+        }
+        boolean looksLikeAsset = normalized.endsWith(".ttf") || normalized.endsWith(".otf") || normalized.contains("/");
+        if (looksLikeAsset) {
+            List<String> candidates = new ArrayList<>();
+            if (normalized.contains("/")) {
+                candidates.add(normalized);
+                if (normalized.startsWith("app/")) {
+                    candidates.add(normalized.substring(4));
+                } else {
+                    candidates.add("app/" + normalized);
+                }
+                if (normalized.startsWith("app/fonts/")) {
+                    candidates.add("fonts/" + normalized.substring("app/fonts/".length()));
+                }
+                if (normalized.startsWith("fonts/")) {
+                    candidates.add("app/" + normalized);
+                }
+            } else {
+                candidates.add("app/fonts/" + normalized);
+                candidates.add("fonts/" + normalized);
+                candidates.add(normalized);
+            }
+            for (String path : candidates) {
+                try {
+                    typeface = Typeface.createFromAsset(context.getAssets(), path);
+                    if (typeface != null) {
+                        break;
+                    }
+                } catch (Exception ignore) {
+                    typeface = null;
+                }
+            }
+        }
+
+        if (typeface == null) {
+            typeface = Typeface.create(normalized, bold ? Typeface.BOLD : Typeface.NORMAL);
+        }
+
+        if (typeface != null) {
+            typefaceCache.put(cacheKey, typeface);
+        }
+        return typeface;
     }
 
     private int resolveIconColor(MenuItem item) {
