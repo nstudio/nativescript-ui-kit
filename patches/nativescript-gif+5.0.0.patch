@@ -1,0 +1,20 @@
+diff --git a/node_modules/nativescript-gif/gif.android.js b/node_modules/nativescript-gif/gif.android.js
+index 3ac81a3..1b553b3 100644
+--- a/node_modules/nativescript-gif/gif.android.js
++++ b/node_modules/nativescript-gif/gif.android.js
+@@ -82,8 +82,13 @@ export class Gif extends GifCommon {
+                 if (value[0] !== '/') {
+                     value = currentPath + '/' + value;
+                 }
+-                this._drawable = new pl.droidsonroids.gif.GifDrawable(value);
+-                this.nativeView.setImageDrawable(this._drawable);
++                try {
++                    this._drawable = new pl.droidsonroids.gif.GifDrawable(value);
++                    this.nativeView.setImageDrawable(this._drawable);
++                }
++                catch (ex) {
++                    console.log('Gif: unable to decode ' + value + ': ' + ex);
++                }
+             }
+             else {
+                 const requestOptions = { url: value, method: 'GET' };

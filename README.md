@@ -5,6 +5,7 @@
 - [@nstudio/nativescript-markdown-view](packages/nativescript-markdown-view/README.md)
 - [@nstudio/nativescript-menu](packages/nativescript-menu/README.md)
 - [@nstudio/nativescript-parallax](packages/nativescript-parallax/README.md)
+- [@nstudio/nativescript-rich-paste](packages/nativescript-rich-paste/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 - [@nstudio/nativescript-smartlook](packages/nativescript-smartlook/README.md)
 - [@nstudio/nativescript-variable-blur-view](packages/nativescript-variable-blur-view/README.md)

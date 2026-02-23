@@ -11,7 +11,12 @@
       "nativescript-fonticon": ["../../packages/nativescript-fonticon/index.ts"],
       "@nstudio/nativescript-variable-blur-view": ["../../packages/nativescript-variable-blur-view/index.ts"],
       "@nstudio/nativescript-parallax": ["../../packages/nativescript-parallax/index.ts"],
-      "@nstudio/nativescript-menu": ["../../packages/nativescript-menu/index.d.ts"]
+      "@nstudio/nativescript-menu": ["../../packages/nativescript-menu/index.d.ts"],
+      "@nstudio/nativescript-rich-paste": ["../../packages/nativescript-rich-paste/index.d.ts"],
+      "@nstudio/nativescript-coachmarks": ["../../packages/nativescript-coachmarks/index.d.ts"],
+      "@nstudio/nativescript-fluid-segmented-bar": ["../../packages/nativescript-fluid-segmented-bar/index.d.ts"],
+      "@nstudio/nativescript-markdown-view": ["../../packages/nativescript-markdown-view/index.d.ts"],
+      "@nstudio/nativescript-smartlook": ["../../packages/nativescript-smartlook/index.d.ts"]
     }
   }
 }

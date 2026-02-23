@@ -131,6 +131,13 @@ module.exports = {
           description: '@nstudio/nativescript-menu: Build',
         },
       },
+      // @nstudio/nativescript-rich-paste
+      'nativescript-rich-paste': {
+        build: {
+          script: 'nx run nativescript-rich-paste:build.all',
+          description: '@nstudio/nativescript-rich-paste: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -180,6 +187,10 @@ module.exports = {
       'nativescript-menu': {
         script: 'nx run nativescript-menu:focus',
         description: 'Focus on @nstudio/nativescript-menu',
+      },
+      'nativescript-rich-paste': {
+        script: 'nx run nativescript-rich-paste:focus',
+        description: 'Focus on @nstudio/nativescript-rich-paste',
       },
       reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
