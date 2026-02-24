@@ -52,6 +52,15 @@ TextView {
 @tailwind components;
 @tailwind utilities;
 
+.h-right {
+  horizontal-align: right;
+}
+.h-left {
+  horizontal-align: left;
+}
+.h-center {
+  horizontal-align: center;
+}
 Button {
   background-color: transparent;
   border-color: transparent;

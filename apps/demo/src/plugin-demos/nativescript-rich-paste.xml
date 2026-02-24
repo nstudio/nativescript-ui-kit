@@ -1,0 +1,40 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:pi="@nstudio/nativescript-rich-paste"
+  xmlns:bm="nativescript-gif" navigatingTo="navigatingTo" class="page" backgroundColor="#111" actionBarHidden="true" statusBarStyle="light">
+  <Page.actionBar>
+    <ActionBar title="@nstudio/nativescript-rich-paste" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
+
+  <GridLayout rows="*, auto" class="pt-4">
+
+    <!-- Compose area -->
+    <GridLayout rows="auto,200" class="py-2 px-4">
+
+      <GridLayout columns="*, auto">
+        <LiquidGlass class="rounded-full">
+          <pi:TextFieldRichPaste accept="all" hint="Paste rich data..." paste="{{ onPaste }}" drop="{{ onDrop }}" enableDragDrop="true" class="{{inputClasses}}"/>
+        </LiquidGlass>
+      </GridLayout>
+
+      <ScrollView row="1" orientation="horizontal" class="h-[160] py-4" loaded="{{loadedImageScroller}}" scrollBarIndicatorVisible="false">
+        <Repeater items="{{ pastedImages }}">
+          <Repeater.itemsLayout>
+            <StackLayout orientation="horizontal"/>
+          </Repeater.itemsLayout>
+          <Repeater.itemTemplate>
+            <GridLayout class="h-[140] w-[140] mr-4">
+              <Image src="{{ uri }}" class="h-[140] w-[140] rounded-md" stretch="aspectFill" visibility="{{ animated ? 'collapse' : 'visible' }}"/>
+              <bm:Gif src="{{ uri }}" class="h-[140] w-[140] rounded-md" stretch="aspectFill" visibility="{{ animated ? 'visible' : 'collapse' }}"/>
+              <GridLayout tap="onRemoveImage" translateY="-8" translateX="8" class="align-top h-right w-[20] rounded-full h-[20] bg-white/90" loaded="loadedRemoveButton">
+                <Label text="✕" class="text-black text-xs text-center align-middle font-bold"/>
+              </GridLayout>
+            </GridLayout>
+          </Repeater.itemTemplate>
+        </Repeater>
+      </ScrollView>
+
+    </GridLayout>
+
+  </GridLayout>
+</Page>

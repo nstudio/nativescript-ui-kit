@@ -1,0 +1,65 @@
+{
+  "name": "nativescript-rich-paste",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-rich-paste",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-rich-paste",
+        "tsConfig": "packages/nativescript-rich-paste/tsconfig.json",
+        "packageJson": "packages/nativescript-rich-paste/package.json",
+        "main": "packages/nativescript-rich-paste/index.d.ts",
+        "assets": [
+          "packages/nativescript-rich-paste/*.md",
+          "packages/nativescript-rich-paste/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-rich-paste/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts nativescript-rich-paste"],
+        "parallel": false
+      },
+      "outputs": ["{workspaceRoot}/dist/packages/nativescript-rich-paste"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-rich-paste"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/nativescript-rich-paste/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

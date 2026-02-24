@@ -28,6 +28,9 @@ export class HomeComponent {
       name: 'nativescript-parallax',
     },
     {
+      name: 'nativescript-rich-paste',
+    },
+    {
       name: 'nativescript-shimmer',
     },
     {

@@ -6,6 +6,7 @@ export * from './nativescript-label-marquee';
 export * from './nativescript-markdown-view';
 export * from './nativescript-menu';
 export * from './nativescript-parallax';
+export * from './nativescript-rich-paste';
 export * from './nativescript-shimmer';
 export * from './nativescript-smartlook';
 export * from './nativescript-variable-blur-view';
