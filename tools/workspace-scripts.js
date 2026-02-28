@@ -138,6 +138,13 @@ module.exports = {
           description: '@nstudio/nativescript-rich-paste: Build',
         },
       },
+      // @nstudio/nativescript-calendar
+      'nativescript-calendar': {
+        build: {
+          script: 'nx run nativescript-calendar:build.all',
+          description: '@nstudio/nativescript-calendar: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -191,6 +198,10 @@ module.exports = {
       'nativescript-rich-paste': {
         script: 'nx run nativescript-rich-paste:focus',
         description: 'Focus on @nstudio/nativescript-rich-paste',
+      },
+      'nativescript-calendar': {
+        script: 'nx run nativescript-calendar:focus',
+        description: 'Focus on @nstudio/nativescript-calendar',
       },
       reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
