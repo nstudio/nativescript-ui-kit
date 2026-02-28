@@ -536,7 +536,11 @@ export class NCalendar extends NCalendarCommon {
                 if (!c) return;
                 const { previousKeys } = c._handleSelection(jsDate);
 
-                if (c.displayMode === DisplayMode.Month && c._calendarView) {
+                // Range selection affects many cells (start, end, and all middle dates),
+                // so do a full refresh. For single/multiple, targeted refresh is sufficient.
+                if (c.selectionMode === SelectionMode.Range) {
+                  c._refreshCalendar();
+                } else if (c.displayMode === DisplayMode.Month && c._calendarView) {
                   for (const key of previousKeys) {
                     const prev = c._dateFromKey(key);
                     c._calendarView.notifyDateChanged(jsDateToLocalDate(prev));
