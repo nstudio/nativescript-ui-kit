@@ -1,6 +1,36 @@
 import UIKit
 import HorizonCalendar
 
+// MARK: - Helpers
+
+private func colorFromHex(_ hex: String) -> UIColor? {
+  guard !hex.isEmpty else { return nil }
+  var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+  hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+
+  var rgb: UInt64 = 0
+  Scanner(string: hexSanitized).scanHexInt64(&rgb)
+
+  switch hexSanitized.count {
+  case 6:
+    return UIColor(
+      red: CGFloat((rgb & 0xFF0000) >> 16) / 255,
+      green: CGFloat((rgb & 0x00FF00) >> 8) / 255,
+      blue: CGFloat(rgb & 0x0000FF) / 255,
+      alpha: 1
+    )
+  case 8:
+    return UIColor(
+      red: CGFloat((rgb & 0xFF000000) >> 24) / 255,
+      green: CGFloat((rgb & 0x00FF0000) >> 16) / 255,
+      blue: CGFloat((rgb & 0x0000FF00) >> 8) / 255,
+      alpha: CGFloat(rgb & 0x000000FF) / 255
+    )
+  default:
+    return nil
+  }
+}
+
 // MARK: - NCalendarView
 
 @objc(NCalendarView)
@@ -31,10 +61,20 @@ public class NCalendarView: UIView {
   private var rangeEndKey: String?
   private var eventsByKey = [String: [[String: Any]]]()
   private var _calendar = Calendar.current
+  private lazy var _dateFormatter: DateFormatter = {
+    let f = DateFormatter()
+    f.dateStyle = .long
+    return f
+  }()
 
   // MARK: - Configuration Properties
 
-  @objc public var isHorizontal: Bool = false { didSet { rebuildContent() } }
+  @objc public var isHorizontal: Bool = false {
+    didSet {
+      guard oldValue != isHorizontal else { return }
+      recreateCalendarView()
+    }
+  }
   @objc public var isPaginated: Bool = false { didSet { rebuildContent() } }
   @objc public var pinDaysOfWeekToTop: Bool = false { didSet { rebuildContent() } }
   @objc public var showCompleteBoundaryMonths: Bool = true { didSet { rebuildContent() } }
@@ -82,7 +122,28 @@ public class NCalendarView: UIView {
     calendarView = CalendarView(initialContent: content)
     calendarView.directionalLayoutMargins = .zero
     addSubview(calendarView)
+    attachCalendarHandlers()
+  }
 
+  private func recreateCalendarView() {
+    guard calendarView != nil else { return }
+
+    // Detach and remove old
+    calendarView.daySelectionHandler = nil
+    calendarView.didScroll = nil
+    calendarView.didEndDecelerating = nil
+    calendarView.removeFromSuperview()
+
+    // Create new with current layout
+    let content = buildContent()
+    calendarView = CalendarView(initialContent: content)
+    calendarView.directionalLayoutMargins = .zero
+    addSubview(calendarView)
+    calendarView.frame = bounds
+    attachCalendarHandlers()
+  }
+
+  private func attachCalendarHandlers() {
     calendarView.daySelectionHandler = { [weak self] day in
       self?.handleDaySelection(day)
     }
@@ -99,14 +160,11 @@ public class NCalendarView: UIView {
       let startDay = visibleDayRange.lowerBound
       let endDay = visibleDayRange.upperBound
       self.onScrollEnd?(startDay.month.year, startDay.month.month, endDay.month.year, endDay.month.month)
-
-      // Fire monthChanged for the first visible month
       self.onMonthChanged?(startDay.month.year, startDay.month.month)
     }
   }
 
   private func updateCalendar() {
-    // Map JS firstDayOfWeek (0=Sun..6=Sat) to Calendar.firstWeekday (1=Sun..7=Sat)
     _calendar = Calendar.current
     _calendar.firstWeekday = firstDayOfWeekJS + 1
   }
@@ -193,63 +251,104 @@ public class NCalendarView: UIView {
     let isDisabled = isDateDisabled(date)
     let isWeekend = _calendar.isDateInWeekend(date)
 
-    // Determine text color
-    let textColor: UIColor
+    // Get event colors for this day
+    let dayEvents = eventsByKey[key] ?? []
+    let eventColorHexes: [String] = dayEvents.compactMap { $0["color"] as? String }
+
+    // Determine text color hex
+    let textColorHex: String
     if isDisabled {
-      textColor = colorFromHex(disabledDayTextColorHex) ?? .systemGray3
+      textColorHex = disabledDayTextColorHex.isEmpty ? "#C7C7CC" : disabledDayTextColorHex
     } else if isSelected {
-      textColor = colorFromHex(selectedDayTextColorHex) ?? .white
+      textColorHex = selectedDayTextColorHex.isEmpty ? "#FFFFFF" : selectedDayTextColorHex
     } else if isToday {
-      textColor = colorFromHex(todayTextColorHex) ?? .systemBlue
+      textColorHex = todayTextColorHex.isEmpty ? "#2196F3" : todayTextColorHex
     } else if isWeekend {
-      textColor = colorFromHex(weekendTextColorHex) ?? .secondaryLabel
+      textColorHex = weekendTextColorHex.isEmpty ? "#757575" : weekendTextColorHex
     } else {
-      textColor = colorFromHex(dayTextColorHex) ?? .label
+      textColorHex = dayTextColorHex.isEmpty ? "#000000" : dayTextColorHex
     }
 
     // Determine background
-    let bgDrawingConfig: DrawingConfig
+    let bgFillHex: String
+    let bgBorderHex: String
+    let bgBorderWidth: CGFloat
+    let isCircle: Bool
+
     if isSelected {
-      let bgColor = colorFromHex(selectedDayBgColorHex) ?? .systemBlue
-      bgDrawingConfig = DrawingConfig(fillColor: bgColor, borderColor: .clear)
-    } else if isInRange && !isSelected {
-      let rangeColor = colorFromHex(selectedRangeColorHex) ?? .systemBlue.withAlphaComponent(0.2)
-      bgDrawingConfig = DrawingConfig(fillColor: rangeColor, borderColor: .clear)
+      bgFillHex = selectedDayBgColorHex.isEmpty ? "#2196F3" : selectedDayBgColorHex
+      bgBorderHex = ""
+      bgBorderWidth = 0
+      isCircle = true
+    } else if isInRange {
+      bgFillHex = selectedRangeColorHex.isEmpty ? "#BBDEFB" : selectedRangeColorHex
+      bgBorderHex = ""
+      bgBorderWidth = 0
+      isCircle = false
     } else if isToday {
-      let todayBg = colorFromHex(todayBgColorHex)
-      if let todayBg = todayBg {
-        bgDrawingConfig = DrawingConfig(fillColor: todayBg, borderColor: .clear)
+      if !todayBgColorHex.isEmpty {
+        bgFillHex = todayBgColorHex
+        bgBorderHex = ""
+        bgBorderWidth = 0
       } else {
-        let borderColor = colorFromHex(todayTextColorHex) ?? .systemBlue
-        bgDrawingConfig = DrawingConfig(fillColor: .clear, borderColor: borderColor, borderWidth: 1)
+        bgFillHex = ""
+        bgBorderHex = todayTextColorHex.isEmpty ? "#2196F3" : todayTextColorHex
+        bgBorderWidth = 1
       }
+      isCircle = true
     } else {
-      bgDrawingConfig = .transparent
+      bgFillHex = ""
+      bgBorderHex = ""
+      bgBorderWidth = 0
+      isCircle = true
     }
 
-    var properties = DayView.InvariantViewProperties.baseInteractive
-    properties.textColor = textColor
-    properties.font = .systemFont(ofSize: dayFontSizePt)
-    properties.backgroundShapeDrawingConfig = bgDrawingConfig
-    properties.shape = (isInRange && !isSelected) ? .rectangle(cornerRadius: 0) : .circle
-
     let dayText = "\(dayComponents.day)"
-    let formatter = DateFormatter()
-    formatter.dateStyle = .long
-    let accessibilityLabel = formatter.string(from: date)
+    let accLabel = _dateFormatter.string(from: date)
 
-    // Fire dayRender callback
-    // Note: this fires during content building, before the actual UIView exists.
-    // The native DayView will be created by HorizonCalendar's view recycling.
-
-    return DayView.calendarItemModel(
-      invariantViewProperties: properties,
-      content: .init(
-        dayText: dayText,
-        accessibilityLabel: accessibilityLabel,
-        accessibilityHint: nil
+    // Use DayWithEventsView when this day has events, otherwise standard DayView
+    if !eventColorHexes.isEmpty {
+      let properties = DayWithEventsView.InvariantViewProperties(
+        textColorHex: textColorHex,
+        fontSize: dayFontSizePt,
+        bgFillColorHex: bgFillHex,
+        bgBorderColorHex: bgBorderHex,
+        bgBorderWidth: bgBorderWidth,
+        isCircle: isCircle
       )
-    )
+
+      return DayWithEventsView.calendarItemModel(
+        invariantViewProperties: properties,
+        content: .init(dayText: dayText, accessibilityLabel: accLabel, eventColorHexes: eventColorHexes)
+      )
+    } else {
+      // Standard DayView — no events
+      let textColor: UIColor = colorFromHex(textColorHex) ?? .label
+
+      let bgDrawingConfig: DrawingConfig
+      if isSelected {
+        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue, borderColor: .clear)
+      } else if isInRange {
+        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue.withAlphaComponent(0.2), borderColor: .clear)
+      } else if isToday && !todayBgColorHex.isEmpty {
+        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(todayBgColorHex) ?? .clear, borderColor: .clear)
+      } else if isToday {
+        bgDrawingConfig = DrawingConfig(fillColor: .clear, borderColor: colorFromHex(bgBorderHex) ?? .systemBlue, borderWidth: 1)
+      } else {
+        bgDrawingConfig = .transparent
+      }
+
+      var properties = DayView.InvariantViewProperties.baseInteractive
+      properties.textColor = textColor
+      properties.font = .systemFont(ofSize: dayFontSizePt)
+      properties.backgroundShapeDrawingConfig = bgDrawingConfig
+      properties.shape = isCircle ? .circle : .rectangle(cornerRadius: 0)
+
+      return DayView.calendarItemModel(
+        invariantViewProperties: properties,
+        content: .init(dayText: dayText, accessibilityLabel: accLabel, accessibilityHint: nil)
+      )
+    }
   }
 
   // MARK: - Month Header Item
@@ -377,33 +476,122 @@ public class NCalendarView: UIView {
     }
     return false
   }
+}
 
-  private func colorFromHex(_ hex: String) -> UIColor? {
-    guard !hex.isEmpty else { return nil }
-    var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-    hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+// MARK: - DayWithEventsView
 
-    var rgb: UInt64 = 0
-    Scanner(string: hexSanitized).scanHexInt64(&rgb)
+/// A custom day view that shows the day number and event indicator dots.
+/// Used in place of DayView when a day has associated events.
+public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
 
-    switch hexSanitized.count {
-    case 6:
-      return UIColor(
-        red: CGFloat((rgb & 0xFF0000) >> 16) / 255,
-        green: CGFloat((rgb & 0x00FF00) >> 8) / 255,
-        blue: CGFloat(rgb & 0x0000FF) / 255,
-        alpha: 1
-      )
-    case 8:
-      return UIColor(
-        red: CGFloat((rgb & 0xFF000000) >> 24) / 255,
-        green: CGFloat((rgb & 0x00FF0000) >> 16) / 255,
-        blue: CGFloat((rgb & 0x0000FF00) >> 8) / 255,
-        alpha: CGFloat(rgb & 0x000000FF) / 255
-      )
-    default:
-      return nil
+  public struct InvariantViewProperties: Hashable {
+    var textColorHex: String
+    var fontSize: CGFloat
+    var bgFillColorHex: String
+    var bgBorderColorHex: String
+    var bgBorderWidth: CGFloat
+    var isCircle: Bool
+  }
+
+  public struct Content: Equatable {
+    let dayText: String
+    let accessibilityLabel: String?
+    let eventColorHexes: [String]
+  }
+
+  private let dayLabel = UILabel()
+  private let bgShapeLayer = CAShapeLayer()
+  private var dotLayers: [CAShapeLayer] = []
+  private var isCircle: Bool = true
+
+  fileprivate init(invariantViewProperties props: InvariantViewProperties) {
+    super.init(frame: .zero)
+    isCircle = props.isCircle
+
+    // Background shape layer
+    bgShapeLayer.fillColor = (colorFromHex(props.bgFillColorHex) ?? .clear).cgColor
+    bgShapeLayer.strokeColor = (colorFromHex(props.bgBorderColorHex) ?? .clear).cgColor
+    bgShapeLayer.lineWidth = props.bgBorderWidth
+    layer.addSublayer(bgShapeLayer)
+
+    // Day label
+    dayLabel.textAlignment = .center
+    dayLabel.font = .systemFont(ofSize: props.fontSize)
+    dayLabel.textColor = colorFromHex(props.textColorHex) ?? .label
+    addSubview(dayLabel)
+
+    isUserInteractionEnabled = true
+  }
+
+  required init?(coder: NSCoder) { fatalError() }
+
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+
+    let w = bounds.width
+    let h = bounds.height
+    let size = min(w, h)
+
+    // Background shape — centered
+    if isCircle {
+      let bgRect = CGRect(x: (w - size) / 2, y: (h - size) / 2, width: size, height: size)
+      bgShapeLayer.path = UIBezierPath(ovalIn: bgRect).cgPath
+    } else {
+      // Rectangle for range — spans full width
+      bgShapeLayer.path = UIBezierPath(rect: CGRect(x: 0, y: (h - size) / 2, width: w, height: size)).cgPath
     }
+
+    // Day label — shifted up slightly to accommodate dots
+    let labelOffset: CGFloat = dotLayers.isEmpty ? 0 : -3
+    dayLabel.frame = CGRect(x: 0, y: labelOffset, width: w, height: h)
+
+    layoutDots()
+  }
+
+  private func layoutDots() {
+    let dotSize: CGFloat = 4
+    let spacing: CGFloat = 3
+    let count = dotLayers.count
+    guard count > 0 else { return }
+
+    let totalWidth = CGFloat(count) * dotSize + CGFloat(count - 1) * spacing
+    var x = (bounds.width - totalWidth) / 2
+    let y = bounds.height - dotSize - 4
+
+    for dot in dotLayers {
+      dot.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: dotSize, height: dotSize)).cgPath
+      dot.frame = CGRect(x: x, y: y, width: dotSize, height: dotSize)
+      x += dotSize + spacing
+    }
+  }
+
+  fileprivate func setContent(_ content: Content) {
+    dayLabel.text = content.dayText
+    accessibilityLabel = content.accessibilityLabel
+
+    // Remove old dots
+    for dot in dotLayers { dot.removeFromSuperlayer() }
+    dotLayers = []
+
+    // Add event dots (max 3)
+    for hex in content.eventColorHexes.prefix(3) {
+      let dot = CAShapeLayer()
+      dot.fillColor = (colorFromHex(hex) ?? .systemBlue).cgColor
+      layer.addSublayer(dot)
+      dotLayers.append(dot)
+    }
+
+    setNeedsLayout()
+  }
+
+  public static func makeView(
+    withInvariantViewProperties props: InvariantViewProperties
+  ) -> DayWithEventsView {
+    DayWithEventsView(invariantViewProperties: props)
+  }
+
+  public static func setContent(_ content: Content, on view: DayWithEventsView) {
+    view.setContent(content)
   }
 }
 

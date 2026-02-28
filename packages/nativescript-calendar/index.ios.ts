@@ -42,14 +42,10 @@ import {
 
 export * from './common';
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-
 function colorToHex(color: Color | undefined): string {
   if (!color) return '';
   return color.hex;
 }
-
-// ── Main Implementation ────────────────────────────────────────────────────
 
 export class NCalendar extends NCalendarCommon {
   private _calView: NCalendarView;
@@ -82,7 +78,7 @@ export class NCalendar extends NCalendarCommon {
     super.disposeNativeView();
   }
 
-  // ── Callbacks ────────────────────────────────────────────────────────
+  // Callbacks
 
   private _configureCallbacks() {
     if (!this._calView) return;
@@ -119,7 +115,7 @@ export class NCalendar extends NCalendarCommon {
     };
   }
 
-  // ── Selection Sync ───────────────────────────────────────────────────
+  // Selection Sync
 
   private _syncSelectionToBridge() {
     if (!this._calView) return;
@@ -133,8 +129,6 @@ export class NCalendar extends NCalendarCommon {
       this._calView.setRangeKeysEndKey(null, null);
     }
   }
-
-  // ── Apply All Properties ─────────────────────────────────────────────
 
   private _applyAllProperties() {
     if (!this._calView) return;
@@ -184,7 +178,7 @@ export class NCalendar extends NCalendarCommon {
     this._calView.dayOfWeekFontSizePt = this.dayOfWeekFontSize || 14;
   }
 
-  // ── Refresh ──────────────────────────────────────────────────────────
+  // Refresh
 
   private _rebuild() {
     if (!this._calView) return;
@@ -199,7 +193,7 @@ export class NCalendar extends NCalendarCommon {
     this._rebuild();
   }
 
-  // ── Programmatic Scrolling ───────────────────────────────────────────
+  // Programmatic Scrolling
 
   scrollToDate(date: Date, animated = true, _position?: ScrollPosition): void {
     if (!this._calView) return;
@@ -211,7 +205,7 @@ export class NCalendar extends NCalendarCommon {
     this._calView.scrollToMonthContainingWithYearMonthDayAnimated(year, month, 1, animated);
   }
 
-  // ── Property Setters ─────────────────────────────────────────────────
+  // Property Setters
 
   [displayModeProperty.setNative](_value: DisplayMode) {
     // TODO: Week and Year modes require additional bridge support
@@ -256,6 +250,7 @@ export class NCalendar extends NCalendarCommon {
   }
 
   [selectedDatesProperty.setNative](value: Date[]) {
+    if (this._internalSelectionChange) return;
     this._selectedKeys.clear();
     if (value && value.length) {
       for (const d of value) {
@@ -266,6 +261,7 @@ export class NCalendar extends NCalendarCommon {
   }
 
   [selectedDateRangeProperty.setNative](value: any) {
+    if (this._internalSelectionChange) return;
     if (value && value.start && value.end) {
       this._rangeStart = value.start;
       this._rangeEnd = value.end;

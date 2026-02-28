@@ -40,13 +40,13 @@ import {
 
 export * from './common';
 
-// ── Native type aliases ────────────────────────────────────────────────────
+// Native type aliases
 
-declare const com: any;
-declare const java: any;
+// declare const com: any;
+// declare const java: any;
 declare const kotlin: any;
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+// Helpers
 
 function jsDateToLocalDate(date: Date): any {
   return java.time.LocalDate.of(date.getFullYear(), date.getMonth() + 1, date.getDate());
@@ -70,7 +70,7 @@ function dipToPx(dip: number): number {
   return Math.round(Utils.layout.toDevicePixels(dip));
 }
 
-// ── ViewContainer subclass ─────────────────────────────────────────────────
+// ViewContainer subclass
 
 let DayViewContainer: any;
 let MonthHeaderContainer: any;
@@ -97,7 +97,7 @@ function ensureContainerClasses() {
   MonthHeaderContainer = _MonthHeaderContainer;
 }
 
-// ── Resource ID cache ──────────────────────────────────────────────────────
+// Resource ID cache
 
 let _dayViewResId = 0;
 let _monthHeaderResId = 0;
@@ -116,7 +116,7 @@ function getMonthHeaderResId(context: any): number {
   return _monthHeaderResId;
 }
 
-// ── Main Implementation ────────────────────────────────────────────────────
+// Main Implementation
 
 export class NCalendar extends NCalendarCommon {
   private _wrapper: any;
@@ -151,7 +151,7 @@ export class NCalendar extends NCalendarCommon {
     super.disposeNativeView();
   }
 
-  // ── Resource ID caching ──────────────────────────────────────────────
+  // Resource ID caching
 
   private _cacheResourceIds() {
     const ctx = this._context;
@@ -161,7 +161,7 @@ export class NCalendar extends NCalendarCommon {
     this._monthTitleId = ctx.getResources().getIdentifier('monthTitle', 'id', ctx.getPackageName());
   }
 
-  // ── Calendar Factory ─────────────────────────────────────────────────
+  // Calendar Factory
 
   private _createCalendarForMode(mode: DisplayMode): any {
     switch (mode) {
@@ -175,7 +175,7 @@ export class NCalendar extends NCalendarCommon {
     }
   }
 
-  // ── Month Calendar ───────────────────────────────────────────────────
+  // Month Calendar
 
   private _createMonthCalendarView(): any {
     const ctx = this._context;
@@ -209,7 +209,7 @@ export class NCalendar extends NCalendarCommon {
     return cv;
   }
 
-  // ── Week Calendar ────────────────────────────────────────────────────
+  // Week Calendar
 
   private _createWeekCalendarView(): any {
     const ctx = this._context;
@@ -231,7 +231,7 @@ export class NCalendar extends NCalendarCommon {
     return wv;
   }
 
-  // ── Year Calendar ────────────────────────────────────────────────────
+  // Year Calendar
 
   private _createYearCalendarView(): any {
     const ctx = this._context;
@@ -262,7 +262,7 @@ export class NCalendar extends NCalendarCommon {
     return yv;
   }
 
-  // ── Day Binder (Month / Year) ────────────────────────────────────────
+  // Day Binder (Month / Year)
 
   private _createMonthDayBinder(): any {
     const owner = new WeakRef(this);
@@ -408,7 +408,7 @@ export class NCalendar extends NCalendarCommon {
     });
   }
 
-  // ── Week Day Binder ──────────────────────────────────────────────────
+  // Week Day Binder
 
   private _createWeekDayBinder(): any {
     const owner = new WeakRef(this);
@@ -501,7 +501,7 @@ export class NCalendar extends NCalendarCommon {
     });
   }
 
-  // ── Month Header Binder ──────────────────────────────────────────────
+  // Month Header Binder
 
   private _createMonthHeaderBinder(): any {
     const owner = new WeakRef(this);
@@ -527,7 +527,7 @@ export class NCalendar extends NCalendarCommon {
     });
   }
 
-  // ── Scroll Listeners ─────────────────────────────────────────────────
+  // Scroll Listeners
 
   private _createMonthScrollListener(): any {
     const owner = new WeakRef(this);
@@ -571,7 +571,7 @@ export class NCalendar extends NCalendarCommon {
     });
   }
 
-  // ── Refresh ──────────────────────────────────────────────────────────
+  // Refresh
 
   private _refreshCalendar() {
     if (!this._calendarView) return;
@@ -588,7 +588,7 @@ export class NCalendar extends NCalendarCommon {
     this._refreshCalendar();
   }
 
-  // ── View Swapping ────────────────────────────────────────────────────
+  // View Swapping
 
   private _swapCalendarView() {
     if (!this._wrapper) return;
@@ -600,7 +600,7 @@ export class NCalendar extends NCalendarCommon {
     }
   }
 
-  // ── Programmatic Scrolling ───────────────────────────────────────────
+  // Programmatic Scrolling
 
   scrollToDate(date: Date, animated = true, _position?: ScrollPosition): void {
     if (!this._calendarView) return;
@@ -655,7 +655,7 @@ export class NCalendar extends NCalendarCommon {
     }
   }
 
-  // ── Property Setters ─────────────────────────────────────────────────
+  // Property Setters
 
   [displayModeProperty.setNative](_value: DisplayMode) {
     this._swapCalendarView();
@@ -689,6 +689,7 @@ export class NCalendar extends NCalendarCommon {
   }
 
   [selectedDatesProperty.setNative](value: Date[]) {
+    if (this._internalSelectionChange) return;
     this._selectedKeys.clear();
     if (value && value.length) {
       for (const d of value) {
@@ -699,6 +700,7 @@ export class NCalendar extends NCalendarCommon {
   }
 
   [selectedDateRangeProperty.setNative](value: any) {
+    if (this._internalSelectionChange) return;
     if (value && value.start && value.end) {
       this._rangeStart = value.start;
       this._rangeEnd = value.end;

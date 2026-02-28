@@ -5,14 +5,14 @@
 //	compile 'com.android.support:recyclerview-v7:+'
 //}
 
-android {  
+android {
   compileSdkVersion 34
-  defaultConfig {  
-    minSdkVersion 24
+  defaultConfig {
+    minSdkVersion 26
     targetSdkVersion 34
     generatedDensities = []
-  }  
-  aaptOptions {  
-    additionalParameters "--no-version-vectors"  
-  }  
+  }
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
 } 

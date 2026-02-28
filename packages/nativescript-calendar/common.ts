@@ -1,6 +1,6 @@
 import { booleanConverter, Color, EventData, Property, View } from '@nativescript/core';
 
-// ── Enums ──────────────────────────────────────────────────────────────────
+// Enums
 
 export enum DisplayMode {
   Month = 'month',
@@ -37,7 +37,7 @@ export enum OutDateStyle {
   EndOfGrid = 'endOfGrid',
 }
 
-// ── Data Interfaces ────────────────────────────────────────────────────────
+// Data Interfaces
 
 export interface CalendarDay {
   date: Date;
@@ -65,7 +65,7 @@ export interface CalendarEvent {
   data?: any;
 }
 
-// ── Event Interfaces ───────────────────────────────────────────────────────
+// Event Interfaces
 
 export interface CalendarDayEventData extends EventData {
   data: { day: CalendarDay };
@@ -94,7 +94,7 @@ export interface CalendarDayRenderEventData extends EventData {
   };
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+// Helpers
 
 function dateToKey(date: Date): string {
   const y = date.getFullYear();
@@ -127,7 +127,7 @@ function isWeekend(date: Date): boolean {
   return dow === 0 || dow === 6;
 }
 
-// ── Base Class ─────────────────────────────────────────────────────────────
+// Base Class
 
 export abstract class NCalendarCommon extends View {
   // Event names
@@ -172,14 +172,15 @@ export abstract class NCalendarCommon extends View {
   dayOfWeekTextColor: Color;
   dayOfWeekFontSize: number;
 
-  // ── Internal selection state ─────────────────────────────────────────
+  // Internal selection state
 
   _selectedKeys = new Set<string>();
   _rangeStart: Date | null = null;
   _rangeEnd: Date | null = null;
   _currentMonth: CalendarMonth | null = null;
+  _internalSelectionChange = false;
 
-  // ── Selection helpers ────────────────────────────────────────────────
+  // Selection helpers
 
   _toDateKey(date: Date): string {
     return dateToKey(date);
@@ -250,7 +251,9 @@ export abstract class NCalendarCommon extends View {
           this._selectedKeys.clear();
           this._selectedKeys.add(key);
         }
+        this._internalSelectionChange = true;
         this._syncSelectedDatesFromKeys();
+        this._internalSelectionChange = false;
         break;
       }
 
@@ -261,7 +264,9 @@ export abstract class NCalendarCommon extends View {
         } else {
           this._selectedKeys.add(key);
         }
+        this._internalSelectionChange = true;
         this._syncSelectedDatesFromKeys();
+        this._internalSelectionChange = false;
         break;
       }
 
@@ -272,7 +277,9 @@ export abstract class NCalendarCommon extends View {
           this._rangeEnd = null;
           this._selectedKeys.clear();
           this._selectedKeys.add(key);
+          this._internalSelectionChange = true;
           this._syncSelectedDateRange();
+          this._internalSelectionChange = false;
         } else {
           // Complete range
           const start = normalizeDate(this._rangeStart);
@@ -290,7 +297,9 @@ export abstract class NCalendarCommon extends View {
             this._selectedKeys.add(dateToKey(cursor));
             cursor.setDate(cursor.getDate() + 1);
           }
+          this._internalSelectionChange = true;
           this._syncSelectedDateRange();
+          this._internalSelectionChange = false;
         }
         break;
       }
@@ -330,7 +339,7 @@ export abstract class NCalendarCommon extends View {
     this.notify({ eventName: NCalendarCommon.monthChangedEvent, object: this, data: { month } } as CalendarMonthEventData);
   }
 
-  // ── Public API stubs (implemented per-platform) ──────────────────────
+  // Public API stubs (implemented per-platform)
 
   scrollToDate(_date: Date, _animated?: boolean, _position?: ScrollPosition): void {}
   scrollToMonth(_year: number, _month: number, _animated?: boolean): void {}
@@ -414,7 +423,7 @@ export abstract class NCalendarCommon extends View {
   refresh(): void {}
 }
 
-// ── Property Definitions ───────────────────────────────────────────────────
+// Property Definitions
 
 function defaultMinDate(): Date {
   const d = new Date();
@@ -538,7 +547,7 @@ export const monthColumnsProperty = new Property<NCalendarCommon, number>({
 });
 monthColumnsProperty.register(NCalendarCommon);
 
-// ── Style Properties ───────────────────────────────────────────────────────
+// Style Properties
 
 export const dayTextColorProperty = new Property<NCalendarCommon, Color>({
   name: 'dayTextColor',
