@@ -1,0 +1,43 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  loaded="onLoaded"
+  shownModally="onShownModally"
+  backgroundColor="#FFFFFF">
+
+  <StackLayout>
+
+    <!-- Header -->
+    <GridLayout columns="*, auto" rows="auto" padding="20 20 12 20">
+      <StackLayout col="0">
+        <Label text="{{ dateFormatted }}" fontWeight="bold" fontSize="20" color="#212121" />
+        <Label text="{{ eventCount }}" fontSize="13" color="#999999" marginTop="2" />
+      </StackLayout>
+      <Label col="1" text="&#x2715;" tap="{{ onClose }}" fontSize="20" color="#999999" width="36" height="36" textAlignment="center" verticalAlignment="center" />
+    </GridLayout>
+
+    <!-- Divider -->
+    <StackLayout height="1" backgroundColor="#F0F0F0" margin="0 20" />
+
+    <!-- Event list -->
+    <StackLayout padding="8 20 24 20">
+      <Repeater items="{{ events }}">
+        <Repeater.itemTemplate>
+          <GridLayout columns="4, *, auto" rows="auto" padding="12 0" marginBottom="2">
+            <!-- Color indicator -->
+            <StackLayout col="0" width="4" height="36" borderRadius="2" backgroundColor="{{ color }}" verticalAlignment="center" />
+
+            <!-- Event details -->
+            <StackLayout col="1" marginLeft="14" verticalAlignment="center">
+              <Label text="{{ title }}" fontWeight="600" fontSize="16" color="#212121" />
+              <Label text="{{ time }}" fontSize="13" color="#757575" marginTop="2" visibility="{{ time ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+
+            <!-- Chevron -->
+            <Label col="2" text="&#x203A;" fontSize="22" color="#CCCCCC" verticalAlignment="center" />
+          </GridLayout>
+        </Repeater.itemTemplate>
+      </Repeater>
+    </StackLayout>
+
+  </StackLayout>
+
+</Page>

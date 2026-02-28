@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center" />
+        android:gravity="start"
+        android:paddingStart="2dp" />
 
 </LinearLayout>

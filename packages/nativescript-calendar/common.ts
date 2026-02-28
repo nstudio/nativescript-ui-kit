@@ -522,7 +522,7 @@ horizontalDayMarginProperty.register(NCalendarCommon);
 
 export const pinDaysOfWeekToTopProperty = new Property<NCalendarCommon, boolean>({
   name: 'pinDaysOfWeekToTop',
-  defaultValue: false,
+  defaultValue: true,
   valueConverter: booleanConverter,
 });
 pinDaysOfWeekToTopProperty.register(NCalendarCommon);

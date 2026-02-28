@@ -50,7 +50,31 @@ public class NCalendarView: UIView {
 
   public override func layoutSubviews() {
     super.layoutSubviews()
-    calendarView.frame = bounds
+    if displayModeStr == "week" {
+      horizontalMonthLabel?.isHidden = true
+      weekContainer?.frame = bounds
+      let headerHeight: CGFloat = 36
+      let dowHeight: CGFloat = 24
+      let cellWidth = bounds.width / 7
+      let dayRowHeight = cellWidth  // Square day cells
+      weekMonthLabel?.frame = CGRect(x: 0, y: 0, width: bounds.width, height: headerHeight)
+      weekDowStack?.frame = CGRect(x: 0, y: headerHeight, width: bounds.width, height: dowHeight)
+      weekDaysStack?.frame = CGRect(x: 0, y: headerHeight + dowHeight, width: bounds.width, height: dayRowHeight)
+    } else if isHorizontal {
+      // HorizonCalendar bottom-aligns in horizontal mode: y = frameHeight - maxMonthHeight
+      // By setting frameHeight == maxMonthHeight, we get y = 0 (top-aligned)
+      horizontalMonthLabel?.isHidden = false
+      let labelHeight: CGFloat = 44
+      horizontalMonthLabel?.frame = CGRect(x: 0, y: 0, width: bounds.width, height: labelHeight)
+
+      let dayWidth = (bounds.width - 6 * horizontalDayMarginPt) / 7
+      let dowRowHeight: CGFloat = ceil(dayOfWeekFontSizePt * 1.5) + 8
+      let maxMonthHeight = dowRowHeight + 6 * dayWidth + 5 * verticalDayMarginPt
+      calendarView.frame = CGRect(x: 0, y: labelHeight, width: bounds.width, height: maxMonthHeight)
+    } else {
+      horizontalMonthLabel?.isHidden = true
+      calendarView.frame = bounds
+    }
   }
 
   // MARK: - Internal
@@ -67,16 +91,35 @@ public class NCalendarView: UIView {
     return f
   }()
 
+  // Week strip views
+  private var weekContainer: UIView?
+  private var weekDowStack: UIStackView?
+  private var weekDaysStack: UIStackView?
+  private var weekDayCells: [WeekDayCell] = []
+  private var weekMonthLabel: UILabel?
+  private var _weekStartDate: Date = Date()
+
+  // Horizontal mode month label
+  private var horizontalMonthLabel: UILabel?
+
   // MARK: - Configuration Properties
 
   @objc public var isHorizontal: Bool = false {
     didSet {
       guard oldValue != isHorizontal else { return }
+      if isHorizontal { ensureHorizontalMonthLabel() }
       recreateCalendarView()
+      setNeedsLayout()
     }
   }
   @objc public var isPaginated: Bool = false { didSet { rebuildContent() } }
-  @objc public var pinDaysOfWeekToTop: Bool = false { didSet { rebuildContent() } }
+  @objc public var pinDaysOfWeekToTop: Bool = true {
+    didSet {
+      guard oldValue != pinDaysOfWeekToTop else { return }
+      recreateCalendarView()
+      setNeedsLayout()
+    }
+  }
   @objc public var showCompleteBoundaryMonths: Bool = true { didSet { rebuildContent() } }
 
   @objc public var minDateMs: Double = 0 { didSet { rebuildContent() } }
@@ -89,6 +132,14 @@ public class NCalendarView: UIView {
 
   // Selection
   @objc public var selectionModeStr: String = "single"
+
+  // Display Mode
+  @objc public var displayModeStr: String = "month" {
+    didSet {
+      guard oldValue != displayModeStr else { return }
+      switchDisplayMode()
+    }
+  }
 
   // Style
   @objc public var dayTextColorHex: String = ""
@@ -138,7 +189,13 @@ public class NCalendarView: UIView {
     let content = buildContent()
     calendarView = CalendarView(initialContent: content)
     calendarView.directionalLayoutMargins = .zero
-    addSubview(calendarView)
+
+    // Insert below the horizontal month label if it exists
+    if let label = horizontalMonthLabel {
+      insertSubview(calendarView, belowSubview: label)
+    } else {
+      addSubview(calendarView)
+    }
     calendarView.frame = bounds
     attachCalendarHandlers()
   }
@@ -152,6 +209,7 @@ public class NCalendarView: UIView {
       guard let self = self else { return }
       let startDay = visibleDayRange.lowerBound
       let endDay = visibleDayRange.upperBound
+      self.updateHorizontalMonthLabel(year: startDay.month.year, month: startDay.month.month)
       self.onScroll?(startDay.month.year, startDay.month.month, endDay.month.year, endDay.month.month, isDragging)
     }
 
@@ -159,6 +217,7 @@ public class NCalendarView: UIView {
       guard let self = self else { return }
       let startDay = visibleDayRange.lowerBound
       let endDay = visibleDayRange.upperBound
+      self.updateHorizontalMonthLabel(year: startDay.month.year, month: startDay.month.month)
       self.onScrollEnd?(startDay.month.year, startDay.month.month, endDay.month.year, endDay.month.month)
       self.onMonthChanged?(startDay.month.year, startDay.month.month)
     }
@@ -172,6 +231,11 @@ public class NCalendarView: UIView {
   // MARK: - Content Building
 
   @objc public func rebuildContent() {
+    if displayModeStr == "week" {
+      rebuildWeekDowLabels()
+      updateWeekCells()
+      return
+    }
     guard calendarView != nil else { return }
     let content = buildContent()
     calendarView.setContent(content, animated: false)
@@ -219,16 +283,36 @@ public class NCalendarView: UIView {
       return self.makeDayItem(for: dayComponents)
     }
 
-    // Month header provider
-    content = content.monthHeaderItemProvider { [weak self] monthComponents in
-      guard let self = self else { return nil }
-      return self.makeMonthHeaderItem(for: monthComponents)
+    // Month header provider (skip in horizontal mode — external label is used instead)
+    if !isHorizontal {
+      content = content.monthHeaderItemProvider { [weak self] monthComponents in
+        guard let self = self else { return nil }
+        return self.makeMonthHeaderItem(for: monthComponents)
+      }
     }
 
     // Day-of-week provider
     content = content.dayOfWeekItemProvider { [weak self] month, weekdayIndex in
       guard let self = self else { return nil }
       return self.makeDayOfWeekItem(month: month, weekdayIndex: weekdayIndex)
+    }
+
+    // Day range highlight (Airbnb-style band behind range days)
+    if let startKey = rangeStartKey,
+       let endKey = rangeEndKey,
+       startKey != endKey,
+       let startDate = dateFromKey(startKey),
+       let endDate = dateFromKey(endKey) {
+      let rangeColorHex = selectedRangeColorHex.isEmpty ? "#BBDEFB" : selectedRangeColorHex
+      let dateRanges: Set<ClosedRange<Date>> = [startDate...endDate]
+      content = content.dayRangeItemProvider(for: dateRanges) { dayRangeLayoutContext in
+        DayRangeHighlightView.calendarItemModel(
+          invariantViewProperties: .init(colorHex: rangeColorHex),
+          content: .init(
+            framesOfDaysToHighlight: dayRangeLayoutContext.daysAndFrames.map { $0.frame }
+          )
+        )
+      }
     }
 
     return content
@@ -251,6 +335,12 @@ public class NCalendarView: UIView {
     let isDisabled = isDateDisabled(date)
     let isWeekend = _calendar.isDateInWeekend(date)
 
+    // Range position detection
+    let isRangeStart = key == rangeStartKey && rangeEndKey != nil
+    let isRangeEnd = key == rangeEndKey && rangeStartKey != nil
+    let isSingleDayRange = isRangeStart && isRangeEnd
+    let isMiddleOfRange = isInRange && !isRangeStart && !isRangeEnd
+
     // Get event colors for this day
     let dayEvents = eventsByKey[key] ?? []
     let eventColorHexes: [String] = dayEvents.compactMap { $0["color"] as? String }
@@ -259,6 +349,11 @@ public class NCalendarView: UIView {
     let textColorHex: String
     if isDisabled {
       textColorHex = disabledDayTextColorHex.isEmpty ? "#C7C7CC" : disabledDayTextColorHex
+    } else if (isRangeStart || isRangeEnd) && !isSingleDayRange {
+      textColorHex = selectedDayTextColorHex.isEmpty ? "#FFFFFF" : selectedDayTextColorHex
+    } else if isMiddleOfRange && !isSingleDayRange {
+      // Middle-of-range days use normal text color (range indicator behind handles visual)
+      textColorHex = dayTextColorHex.isEmpty ? "#000000" : dayTextColorHex
     } else if isSelected {
       textColorHex = selectedDayTextColorHex.isEmpty ? "#FFFFFF" : selectedDayTextColorHex
     } else if isToday {
@@ -275,16 +370,23 @@ public class NCalendarView: UIView {
     let bgBorderWidth: CGFloat
     let isCircle: Bool
 
-    if isSelected {
+    if (isRangeStart || isRangeEnd) && !isSingleDayRange {
+      // Range start/end: selection circle (range indicator behind provides the band)
       bgFillHex = selectedDayBgColorHex.isEmpty ? "#2196F3" : selectedDayBgColorHex
       bgBorderHex = ""
       bgBorderWidth = 0
       isCircle = true
-    } else if isInRange {
-      bgFillHex = selectedRangeColorHex.isEmpty ? "#BBDEFB" : selectedRangeColorHex
+    } else if isMiddleOfRange && !isSingleDayRange {
+      // Middle of range: transparent (range indicator behind handles visual)
+      bgFillHex = ""
       bgBorderHex = ""
       bgBorderWidth = 0
       isCircle = false
+    } else if isSelected {
+      bgFillHex = selectedDayBgColorHex.isEmpty ? "#2196F3" : selectedDayBgColorHex
+      bgBorderHex = ""
+      bgBorderWidth = 0
+      isCircle = true
     } else if isToday {
       if !todayBgColorHex.isEmpty {
         bgFillHex = todayBgColorHex
@@ -326,10 +428,12 @@ public class NCalendarView: UIView {
       let textColor: UIColor = colorFromHex(textColorHex) ?? .label
 
       let bgDrawingConfig: DrawingConfig
-      if isSelected {
+      if (isRangeStart || isRangeEnd) && !isSingleDayRange {
         bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue, borderColor: .clear)
-      } else if isInRange {
-        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue.withAlphaComponent(0.2), borderColor: .clear)
+      } else if isMiddleOfRange && !isSingleDayRange {
+        bgDrawingConfig = .transparent
+      } else if isSelected {
+        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue, borderColor: .clear)
       } else if isToday && !todayBgColorHex.isEmpty {
         bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(todayBgColorHex) ?? .clear, borderColor: .clear)
       } else if isToday {
@@ -440,13 +544,21 @@ public class NCalendarView: UIView {
   @objc public func scrollToMonthContaining(year: Int, month: Int, day: Int, animated: Bool) {
     let components = DateComponents(year: year, month: month, day: day)
     guard let date = _calendar.date(from: components) else { return }
-    calendarView.scroll(toMonthContaining: date, scrollPosition: .firstFullyVisiblePosition, animated: animated)
+    if displayModeStr == "week" {
+      showWeekContaining(date)
+    } else {
+      calendarView.scroll(toMonthContaining: date, scrollPosition: .firstFullyVisiblePosition, animated: animated)
+    }
   }
 
   @objc public func scrollToDayContaining(year: Int, month: Int, day: Int, animated: Bool) {
     let components = DateComponents(year: year, month: month, day: day)
     guard let date = _calendar.date(from: components) else { return }
-    calendarView.scroll(toDayContaining: date, scrollPosition: .centered, animated: animated)
+    if displayModeStr == "week" {
+      showWeekContaining(date)
+    } else {
+      calendarView.scroll(toDayContaining: date, scrollPosition: .centered, animated: animated)
+    }
   }
 
   // MARK: - Helpers
@@ -464,6 +576,38 @@ public class NCalendarView: UIView {
     return key >= start && key <= end
   }
 
+  private func dateFromKey(_ key: String) -> Date? {
+    let parts = key.split(separator: "-")
+    guard parts.count == 3,
+          let y = Int(parts[0]),
+          let m = Int(parts[1]),
+          let d = Int(parts[2]) else { return nil }
+    return _calendar.date(from: DateComponents(year: y, month: m, day: d))
+  }
+
+  private func ensureHorizontalMonthLabel() {
+    guard horizontalMonthLabel == nil else { return }
+    let label = UILabel()
+    label.textAlignment = .center
+    label.font = .boldSystemFont(ofSize: monthHeaderFontSizePt)
+    label.textColor = colorFromHex(monthHeaderTextColorHex) ?? .label
+    label.isHidden = true
+    addSubview(label)
+    horizontalMonthLabel = label
+  }
+
+  private func updateHorizontalMonthLabel(year: Int, month: Int) {
+    guard let label = horizontalMonthLabel, !label.isHidden else { return }
+    let dateComponents = DateComponents(year: year, month: month)
+    let date = _calendar.date(from: dateComponents) ?? Date()
+    let formatter = DateFormatter()
+    formatter.calendar = _calendar
+    formatter.dateFormat = "MMMM yyyy"
+    label.text = formatter.string(from: date)
+    label.font = .boldSystemFont(ofSize: monthHeaderFontSizePt)
+    label.textColor = colorFromHex(monthHeaderTextColorHex) ?? .label
+  }
+
   private func isDateDisabled(_ date: Date) -> Bool {
     if minDateMs > 0 {
       let minDate = Date(timeIntervalSince1970: minDateMs / 1000)
@@ -475,6 +619,309 @@ public class NCalendarView: UIView {
       if date >= dayAfterMax { return true }
     }
     return false
+  }
+
+  // MARK: - Week Strip
+
+  private func switchDisplayMode() {
+    if displayModeStr == "week" {
+      calendarView.isHidden = true
+      horizontalMonthLabel?.isHidden = true
+      ensureWeekStrip()
+      weekContainer?.isHidden = false
+      showWeekContaining(Date())
+    } else {
+      weekContainer?.isHidden = true
+      calendarView.isHidden = false
+      rebuildContent()
+    }
+    setNeedsLayout()
+  }
+
+  private func ensureWeekStrip() {
+    guard weekContainer == nil else { return }
+
+    let container = UIView()
+    container.backgroundColor = .clear
+
+    // Month label
+    let monthLabel = UILabel()
+    monthLabel.textAlignment = .center
+    monthLabel.font = .boldSystemFont(ofSize: monthHeaderFontSizePt)
+    monthLabel.textColor = colorFromHex(monthHeaderTextColorHex) ?? .label
+    container.addSubview(monthLabel)
+    weekMonthLabel = monthLabel
+
+    // Day-of-week labels
+    let dowStack = UIStackView()
+    dowStack.axis = .horizontal
+    dowStack.distribution = .fillEqually
+    dowStack.alignment = .center
+
+    let symbols = _calendar.shortWeekdaySymbols
+    for i in 0..<7 {
+      let idx = (_calendar.firstWeekday - 1 + i) % 7
+      let label = UILabel()
+      label.text = symbols[idx]
+      label.textAlignment = .center
+      label.font = .systemFont(ofSize: dayOfWeekFontSizePt, weight: .medium)
+      label.textColor = colorFromHex(dayOfWeekTextColorHex) ?? .secondaryLabel
+      dowStack.addArrangedSubview(label)
+    }
+
+    // Day cells
+    let daysStack = UIStackView()
+    daysStack.axis = .horizontal
+    daysStack.distribution = .fillEqually
+    daysStack.alignment = .fill
+
+    var cells: [WeekDayCell] = []
+    for _ in 0..<7 {
+      let cell = WeekDayCell(frame: .zero)
+      let tap = UITapGestureRecognizer(target: self, action: #selector(weekCellTapped(_:)))
+      cell.addGestureRecognizer(tap)
+      daysStack.addArrangedSubview(cell)
+      cells.append(cell)
+    }
+
+    container.addSubview(dowStack)
+    container.addSubview(daysStack)
+
+    // Swipe gestures
+    let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(weekSwipeLeft))
+    leftSwipe.direction = .left
+    container.addGestureRecognizer(leftSwipe)
+
+    let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(weekSwipeRight))
+    rightSwipe.direction = .right
+    container.addGestureRecognizer(rightSwipe)
+
+    addSubview(container)
+
+    weekContainer = container
+    weekDowStack = dowStack
+    weekDaysStack = daysStack
+    weekDayCells = cells
+  }
+
+  private func showWeekContaining(_ date: Date) {
+    let comps = _calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+    guard let weekStart = _calendar.date(from: comps) else { return }
+    _weekStartDate = weekStart
+    updateWeekCells()
+
+    // Update month label
+    let formatter = DateFormatter()
+    formatter.calendar = _calendar
+    formatter.dateFormat = "MMMM yyyy"
+    weekMonthLabel?.text = formatter.string(from: date)
+
+    // Notify month changed
+    let monthComps = _calendar.dateComponents([.year, .month], from: weekStart)
+    onMonthChanged?(monthComps.year!, monthComps.month!)
+  }
+
+  private func updateWeekCells() {
+    guard weekDayCells.count == 7 else { return }
+
+    for i in 0..<7 {
+      guard let date = _calendar.date(byAdding: .day, value: i, to: _weekStartDate) else { continue }
+      let cell = weekDayCells[i]
+      cell.date = date
+
+      let key = dateKey(date)
+      let isSelected = selectedDayKeys.contains(key)
+      let isInRange = isKeyInRange(key)
+      let isToday = _calendar.isDateInToday(date)
+      let isDisabled = isDateDisabled(date)
+      let isWeekend = _calendar.isDateInWeekend(date)
+
+      // Range position
+      let isRangeStart = key == rangeStartKey && rangeEndKey != nil
+      let isRangeEnd = key == rangeEndKey && rangeStartKey != nil
+      let isSingleDayRange = isRangeStart && isRangeEnd
+      let isMiddleOfRange = isInRange && !isRangeStart && !isRangeEnd
+
+      let day = _calendar.component(.day, from: date)
+      cell.dayLabel.text = "\(day)"
+      cell.dayLabel.font = .systemFont(ofSize: dayFontSizePt)
+
+      // Text color
+      if isDisabled {
+        cell.dayLabel.textColor = colorFromHex(disabledDayTextColorHex) ?? UIColor(white: 0.8, alpha: 1)
+      } else if (isRangeStart || isRangeEnd) && !isSingleDayRange {
+        cell.dayLabel.textColor = colorFromHex(selectedDayTextColorHex) ?? .white
+      } else if isMiddleOfRange && !isSingleDayRange {
+        cell.dayLabel.textColor = colorFromHex(dayTextColorHex) ?? .label
+      } else if isSelected {
+        cell.dayLabel.textColor = colorFromHex(selectedDayTextColorHex) ?? .white
+      } else if isToday {
+        cell.dayLabel.textColor = colorFromHex(todayTextColorHex) ?? .systemBlue
+      } else if isWeekend {
+        cell.dayLabel.textColor = colorFromHex(weekendTextColorHex) ?? .secondaryLabel
+      } else {
+        cell.dayLabel.textColor = colorFromHex(dayTextColorHex) ?? .label
+      }
+
+      // Range type (for Airbnb-style band rendering)
+      if isRangeStart && !isSingleDayRange {
+        cell.rangeType = .start
+      } else if isRangeEnd && !isSingleDayRange {
+        cell.rangeType = .end
+      } else if isMiddleOfRange && !isSingleDayRange {
+        cell.rangeType = .middle
+      } else {
+        cell.rangeType = .none
+      }
+
+      // Range fill color
+      if cell.rangeType != .none {
+        cell.rangeBg.fillColor = (colorFromHex(selectedRangeColorHex) ?? .systemBlue.withAlphaComponent(0.2)).cgColor
+      } else {
+        cell.rangeBg.fillColor = UIColor.clear.cgColor
+      }
+
+      // Background circle
+      if (isRangeStart || isRangeEnd) && !isSingleDayRange {
+        cell.bgShape.fillColor = (colorFromHex(selectedDayBgColorHex) ?? .systemBlue).cgColor
+        cell.bgShape.strokeColor = UIColor.clear.cgColor
+        cell.bgShape.lineWidth = 0
+      } else if isSelected {
+        cell.bgShape.fillColor = (colorFromHex(selectedDayBgColorHex) ?? .systemBlue).cgColor
+        cell.bgShape.strokeColor = UIColor.clear.cgColor
+        cell.bgShape.lineWidth = 0
+      } else if isToday {
+        if !todayBgColorHex.isEmpty {
+          cell.bgShape.fillColor = (colorFromHex(todayBgColorHex) ?? .clear).cgColor
+          cell.bgShape.strokeColor = UIColor.clear.cgColor
+          cell.bgShape.lineWidth = 0
+        } else {
+          cell.bgShape.fillColor = UIColor.clear.cgColor
+          cell.bgShape.strokeColor = (colorFromHex(todayTextColorHex) ?? .systemBlue).cgColor
+          cell.bgShape.lineWidth = 1
+        }
+      } else {
+        cell.bgShape.fillColor = UIColor.clear.cgColor
+        cell.bgShape.strokeColor = UIColor.clear.cgColor
+        cell.bgShape.lineWidth = 0
+      }
+
+      // Event dot
+      let events = eventsByKey[key] ?? []
+      if !events.isEmpty {
+        cell.dotView.isHidden = false
+        let dotColor = events.first?["color"] as? String
+        cell.dotView.backgroundColor = colorFromHex(dotColor ?? "") ?? .systemBlue
+      } else {
+        cell.dotView.isHidden = true
+      }
+
+      cell.alpha = isDisabled ? 0.3 : 1.0
+      cell.setNeedsLayout()
+    }
+  }
+
+  private func rebuildWeekDowLabels() {
+    guard let dowStack = weekDowStack else { return }
+    let symbols = _calendar.shortWeekdaySymbols
+    for (i, view) in dowStack.arrangedSubviews.enumerated() {
+      guard let label = view as? UILabel else { continue }
+      let idx = (_calendar.firstWeekday - 1 + i) % 7
+      label.text = symbols[idx]
+      label.font = .systemFont(ofSize: dayOfWeekFontSizePt, weight: .medium)
+      label.textColor = colorFromHex(dayOfWeekTextColorHex) ?? .secondaryLabel
+    }
+    weekMonthLabel?.font = .boldSystemFont(ofSize: monthHeaderFontSizePt)
+    weekMonthLabel?.textColor = colorFromHex(monthHeaderTextColorHex) ?? .label
+  }
+
+  @objc private func weekCellTapped(_ gesture: UITapGestureRecognizer) {
+    guard let cell = gesture.view as? WeekDayCell,
+          let date = cell.date else { return }
+    let comps = _calendar.dateComponents([.year, .month, .day], from: date)
+    onDaySelect?(comps.year!, comps.month!, comps.day!)
+  }
+
+  @objc private func weekSwipeLeft() {
+    guard let next = _calendar.date(byAdding: .weekOfYear, value: 1, to: _weekStartDate) else { return }
+    let maxDate = maxDateMs > 0 ? Date(timeIntervalSince1970: maxDateMs / 1000) : Calendar.current.date(byAdding: .year, value: 2, to: Date())!
+    if next <= maxDate {
+      showWeekContaining(next)
+    }
+  }
+
+  @objc private func weekSwipeRight() {
+    guard let prev = _calendar.date(byAdding: .weekOfYear, value: -1, to: _weekStartDate) else { return }
+    let minDate = minDateMs > 0 ? Date(timeIntervalSince1970: minDateMs / 1000) : Calendar.current.date(byAdding: .year, value: -2, to: Date())!
+    if prev >= minDate {
+      showWeekContaining(prev)
+    }
+  }
+}
+
+// MARK: - DayRangeHighlightView
+
+/// Draws pill-shaped highlights behind rows of days in a selected range (Airbnb-style).
+public final class DayRangeHighlightView: UIView, CalendarItemViewRepresentable {
+
+  public struct InvariantViewProperties: Hashable {
+    var colorHex: String
+  }
+
+  public struct Content: Equatable {
+    let framesOfDaysToHighlight: [CGRect]
+  }
+
+  private var framesOfDaysToHighlight = [CGRect]()
+  private var highlightColor: UIColor = .systemBlue.withAlphaComponent(0.2)
+
+  fileprivate init(invariantViewProperties props: InvariantViewProperties) {
+    super.init(frame: .zero)
+    backgroundColor = .clear
+    highlightColor = colorFromHex(props.colorHex) ?? .systemBlue.withAlphaComponent(0.2)
+  }
+
+  required init?(coder: NSCoder) { fatalError() }
+
+  fileprivate func setContent(_ content: Content) {
+    framesOfDaysToHighlight = content.framesOfDaysToHighlight
+    setNeedsDisplay()
+  }
+
+  public override func draw(_ rect: CGRect) {
+    guard let context = UIGraphicsGetCurrentContext() else { return }
+    context.setFillColor(highlightColor.cgColor)
+
+    // Group day frames by row (same minY = same row)
+    var dayRowFrames = [CGRect]()
+    var currentDayRowMinY: CGFloat?
+    for dayFrame in framesOfDaysToHighlight {
+      if dayFrame.minY != currentDayRowMinY {
+        currentDayRowMinY = dayFrame.minY
+        dayRowFrames.append(dayFrame)
+      } else {
+        let lastIndex = dayRowFrames.count - 1
+        dayRowFrames[lastIndex] = dayRowFrames[lastIndex].union(dayFrame)
+      }
+    }
+
+    // Draw pill-shaped highlight per row
+    for dayRowFrame in dayRowFrames {
+      let cornerRadius = dayRowFrame.height / 2
+      let path = UIBezierPath(roundedRect: dayRowFrame, cornerRadius: cornerRadius)
+      context.addPath(path.cgPath)
+      context.fillPath()
+    }
+  }
+
+  public static func makeView(
+    withInvariantViewProperties props: InvariantViewProperties
+  ) -> DayRangeHighlightView {
+    DayRangeHighlightView(invariantViewProperties: props)
+  }
+
+  public static func setContent(_ content: Content, on view: DayRangeHighlightView) {
+    view.setContent(content)
   }
 }
 
@@ -617,18 +1064,20 @@ public final class MonthHeaderView: UIView, CalendarItemViewRepresentable {
 
   fileprivate init(invariantViewProperties: InvariantViewProperties) {
     super.init(frame: .zero)
-    label.textAlignment = .center
+    label.textAlignment = .natural  // Left-aligned (respects RTL)
     label.font = invariantViewProperties.font
     label.textColor = invariantViewProperties.textColor
+    label.translatesAutoresizingMaskIntoConstraints = false
     addSubview(label)
+    NSLayoutConstraint.activate([
+      label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+      label.trailingAnchor.constraint(equalTo: trailingAnchor),
+      label.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+      label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+    ])
   }
 
   required init?(coder: NSCoder) { fatalError() }
-
-  public override func layoutSubviews() {
-    super.layoutSubviews()
-    label.frame = bounds
-  }
 
   fileprivate func setContent(_ content: Content) {
     label.text = content.monthText
@@ -671,15 +1120,17 @@ public final class DayOfWeekView: UIView, CalendarItemViewRepresentable {
     label.textAlignment = .center
     label.font = invariantViewProperties.font
     label.textColor = invariantViewProperties.textColor
+    label.translatesAutoresizingMaskIntoConstraints = false
     addSubview(label)
+    NSLayoutConstraint.activate([
+      label.leadingAnchor.constraint(equalTo: leadingAnchor),
+      label.trailingAnchor.constraint(equalTo: trailingAnchor),
+      label.topAnchor.constraint(equalTo: topAnchor),
+      label.bottomAnchor.constraint(equalTo: bottomAnchor),
+    ])
   }
 
   required init?(coder: NSCoder) { fatalError() }
-
-  public override func layoutSubviews() {
-    super.layoutSubviews()
-    label.frame = bounds
-  }
 
   fileprivate func setContent(_ content: Content) {
     label.text = content.dayOfWeekText
@@ -694,5 +1145,75 @@ public final class DayOfWeekView: UIView, CalendarItemViewRepresentable {
 
   public static func setContent(_ content: Content, on view: DayOfWeekView) {
     view.setContent(content)
+  }
+}
+
+// MARK: - WeekDayCell
+
+/// A single day cell used in the custom week strip view.
+fileprivate final class WeekDayCell: UIView {
+
+  enum RangeType {
+    case none, start, middle, end
+  }
+
+  let dayLabel = UILabel()
+  let bgShape = CAShapeLayer()
+  let rangeBg = CAShapeLayer()
+  let dotView = UIView()
+  var date: Date?
+  var rangeType: RangeType = .none
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+
+    rangeBg.fillColor = UIColor.clear.cgColor
+    layer.addSublayer(rangeBg)
+
+    bgShape.fillColor = UIColor.clear.cgColor
+    bgShape.strokeColor = UIColor.clear.cgColor
+    layer.addSublayer(bgShape)
+
+    dayLabel.textAlignment = .center
+    addSubview(dayLabel)
+
+    dotView.isHidden = true
+    dotView.clipsToBounds = true
+    addSubview(dotView)
+
+    isUserInteractionEnabled = true
+  }
+
+  required init?(coder: NSCoder) { fatalError() }
+
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    let w = bounds.width
+    let h = bounds.height
+    let size = min(w, h)
+
+    // Range background band
+    rangeBg.frame = bounds
+    switch rangeType {
+    case .start:
+      rangeBg.path = UIBezierPath(rect: CGRect(x: w / 2, y: (h - size) / 2, width: w / 2, height: size)).cgPath
+    case .end:
+      rangeBg.path = UIBezierPath(rect: CGRect(x: 0, y: (h - size) / 2, width: w / 2, height: size)).cgPath
+    case .middle:
+      rangeBg.path = UIBezierPath(rect: CGRect(x: 0, y: (h - size) / 2, width: w, height: size)).cgPath
+    case .none:
+      rangeBg.path = nil
+    }
+
+    // Selection/today circle
+    bgShape.frame = bounds
+    let bgRect = CGRect(x: (w - size) / 2, y: (h - size) / 2, width: size, height: size)
+    bgShape.path = UIBezierPath(ovalIn: bgRect).cgPath
+
+    dayLabel.frame = bounds
+
+    let dotSize: CGFloat = 4
+    dotView.frame = CGRect(x: (w - dotSize) / 2, y: h - dotSize - 2, width: dotSize, height: dotSize)
+    dotView.layer.cornerRadius = dotSize / 2
   }
 }

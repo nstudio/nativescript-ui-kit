@@ -22,6 +22,7 @@ import {
   interMonthSpacingProperty,
   outDateStyleProperty,
   monthColumnsProperty,
+  pinDaysOfWeekToTopProperty,
   dayTextColorProperty,
   dayFontSizeProperty,
   todayTextColorProperty,
@@ -68,6 +69,76 @@ function toAndroidColor(color: Color | undefined, fallback: string): number {
 
 function dipToPx(dip: number): number {
   return Math.round(Utils.layout.toDevicePixels(dip));
+}
+
+// Range Drawable (Airbnb-style range band + circle)
+
+let _RangeDrawable: any;
+
+function ensureRangeDrawable() {
+  if (_RangeDrawable) return;
+
+  @NativeClass()
+  class RangeDrawableImpl extends android.graphics.drawable.Drawable {
+    _circleColor = 0;
+    _rangeColor = 0;
+    _type = 1; // 0=start, 1=middle, 2=end
+    _circlePaint: android.graphics.Paint;
+    _rangePaint: android.graphics.Paint;
+
+    constructor() {
+      super();
+      this._circlePaint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+      this._rangePaint = new android.graphics.Paint();
+      return global.__native(this);
+    }
+
+    draw(canvas: android.graphics.Canvas) {
+      const bounds = this.getBounds();
+      const w = bounds.width();
+      const h = bounds.height();
+      const size = Math.min(w, h);
+      const radius = size / 2;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      this._rangePaint.setColor(this._rangeColor);
+
+      // Range band
+      if (this._type === 0) {
+        // Start: band fills right half
+        canvas.drawRect(cx, cy - radius, w, cy + radius, this._rangePaint);
+      } else if (this._type === 2) {
+        // End: band fills left half
+        canvas.drawRect(0, cy - radius, cx, cy + radius, this._rangePaint);
+      } else {
+        // Middle: band fills full width
+        canvas.drawRect(0, cy - radius, w, cy + radius, this._rangePaint);
+      }
+
+      // Circle for start/end
+      if (this._type !== 1) {
+        this._circlePaint.setColor(this._circleColor);
+        canvas.drawCircle(cx, cy, radius, this._circlePaint);
+      }
+    }
+
+    setAlpha(alpha: number) {
+      this._circlePaint.setAlpha(alpha);
+      this._rangePaint.setAlpha(alpha);
+    }
+
+    setColorFilter(filter: any) {
+      this._circlePaint.setColorFilter(filter);
+      this._rangePaint.setColorFilter(filter);
+    }
+
+    getOpacity(): number {
+      return android.graphics.PixelFormat.TRANSLUCENT;
+    }
+  }
+
+  _RangeDrawable = RangeDrawableImpl;
 }
 
 // ViewContainer subclass
@@ -121,6 +192,7 @@ function getMonthHeaderResId(context: any): number {
 export class NCalendar extends NCalendarCommon {
   private _wrapper: any;
   private _calendarView: any;
+  private _dowHeader: any;
   private _dayTextId = 0;
   private _dotViewId = 0;
   private _monthTitleId = 0;
@@ -132,10 +204,18 @@ export class NCalendar extends NCalendarCommon {
 
   createNativeView() {
     ensureContainerClasses();
-    this._wrapper = new android.widget.FrameLayout(this._context);
+    ensureRangeDrawable();
+    this._wrapper = new android.widget.LinearLayout(this._context);
+    this._wrapper.setOrientation(android.widget.LinearLayout.VERTICAL);
     this._cacheResourceIds();
+    this._buildDowHeader();
     this._calendarView = this._createCalendarForMode(this.displayMode);
+    if (this._dowHeader) {
+      this._wrapper.addView(this._dowHeader);
+    }
     if (this._calendarView) {
+      const lp = new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0);
+      this._calendarView.setLayoutParams(lp);
       this._wrapper.addView(this._calendarView);
     }
     return this._wrapper;
@@ -161,6 +241,52 @@ export class NCalendar extends NCalendarCommon {
     this._monthTitleId = ctx.getResources().getIdentifier('monthTitle', 'id', ctx.getPackageName());
   }
 
+  // DOW Header
+
+  private _buildDowHeader() {
+    const ctx = this._context;
+    if (!ctx) return;
+
+    this._dowHeader = new android.widget.LinearLayout(ctx);
+    this._dowHeader.setOrientation(android.widget.LinearLayout.HORIZONTAL);
+    this._dowHeader.setVisibility(this.pinDaysOfWeekToTop ? android.view.View.VISIBLE : android.view.View.GONE);
+
+    const paddingV = dipToPx(6);
+    this._dowHeader.setPadding(0, paddingV, 0, paddingV);
+
+    const firstDow = this.firstDayOfWeek; // 0=Sun...6=Sat
+    // Map JS day index (0=Sun) to Java DayOfWeek value (1=Mon...7=Sun)
+    const jsDayOrder = [7, 1, 2, 3, 4, 5, 6];
+
+    for (let i = 0; i < 7; i++) {
+      const jsDayIndex = (firstDow + i) % 7;
+      const javaDowValue = jsDayOrder[jsDayIndex]; // 1=Mon...7=Sun
+      const javaDow = java.time.DayOfWeek.of(javaDowValue);
+      const name = javaDow.getDisplayName(java.time.format.TextStyle.SHORT, java.util.Locale.getDefault());
+
+      const tv = new android.widget.TextView(ctx);
+      tv.setText(name);
+      tv.setGravity(android.view.Gravity.CENTER);
+      tv.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, this.dayOfWeekFontSize || 14);
+      tv.setTextColor(toAndroidColor(this.dayOfWeekTextColor, '#757575'));
+
+      const lp = new android.widget.LinearLayout.LayoutParams(0, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 1.0);
+      tv.setLayoutParams(lp);
+      this._dowHeader.addView(tv);
+    }
+  }
+
+  private _updateDowHeaderStyle() {
+    if (!this._dowHeader) return;
+    for (let i = 0; i < this._dowHeader.getChildCount(); i++) {
+      const tv = this._dowHeader.getChildAt(i);
+      if (tv && tv.setTextSize) {
+        tv.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, this.dayOfWeekFontSize || 14);
+        tv.setTextColor(toAndroidColor(this.dayOfWeekTextColor, '#757575'));
+      }
+    }
+  }
+
   // Calendar Factory
 
   private _createCalendarForMode(mode: DisplayMode): any {
@@ -183,23 +309,23 @@ export class NCalendar extends NCalendarCommon {
 
     const cv = new com.kizitonwose.calendar.view.CalendarView(ctx);
 
-    cv.dayViewResource = getDayViewResId(ctx);
+    cv.setDayViewResource(getDayViewResId(ctx));
     const headerRes = getMonthHeaderResId(ctx);
-    if (headerRes) cv.monthHeaderResource = headerRes;
+    if (headerRes) cv.setMonthHeaderResource(headerRes);
 
-    cv.orientation = this.orientation === Orientation.Horizontal ? androidx.recyclerview.widget.RecyclerView.HORIZONTAL : androidx.recyclerview.widget.RecyclerView.VERTICAL;
-    cv.scrollPaged = this.scrollPaged;
-    cv.daySize = com.kizitonwose.calendar.view.DaySize.Square;
-    cv.outDateStyle = this.outDateStyle === OutDateStyle.EndOfGrid ? com.kizitonwose.calendar.core.OutDateStyle.EndOfGrid : com.kizitonwose.calendar.core.OutDateStyle.EndOfRow;
+    cv.setOrientation(this.orientation === Orientation.Horizontal ? androidx.recyclerview.widget.RecyclerView.HORIZONTAL : androidx.recyclerview.widget.RecyclerView.VERTICAL);
+    cv.setScrollPaged(this.scrollPaged);
+    cv.setDaySize(com.kizitonwose.calendar.view.DaySize.Square);
+    cv.setOutDateStyle(this.outDateStyle === OutDateStyle.EndOfGrid ? com.kizitonwose.calendar.core.OutDateStyle.EndOfGrid : com.kizitonwose.calendar.core.OutDateStyle.EndOfRow);
 
     if (this.interMonthSpacing > 0) {
       const px = dipToPx(this.interMonthSpacing);
-      cv.monthMargins = new com.kizitonwose.calendar.view.MarginValues(0, px, 0, 0);
+      cv.setMonthMargins(new com.kizitonwose.calendar.view.MarginValues(0, px, 0, 0));
     }
 
-    cv.dayBinder = this._createMonthDayBinder();
-    cv.monthHeaderBinder = this._createMonthHeaderBinder();
-    cv.monthScrollListener = this._createMonthScrollListener();
+    cv.setDayBinder(this._createMonthDayBinder());
+    cv.setMonthHeaderBinder(this._createMonthHeaderBinder());
+    cv.setMonthScrollListener(this._createMonthScrollListener());
 
     const startMonth = java.time.YearMonth.of(this.minDate.getFullYear(), this.minDate.getMonth() + 1);
     const endMonth = java.time.YearMonth.of(this.maxDate.getFullYear(), this.maxDate.getMonth() + 1);
@@ -216,12 +342,12 @@ export class NCalendar extends NCalendarCommon {
     if (!ctx) return null;
 
     const wv = new com.kizitonwose.calendar.view.WeekCalendarView(ctx);
-    wv.dayViewResource = getDayViewResId(ctx);
-    wv.scrollPaged = true;
-    wv.daySize = com.kizitonwose.calendar.view.DaySize.Square;
+    wv.setDayViewResource(getDayViewResId(ctx));
+    wv.setScrollPaged(true);
+    wv.setDaySize(com.kizitonwose.calendar.view.DaySize.Square);
 
-    wv.dayBinder = this._createWeekDayBinder();
-    wv.weekScrollListener = this._createWeekScrollListener();
+    wv.setDayBinder(this._createWeekDayBinder());
+    wv.setWeekScrollListener(this._createWeekScrollListener());
 
     const startDate = jsDateToLocalDate(this.minDate);
     const endDate = jsDateToLocalDate(this.maxDate);
@@ -238,21 +364,21 @@ export class NCalendar extends NCalendarCommon {
     if (!ctx) return null;
 
     const yv = new com.kizitonwose.calendar.view.YearCalendarView(ctx);
-    yv.dayViewResource = getDayViewResId(ctx);
+    yv.setDayViewResource(getDayViewResId(ctx));
     const headerRes = getMonthHeaderResId(ctx);
-    if (headerRes) yv.monthHeaderResource = headerRes;
-    yv.monthColumns = this.monthColumns;
+    if (headerRes) yv.setMonthHeaderResource(headerRes);
+    yv.setMonthColumns(this.monthColumns);
     if (this.interMonthSpacing > 0) {
       const px = dipToPx(this.interMonthSpacing);
-      yv.monthVerticalSpacing = px;
-      yv.monthHorizontalSpacing = px;
+      yv.setMonthVerticalSpacing(px);
+      yv.setMonthHorizontalSpacing(px);
     }
-    yv.scrollPaged = this.scrollPaged;
-    yv.daySize = com.kizitonwose.calendar.view.DaySize.Square;
+    yv.setScrollPaged(this.scrollPaged);
+    yv.setDaySize(com.kizitonwose.calendar.view.DaySize.Square);
 
-    yv.dayBinder = this._createMonthDayBinder();
-    yv.monthHeaderBinder = this._createMonthHeaderBinder();
-    yv.yearScrollListener = this._createYearScrollListener();
+    yv.setDayBinder(this._createMonthDayBinder());
+    yv.setMonthHeaderBinder(this._createMonthHeaderBinder());
+    yv.setYearScrollListener(this._createYearScrollListener());
 
     const startYear = java.time.Year.of(this.minDate.getFullYear());
     const endYear = java.time.Year.of(this.maxDate.getFullYear());
@@ -301,6 +427,13 @@ export class NCalendar extends NCalendarCommon {
         const isDisabled = cal._isDateDisabled(jsDate);
         const isWeekend = jsDate.getDay() === 0 || jsDate.getDay() === 6;
 
+        // Range position detection
+        const dateKey = cal._toDateKey(jsDate);
+        const isRangeStart = isMonthDate && cal._rangeStart != null && cal._rangeEnd != null && dateKey === cal._toDateKey(cal._rangeStart);
+        const isRangeEnd = isMonthDate && cal._rangeStart != null && cal._rangeEnd != null && dateKey === cal._toDateKey(cal._rangeEnd);
+        const isSingleDayRange = isRangeStart && isRangeEnd;
+        const isMiddleOfRange = isMonthDate && isInRange && !isRangeStart && !isRangeEnd;
+
         if (textView && textView.setText) {
           textView.setText(String(dayNum));
           textView.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, cal.dayFontSize || 14);
@@ -309,6 +442,10 @@ export class NCalendar extends NCalendarCommon {
             textView.setTextColor(toAndroidColor(cal.outDateTextColor, '#BDBDBD'));
           } else if (isDisabled) {
             textView.setTextColor(toAndroidColor(cal.disabledDayTextColor, '#E0E0E0'));
+          } else if (isRangeStart || isRangeEnd) {
+            textView.setTextColor(toAndroidColor(cal.selectedDayTextColor, '#FFFFFF'));
+          } else if (isMiddleOfRange) {
+            textView.setTextColor(toAndroidColor(cal.dayTextColor, '#212121'));
           } else if (isSelected) {
             textView.setTextColor(toAndroidColor(cal.selectedDayTextColor, '#FFFFFF'));
           } else if (isToday) {
@@ -321,14 +458,25 @@ export class NCalendar extends NCalendarCommon {
         }
 
         // Background
-        if (isMonthDate && isSelected) {
+        if (isMonthDate && (isRangeStart || isRangeEnd || isMiddleOfRange) && !isSingleDayRange) {
+          // Airbnb-style range rendering
+          const rd = new _RangeDrawable();
+          rd._circleColor = toAndroidColor(cal.selectedDayBackgroundColor, '#2196F3');
+          rd._rangeColor = toAndroidColor(cal.selectedRangeColor, '#BBDEFB');
+          if (isRangeStart) {
+            rd._type = 0;
+          } else if (isRangeEnd) {
+            rd._type = 2;
+          } else {
+            rd._type = 1;
+          }
+          dayView.setBackground(rd);
+        } else if (isMonthDate && isSelected) {
           const bgColor = toAndroidColor(cal.selectedDayBackgroundColor, '#2196F3');
           const gd = new android.graphics.drawable.GradientDrawable();
           gd.setShape(android.graphics.drawable.GradientDrawable.OVAL);
           gd.setColor(bgColor);
           dayView.setBackground(gd);
-        } else if (isMonthDate && isInRange && !isSelected) {
-          dayView.setBackgroundColor(toAndroidColor(cal.selectedRangeColor, '#BBDEFB'));
         } else if (isMonthDate && isToday) {
           const todayBg = cal.todayBackgroundColor;
           if (todayBg) {
@@ -435,12 +583,23 @@ export class NCalendar extends NCalendarCommon {
         const isToday = jsDate.getFullYear() === now.getFullYear() && jsDate.getMonth() === now.getMonth() && jsDate.getDate() === now.getDate();
         const isDisabled = cal._isDateDisabled(jsDate);
 
+        // Range position detection
+        const dateKey = cal._toDateKey(jsDate);
+        const isRangeStart = cal._rangeStart != null && cal._rangeEnd != null && dateKey === cal._toDateKey(cal._rangeStart);
+        const isRangeEnd = cal._rangeStart != null && cal._rangeEnd != null && dateKey === cal._toDateKey(cal._rangeEnd);
+        const isSingleDayRange = isRangeStart && isRangeEnd;
+        const isMiddleOfRange = isInRange && !isRangeStart && !isRangeEnd;
+
         if (textView && textView.setText) {
           textView.setText(String(dayNum));
           textView.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, cal.dayFontSize || 14);
 
           if (isDisabled) {
             textView.setTextColor(toAndroidColor(cal.disabledDayTextColor, '#E0E0E0'));
+          } else if (isRangeStart || isRangeEnd) {
+            textView.setTextColor(toAndroidColor(cal.selectedDayTextColor, '#FFFFFF'));
+          } else if (isMiddleOfRange) {
+            textView.setTextColor(toAndroidColor(cal.dayTextColor, '#212121'));
           } else if (isSelected) {
             textView.setTextColor(toAndroidColor(cal.selectedDayTextColor, '#FFFFFF'));
           } else if (isToday) {
@@ -450,14 +609,24 @@ export class NCalendar extends NCalendarCommon {
           }
         }
 
-        if (isSelected) {
+        if ((isRangeStart || isRangeEnd || isMiddleOfRange) && !isSingleDayRange) {
+          const rd = new _RangeDrawable();
+          rd._circleColor = toAndroidColor(cal.selectedDayBackgroundColor, '#2196F3');
+          rd._rangeColor = toAndroidColor(cal.selectedRangeColor, '#BBDEFB');
+          if (isRangeStart) {
+            rd._type = 0;
+          } else if (isRangeEnd) {
+            rd._type = 2;
+          } else {
+            rd._type = 1;
+          }
+          dayView.setBackground(rd);
+        } else if (isSelected) {
           const bgColor = toAndroidColor(cal.selectedDayBackgroundColor, '#2196F3');
           const gd = new android.graphics.drawable.GradientDrawable();
           gd.setShape(android.graphics.drawable.GradientDrawable.OVAL);
           gd.setColor(bgColor);
           dayView.setBackground(gd);
-        } else if (isInRange) {
-          dayView.setBackgroundColor(toAndroidColor(cal.selectedRangeColor, '#BBDEFB'));
         } else if (isToday) {
           const gd = new android.graphics.drawable.GradientDrawable();
           gd.setShape(android.graphics.drawable.GradientDrawable.OVAL);
@@ -594,8 +763,14 @@ export class NCalendar extends NCalendarCommon {
     if (!this._wrapper) return;
     this._wrapper.removeAllViews();
     this._cacheResourceIds();
+    this._buildDowHeader();
     this._calendarView = this._createCalendarForMode(this.displayMode);
+    if (this._dowHeader) {
+      this._wrapper.addView(this._dowHeader);
+    }
     if (this._calendarView) {
+      const lp = new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0);
+      this._calendarView.setLayoutParams(lp);
       this._wrapper.addView(this._calendarView);
     }
   }
@@ -724,11 +899,17 @@ export class NCalendar extends NCalendarCommon {
   [interMonthSpacingProperty.setNative](_value: number) {
     this._swapCalendarView();
   }
+  // @ts-ignore
   [outDateStyleProperty.setNative](_value: OutDateStyle) {
     this._swapCalendarView();
   }
   [monthColumnsProperty.setNative](_value: number) {
     if (this.displayMode === DisplayMode.Year) this._swapCalendarView();
+  }
+  [pinDaysOfWeekToTopProperty.setNative](value: boolean) {
+    if (this._dowHeader) {
+      this._dowHeader.setVisibility(value ? android.view.View.VISIBLE : android.view.View.GONE);
+    }
   }
 
   // Style property setters
@@ -769,9 +950,11 @@ export class NCalendar extends NCalendarCommon {
     this._refreshCalendar();
   }
   [dayOfWeekTextColorProperty.setNative]() {
+    this._updateDowHeaderStyle();
     this._refreshCalendar();
   }
   [dayOfWeekFontSizeProperty.setNative]() {
+    this._updateDowHeaderStyle();
     this._refreshCalendar();
   }
 }

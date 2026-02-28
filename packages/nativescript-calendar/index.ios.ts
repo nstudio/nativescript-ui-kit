@@ -134,6 +134,7 @@ export class NCalendar extends NCalendarCommon {
     if (!this._calView) return;
 
     // Layout
+    (this._calView as any).displayModeStr = this.displayMode;
     this._calView.isHorizontal = this.orientation === Orientation.Horizontal;
     this._calView.isPaginated = this.scrollPaged;
     this._calView.pinDaysOfWeekToTop = this.pinDaysOfWeekToTop;
@@ -207,9 +208,10 @@ export class NCalendar extends NCalendarCommon {
 
   // Property Setters
 
-  [displayModeProperty.setNative](_value: DisplayMode) {
-    // TODO: Week and Year modes require additional bridge support
-    this._rebuild();
+  [displayModeProperty.setNative](value: DisplayMode) {
+    if (this._calView) {
+      (this._calView as any).displayModeStr = value;
+    }
   }
 
   [orientationProperty.setNative](value: Orientation) {

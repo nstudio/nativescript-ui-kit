@@ -1,8 +1,8 @@
-import { Dialogs } from '@nativescript/core';
+import { ShowModalOptions } from '@nativescript/core';
 import { DemoSharedBase } from '../utils';
 import { NCalendar, DisplayMode, SelectionMode, Orientation, CalendarDayEventData, CalendarMonthEventData, CalendarEvent } from '@nstudio/nativescript-calendar';
 
-const SCENARIOS = ['Single', 'Range', 'Multiple', 'Horizontal', 'Events', 'Styled'];
+const SCENARIOS = ['Single', 'Range', 'Multiple', 'Horizontal', 'Week', 'Events', 'Styled'];
 
 function pad(n: number): string {
   return n < 10 ? '0' + n : '' + n;
@@ -39,7 +39,8 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
 
     this.calendar.on(NCalendar.monthChangedEvent, (e: CalendarMonthEventData) => {
       const m = e.data.month;
-      this.set('statusText', `${this._monthName(m.month)} ${m.year}`);
+      // this.set('statusText', `${this._monthName(m.month)} ${m.year}`);
+      this.set('statusText', `Selected:`);
     });
 
     // Start in first scenario
@@ -69,7 +70,7 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
     this.calendar.displayMode = DisplayMode.Month;
     this.calendar.orientation = Orientation.Vertical;
     this.calendar.scrollPaged = false;
-    this.calendar.pinDaysOfWeekToTop = false;
+    this.calendar.pinDaysOfWeekToTop = true;
 
     // Reset colors to defaults
     this.calendar.todayTextColor = null;
@@ -96,6 +97,9 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
         break;
       case 'Horizontal':
         this._setupHorizontal();
+        break;
+      case 'Week':
+        this._setupWeek();
         break;
       case 'Events':
         this._setupEvents();
@@ -136,14 +140,22 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
     this.calendar.selectionMode = SelectionMode.Single;
     this.calendar.orientation = Orientation.Horizontal;
     this.calendar.scrollPaged = true;
+    this.calendar.pinDaysOfWeekToTop = false;
     this.set('scenarioLabel', 'Horizontal Paged');
     this.set('scenarioDescription', 'Swipe left/right \u2022 One month at a time');
     this.set('statusText', 'Swipe to navigate months');
   }
 
+  private _setupWeek() {
+    this.calendar.selectionMode = SelectionMode.Single;
+    this.calendar.displayMode = DisplayMode.Week;
+    this.set('scenarioLabel', 'Week View');
+    this.set('scenarioDescription', 'Swipe left/right \u2022 One week at a time');
+    this.set('statusText', 'Swipe to navigate weeks');
+  }
+
   private _setupEvents() {
     this.calendar.selectionMode = SelectionMode.Single;
-    this.calendar.pinDaysOfWeekToTop = true;
     const today = new Date();
     const y = today.getFullYear();
     const m = today.getMonth();
@@ -222,17 +234,23 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
     const dayEvents = this._events.filter((ev) => formatDate(ev.date) === key);
     if (!dayEvents.length) return;
 
-    const actions = dayEvents.map((ev) => {
+    const page = this.calendar.page;
+    if (!page) return;
+
+    const events = dayEvents.map((ev) => {
       const d = ev.data || {};
-      return d.time ? `${d.time}  -  ${d.title}` : d.title || 'Event';
+      return { title: d.title || 'Event', time: d.time || '', color: ev.color || '#2196F3' };
     });
 
-    Dialogs.action({
-      title: formatDate(date),
-      message: `${dayEvents.length} event${dayEvents.length > 1 ? 's' : ''}`,
-      cancelButtonText: 'Close',
-      actions,
-    });
+    const dateFormatted = date.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+    const eventCount = `${events.length} event${events.length > 1 ? 's' : ''}`;
+
+    const options: ShowModalOptions = {
+      fullscreen: __ANDROID__,
+      context: { dateFormatted, eventCount, events },
+      closeCallback() {},
+    };
+    page.showModal('~/modal/calendar-events', options);
   }
 
   private _updateSelectedText() {

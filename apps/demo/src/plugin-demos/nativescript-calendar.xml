@@ -1,0 +1,47 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:cal="@nstudio/nativescript-calendar"
+  navigatingTo="navigatingTo" class="page">
+  <Page.actionBar>
+    <ActionBar title="NCalendar" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
+
+  <GridLayout rows="auto, *, auto, auto, auto" backgroundColor="#FAFAFA">
+
+    <!-- Scenario Switcher -->
+    <GridLayout row="0" columns="auto, *, auto" padding="10" backgroundColor="#FFFFFF">
+      <Label col="0" text="&#9664;" tap="{{ prevScenario }}" textAlignment="center" fontSize="22" color="#2196F3" width="44" height="44" verticalAlignment="center" />
+      <StackLayout col="1" verticalAlignment="center">
+        <Label text="{{ scenarioLabel }}" textAlignment="center" fontWeight="bold" fontSize="18" color="#212121" />
+        <Label text="{{ scenarioDescription }}" textAlignment="center" fontSize="12" color="#999999" marginTop="2" />
+      </StackLayout>
+      <Label col="2" text="&#9654;" tap="{{ nextScenario }}" textAlignment="center" fontSize="22" color="#2196F3" width="44" height="44" verticalAlignment="center" />
+    </GridLayout>
+
+    <!-- Calendar -->
+    <cal:NCalendar row="1"
+      loaded="{{ onCalendarLoaded }}"
+      displayMode="month"
+      selectionMode="single"
+      orientation="vertical"
+      interMonthSpacing="16"
+      verticalDayMargin="4"
+      horizontalDayMargin="4"
+      margin="0 8" />
+
+    <!-- Status -->
+    <Label row="2" text="{{ statusText }}" textAlignment="center" fontSize="14" color="#757575" margin="{{selectedText ? '12 16 4 16' : '12 16 12 16'}}" />
+
+    <!-- Selected Info -->
+    <Label row="3" text="{{ selectedText }}" textAlignment="center" fontWeight="bold" fontSize="15" color="#2196F3" margin="0 16 12 16" visibility="{{ selectedText ? 'visible' : 'collapsed' }}" />
+
+    <!-- Navigation Bar -->
+    <GridLayout row="4" columns="*, *, *, *" height="50" backgroundColor="#FFFFFF" borderTopColor="#E0E0E0" borderTopWidth="1">
+      <Label col="0" text="&#9664; Prev" tap="{{ goToPrevMonth }}" textAlignment="center" fontSize="13" color="#2196F3" verticalAlignment="center" />
+      <Label col="1" text="Today" tap="{{ goToToday }}" textAlignment="center" fontWeight="bold" fontSize="13" color="#2196F3" verticalAlignment="center" />
+      <Label col="2" text="Next &#9654;" tap="{{ goToNextMonth }}" textAlignment="center" fontSize="13" color="#2196F3" verticalAlignment="center" />
+      <Label col="3" text="Clear" tap="{{ clearSelection }}" textAlignment="center" fontSize="13" color="#FF5722" verticalAlignment="center" />
+    </GridLayout>
+
+  </GridLayout>
+</Page>
