@@ -9,6 +9,7 @@
 - [@nstudio/nativescript-rich-paste](packages/nativescript-rich-paste/README.md)
 - [@nstudio/nativescript-shimmer](packages/nativescript-shimmer/README.md)
 - [@nstudio/nativescript-smartlook](packages/nativescript-smartlook/README.md)
+- [@nstudio/nativescript-toolbar](packages/nativescript-toolbar/README.md)
 - [@nstudio/nativescript-variable-blur-view](packages/nativescript-variable-blur-view/README.md)
 
 # How to use?

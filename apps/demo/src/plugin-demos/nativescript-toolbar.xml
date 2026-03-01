@@ -1,0 +1,92 @@
+<Page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:tb="@nstudio/nativescript-toolbar"
+  navigatingTo="navigatingTo"
+  unloaded="{{ onDemoUnloaded }}"
+  actionBarHidden="true"
+  class="{{ pageClass }}">
+  <GridLayout rows="auto,auto,*,auto,*,auto">
+    <GridLayout row="0" rows="auto,auto" class="toolbar-demo-header">
+      <Label row="0" text="API Explorer" color="#93c5fd" fontSize="12" />
+      <Label row="1" text="iOS Toolbar" color="#f8fafc" fontSize="28" fontWeight="700" />
+    </GridLayout>
+
+    <StackLayout row="1" visibility="{{ topToolbarVisibility }}" class="mt-4">
+      <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
+        <tb:NativescriptToolbar loaded="{{ onTopToolbarLoaded }}" height="48" />
+      <!-- </GridLayout> -->
+    </StackLayout>
+
+    <!-- <ScrollView row="2" class="toolbar-demo-scroll">
+      <StackLayout>
+        <GridLayout rows="auto,auto,auto" class="toolbar-demo-card">
+          <Label row="0" text="Today" class="toolbar-demo-meta" />
+          <Label row="1" text="Campaign Content Hub" class="toolbar-demo-card-title" />
+          <Label row="2" text="Edit, stage, and publish assets with native toolbar controls." class="toolbar-demo-body" textWrap="true" />
+        </GridLayout>
+
+        <GridLayout rows="auto,auto,auto" class="toolbar-demo-card toolbar-demo-card-gap">
+          <Label row="0" text="Post Draft #14" class="toolbar-demo-card-title-sm" />
+          <Label row="1" text="Spring launch clip with creator spotlight." class="toolbar-demo-body" />
+          <GridLayout row="2" columns="auto,auto,auto" class="toolbar-demo-inline-grid">
+            <Label col="0" text="Ready to review" class="toolbar-demo-link" />
+            <Label col="1" text="   •   " class="toolbar-demo-meta" />
+            <Label col="2" text="4 assets linked" class="toolbar-demo-link" />
+          </GridLayout>
+        </GridLayout>
+
+        <GridLayout rows="auto,auto" class="toolbar-demo-card toolbar-demo-card-gap">
+          <Label row="0" text="Activity" class="toolbar-demo-card-title-xs" />
+          <Label row="1" text="Try changing placement, item set, appearance, and native options below. The toolbar updates live like a production app screen." class="toolbar-demo-body" textWrap="true" />
+        </GridLayout>
+      </StackLayout>
+    </ScrollView> -->
+
+    <StackLayout row="3" class="toolbar-demo-controls">
+      <Label text="Toolbar Controls" class="toolbar-demo-controls-title" />
+
+      <GridLayout columns="*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap">
+        <Button col="0" text="{{ placementButtonText }}" tap="{{ togglePlacement }}" class="toolbar-demo-btn" marginRight="4" />
+        <Button col="1" text="{{ itemSetButtonText }}" tap="{{ nextItemSet }}" class="toolbar-demo-btn" marginLeft="4" />
+      </GridLayout>
+
+      <GridLayout columns="*,*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap-3">
+        <Button col="0" text="{{ styleButtonText }}" tap="{{ toggleBarStyle }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginRight="3" />
+        <Button col="1" text="{{ translucentButtonText }}" tap="{{ toggleTranslucent }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" marginRight="3" />
+        <Button col="2" text="{{ tintButtonText }}" tap="{{ nextTintTheme }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" />
+      </GridLayout>
+
+      <GridLayout columns="*,*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap-3">
+        <Button col="0" text="{{ appearanceButtonText }}" tap="{{ nextAppearanceMode }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginRight="3" />
+        <Button col="1" text="{{ backgroundButtonText }}" tap="{{ toggleBackgroundImage }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" marginRight="3" />
+        <Button col="2" text="{{ shadowButtonText }}" tap="{{ toggleShadowImage }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" />
+      </GridLayout>
+
+      <GridLayout columns="*,*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap-3">
+        <Button col="0" text="{{ animationButtonText }}" tap="{{ toggleAnimations }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginRight="3" />
+        <Button col="1" text="Toggle Last Item" tap="{{ toggleTrailingEnabled }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" marginRight="3" />
+        <Button col="2" text="{{ mutationButtonText }}" tap="{{ runItemMutation }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" />
+      </GridLayout>
+
+      <GridLayout columns="*,auto" class="toolbar-demo-status-row">
+        <Label col="0" text="{{ statusText }}" class="toolbar-demo-status" textWrap="true" />
+        <Button col="1" text="Reset" tap="{{ resetOptions }}" class="toolbar-demo-btn toolbar-demo-btn-accent toolbar-demo-btn-small" marginLeft="8" />
+      </GridLayout>
+
+      <GridLayout columns="*,auto" class="toolbar-demo-status-row toolbar-demo-status-row-tight">
+        <Label col="0" text="{{ lastTapText }}" class="toolbar-demo-last-tap" />
+        <Button col="1" text="Clear Log" tap="{{ clearLog }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="8" />
+      </GridLayout>
+
+      <ScrollView class="toolbar-demo-log-wrap">
+        <Label text="{{ eventLog }}" class="toolbar-demo-log" textWrap="true" />
+      </ScrollView>
+    </StackLayout>
+
+    <StackLayout row="5" visibility="{{ bottomToolbarVisibility }}" class="mt-4">
+      <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
+        <tb:NativescriptToolbar loaded="{{ onBottomToolbarLoaded }}" height="48" />
+      <!-- </GridLayout> -->
+    </StackLayout>
+  </GridLayout>
+</Page>
