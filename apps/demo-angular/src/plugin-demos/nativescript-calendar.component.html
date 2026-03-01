@@ -1,0 +1,30 @@
+<ActionBar title="NCalendar" class="action-bar"> </ActionBar>
+
+<GridLayout rows="auto, *, auto, auto, auto" backgroundColor="#FAFAFA">
+  <!-- Scenario Switcher -->
+  <GridLayout row="0" columns="auto, *, auto" padding="10" backgroundColor="#FFFFFF">
+    <Label col="0" text="&#9664;" (tap)="demoShared.prevScenario()" textAlignment="center" fontSize="22" color="#2196F3" width="44" height="44" verticalAlignment="center"></Label>
+    <StackLayout col="1" verticalAlignment="center">
+      <Label [text]="demoShared.scenarioLabel" textAlignment="center" fontWeight="bold" fontSize="18" color="#212121"></Label>
+      <Label [text]="demoShared.scenarioDescription" textAlignment="center" fontSize="12" color="#999999" marginTop="2"></Label>
+    </StackLayout>
+    <Label col="2" text="&#9654;" (tap)="demoShared.nextScenario()" textAlignment="center" fontSize="22" color="#2196F3" width="44" height="44" verticalAlignment="center"></Label>
+  </GridLayout>
+
+  <!-- Calendar -->
+  <NCalendar row="1" (loaded)="demoShared.onCalendarLoaded($event)" displayMode="month" selectionMode="single" orientation="vertical" interMonthSpacing="16" verticalDayMargin="4" horizontalDayMargin="4" margin="0 8"> </NCalendar>
+
+  <!-- Status -->
+  <Label row="2" [text]="demoShared.statusText" textAlignment="center" fontSize="14" color="#757575" margin="4 16 0 16"></Label>
+
+  <!-- Selected Info -->
+  <Label row="3" [text]="demoShared.selectedText" textAlignment="center" fontWeight="bold" fontSize="15" color="#2196F3" margin="2 16 4 16" [visibility]="demoShared.selectedText ? 'visible' : 'collapsed'"></Label>
+
+  <!-- Navigation Bar -->
+  <GridLayout row="4" columns="*, *, *, *" height="50" backgroundColor="#FFFFFF" borderTopColor="#E0E0E0" borderTopWidth="1">
+    <Label col="0" text="&#9664; Prev" (tap)="demoShared.goToPrevMonth()" textAlignment="center" fontSize="13" color="#2196F3" verticalAlignment="center"></Label>
+    <Label col="1" text="Today" (tap)="demoShared.goToToday()" textAlignment="center" fontWeight="bold" fontSize="13" color="#2196F3" verticalAlignment="center"></Label>
+    <Label col="2" text="Next &#9654;" (tap)="demoShared.goToNextMonth()" textAlignment="center" fontSize="13" color="#2196F3" verticalAlignment="center"></Label>
+    <Label col="3" text="Clear" (tap)="demoShared.clearSelection()" textAlignment="center" fontSize="13" color="#FF5722" verticalAlignment="center"></Label>
+  </GridLayout>
+</GridLayout>
