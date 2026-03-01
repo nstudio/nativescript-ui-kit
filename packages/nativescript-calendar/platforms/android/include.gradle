@@ -1,0 +1,9 @@
+android {
+    defaultConfig {
+        minSdkVersion 26
+    }
+}
+
+dependencies {
+    implementation 'com.kizitonwose.calendar:view:2.6.1'
+}

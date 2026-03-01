@@ -34,7 +34,8 @@
       "nativescript-fonticon": ["packages/nativescript-fonticon/index.ts"],
       "nativescript-fonticon/angular": ["packages/nativescript-fonticon/angular/index.ts"],
       "@nstudio/nativescript-menu": ["packages/nativescript-menu/index.d.ts"],
-      "@nstudio/nativescript-rich-paste": ["packages/nativescript-rich-paste/index.d.ts"]
+      "@nstudio/nativescript-rich-paste": ["packages/nativescript-rich-paste/index.d.ts"],
+      "@nstudio/nativescript-calendar": ["packages/nativescript-calendar/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

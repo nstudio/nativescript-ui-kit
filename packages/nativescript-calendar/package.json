@@ -1,0 +1,39 @@
+{
+  "name": "@nstudio/nativescript-calendar",
+  "version": "1.0.0",
+  "description": "A full-featured calendar view with month, week, and year views. Uses Airbnb HorizonCalendar (iOS) and kizitonwose Calendar (Android).",
+  "main": "index",
+  "types": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "ios": "6.0.0",
+      "android": "6.0.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstudio/nativescript-ui-kit.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "TypeScript",
+    "iOS",
+    "Android",
+    "calendar",
+    "date-picker",
+    "HorizonCalendar",
+    "kizitonwose"
+  ],
+  "author": {
+    "name": "nstudio",
+    "email": "oss@nstudio.io"
+  },
+  "bugs": {
+    "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/nstudio/nativescript-ui-kit",
+  "readmeFilename": "README.md",
+  "bootstrapper": "@nativescript/plugin-seed"
+}

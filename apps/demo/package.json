@@ -6,8 +6,8 @@
   "dependencies": {
     "@nativescript-community/ui-material-bottomsheet": "file:../../node_modules/@nativescript-community/ui-material-bottomsheet",
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nstudio/nativescript-rich-paste": "file:../../packages/nativescript-rich-paste",
     "nativescript-gif": "^5.0.0",
+    "@nstudio/nativescript-calendar": "file:../../packages/nativescript-calendar",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
     "@nstudio/nativescript-fluid-segmented-bar": "file:../../packages/nativescript-fluid-segmented-bar",
     "nativescript-fonticon": "file:../../packages/nativescript-fonticon",
@@ -15,6 +15,7 @@
     "@nstudio/nativescript-markdown-view": "file:../../packages/nativescript-markdown-view",
     "@nstudio/nativescript-menu": "file:../../packages/nativescript-menu",
     "@nstudio/nativescript-parallax": "file:../../packages/nativescript-parallax",
+    "@nstudio/nativescript-rich-paste": "file:../../packages/nativescript-rich-paste",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
     "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view"
