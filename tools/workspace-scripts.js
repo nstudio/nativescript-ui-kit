@@ -145,6 +145,13 @@ module.exports = {
           description: '@nstudio/nativescript-calendar: Build',
         },
       },
+      // @nstudio/nativescript-toolbar
+      'nativescript-toolbar': {
+        build: {
+          script: 'nx run nativescript-toolbar:build.all',
+          description: '@nstudio/nativescript-toolbar: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -203,8 +210,12 @@ module.exports = {
         script: 'nx run nativescript-calendar:focus',
         description: 'Focus on @nstudio/nativescript-calendar',
       },
+      'nativescript-toolbar': {
+        script: 'nx run nativescript-toolbar:focus',
+        description: 'Focus on @nstudio/nativescript-toolbar',
+      },
       reset: {
-        script: 'nx g @nativescript/plugin-tools:focus-packages',
+        script: 'node tools/scripts/focus-packages.js',
         description: 'Reset Focus',
       },
     },

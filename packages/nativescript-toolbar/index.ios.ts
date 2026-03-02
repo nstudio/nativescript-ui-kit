@@ -187,7 +187,7 @@ function toUIImage(value: ToolbarImageSource): UIImage {
     return value.ios;
   }
   if (typeof value === 'string') {
-    if (value.startsWith('sf://') || value.startsWith('symbol://')) {
+    if (value.startsWith('sys://') || value.startsWith('sf://') || value.startsWith('symbol://')) {
       const symbolName = value.substring(value.indexOf('://') + 3);
       return UIImage.systemImageNamed(symbolName);
     }
@@ -230,9 +230,9 @@ function isSpacerSystemItem(systemItem: ToolbarSystemItem): boolean {
 class ToolbarDelegate extends NSObject implements UIToolbarDelegate {
   static ObjCProtocols = [UIToolbarDelegate];
 
-  owner: WeakRef<NativescriptToolbar>;
+  owner: WeakRef<NToolbar>;
 
-  static initWithOwner(owner: WeakRef<NativescriptToolbar>): ToolbarDelegate {
+  static initWithOwner(owner: WeakRef<NToolbar>): ToolbarDelegate {
     const delegate = ToolbarDelegate.new() as ToolbarDelegate;
     delegate.owner = owner;
     return delegate;
@@ -253,11 +253,11 @@ class ToolbarItemTarget extends NSObject {
     },
   };
 
-  owner: WeakRef<NativescriptToolbar>;
+  owner: WeakRef<NToolbar>;
   item: ToolbarItem;
   index: number;
 
-  static initWithOwnerItemIndex(owner: WeakRef<NativescriptToolbar>, item: ToolbarItem, index: number): ToolbarItemTarget {
+  static initWithOwnerItemIndex(owner: WeakRef<NToolbar>, item: ToolbarItem, index: number): ToolbarItemTarget {
     const target = ToolbarItemTarget.new() as ToolbarItemTarget;
     target.owner = owner;
     target.item = item;
@@ -271,7 +271,7 @@ class ToolbarItemTarget extends NSObject {
   }
 }
 
-export class NativescriptToolbar extends NativescriptToolbarCommon {
+export class NToolbar extends NativescriptToolbarCommon {
   nativeViewProtected: UIToolbar;
 
   _resolvedPosition = UIBarPosition.Any;
@@ -443,7 +443,7 @@ export class NativescriptToolbar extends NativescriptToolbarCommon {
 
   _notifyItemTap(item: ToolbarItem, index: number, nativeItem: UIBarButtonItem): void {
     const eventData: ToolbarItemTapEventData = {
-      eventName: NativescriptToolbar.itemTapEvent,
+      eventName: NToolbar.itemTapEvent,
       object: this,
       data: {
         item,
@@ -730,12 +730,14 @@ export class NativescriptToolbar extends NativescriptToolbarCommon {
     this.nativeViewProtected.tintColor = toUIColor(value);
   }
 
+  // @ts-ignore
   [positionProperty.setNative](value: ToolbarPosition) {
     this._resolvedPosition = resolvePosition(value);
   }
 
   [itemChangesAnimatedProperty.setNative](_value: boolean) {}
 
+  // @ts-ignore
   [standardAppearanceProperty.setNative](value: ToolbarAppearance) {
     if (this._settingAppearanceFromMethod) {
       return;
@@ -743,6 +745,7 @@ export class NativescriptToolbar extends NativescriptToolbarCommon {
     this._applyAppearance('standard', value);
   }
 
+  // @ts-ignore
   [compactAppearanceProperty.setNative](value: ToolbarAppearance) {
     if (this._settingAppearanceFromMethod) {
       return;
@@ -750,6 +753,7 @@ export class NativescriptToolbar extends NativescriptToolbarCommon {
     this._applyAppearance('compact', value);
   }
 
+  // @ts-ignore
   [scrollEdgeAppearanceProperty.setNative](value: ToolbarAppearance) {
     if (this._settingAppearanceFromMethod) {
       return;
@@ -757,6 +761,7 @@ export class NativescriptToolbar extends NativescriptToolbarCommon {
     this._applyAppearance('scrollEdge', value);
   }
 
+  // @ts-ignore
   [compactScrollEdgeAppearanceProperty.setNative](value: ToolbarAppearance) {
     if (this._settingAppearanceFromMethod) {
       return;

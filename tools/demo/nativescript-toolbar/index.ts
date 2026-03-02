@@ -1,6 +1,6 @@
 import { Application, Color, Utils } from '@nativescript/core';
 import { DemoSharedBase } from '../utils';
-import { NativescriptToolbar, ToolbarAppearance, ToolbarItem, ToolbarItemTapEventData } from '@nstudio/nativescript-toolbar';
+import { NToolbar, ToolbarAppearance, ToolbarItem, ToolbarItemTapEventData } from '@nstudio/nativescript-toolbar';
 
 const ITEM_SET_NAMES = ['Editor', 'Menu', 'Custom Native', 'Playback'];
 const APPEARANCE_NAMES = ['Legacy', 'Opaque', 'Glass'];
@@ -57,8 +57,8 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   lastTapText = 'Last tap: none';
   eventLog = __IOS__ ? 'Ready.' : 'Android placeholder mode.';
 
-  private _topToolbar: NativescriptToolbar;
-  private _bottomToolbar: NativescriptToolbar;
+  private _topToolbar: NToolbar;
+  private _bottomToolbar: NToolbar;
   private _placement: ToolbarPlacement = 'bottom';
   private _itemSetIndex = 0;
   private _appearanceIndex = 0;
@@ -81,20 +81,20 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   }
 
   onTopToolbarLoaded(args: any) {
-    this._attachToolbar(args.object as NativescriptToolbar, 'top');
+    this._attachToolbar(args.object as NToolbar, 'top');
   }
 
   onBottomToolbarLoaded(args: any) {
-    this._attachToolbar(args.object as NativescriptToolbar, 'bottom');
+    this._attachToolbar(args.object as NToolbar, 'bottom');
   }
 
   onDemoUnloaded() {
     Application.off(Application.systemAppearanceChangedEvent, this._appearanceHandler);
     if (this._topToolbar) {
-      this._topToolbar.off(NativescriptToolbar.itemTapEvent);
+      this._topToolbar.off(NToolbar.itemTapEvent);
     }
     if (this._bottomToolbar) {
-      this._bottomToolbar.off(NativescriptToolbar.itemTapEvent);
+      this._bottomToolbar.off(NToolbar.itemTapEvent);
     }
   }
 
@@ -268,15 +268,15 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     this.set('statusText', 'Ready.');
   }
 
-  private _attachToolbar(toolbar: NativescriptToolbar, placement: ToolbarPlacement) {
+  private _attachToolbar(toolbar: NToolbar, placement: ToolbarPlacement) {
     if (!__IOS__) return;
 
     toolbar.position = placement === 'top' ? 'top' : 'bottom';
     toolbar.defaultMetrics = 'default';
     toolbar.itemChangesAnimated = this._itemAnimationEnabled;
 
-    toolbar.off(NativescriptToolbar.itemTapEvent);
-    toolbar.on(NativescriptToolbar.itemTapEvent, (event: ToolbarItemTapEventData) => {
+    toolbar.off(NToolbar.itemTapEvent);
+    toolbar.on(NToolbar.itemTapEvent, (event: ToolbarItemTapEventData) => {
       const itemId = event.data.item?.id ?? `index ${event.data.index}`;
       this.set('lastTapText', `Last tap: ${itemId}`);
       this._writeLog(`itemTap -> ${itemId}`);
@@ -309,7 +309,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     }
   }
 
-  private _applyVisualOptions(toolbar: NativescriptToolbar, placement: ToolbarPlacement) {
+  private _applyVisualOptions(toolbar: NToolbar, placement: ToolbarPlacement) {
     const appearanceMode = APPEARANCE_NAMES[this._appearanceIndex];
     const theme = TINT_THEMES[this._tintIndex];
     const tint = this._darkStyle ? theme.darkTint : theme.lightTint;
@@ -434,7 +434,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     };
   }
 
-  private _applyBackgroundAndShadow(toolbar: NativescriptToolbar, placement: ToolbarPlacement, mode: 'legacy' | 'appearance') {
+  private _applyBackgroundAndShadow(toolbar: NToolbar, placement: ToolbarPlacement, mode: 'legacy' | 'appearance') {
     const pos = placement === 'top' ? 'top' : 'bottom';
     if (mode === 'appearance') {
       toolbar.clearBackgroundImage(pos, 'default');
@@ -458,7 +458,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     }
   }
 
-  private _applyItemSet(toolbar: NativescriptToolbar, animated: boolean) {
+  private _applyItemSet(toolbar: NToolbar, animated: boolean) {
     const { items, trailingItemId, description } = this._buildCurrentItems();
     this._trailingItemId = trailingItemId;
     toolbar.setItems(items, animated && this._itemAnimationEnabled);
@@ -542,7 +542,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     }
   }
 
-  private _applyMutationState(toolbar: NativescriptToolbar) {
+  private _applyMutationState(toolbar: NToolbar) {
     if (!toolbar || this._trailingItemId === null || this._trailingItemId === undefined) {
       return;
     }
@@ -681,7 +681,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     return image?.resizableImageWithCapInsets(UIEdgeInsetsZero) ?? image;
   }
 
-  private get _activeToolbar(): NativescriptToolbar {
+  private get _activeToolbar(): NToolbar {
     if (this._placement === 'top') {
       return this._topToolbar ?? this._bottomToolbar;
     }

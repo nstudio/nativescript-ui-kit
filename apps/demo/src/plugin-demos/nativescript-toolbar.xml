@@ -8,7 +8,7 @@
 
     <StackLayout row="1" visibility="{{ topToolbarVisibility }}" class="mt-4">
       <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
-      <tb:NativescriptToolbar loaded="{{ onTopToolbarLoaded }}" height="48" />
+      <tb:NToolbar loaded="{{ onTopToolbarLoaded }}" height="48" />
       <!-- </GridLayout> -->
     </StackLayout>
 
@@ -80,7 +80,7 @@
 
     <StackLayout row="5" visibility="{{ bottomToolbarVisibility }}" class="mt-4">
       <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
-      <tb:NativescriptToolbar loaded="{{ onBottomToolbarLoaded }}" height="48" />
+      <tb:NToolbar loaded="{{ onBottomToolbarLoaded }}" height="48" />
       <!-- </GridLayout> -->
     </StackLayout>
   </GridLayout>
