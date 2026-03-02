@@ -40,6 +40,9 @@ export class HomeComponent {
       name: 'nativescript-smartlook',
     },
     {
+      name: 'nativescript-toolbar',
+    },
+    {
       name: 'nativescript-variable-blur-view',
     },
   ];

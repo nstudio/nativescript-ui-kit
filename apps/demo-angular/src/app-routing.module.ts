@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'nativescript-rich-paste', loadChildren: () => import('./plugin-demos/nativescript-rich-paste.module').then((m) => m.NativescriptRichPasteModule) },
   { path: 'nativescript-shimmer', loadChildren: () => import('./plugin-demos/nativescript-shimmer.module').then((m) => m.NativescriptShimmerModule) },
   { path: 'nativescript-smartlook', loadChildren: () => import('./plugin-demos/nativescript-smartlook.module').then((m) => m.NativescriptSmartlookModule) },
+  { path: 'nativescript-toolbar', loadChildren: () => import('./plugin-demos/nativescript-toolbar.module').then((m) => m.NativescriptToolbarModule) },
   { path: 'nativescript-variable-blur-view', loadChildren: () => import('./plugin-demos/nativescript-variable-blur-view.module').then((m) => m.NativescriptVariableBlurViewModule) },
 ];
 

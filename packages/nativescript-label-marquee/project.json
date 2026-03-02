@@ -49,7 +49,7 @@
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-label-marquee"],
+        "commands": ["node tools/scripts/focus-packages.js nativescript-label-marquee"],
         "parallel": false
       }
     },

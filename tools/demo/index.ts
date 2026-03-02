@@ -10,4 +10,5 @@ export * from './nativescript-parallax';
 export * from './nativescript-rich-paste';
 export * from './nativescript-shimmer';
 export * from './nativescript-smartlook';
+export * from './nativescript-toolbar';
 export * from './nativescript-variable-blur-view';

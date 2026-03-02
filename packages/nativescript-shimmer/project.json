@@ -49,7 +49,7 @@
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-shimmer"],
+        "commands": ["node tools/scripts/focus-packages.js nativescript-shimmer"],
         "parallel": false
       }
     },

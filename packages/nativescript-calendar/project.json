@@ -51,7 +51,7 @@
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-calendar"],
+        "commands": ["node tools/scripts/focus-packages.js nativescript-calendar"],
         "parallel": false
       }
     },
