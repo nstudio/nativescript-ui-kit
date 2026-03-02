@@ -3,34 +3,40 @@ import { DemoSharedBase } from '../utils';
 import { NativescriptToolbar, ToolbarAppearance, ToolbarItem, ToolbarItemTapEventData } from '@nstudio/nativescript-toolbar';
 
 const ITEM_SET_NAMES = ['Editor', 'Menu', 'Custom Native', 'Playback'];
-const APPEARANCE_NAMES = ['Default', 'Opaque', 'Glass'];
+const APPEARANCE_NAMES = ['Legacy', 'Opaque', 'Glass'];
 const MUTATION_NAMES = ['Title', 'Image', 'Style', 'Tint', 'Reset'];
 
 const TINT_THEMES = [
   {
     name: 'Cool',
-    lightTint: '#0f172a',
-    darkTint: '#f8fafc',
-    lightBar: '#ffffff',
-    darkBar: '#0f172a',
+    lightTint: '#0ea5e9',
+    darkTint: '#7dd3fc',
+    lightBar: '#e0f2fe',
+    darkBar: '#082f49',
   },
   {
     name: 'Indigo',
-    lightTint: '#3730a3',
-    darkTint: '#e0e7ff',
-    lightBar: '#eef2ff',
+    lightTint: '#4f46e5',
+    darkTint: '#c7d2fe',
+    lightBar: '#e0e7ff',
     darkBar: '#1e1b4b',
   },
   {
     name: 'Amber',
-    lightTint: '#92400e',
-    darkTint: '#ffedd5',
-    lightBar: '#fff7ed',
-    darkBar: '#7c2d12',
+    lightTint: '#d97706',
+    darkTint: '#fcd34d',
+    lightBar: '#fef3c7',
+    darkBar: '#78350f',
   },
 ];
 
 type ToolbarPlacement = 'top' | 'bottom';
+type MutationState = {
+  titleOn: boolean;
+  imageOn: boolean;
+  style: 'plain' | 'done' | null;
+  tint: 'pink' | 'teal' | null;
+};
 
 export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   pageClass = 'page toolbar-demo-page';
@@ -46,7 +52,8 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   shadowButtonText = 'Shadow Image: Off';
   animationButtonText = 'Animation: On';
   mutationButtonText = `Mutate: ${MUTATION_NAMES[0]}`;
-  statusText = __IOS__ ? 'Toolbar ready. Try toggles below.' : 'Toolbar plugin is currently iOS-only.';
+  toggleTargetButtonText = 'Toggle Target Item';
+  statusText = __IOS__ ? 'Toolbar ready. Start with Appearance: Legacy to see raw UIToolbar properties.' : 'Toolbar plugin is currently iOS-only.';
   lastTapText = 'Last tap: none';
   eventLog = __IOS__ ? 'Ready.' : 'Android placeholder mode.';
 
@@ -63,6 +70,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   private _itemAnimationEnabled = true;
   private _mutationIndex = 0;
   private _trailingItemId: number | string = null;
+  private _mutationStateBySet = new Map<string, MutationState>();
   private _logs: string[] = [];
   private _appearanceHandler = (args: any) => this._applyPageTheme(args?.newValue);
 
@@ -121,7 +129,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     if (!__IOS__) return;
     this._translucent = !this._translucent;
     this.set('translucentButtonText', `Translucent: ${this._translucent ? 'On' : 'Off'}`);
-    this._writeLog(`translucent -> ${this._translucent}`);
+    this._writeLog(`translucent -> ${this._translucent} (${APPEARANCE_NAMES[this._appearanceIndex]})`);
     this._applyAllToolbars(false, false);
   }
 
@@ -129,7 +137,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     if (!__IOS__) return;
     this._tintIndex = (this._tintIndex + 1) % TINT_THEMES.length;
     this.set('tintButtonText', `Tint: ${TINT_THEMES[this._tintIndex].name}`);
-    this._writeLog(`tint theme -> ${TINT_THEMES[this._tintIndex].name}`);
+    this._writeLog(`tint theme -> ${TINT_THEMES[this._tintIndex].name} (icons + title attributes)`);
     this._applyAllToolbars(false, false);
   }
 
@@ -145,7 +153,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     if (!__IOS__) return;
     this._backgroundEnabled = !this._backgroundEnabled;
     this.set('backgroundButtonText', `Background Image: ${this._backgroundEnabled ? 'On' : 'Off'}`);
-    this._writeLog(`background image -> ${this._backgroundEnabled}`);
+    this._writeLog(`background image -> ${this._backgroundEnabled} (${APPEARANCE_NAMES[this._appearanceIndex]})`);
     this._applyAllToolbars(false, false);
   }
 
@@ -153,7 +161,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     if (!__IOS__) return;
     this._shadowEnabled = !this._shadowEnabled;
     this.set('shadowButtonText', `Shadow Image: ${this._shadowEnabled ? 'On' : 'Off'}`);
-    this._writeLog(`shadow image -> ${this._shadowEnabled}`);
+    this._writeLog(`shadow image -> ${this._shadowEnabled} (${APPEARANCE_NAMES[this._appearanceIndex]})`);
     this._applyAllToolbars(false, false);
   }
 
@@ -169,7 +177,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     if (!__IOS__) return;
     const toolbar = this._activeToolbar;
     if (!toolbar || this._trailingItemId === null || this._trailingItemId === undefined) {
-      this._writeLog('No trailing item available for this set.');
+      this._writeLog('No target item available for this set.');
       return;
     }
 
@@ -180,46 +188,43 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     }
 
     nativeItem.enabled = !nativeItem.enabled;
-    this._writeLog(`getNativeItem(${this._trailingItemId}) enabled -> ${nativeItem.enabled}`);
+    this._writeLog(`target item "${this._trailingItemId}" enabled -> ${nativeItem.enabled}`);
   }
 
   runItemMutation() {
     if (!__IOS__) return;
-    const toolbar = this._activeToolbar;
-    if (!toolbar || this._trailingItemId === null || this._trailingItemId === undefined) {
-      this._writeLog('No trailing item available for mutation.');
+    if (this._trailingItemId === null || this._trailingItemId === undefined) {
+      this._writeLog('No target item available for mutation.');
       return;
     }
 
-    const nativeItem = toolbar.getNativeItem(this._trailingItemId);
-    if (!nativeItem) {
-      this._writeLog(`getNativeItem(${this._trailingItemId}) -> null`);
-      return;
-    }
-
+    const state = this._currentMutationState;
+    const setName = this._currentItemSetName;
     const mode = MUTATION_NAMES[this._mutationIndex];
     switch (mode) {
       case 'Title':
-        nativeItem.title = nativeItem.title ? `${nativeItem.title}*` : 'Updated';
-        this._writeLog(`mutation:title -> ${nativeItem.title}`);
+        state.titleOn = !state.titleOn;
+        this._writeLog(`mutation:title [${setName}] -> ${state.titleOn ? 'Approve ✓' : 'base title'}`);
         break;
       case 'Image':
-        nativeItem.image = UIImage.systemImageNamed('wand.and.stars');
-        this._writeLog('mutation:image -> wand.and.stars');
+        state.imageOn = !state.imageOn;
+        this._writeLog(`mutation:image [${setName}] -> ${state.imageOn ? 'wand.and.stars' : 'base image'}`);
         break;
       case 'Style':
-        nativeItem.style = nativeItem.style === UIBarButtonItemStyle.Done ? UIBarButtonItemStyle.Plain : UIBarButtonItemStyle.Done;
-        this._writeLog(`mutation:style -> ${nativeItem.style === UIBarButtonItemStyle.Done ? 'done' : 'plain'}`);
+        state.style = this._resolveNextMutatedStyle(state);
+        this._writeLog(`mutation:style [${setName}] -> ${state.style}`);
         break;
       case 'Tint':
-        nativeItem.tintColor = nativeItem.tintColor?.isEqual(UIColor.systemPinkColor) ? UIColor.systemTealColor : UIColor.systemPinkColor;
-        this._writeLog('mutation:tint -> toggled pink/teal');
+        state.tint = state.tint === 'pink' ? 'teal' : 'pink';
+        this._writeLog(`mutation:tint [${setName}] -> ${state.tint}`);
         break;
       case 'Reset':
-        this._applyItemSet(toolbar, true);
-        this._writeLog('mutation:reset -> restored item set');
+        this._resetMutationStateForSet(setName);
+        this._writeLog(`mutation:reset [${setName}] -> restored set defaults`);
         break;
     }
+
+    this._applyMutationStateToAllToolbars();
 
     this._mutationIndex = (this._mutationIndex + 1) % MUTATION_NAMES.length;
     this.set('mutationButtonText', `Mutate: ${MUTATION_NAMES[this._mutationIndex]}`);
@@ -237,6 +242,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     this._shadowEnabled = false;
     this._itemAnimationEnabled = true;
     this._mutationIndex = 0;
+    this._resetAllMutationState();
 
     this.set('topToolbarVisibility', 'collapsed');
     this.set('bottomToolbarVisibility', 'visible');
@@ -304,103 +310,149 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
   }
 
   private _applyVisualOptions(toolbar: NativescriptToolbar, placement: ToolbarPlacement) {
+    const appearanceMode = APPEARANCE_NAMES[this._appearanceIndex];
     const theme = TINT_THEMES[this._tintIndex];
     const tint = this._darkStyle ? theme.darkTint : theme.lightTint;
     const barTint = this._darkStyle ? theme.darkBar : theme.lightBar;
+    const legacyBarTint = this._translucent ? this._toAlphaColor(barTint, this._darkStyle ? 0.72 : 0.88) : barTint;
 
     toolbar.position = placement === 'top' ? 'top' : 'bottom';
     toolbar.itemChangesAnimated = this._itemAnimationEnabled;
     toolbar.barStyle = this._darkStyle ? 'black' : 'default';
     toolbar.translucent = this._translucent;
     toolbar.tintColor = tint;
-    toolbar.barTintColor = barTint;
+    toolbar.barTintColor = legacyBarTint;
 
-    const appearance = this._buildAppearance();
+    if (appearanceMode === 'Legacy') {
+      toolbar.setAppearance('standard', null);
+      toolbar.setAppearance('compact', null);
+      toolbar.setAppearance('scrollEdge', null);
+      toolbar.setAppearance('compactScrollEdge', null);
+      this._applyBackgroundAndShadow(toolbar, placement, 'legacy');
+      return;
+    }
+
+    const appearance = this._buildAppearance(appearanceMode, tint, barTint);
     toolbar.setAppearance('standard', appearance.standard);
     toolbar.setAppearance('compact', appearance.compact);
     toolbar.setAppearance('scrollEdge', appearance.scrollEdge);
     toolbar.setAppearance('compactScrollEdge', appearance.compactScrollEdge);
-
-    this._applyBackgroundAndShadow(toolbar, placement);
+    this._applyBackgroundAndShadow(toolbar, placement, 'appearance');
   }
 
-  private _buildAppearance(): {
+  private _buildAppearance(
+    mode: string,
+    tint: string,
+    barTint: string,
+  ): {
     standard: ToolbarAppearance;
     compact: ToolbarAppearance;
     scrollEdge: ToolbarAppearance;
     compactScrollEdge: ToolbarAppearance;
   } {
-    const mode = APPEARANCE_NAMES[this._appearanceIndex];
+    const shadowColor = this._darkStyle ? '#f8fafc55' : '#0f172a45';
+    const standardStriped = this._makeStripedImage(this._darkStyle ? '#1f2937' : '#bfdbfe', this._darkStyle ? '#334155' : '#fcd34d', 40, 40);
+    const edgeStriped = this._makeStripedImage(this._darkStyle ? '#0f172a' : '#ddd6fe', this._darkStyle ? '#1f2937' : '#bfdbfe', 40, 40);
+    const shadowImage = this._makeSolidImage(this._darkStyle ? '#f8fafc' : '#0f172a', 36, 3);
+
+    const standard: ToolbarAppearance =
+      mode === 'Glass'
+        ? {
+            preset: this._translucent ? 'transparent' : 'opaque',
+            backgroundColor: this._translucent ? this._toAlphaColor(barTint, this._darkStyle ? 0.58 : 0.64) : barTint,
+            backgroundEffectStyle: this._translucent ? (this._darkStyle ? 'systemChromeMaterialDark' : 'systemChromeMaterialLight') : undefined,
+            shadowColor,
+          }
+        : {
+            preset: 'opaque',
+            backgroundColor: barTint,
+            shadowColor,
+          };
+
+    const scrollEdge: ToolbarAppearance =
+      mode === 'Glass'
+        ? {
+            ...standard,
+            backgroundEffectStyle: this._translucent ? (this._darkStyle ? 'systemUltraThinMaterialDark' : 'systemUltraThinMaterialLight') : undefined,
+          }
+        : {
+            ...standard,
+          };
+
+    const buttonAppearance = {
+      normal: {
+        titleTextAttributes: {
+          foregroundColor: tint,
+        },
+      },
+      highlighted: {
+        titleTextAttributes: {
+          foregroundColor: this._darkStyle ? '#ffffff' : '#111827',
+        },
+      },
+      disabled: {
+        titleTextAttributes: {
+          foregroundColor: '#94a3b8',
+        },
+      },
+    };
+
+    standard.buttonAppearance = buttonAppearance;
+    standard.doneButtonAppearance = buttonAppearance;
+    scrollEdge.buttonAppearance = buttonAppearance;
+    scrollEdge.doneButtonAppearance = buttonAppearance;
+
+    if (this._backgroundEnabled) {
+      standard.backgroundImage = standardStriped;
+      scrollEdge.backgroundImage = edgeStriped;
+      standard.backgroundImageContentMode = 'scaleToFill';
+      scrollEdge.backgroundImageContentMode = 'scaleToFill';
+    }
+
+    if (this._shadowEnabled) {
+      standard.shadowImage = shadowImage;
+      scrollEdge.shadowImage = shadowImage;
+      standard.shadowColor = this._darkStyle ? '#f8fafc88' : '#0f172a7a';
+      scrollEdge.shadowColor = standard.shadowColor;
+    }
 
     if (mode === 'Opaque') {
-      const bg = this._darkStyle ? '#111827' : '#f8fafc';
-      const fg = this._darkStyle ? '#f8fafc' : '#0f172a';
-      const opaque: ToolbarAppearance = {
-        preset: 'opaque',
-        backgroundColor: bg,
-        shadowColor: this._darkStyle ? '#ffffff22' : '#d9e2ec',
-        buttonAppearance: {
-          normal: {
-            titleTextAttributes: {
-              foregroundColor: fg,
-            },
-          },
-        },
-      };
-      return {
-        standard: opaque,
-        compact: opaque,
-        scrollEdge: opaque,
-        compactScrollEdge: opaque,
-      };
+      const opaqueBackground = this._translucent ? this._toAlphaColor(barTint, this._darkStyle ? 0.76 : 0.86) : barTint;
+      standard.backgroundColor = opaqueBackground;
+      scrollEdge.backgroundColor = opaqueBackground;
     }
 
-    if (mode === 'Glass') {
-      const blurStyle = this._darkStyle ? 'systemThinMaterialDark' : 'systemThinMaterial';
-      const edgeBlurStyle = this._darkStyle ? 'systemUltraThinMaterialDark' : 'systemUltraThinMaterial';
-      const standard: ToolbarAppearance = {
-        preset: 'transparent',
-        backgroundEffectStyle: blurStyle,
-        shadowColor: this._darkStyle ? '#ffffff20' : '#0f172a20',
-      };
-      const edge: ToolbarAppearance = {
-        preset: 'transparent',
-        backgroundEffectStyle: edgeBlurStyle,
-        shadowColor: this._darkStyle ? '#ffffff20' : '#0f172a20',
-      };
-      return {
-        standard,
-        compact: standard,
-        scrollEdge: edge,
-        compactScrollEdge: edge,
-      };
-    }
-
-    const standard: ToolbarAppearance = {
-      preset: 'default',
-      shadowColor: this._darkStyle ? '#ffffff18' : '#cbd5e1',
-    };
     return {
       standard,
-      compact: standard,
-      scrollEdge: standard,
-      compactScrollEdge: standard,
+      compact: {
+        ...standard,
+      },
+      scrollEdge,
+      compactScrollEdge: {
+        ...scrollEdge,
+      },
     };
   }
 
-  private _applyBackgroundAndShadow(toolbar: NativescriptToolbar, placement: ToolbarPlacement) {
+  private _applyBackgroundAndShadow(toolbar: NativescriptToolbar, placement: ToolbarPlacement, mode: 'legacy' | 'appearance') {
     const pos = placement === 'top' ? 'top' : 'bottom';
+    if (mode === 'appearance') {
+      toolbar.clearBackgroundImage(pos, 'default');
+      toolbar.clearShadowImage(pos);
+      return;
+    }
+
     if (this._backgroundEnabled) {
-      const primary = this._darkStyle ? '#1e293b' : '#dbeafe';
-      const secondary = this._darkStyle ? '#334155' : '#bfdbfe';
-      toolbar.setBackgroundImage(this._makeStripedImage(primary, secondary, 24, 24), pos, 'default');
+      const primary = this._darkStyle ? '#1f2937' : '#bfdbfe';
+      const secondary = this._darkStyle ? '#334155' : '#fcd34d';
+      toolbar.setBackgroundImage(this._makeStripedImage(primary, secondary, 40, 40), pos, 'default');
     } else {
       toolbar.clearBackgroundImage(pos, 'default');
     }
 
     if (this._shadowEnabled) {
-      const shadow = this._darkStyle ? '#ffffff24' : '#0f172a3d';
-      toolbar.setShadowImage(this._makeSolidImage(shadow, 24, 1), pos);
+      const shadow = this._darkStyle ? '#f8fafc99' : '#0f172a85';
+      toolbar.setShadowImage(this._makeSolidImage(shadow, 36, 3), pos);
     } else {
       toolbar.clearShadowImage(pos);
     }
@@ -410,6 +462,7 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     const { items, trailingItemId, description } = this._buildCurrentItems();
     this._trailingItemId = trailingItemId;
     toolbar.setItems(items, animated && this._itemAnimationEnabled);
+    this._applyMutationState(toolbar);
     this.set('statusText', description);
   }
 
@@ -431,18 +484,18 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
 
   private _editorItems(): { items: ToolbarItem[]; trailingItemId: number | string; description: string } {
     return {
-      description: 'Editor set: system item + title + symbol + spacing.',
-      trailingItemId: 'filters',
-      items: [{ id: 'compose', systemItem: 'compose', onTap: () => this._writeLog('onTap -> compose') }, { systemItem: 'flexibleSpace' }, { id: 'publish', title: 'Publish', style: 'done', onTap: () => this._writeLog('onTap -> publish') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'filters', systemImage: 'slider.horizontal.3', accessibilityIdentifier: 'filters-button', onTap: () => this._writeLog('onTap -> filters') }],
+      description: 'Editor set: mutate/disable target item -> "publish".',
+      trailingItemId: 'publish',
+      items: [{ id: 'compose', systemItem: 'compose', onTap: () => this._writeLog('onTap -> compose') }, { systemItem: 'flexibleSpace' }, { id: 'filters', systemImage: 'slider.horizontal.3', accessibilityIdentifier: 'filters-button', onTap: () => this._writeLog('onTap -> filters') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'publish', title: 'Publish', style: 'done', onTap: () => this._writeLog('onTap -> publish') }],
     };
   }
 
   private _menuItems(): { items: ToolbarItem[]; trailingItemId: number | string; description: string } {
     if (Utils.SDK_VERSION < 14) {
       return {
-        description: 'Menu set fallback: iOS 14+ required for UIMenu.',
-        trailingItemId: 'search',
-        items: [{ id: 'add', systemItem: 'add', onTap: () => this._writeLog('onTap -> add') }, { systemItem: 'flexibleSpace' }, { id: 'search', systemItem: 'search', onTap: () => this._writeLog('onTap -> search') }],
+        description: 'Menu fallback: mutate/disable target item -> "search-title".',
+        trailingItemId: 'search-title',
+        items: [{ id: 'add', systemItem: 'add', onTap: () => this._writeLog('onTap -> add') }, { systemItem: 'flexibleSpace' }, { id: 'search-title', title: 'Search', style: 'plain', onTap: () => this._writeLog('onTap -> search') }],
       };
     }
 
@@ -451,15 +504,14 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     const shareMenu = UIMenu.menuWithTitleImageIdentifierOptionsChildren('Share', UIImage.systemImageNamed('square.and.arrow.up'), 'share-menu', UIMenuOptions.DisplayInline, [this._menuAction('Copy Link', 'link', 'menu -> Copy Link'), this._menuAction('Schedule', 'calendar.badge.plus', 'menu -> Schedule'), this._menuAction('Delete Draft', 'trash', 'menu -> Delete Draft', true)]);
 
     return {
-      description: 'Menu set: primaryAction + UIMenu on UIBarButtonItem.',
-      trailingItemId: 'share',
-      items: [{ id: 'add', systemItem: 'add', onTap: () => this._writeLog('onTap -> add') }, { systemItem: 'flexibleSpace' }, { id: 'quick', title: 'Quick', style: 'done', primaryAction: quickAction, menu: composeMenu }, { systemItem: 'fixedSpace', width: 8 }, { id: 'share', systemItem: 'action', menu: shareMenu }],
+      description: 'Menu set: mutate/disable target item -> "quick".',
+      trailingItemId: 'quick',
+      items: [{ id: 'add', systemItem: 'add', onTap: () => this._writeLog('onTap -> add') }, { systemItem: 'flexibleSpace' }, { id: 'share', systemItem: 'action', menu: shareMenu }, { systemItem: 'fixedSpace', width: 8 }, { id: 'quick', title: 'Quick', style: 'done', primaryAction: quickAction, menu: composeMenu }],
     };
   }
 
   private _customNativeItems(): { items: ToolbarItem[]; trailingItemId: number | string; description: string } {
     const nativeFavorite = UIBarButtonItem.alloc().initWithImageStyleTargetAction(UIImage.systemImageNamed('star.fill'), UIBarButtonItemStyle.Done, null, null);
-    nativeFavorite.tintColor = new Color('#f59e0b').ios;
     nativeFavorite.accessibilityIdentifier = 'native-favorite';
 
     if (Utils.SDK_VERSION >= 14) {
@@ -467,18 +519,105 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     }
 
     return {
-      description: 'Custom set: customView + nativeItem escape hatch.',
-      trailingItemId: 'native-favorite',
-      items: [{ id: 'record', systemImage: 'record.circle', onTap: () => this._writeLog('onTap -> record') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'live-badge', customView: this._makeLiveBadgeView() }, { systemItem: 'flexibleSpace' }, { id: 'native-favorite', nativeItem: nativeFavorite }],
+      description: 'Custom set: customView + nativeItem + mutable title target "boost".',
+      trailingItemId: 'boost',
+      items: [{ id: 'record', systemImage: 'record.circle', onTap: () => this._writeLog('onTap -> record') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'live-badge', customView: this._makeLiveBadgeView() }, { systemItem: 'flexibleSpace' }, { id: 'native-favorite', nativeItem: nativeFavorite }, { systemItem: 'fixedSpace', width: 8 }, { id: 'boost', title: 'Boost', style: 'done', onTap: () => this._writeLog('onTap -> boost') }],
     };
   }
 
   private _playbackItems(): { items: ToolbarItem[]; trailingItemId: number | string; description: string } {
     return {
-      description: 'Playback set: wider system-item control strip + disabled tail item.',
+      description: 'Playback set: mutate/disable target item -> "output".',
       trailingItemId: 'output',
       items: [{ id: 'rewind', systemItem: 'rewind', onTap: () => this._writeLog('onTap -> rewind') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'play', systemItem: 'play', onTap: () => this._writeLog('onTap -> play') }, { systemItem: 'fixedSpace', width: 8 }, { id: 'pause', systemItem: 'pause', onTap: () => this._writeLog('onTap -> pause') }, { systemItem: 'flexibleSpace' }, { id: 'output', title: 'Output', style: 'plain', enabled: false, tag: 9001, onTap: () => this._writeLog('onTap -> output') }],
     };
+  }
+
+  private _applyMutationStateToAllToolbars() {
+    if (this._topToolbar) {
+      this._applyMutationState(this._topToolbar);
+    }
+    if (this._bottomToolbar) {
+      this._applyMutationState(this._bottomToolbar);
+    }
+  }
+
+  private _applyMutationState(toolbar: NativescriptToolbar) {
+    if (!toolbar || this._trailingItemId === null || this._trailingItemId === undefined) {
+      return;
+    }
+    const nativeItem = toolbar.getNativeItem(this._trailingItemId);
+    if (!nativeItem) {
+      return;
+    }
+
+    const state = this._currentMutationState;
+    const defaults = this._targetDefaultsForCurrentSet();
+    nativeItem.title = state.titleOn ? 'Approve ✓' : defaults.title;
+    nativeItem.image = state.imageOn ? UIImage.systemImageNamed('wand.and.stars') : defaults.image;
+
+    const style = state.style ?? defaults.style;
+    nativeItem.style = style === 'done' ? UIBarButtonItemStyle.Done : UIBarButtonItemStyle.Plain;
+
+    if (state.tint === 'pink') {
+      nativeItem.tintColor = UIColor.systemPinkColor;
+    } else if (state.tint === 'teal') {
+      nativeItem.tintColor = UIColor.systemTealColor;
+    } else {
+      nativeItem.tintColor = null;
+    }
+  }
+
+  private _resolveNextMutatedStyle(state: MutationState): 'plain' | 'done' {
+    const style = state.style ?? this._targetDefaultsForCurrentSet().style;
+    return style === 'done' ? 'plain' : 'done';
+  }
+
+  private _targetDefaultsForCurrentSet(): { title: string; style: 'plain' | 'done'; image: UIImage | null } {
+    const setName = ITEM_SET_NAMES[this._itemSetIndex];
+    switch (setName) {
+      case 'Playback':
+        return { title: 'Output', style: 'plain', image: null };
+      case 'Menu':
+        if (Utils.SDK_VERSION < 14) {
+          return { title: 'Search', style: 'plain', image: null };
+        }
+        return { title: 'Quick', style: 'done', image: null };
+      case 'Custom Native':
+        return { title: 'Boost', style: 'done', image: null };
+      case 'Editor':
+      default:
+        return { title: 'Publish', style: 'done', image: null };
+    }
+  }
+
+  private _resetMutationStateForSet(setName: string) {
+    this._mutationStateBySet.set(setName, this._defaultMutationState());
+  }
+
+  private _resetAllMutationState() {
+    this._mutationStateBySet.clear();
+  }
+
+  private _defaultMutationState(): MutationState {
+    return {
+      titleOn: false,
+      imageOn: false,
+      style: null,
+      tint: null,
+    };
+  }
+
+  private get _currentMutationState(): MutationState {
+    const setName = this._currentItemSetName;
+    if (!this._mutationStateBySet.has(setName)) {
+      this._mutationStateBySet.set(setName, this._defaultMutationState());
+    }
+    return this._mutationStateBySet.get(setName);
+  }
+
+  private get _currentItemSetName(): string {
+    return ITEM_SET_NAMES[this._itemSetIndex] ?? ITEM_SET_NAMES[0];
   }
 
   private _menuAction(title: string, systemImage: string, log: string, destructive = false): UIAction {
@@ -507,6 +646,11 @@ export class DemoSharedNativescriptToolbar extends DemoSharedBase {
     container.addSubview(label);
 
     return container;
+  }
+
+  private _toAlphaColor(hex: string, alpha: number): UIColor {
+    const normalized = Math.max(0, Math.min(1, alpha));
+    return new Color(hex).ios.colorWithAlphaComponent(normalized);
   }
 
   private _makeSolidImage(hex: string, width = 6, height = 6): UIImage {

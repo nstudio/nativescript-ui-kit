@@ -1,10 +1,5 @@
-<Page
-  xmlns="http://schemas.nativescript.org/tns.xsd"
-  xmlns:tb="@nstudio/nativescript-toolbar"
-  navigatingTo="navigatingTo"
-  unloaded="{{ onDemoUnloaded }}"
-  actionBarHidden="true"
-  class="{{ pageClass }}">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:tb="@nstudio/nativescript-toolbar" navigatingTo="navigatingTo" unloaded="{{ onDemoUnloaded }}" actionBarHidden="true" class="{{ pageClass }}">
   <GridLayout rows="auto,auto,*,auto,*,auto">
     <GridLayout row="0" rows="auto,auto" class="toolbar-demo-header">
       <Label row="0" text="API Explorer" color="#93c5fd" fontSize="12" />
@@ -13,7 +8,7 @@
 
     <StackLayout row="1" visibility="{{ topToolbarVisibility }}" class="mt-4">
       <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
-        <tb:NativescriptToolbar loaded="{{ onTopToolbarLoaded }}" height="48" />
+      <tb:NativescriptToolbar loaded="{{ onTopToolbarLoaded }}" height="48" />
       <!-- </GridLayout> -->
     </StackLayout>
 
@@ -42,7 +37,7 @@
       </StackLayout>
     </ScrollView> -->
 
-    <StackLayout row="3" class="toolbar-demo-controls">
+    <StackLayout row="3" class="toolbar-demo-controls" iosOverflowSafeArea="false">
       <Label text="Toolbar Controls" class="toolbar-demo-controls-title" />
 
       <GridLayout columns="*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap">
@@ -64,7 +59,7 @@
 
       <GridLayout columns="*,*,*" class="toolbar-demo-grid-row toolbar-demo-grid-gap-3">
         <Button col="0" text="{{ animationButtonText }}" tap="{{ toggleAnimations }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginRight="3" />
-        <Button col="1" text="Toggle Last Item" tap="{{ toggleTrailingEnabled }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" marginRight="3" />
+        <Button col="1" text="{{ toggleTargetButtonText }}" tap="{{ toggleTrailingEnabled }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" marginRight="3" />
         <Button col="2" text="{{ mutationButtonText }}" tap="{{ runItemMutation }}" class="toolbar-demo-btn toolbar-demo-btn-small" marginLeft="3" />
       </GridLayout>
 
@@ -85,7 +80,7 @@
 
     <StackLayout row="5" visibility="{{ bottomToolbarVisibility }}" class="mt-4">
       <!-- <GridLayout class="toolbar-demo-toolbar-surface"> -->
-        <tb:NativescriptToolbar loaded="{{ onBottomToolbarLoaded }}" height="48" />
+      <tb:NativescriptToolbar loaded="{{ onBottomToolbarLoaded }}" height="48" />
       <!-- </GridLayout> -->
     </StackLayout>
   </GridLayout>
