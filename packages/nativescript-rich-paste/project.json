@@ -50,7 +50,7 @@
     "focus": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-rich-paste"],
+        "commands": ["node tools/scripts/focus-packages.js nativescript-rich-paste"],
         "parallel": false
       }
     },
