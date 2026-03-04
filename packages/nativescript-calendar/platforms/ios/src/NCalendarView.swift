@@ -68,8 +68,8 @@ public class NCalendarView: UIView {
       horizontalMonthLabel?.frame = CGRect(x: 0, y: 0, width: bounds.width, height: labelHeight)
 
       let dayWidth = (bounds.width - 6 * horizontalDayMarginPt) / 7
-      let dowRowHeight: CGFloat = ceil(dayOfWeekFontSizePt * 1.5) + 8
-      let maxMonthHeight = dowRowHeight + 6 * dayWidth + 5 * verticalDayMarginPt
+      let dowRowHeight: CGFloat = ceil(dayOfWeekFontSizePt * 1.8) + 10
+      let maxMonthHeight = dowRowHeight + 6 * dayWidth + 6 * verticalDayMarginPt
       calendarView.frame = CGRect(x: 0, y: labelHeight, width: bounds.width, height: maxMonthHeight)
     } else {
       horizontalMonthLabel?.isHidden = true
@@ -124,7 +124,18 @@ public class NCalendarView: UIView {
 
   @objc public var minDateMs: Double = 0 { didSet { rebuildContent() } }
   @objc public var maxDateMs: Double = 0 { didSet { rebuildContent() } }
-  @objc public var firstDayOfWeekJS: Int = 0 { didSet { updateCalendar(); rebuildContent() } }
+  @objc public var firstDayOfWeekJS: Int = 0 {
+    didSet {
+      guard oldValue != firstDayOfWeekJS else { return }
+      updateCalendar()
+      if displayModeStr == "week" {
+        rebuildContent()
+      } else {
+        recreateCalendarView()
+        setNeedsLayout()
+      }
+    }
+  }
 
   @objc public var interMonthSpacingPt: CGFloat = 0 { didSet { rebuildContent() } }
   @objc public var verticalDayMarginPt: CGFloat = 0 { didSet { rebuildContent() } }
