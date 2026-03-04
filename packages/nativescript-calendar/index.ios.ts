@@ -248,6 +248,10 @@ export class NCalendar extends NCalendarCommon {
   [firstDayOfWeekProperty.setNative](value: number) {
     if (this._calView) {
       this._calView.firstDayOfWeekJS = value;
+      // After recreating the CalendarView, restore scroll position
+      if (this._currentMonth) {
+        this.scrollToMonth(this._currentMonth.year, this._currentMonth.month, false);
+      }
     }
   }
 
