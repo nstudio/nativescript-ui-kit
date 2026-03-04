@@ -484,12 +484,39 @@ firstDayOfWeekProperty.register(NCalendarCommon);
 export const selectedDatesProperty = new Property<NCalendarCommon, Date[]>({
   name: 'selectedDates',
   defaultValue: [],
+  valueChanged: (target, _oldValue, newValue) => {
+    if (target._internalSelectionChange) return;
+    target._selectedKeys.clear();
+    if (newValue && newValue.length) {
+      for (const d of newValue) {
+        target._selectedKeys.add(target._toDateKey(d));
+      }
+    }
+  },
 });
 selectedDatesProperty.register(NCalendarCommon);
 
 export const selectedDateRangeProperty = new Property<NCalendarCommon, DateRange>({
   name: 'selectedDateRange',
   defaultValue: undefined,
+  valueChanged: (target, _oldValue, newValue) => {
+    if (target._internalSelectionChange) return;
+    if (newValue && newValue.start && newValue.end) {
+      target._rangeStart = newValue.start;
+      target._rangeEnd = newValue.end;
+      target._selectedKeys.clear();
+      const cursor = new Date(newValue.start.getTime());
+      const endTime = newValue.end.getTime();
+      while (cursor.getTime() <= endTime) {
+        target._selectedKeys.add(target._toDateKey(cursor));
+        cursor.setDate(cursor.getDate() + 1);
+      }
+    } else {
+      target._rangeStart = null;
+      target._rangeEnd = null;
+      target._selectedKeys.clear();
+    }
+  },
 });
 selectedDateRangeProperty.register(NCalendarCommon);
 
