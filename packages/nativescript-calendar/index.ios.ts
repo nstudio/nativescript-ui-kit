@@ -258,19 +258,54 @@ export class NCalendar extends NCalendarCommon {
   [selectedDatesProperty.setNative](value: Date[]) {
     if (this._internalSelectionChange) return;
     this._selectedKeys.clear();
+    const normalizedDates: Date[] = [];
     if (value && value.length) {
       for (const d of value) {
-        this._selectedKeys.add(this._toDateKey(d));
+        const normalized = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        normalizedDates.push(normalized);
+        this._selectedKeys.add(this._toDateKey(normalized));
       }
     }
+
+    if (this.selectionMode === SelectionMode.Range) {
+      normalizedDates.sort((a, b) => a.getTime() - b.getTime());
+      if (normalizedDates.length) {
+        this._rangeStart = normalizedDates[0];
+        this._rangeEnd = normalizedDates[normalizedDates.length - 1];
+        this._selectedKeys.clear();
+        const cursor = new Date(this._rangeStart.getTime());
+        while (cursor.getTime() <= this._rangeEnd.getTime()) {
+          this._selectedKeys.add(this._toDateKey(cursor));
+          cursor.setDate(cursor.getDate() + 1);
+        }
+      } else {
+        this._rangeStart = null;
+        this._rangeEnd = null;
+      }
+      this._internalSelectionChange = true;
+      this._syncSelectedDateRange();
+      this._internalSelectionChange = false;
+    }
+
     this._syncSelectionToBridge();
+
+    if (normalizedDates.length) {
+      this.scrollToDate(normalizedDates[0], false);
+    }
   }
 
   [selectedDateRangeProperty.setNative](value: any) {
     if (this._internalSelectionChange) return;
     if (value && value.start && value.end) {
-      this._rangeStart = value.start;
-      this._rangeEnd = value.end;
+      const start = new Date(value.start.getFullYear(), value.start.getMonth(), value.start.getDate());
+      const end = new Date(value.end.getFullYear(), value.end.getMonth(), value.end.getDate());
+      if (start.getTime() <= end.getTime()) {
+        this._rangeStart = start;
+        this._rangeEnd = end;
+      } else {
+        this._rangeStart = end;
+        this._rangeEnd = start;
+      }
       this._selectedKeys.clear();
       const cursor = new Date(this._rangeStart.getTime());
       while (cursor.getTime() <= this._rangeEnd.getTime()) {
@@ -283,6 +318,10 @@ export class NCalendar extends NCalendarCommon {
       this._selectedKeys.clear();
     }
     this._syncSelectionToBridge();
+
+    if (this._rangeStart) {
+      this.scrollToDate(this._rangeStart, false);
+    }
   }
 
   [eventsProperty.setNative](value: any) {

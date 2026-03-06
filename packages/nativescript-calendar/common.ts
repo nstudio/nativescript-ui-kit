@@ -361,8 +361,17 @@ export abstract class NCalendarCommon extends View {
   }
 
   selectDateRange(start: Date, end: Date): void {
-    this._rangeStart = normalizeDate(start);
-    this._rangeEnd = normalizeDate(end);
+    const normalizedStart = normalizeDate(start);
+    const normalizedEnd = normalizeDate(end);
+
+    if (normalizedStart.getTime() <= normalizedEnd.getTime()) {
+      this._rangeStart = normalizedStart;
+      this._rangeEnd = normalizedEnd;
+    } else {
+      this._rangeStart = normalizedEnd;
+      this._rangeEnd = normalizedStart;
+    }
+
     this._selectedKeys.clear();
     const cursor = new Date(this._rangeStart.getTime());
     while (cursor.getTime() <= this._rangeEnd.getTime()) {
@@ -371,6 +380,9 @@ export abstract class NCalendarCommon extends View {
     }
     this._syncSelectedDateRange();
     this._refreshAfterSelectionChange();
+
+    // Keep programmatic range selection behavior intuitive by navigating to the range start.
+    this.scrollToDate(this._rangeStart, false);
   }
 
   clearSelection(): void {
