@@ -361,8 +361,17 @@ export abstract class NCalendarCommon extends View {
   }
 
   selectDateRange(start: Date, end: Date): void {
-    this._rangeStart = normalizeDate(start);
-    this._rangeEnd = normalizeDate(end);
+    const normalizedStart = normalizeDate(start);
+    const normalizedEnd = normalizeDate(end);
+
+    if (normalizedStart.getTime() <= normalizedEnd.getTime()) {
+      this._rangeStart = normalizedStart;
+      this._rangeEnd = normalizedEnd;
+    } else {
+      this._rangeStart = normalizedEnd;
+      this._rangeEnd = normalizedStart;
+    }
+
     this._selectedKeys.clear();
     const cursor = new Date(this._rangeStart.getTime());
     while (cursor.getTime() <= this._rangeEnd.getTime()) {
@@ -371,6 +380,9 @@ export abstract class NCalendarCommon extends View {
     }
     this._syncSelectedDateRange();
     this._refreshAfterSelectionChange();
+
+    // Keep programmatic range selection behavior intuitive by navigating to the range start.
+    this.scrollToDate(this._rangeStart, false);
   }
 
   clearSelection(): void {
@@ -484,12 +496,39 @@ firstDayOfWeekProperty.register(NCalendarCommon);
 export const selectedDatesProperty = new Property<NCalendarCommon, Date[]>({
   name: 'selectedDates',
   defaultValue: [],
+  valueChanged: (target, _oldValue, newValue) => {
+    if (target._internalSelectionChange) return;
+    target._selectedKeys.clear();
+    if (newValue && newValue.length) {
+      for (const d of newValue) {
+        target._selectedKeys.add(target._toDateKey(d));
+      }
+    }
+  },
 });
 selectedDatesProperty.register(NCalendarCommon);
 
 export const selectedDateRangeProperty = new Property<NCalendarCommon, DateRange>({
   name: 'selectedDateRange',
   defaultValue: undefined,
+  valueChanged: (target, _oldValue, newValue) => {
+    if (target._internalSelectionChange) return;
+    if (newValue && newValue.start && newValue.end) {
+      target._rangeStart = newValue.start;
+      target._rangeEnd = newValue.end;
+      target._selectedKeys.clear();
+      const cursor = new Date(newValue.start.getTime());
+      const endTime = newValue.end.getTime();
+      while (cursor.getTime() <= endTime) {
+        target._selectedKeys.add(target._toDateKey(cursor));
+        cursor.setDate(cursor.getDate() + 1);
+      }
+    } else {
+      target._rangeStart = null;
+      target._rangeEnd = null;
+      target._selectedKeys.clear();
+    }
+  },
 });
 selectedDateRangeProperty.register(NCalendarCommon);
 

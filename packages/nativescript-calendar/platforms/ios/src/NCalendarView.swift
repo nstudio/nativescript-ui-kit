@@ -68,9 +68,14 @@ public class NCalendarView: UIView {
       horizontalMonthLabel?.frame = CGRect(x: 0, y: 0, width: bounds.width, height: labelHeight)
 
       let dayWidth = (bounds.width - 6 * horizontalDayMarginPt) / 7
-      let dowRowHeight: CGFloat = ceil(dayOfWeekFontSizePt * 1.5) + 8
-      let maxMonthHeight = dowRowHeight + 6 * dayWidth + 5 * verticalDayMarginPt
+      let dowRowHeight: CGFloat = ceil(dayOfWeekFontSizePt * 1.8) + 10
+      let maxMonthHeight = dowRowHeight + 6 * dayWidth + 6 * verticalDayMarginPt
       calendarView.frame = CGRect(x: 0, y: labelHeight, width: bounds.width, height: maxMonthHeight)
+
+      // Scroll callbacks are not guaranteed on first render, so seed the title now.
+      if !didInitializeHorizontalMonthLabel {
+        syncHorizontalMonthLabelToInitialVisibleMonth(notify: true)
+      }
     } else {
       horizontalMonthLabel?.isHidden = true
       calendarView.frame = bounds
@@ -101,13 +106,17 @@ public class NCalendarView: UIView {
 
   // Horizontal mode month label
   private var horizontalMonthLabel: UILabel?
+  private var didInitializeHorizontalMonthLabel = false
 
   // MARK: - Configuration Properties
 
   @objc public var isHorizontal: Bool = false {
     didSet {
       guard oldValue != isHorizontal else { return }
-      if isHorizontal { ensureHorizontalMonthLabel() }
+      if isHorizontal {
+        ensureHorizontalMonthLabel()
+        didInitializeHorizontalMonthLabel = false
+      }
       recreateCalendarView()
       setNeedsLayout()
     }
@@ -124,7 +133,18 @@ public class NCalendarView: UIView {
 
   @objc public var minDateMs: Double = 0 { didSet { rebuildContent() } }
   @objc public var maxDateMs: Double = 0 { didSet { rebuildContent() } }
-  @objc public var firstDayOfWeekJS: Int = 0 { didSet { updateCalendar(); rebuildContent() } }
+  @objc public var firstDayOfWeekJS: Int = 0 {
+    didSet {
+      guard oldValue != firstDayOfWeekJS else { return }
+      updateCalendar()
+      if displayModeStr == "week" {
+        rebuildContent()
+      } else {
+        recreateCalendarView()
+        setNeedsLayout()
+      }
+    }
+  }
 
   @objc public var interMonthSpacingPt: CGFloat = 0 { didSet { rebuildContent() } }
   @objc public var verticalDayMarginPt: CGFloat = 0 { didSet { rebuildContent() } }
@@ -209,18 +229,41 @@ public class NCalendarView: UIView {
       guard let self = self else { return }
       let startDay = visibleDayRange.lowerBound
       let endDay = visibleDayRange.upperBound
-      self.updateHorizontalMonthLabel(year: startDay.month.year, month: startDay.month.month)
-      self.onScroll?(startDay.month.year, startDay.month.month, endDay.month.year, endDay.month.month, isDragging)
+      let visibleMonth = self.resolvePrimaryVisibleMonth(startDay: startDay, endDay: endDay)
+      self.updateHorizontalMonthLabel(year: visibleMonth.year, month: visibleMonth.month)
+      self.onScroll?(visibleMonth.year, visibleMonth.month, endDay.month.year, endDay.month.month, isDragging)
     }
 
     calendarView.didEndDecelerating = { [weak self] visibleDayRange in
       guard let self = self else { return }
       let startDay = visibleDayRange.lowerBound
       let endDay = visibleDayRange.upperBound
-      self.updateHorizontalMonthLabel(year: startDay.month.year, month: startDay.month.month)
-      self.onScrollEnd?(startDay.month.year, startDay.month.month, endDay.month.year, endDay.month.month)
-      self.onMonthChanged?(startDay.month.year, startDay.month.month)
+      let visibleMonth = self.resolvePrimaryVisibleMonth(startDay: startDay, endDay: endDay)
+      self.updateHorizontalMonthLabel(year: visibleMonth.year, month: visibleMonth.month)
+      self.onScrollEnd?(visibleMonth.year, visibleMonth.month, endDay.month.year, endDay.month.month)
+      self.onMonthChanged?(visibleMonth.year, visibleMonth.month)
     }
+  }
+
+  private func resolvePrimaryVisibleMonth(startDay: DayComponents, endDay: DayComponents) -> (year: Int, month: Int) {
+    let fallback = (year: startDay.month.year, month: startDay.month.month)
+
+    guard
+      let startDate = _calendar.date(from: DateComponents(year: startDay.month.year, month: startDay.month.month, day: startDay.day)),
+      let endDate = _calendar.date(from: DateComponents(year: endDay.month.year, month: endDay.month.month, day: endDay.day))
+    else {
+      return fallback
+    }
+
+    let lower = min(startDate.timeIntervalSinceReferenceDate, endDate.timeIntervalSinceReferenceDate)
+    let upper = max(startDate.timeIntervalSinceReferenceDate, endDate.timeIntervalSinceReferenceDate)
+    let midpoint = Date(timeIntervalSinceReferenceDate: lower + ((upper - lower) / 2.0))
+    let comps = _calendar.dateComponents([.year, .month], from: midpoint)
+
+    guard let year = comps.year, let month = comps.month else {
+      return fallback
+    }
+    return (year, month)
   }
 
   private func updateCalendar() {
@@ -548,6 +591,10 @@ public class NCalendarView: UIView {
       showWeekContaining(date)
     } else {
       calendarView.scroll(toMonthContaining: date, scrollPosition: .firstFullyVisiblePosition, animated: animated)
+      if isHorizontal {
+        updateHorizontalMonthLabel(year: year, month: month)
+        onMonthChanged?(year, month)
+      }
     }
   }
 
@@ -556,8 +603,18 @@ public class NCalendarView: UIView {
     guard let date = _calendar.date(from: components) else { return }
     if displayModeStr == "week" {
       showWeekContaining(date)
+    } else if isHorizontal && isPaginated {
+      // In horizontal paged mode, paging is month-based. Scrolling to day can be a no-op
+      // when the target day's month is not promoted to the leading page.
+      calendarView.scroll(toMonthContaining: date, scrollPosition: .firstFullyVisiblePosition, animated: animated)
+      updateHorizontalMonthLabel(year: year, month: month)
+      onMonthChanged?(year, month)
     } else {
       calendarView.scroll(toDayContaining: date, scrollPosition: .centered, animated: animated)
+      if isHorizontal {
+        updateHorizontalMonthLabel(year: year, month: month)
+        onMonthChanged?(year, month)
+      }
     }
   }
 
@@ -606,6 +663,36 @@ public class NCalendarView: UIView {
     label.text = formatter.string(from: date)
     label.font = .boldSystemFont(ofSize: monthHeaderFontSizePt)
     label.textColor = colorFromHex(monthHeaderTextColorHex) ?? .label
+    didInitializeHorizontalMonthLabel = true
+  }
+
+  private func syncHorizontalMonthLabelToInitialVisibleMonth(notify: Bool) {
+    guard isHorizontal else { return }
+
+    let now = Date()
+    var anchorDate = now
+
+    if minDateMs > 0 {
+      let minDate = Date(timeIntervalSince1970: minDateMs / 1000)
+      if anchorDate < minDate {
+        anchorDate = minDate
+      }
+    }
+
+    if maxDateMs > 0 {
+      let maxDate = Date(timeIntervalSince1970: maxDateMs / 1000)
+      if anchorDate > maxDate {
+        anchorDate = maxDate
+      }
+    }
+
+    let comps = _calendar.dateComponents([.year, .month], from: anchorDate)
+    guard let year = comps.year, let month = comps.month else { return }
+
+    updateHorizontalMonthLabel(year: year, month: month)
+    if notify {
+      onMonthChanged?(year, month)
+    }
   }
 
   private func isDateDisabled(_ date: Date) -> Bool {
