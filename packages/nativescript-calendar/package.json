@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-calendar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A full-featured calendar view with month, week, and year views. Uses Airbnb HorizonCalendar (iOS) and kizitonwose Calendar (Android).",
   "main": "index",
   "types": "index.d.ts",
