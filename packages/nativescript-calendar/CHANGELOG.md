@@ -1,3 +1,13 @@
+## 1.0.3 (2026-04-02)
+
+### 🚀 Features
+
+- **calendar:** disabledDates and disabledWeekdays ([1f04c04](https://github.com/nstudio/nativescript-ui-kit/commit/1f04c04))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 ## 1.0.2 (2026-04-02)
 
 ### 🩹 Fixes
