@@ -2,7 +2,7 @@ import { ShowModalOptions } from '@nativescript/core';
 import { DemoSharedBase } from '../utils';
 import { NCalendar, DisplayMode, SelectionMode, Orientation, CalendarDayEventData, CalendarMonthEventData, CalendarEvent } from '@nstudio/nativescript-calendar';
 
-const SCENARIOS = ['Single', 'Range', 'Multiple', 'Horizontal', 'Week', 'Events', 'Styled'];
+const SCENARIOS = ['Single', 'Range', 'Multiple', 'Horizontal', 'Week', 'Events', 'Disabled', 'Styled'];
 
 function pad(n: number): string {
   return n < 10 ? '0' + n : '' + n;
@@ -84,6 +84,8 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
     this.calendar.dayOfWeekTextColor = null;
     this.calendar.outDateTextColor = null;
     this.calendar.disabledDayTextColor = null;
+    this.calendar.disabledDates = [];
+    this.calendar.disabledWeekdays = [];
 
     switch (name) {
       case 'Single':
@@ -103,6 +105,9 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
         break;
       case 'Events':
         this._setupEvents();
+        break;
+      case 'Disabled':
+        this._setupDisabled();
         break;
       case 'Styled':
         this._setupStyled();
@@ -180,6 +185,23 @@ export class DemoSharedNativescriptCalendar extends DemoSharedBase {
     this.set('scenarioLabel', 'Events');
     this.set('scenarioDescription', 'Pinned day headers \u2022 Tap a day with dots');
     this.set('statusText', 'Tap a day with events to see details');
+  }
+
+  private _setupDisabled() {
+    this.calendar.selectionMode = SelectionMode.Single;
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = today.getMonth();
+
+    // Disable specific dates (e.g. holidays)
+    this.calendar.disabledDates = [new Date(y, m, 5), new Date(y, m, 10), new Date(y, m, 15), new Date(y, m, 25)];
+
+    // Disable weekends (0 = Sunday, 6 = Saturday)
+    this.calendar.disabledWeekdays = [0, 6];
+
+    this.set('scenarioLabel', 'Disabled Dates');
+    this.set('scenarioDescription', 'Weekends + specific dates disabled');
+    this.set('statusText', 'Weekends and select dates are disabled');
   }
 
   private _setupStyled() {

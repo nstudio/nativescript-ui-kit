@@ -89,6 +89,8 @@ public class NCalendarView: UIView {
   private var rangeStartKey: String?
   private var rangeEndKey: String?
   private var eventsByKey = [String: [[String: Any]]]()
+  private var disabledDayKeys = Set<String>()
+  private var disabledWeekdaySet = Set<Int>()
   private var _calendar = Calendar.current
   private lazy var _dateFormatter: DateFormatter = {
     let f = DateFormatter()
@@ -378,6 +380,10 @@ public class NCalendarView: UIView {
     let isDisabled = isDateDisabled(date)
     let isWeekend = _calendar.isDateInWeekend(date)
 
+    // Fire dayRender callback
+    let comps = _calendar.dateComponents([.year, .month, .day], from: date)
+    onDayRender?(comps.year!, comps.month!, comps.day!, self, isSelected, isInRange, isDisabled)
+
     // Range position detection
     let isRangeStart = key == rangeStartKey && rangeEndKey != nil
     let isRangeEnd = key == rangeEndKey && rangeStartKey != nil
@@ -582,6 +588,16 @@ public class NCalendarView: UIView {
     rebuildContent()
   }
 
+  @objc public func setDisabledDayKeys(_ keys: [String]) {
+    disabledDayKeys = Set(keys)
+    rebuildContent()
+  }
+
+  @objc public func setDisabledWeekdays(_ weekdays: [Int]) {
+    disabledWeekdaySet = Set(weekdays)
+    rebuildContent()
+  }
+
   // MARK: - Programmatic Scrolling
 
   @objc public func scrollToMonthContaining(year: Int, month: Int, day: Int, animated: Bool) {
@@ -705,6 +721,15 @@ public class NCalendarView: UIView {
       let dayAfterMax = _calendar.date(byAdding: .day, value: 1, to: _calendar.startOfDay(for: maxDate))!
       if date >= dayAfterMax { return true }
     }
+    if !disabledWeekdaySet.isEmpty {
+      let weekday = _calendar.component(.weekday, from: date)
+      // Convert Calendar weekday (1=Sun..7=Sat) to JS weekday (0=Sun..6=Sat)
+      if disabledWeekdaySet.contains(weekday - 1) { return true }
+    }
+    if !disabledDayKeys.isEmpty {
+      let key = dateKey(date)
+      if disabledDayKeys.contains(key) { return true }
+    }
     return false
   }
 
@@ -822,6 +847,10 @@ public class NCalendarView: UIView {
       let isToday = _calendar.isDateInToday(date)
       let isDisabled = isDateDisabled(date)
       let isWeekend = _calendar.isDateInWeekend(date)
+
+      // Fire dayRender callback
+      let comps = _calendar.dateComponents([.year, .month, .day], from: date)
+      onDayRender?(comps.year!, comps.month!, comps.day!, cell, isSelected, isInRange, isDisabled)
 
       // Range position
       let isRangeStart = key == rangeStartKey && rangeEndKey != nil

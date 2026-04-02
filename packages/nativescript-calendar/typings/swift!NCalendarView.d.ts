@@ -164,6 +164,10 @@ declare class NCalendarView extends UIView {
 
   rebuildContent(): void;
 
+  setDisabledDayKeys(keys: NSArray<string> | string[]): void;
+
+  setDisabledWeekdays(weekdays: NSArray<number> | number[]): void;
+
   scrollToDayContainingWithYearMonthDayAnimated(year: number, month: number, day: number, animated: boolean): void;
 
   scrollToMonthContainingWithYearMonthDayAnimated(year: number, month: number, day: number, animated: boolean): void;

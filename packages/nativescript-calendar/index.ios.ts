@@ -8,6 +8,7 @@ import {
   ScrollPosition,
   CalendarMonth,
   CalendarDayEventData,
+  CalendarDayRenderEventData,
   displayModeProperty,
   selectionModeProperty,
   orientationProperty,
@@ -18,6 +19,8 @@ import {
   selectedDatesProperty,
   selectedDateRangeProperty,
   eventsProperty,
+  disabledDatesProperty,
+  disabledWeekdaysProperty,
   interMonthSpacingProperty,
   verticalDayMarginProperty,
   horizontalDayMarginProperty,
@@ -113,6 +116,25 @@ export class NCalendar extends NCalendarCommon {
     this._calView.onMonthChanged = (year: number, month: number) => {
       this._notifyMonthChanged({ month, year });
     };
+
+    this._calView.onDayRender = (year: number, month: number, day: number, view: any, isSelected: boolean, isInRange: boolean, isDisabled: boolean) => {
+      if (this.hasListeners(NCalendarCommon.dayRenderEvent)) {
+        const date = new Date(year, month - 1, day);
+        const calDay = this._buildCalendarDay(date, DayPosition.MonthDate);
+        this.notify({
+          eventName: NCalendarCommon.dayRenderEvent,
+          object: this,
+          data: {
+            day: calDay,
+            view,
+            isSelected,
+            isInRange,
+            isDisabled,
+            events: this._getEventsForDate(date),
+          },
+        } as CalendarDayRenderEventData);
+      }
+    };
   }
 
   // Selection Sync
@@ -153,11 +175,34 @@ export class NCalendar extends NCalendarCommon {
     // Selection
     this._calView.selectionModeStr = this.selectionMode;
 
+    // Disabled dates
+    this._syncDisabledDates();
+    this._syncDisabledWeekdays();
+
     // Style
     this._applyStyleProperties();
 
     // Selection state
     this._syncSelectionToBridge();
+  }
+
+  private _syncDisabledDates() {
+    if (!this._calView) return;
+    if (this.disabledDates && this.disabledDates.length) {
+      const keys = this.disabledDates.map((d) => this._toDateKey(d));
+      this._calView.setDisabledDayKeys(keys);
+    } else {
+      this._calView.setDisabledDayKeys([]);
+    }
+  }
+
+  private _syncDisabledWeekdays() {
+    if (!this._calView) return;
+    if (this.disabledWeekdays && this.disabledWeekdays.length) {
+      this._calView.setDisabledWeekdays(this.disabledWeekdays);
+    } else {
+      this._calView.setDisabledWeekdays([]);
+    }
   }
 
   private _applyStyleProperties() {
@@ -334,6 +379,14 @@ export class NCalendar extends NCalendarCommon {
     } else if (this._calView) {
       this._calView.setEvents('[]');
     }
+  }
+
+  [disabledDatesProperty.setNative](_value: Date[]) {
+    this._syncDisabledDates();
+  }
+
+  [disabledWeekdaysProperty.setNative](_value: any) {
+    this._syncDisabledWeekdays();
   }
 
   [interMonthSpacingProperty.setNative](value: number) {

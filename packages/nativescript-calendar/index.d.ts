@@ -137,6 +137,10 @@ export class NCalendar extends View {
   outDateStyle: OutDateStyle;
   monthColumns: number;
 
+  // Disabled dates
+  disabledDates: Date[];
+  disabledWeekdays: number[];
+
   // Style
   dayTextColor: Color;
   dayFontSize: number;
