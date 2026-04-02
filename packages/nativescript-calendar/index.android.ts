@@ -19,6 +19,8 @@ import {
   selectedDatesProperty,
   selectedDateRangeProperty,
   eventsProperty,
+  disabledDatesProperty,
+  disabledWeekdaysProperty,
   interMonthSpacingProperty,
   outDateStyleProperty,
   monthColumnsProperty,
@@ -944,6 +946,12 @@ export class NCalendar extends NCalendarCommon {
   }
 
   [eventsProperty.setNative](_value: any) {
+    this._refreshCalendar();
+  }
+  [disabledDatesProperty.setNative](_value: any) {
+    this._refreshCalendar();
+  }
+  [disabledWeekdaysProperty.setNative](_value: any) {
     this._refreshCalendar();
   }
   [interMonthSpacingProperty.setNative](_value: number) {

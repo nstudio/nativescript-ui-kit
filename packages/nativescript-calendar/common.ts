@@ -165,6 +165,8 @@ export abstract class NCalendarCommon extends View {
   selectedDayBackgroundColor: Color;
   selectedRangeColor: Color;
   weekendTextColor: Color;
+  disabledDates: Date[];
+  disabledWeekdays: number[];
   disabledDayTextColor: Color;
   outDateTextColor: Color;
   monthHeaderTextColor: Color;
@@ -204,6 +206,15 @@ export abstract class NCalendarCommon extends View {
     const t = normalizeDate(date).getTime();
     if (this.minDate && t < normalizeDate(this.minDate).getTime()) return true;
     if (this.maxDate && t > normalizeDate(this.maxDate).getTime()) return true;
+    if (this.disabledWeekdays && this.disabledWeekdays.length) {
+      if (this.disabledWeekdays.indexOf(date.getDay()) !== -1) return true;
+    }
+    if (this.disabledDates && this.disabledDates.length) {
+      const key = dateToKey(date);
+      for (const d of this.disabledDates) {
+        if (dateToKey(d) === key) return true;
+      }
+    }
     return false;
   }
 
@@ -537,6 +548,18 @@ export const eventsProperty = new Property<NCalendarCommon, CalendarEvent[]>({
   defaultValue: [],
 });
 eventsProperty.register(NCalendarCommon);
+
+export const disabledDatesProperty = new Property<NCalendarCommon, Date[]>({
+  name: 'disabledDates',
+  defaultValue: [],
+});
+disabledDatesProperty.register(NCalendarCommon);
+
+export const disabledWeekdaysProperty = new Property<NCalendarCommon, number[]>({
+  name: 'disabledWeekdays',
+  defaultValue: [],
+});
+disabledWeekdaysProperty.register(NCalendarCommon);
 
 export const interMonthSpacingProperty = new Property<NCalendarCommon, number>({
   name: 'interMonthSpacing',
