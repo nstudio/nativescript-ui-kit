@@ -20,6 +20,11 @@ import { install } from '@nativescript-community/ui-material-bottomsheet';
 //   Smartlook.start('<api-key>');
 // });
 
+// configure the Cloudinary object here, through the plugin, and make it global
+// import { init } from '@nstudio/nativescript-cloudinary';
+
+// init(process.env.CLOUDINARY_CLOUD_NAME!, process.env.CLOUDINARY_API_KEY!, process.env.CLOUDINARY_API_SECRET!, true);
+
 install();
 
 Application.run({ moduleName: 'app-root' });

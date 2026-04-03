@@ -23,9 +23,14 @@
     "Cloudinary"
   ],
   "author": {
-    "name": "nstudio",
-    "email": "oss@nstudio.io"
+    "name": "Nandesora Tjihero"
   },
+  "contributors": [
+    {
+      "name": "nstudio",
+      "email": "oss@nstudio.io"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/nstudio/nativescript-ui-kit/issues"
   },
