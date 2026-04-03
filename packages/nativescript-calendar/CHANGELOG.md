@@ -1,3 +1,9 @@
+## 1.0.4 (2026-04-03)
+
+### 🩹 Fixes
+
+- build and packaging with NativeClass
+  
 ## 1.0.3 (2026-04-02)
 
 ### 🚀 Features
