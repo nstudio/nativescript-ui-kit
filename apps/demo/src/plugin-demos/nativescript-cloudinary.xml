@@ -1,0 +1,17 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+  xmlns:cl="@nstudio/nativescript-cloudinary">
+  <Page.actionBar>
+    <ActionBar title="nativescript-cloudinary" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
+  <StackLayout class="p-20">
+    <ScrollView class="h-full">
+      <StackLayout>
+        <Button text="Test nativescript-cloudinary" tap="{{ testIt }}" class="btn btn-primary" />
+
+        <cl:ImageCloudinary options="{{ options }}" class="m-20" stretch="aspectFill" width="300" height="300" />
+
+      </StackLayout>
+    </ScrollView>
+  </StackLayout>
+</Page>

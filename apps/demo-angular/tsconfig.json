@@ -18,7 +18,8 @@
       "@nstudio/nativescript-smartlook": ["../../packages/nativescript-smartlook/index.d.ts"],
       "@nstudio/nativescript-variable-blur-view": ["../../packages/nativescript-variable-blur-view/index.d.ts"],
       "@nstudio/nativescript-calendar": ["../../packages/nativescript-calendar/index.d.ts"],
-      "@nstudio/nativescript-toolbar": ["../../packages/nativescript-toolbar/index.d.ts"]
+      "@nstudio/nativescript-toolbar": ["../../packages/nativescript-toolbar/index.d.ts"],
+      "@nstudio/nativescript-cloudinary": ["../../packages/nativescript-cloudinary/index.d.ts"]
     }
   },
   "files": ["./references.d.ts", "./src/main.ts", "./src/polyfills.ts"],

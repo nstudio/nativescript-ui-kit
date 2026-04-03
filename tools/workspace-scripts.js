@@ -152,6 +152,13 @@ module.exports = {
           description: '@nstudio/nativescript-toolbar: Build',
         },
       },
+      // @nstudio/nativescript-cloudinary
+      'nativescript-cloudinary': {
+        build: {
+          script: 'nx run nativescript-cloudinary:build.all',
+          description: '@nstudio/nativescript-cloudinary: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -213,6 +220,10 @@ module.exports = {
       'nativescript-toolbar': {
         script: 'nx run nativescript-toolbar:focus',
         description: 'Focus on @nstudio/nativescript-toolbar',
+      },
+      'nativescript-cloudinary': {
+        script: 'nx run nativescript-cloudinary:focus',
+        description: 'Focus on @nstudio/nativescript-cloudinary',
       },
       reset: {
         script: 'node tools/scripts/focus-packages.js',

@@ -1,0 +1,66 @@
+{
+  "name": "nativescript-cloudinary",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-cloudinary",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-cloudinary",
+        "tsConfig": "packages/nativescript-cloudinary/tsconfig.json",
+        "packageJson": "packages/nativescript-cloudinary/package.json",
+        "main": "packages/nativescript-cloudinary/index.d.ts",
+        "assets": [
+          "packages/nativescript-cloudinary/*.md",
+          "packages/nativescript-cloudinary/index.d.ts",
+          "packages/nativescript-cloudinary/nativescript.config.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-cloudinary/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts nativescript-cloudinary"],
+        "parallel": false
+      },
+      "outputs": ["{workspaceRoot}/dist/packages/nativescript-cloudinary"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-cloudinary"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/nativescript-cloudinary/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

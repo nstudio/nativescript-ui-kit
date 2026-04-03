@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'nativescript-calendar', loadChildren: () => import('./plugin-demos/nativescript-calendar.module').then((m) => m.NativescriptCalendarModule) },
+  { path: 'nativescript-cloudinary', loadChildren: () => import('./plugin-demos/nativescript-cloudinary.module').then((m) => m.NativescriptCloudinaryModule) },
   { path: 'nativescript-coachmarks', loadChildren: () => import('./plugin-demos/nativescript-coachmarks.module').then((m) => m.NativescriptCoachmarksModule) },
   { path: 'nativescript-fluid-segmented-bar', loadChildren: () => import('./plugin-demos/nativescript-fluid-segmented-bar.module').then((m) => m.NativescriptFluidSegmentedBarModule) },
   { path: 'nativescript-fonticon', loadChildren: () => import('./plugin-demos/nativescript-fonticon.module').then((m) => m.NativescriptFonticonModule) },

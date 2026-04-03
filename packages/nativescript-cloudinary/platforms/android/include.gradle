@@ -1,0 +1,5 @@
+dependencies {
+    // other dependencies
+implementation 'com.cloudinary:cloudinary-android:3.0.2'
+implementation 'com.cloudinary:cloudinary-android-preprocess:2.4.0'
+}

@@ -10,6 +10,9 @@ export class HomeComponent {
       name: 'nativescript-calendar',
     },
     {
+      name: 'nativescript-cloudinary',
+    },
+    {
       name: 'nativescript-coachmarks',
     },
     {

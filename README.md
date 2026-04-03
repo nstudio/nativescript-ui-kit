@@ -1,4 +1,5 @@
 - [@nstudio/nativescript-calendar](packages/nativescript-calendar/README.md)
+- [@nstudio/nativescript-cloudinary](packages/nativescript-cloudinary/README.md)
 - [@nstudio/nativescript-coachmarks](packages/nativescript-coachmarks/README.md)
 - [@nstudio/nativescript-fluid-segmented-bar](packages/nativescript-fluid-segmented-bar/README.md)
 - [nativescript-fonticon](packages/nativescript-fonticon/README.md)

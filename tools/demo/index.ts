@@ -1,5 +1,6 @@
 export * from './utils';
 export * from './nativescript-calendar';
+export * from './nativescript-cloudinary';
 export * from './nativescript-coachmarks';
 export * from './nativescript-fluid-segmented-bar';
 export * from './nativescript-fonticon';

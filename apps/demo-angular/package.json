@@ -14,7 +14,8 @@
     "@nstudio/nativescript-rich-paste": "file:../../dist/packages/nativescript-rich-paste",
     "@nstudio/nativescript-shimmer": "file:../../dist/packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../dist/packages/nativescript-smartlook",
-    "@nstudio/nativescript-variable-blur-view": "file:../../dist/packages/nativescript-variable-blur-view"
+    "@nstudio/nativescript-variable-blur-view": "file:../../dist/packages/nativescript-variable-blur-view",
+    "@nstudio/nativescript-cloudinary": "file:../../dist/packages/nativescript-cloudinary"
   },
   "devDependencies": {
     "@nativescript/android": "~9.0.0",
