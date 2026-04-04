@@ -1,0 +1,40 @@
+{
+  "files.exclude": {
+    "**/apps/demo": false,
+    "**/apps/demo-angular": false,
+    "**/packages/nativescript-calendar": false,
+    "**/packages/nativescript-cloudinary": false,
+    "**/packages/nativescript-coachmarks": false,
+    "**/packages/nativescript-fluid-segmented-bar": false,
+    "**/packages/nativescript-fonticon": false,
+    "**/packages/nativescript-label-marquee": false,
+    "**/packages/nativescript-markdown-view": false,
+    "**/packages/nativescript-menu": false,
+    "**/packages/nativescript-parallax": false,
+    "**/packages/nativescript-rich-paste": false,
+    "**/packages/nativescript-shimmer": false,
+    "**/packages/nativescript-smartlook": false,
+    "**/packages/nativescript-toolbar": false,
+    "**/packages/nativescript-variable-blur-view": false,
+    "**/packages/ui-collectionview": false
+  },
+  "search.exclude": {
+    "**/apps/demo": false,
+    "**/apps/demo-angular": false,
+    "**/packages/nativescript-calendar": false,
+    "**/packages/nativescript-cloudinary": false,
+    "**/packages/nativescript-coachmarks": false,
+    "**/packages/nativescript-fluid-segmented-bar": false,
+    "**/packages/nativescript-fonticon": false,
+    "**/packages/nativescript-label-marquee": false,
+    "**/packages/nativescript-markdown-view": false,
+    "**/packages/nativescript-menu": false,
+    "**/packages/nativescript-parallax": false,
+    "**/packages/nativescript-rich-paste": false,
+    "**/packages/nativescript-shimmer": false,
+    "**/packages/nativescript-smartlook": false,
+    "**/packages/nativescript-toolbar": false,
+    "**/packages/nativescript-variable-blur-view": false,
+    "**/packages/ui-collectionview": false
+  }
+}

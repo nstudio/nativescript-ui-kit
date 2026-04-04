@@ -1,17 +1,45 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
   xmlns:cl="@nstudio/nativescript-cloudinary">
   <Page.actionBar>
-    <ActionBar title="nativescript-cloudinary" icon="" class="action-bar">
-    </ActionBar>
+    <ActionBar title="Cloudinary" class="action-bar" />
   </Page.actionBar>
-  <StackLayout class="p-20">
-    <ScrollView class="h-full">
-      <StackLayout>
-        <Button text="Test nativescript-cloudinary" tap="{{ testIt }}" class="btn btn-primary" />
 
-        <cl:ImageCloudinary options="{{ options }}" class="m-20" stretch="aspectFill" width="300" height="300" />
+  <!-- built to demo with iPad -->
 
-      </StackLayout>
+  <GridLayout rows="auto,*" columns="auto,*" padding="20">
+
+    <!-- Category selector -->
+    <StackLayout row="0" scrollBarIndicatorVisible="false" margin="8 0 8 0">
+      <WrapLayout padding="0 8">
+        <Repeater items="{{ categories }}">
+          <Repeater.itemTemplate>
+            <Label text="{{ name }}" tap="onCategoryTap" margin="6" padding="12 18" borderRadius="99999" fontSize="16" fontWeight="600" color="#FFFFFF" backgroundColor="#6200EE" />
+          </Repeater.itemTemplate>
+        </Repeater>
+      </WrapLayout>
+    </StackLayout>
+
+    <!-- Item selector -->
+    <ScrollView row="1" scrollBarIndicatorVisible="false" margin="0 0 4 0">
+      <WrapLayout padding="0 8">
+        <Repeater items="{{ currentItems }}">
+          <Repeater.itemTemplate>
+            <Label text="{{ title }}" tap="onItemTap" margin="4" padding="8 14" borderRadius="99999" fontSize="14" fontWeight="500" color="#6200EE" backgroundColor="#F3E8FF" />
+          </Repeater.itemTemplate>
+        </Repeater>
+      </WrapLayout>
     </ScrollView>
-  </StackLayout>
+
+    <!-- Image preview -->
+
+    <GridLayout rowSpan="2" col="1" rows="auto,*,auto" horizontalAlignment="center" padding="8">
+      <cl:ImageCloudinary options="{{ currentOptions }}" stretch="aspectFit" width="{{ imageSize }}" height="{{ imageSize }}" />
+      <!-- Info bar -->
+      <StackLayout row="2" padding="4 16 8 16" horizontalAlignment="left">
+        <Label text="{{ currentTitle }}" fontWeight="bold" fontSize="18" color="#212121" />
+        <Label text="{{ currentDescription }}" fontSize="13" color="#757575" textWrap="true" />
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
 </Page>

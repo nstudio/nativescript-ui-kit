@@ -7,7 +7,7 @@
     "@nativescript-community/ui-material-bottomsheet": "file:../../node_modules/@nativescript-community/ui-material-bottomsheet",
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
     "nativescript-gif": "^5.0.0",
-    "@nstudio/nativescript-toolbar": "file:../../packages/nativescript-toolbar",
+    "@nstudio/nativescript-cloudinary": "file:../../packages/nativescript-cloudinary",
     "@nstudio/nativescript-calendar": "file:../../packages/nativescript-calendar",
     "@nstudio/nativescript-coachmarks": "file:../../packages/nativescript-coachmarks",
     "@nstudio/nativescript-fluid-segmented-bar": "file:../../packages/nativescript-fluid-segmented-bar",
@@ -19,8 +19,8 @@
     "@nstudio/nativescript-rich-paste": "file:../../packages/nativescript-rich-paste",
     "@nstudio/nativescript-shimmer": "file:../../packages/nativescript-shimmer",
     "@nstudio/nativescript-smartlook": "file:../../packages/nativescript-smartlook",
-    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view",
-    "@nstudio/nativescript-cloudinary": "file:../../packages/nativescript-cloudinary"
+    "@nstudio/nativescript-toolbar": "file:../../packages/nativescript-toolbar",
+    "@nstudio/nativescript-variable-blur-view": "file:../../packages/nativescript-variable-blur-view"
   },
   "devDependencies": {
     "@nativescript/android": "~9.0.0",
