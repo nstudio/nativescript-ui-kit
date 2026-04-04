@@ -1,3 +1,13 @@
+## 1.0.5 (2026-04-03)
+
+### 🩹 Fixes
+
+- **calendar:** emit dayRender with the actual reusable cell view ([befd9c3](https://github.com/nstudio/nativescript-ui-kit/commit/befd9c3))
+
+### ❤️ Thank You
+
+- Nathan Walker
+
 ## 1.0.4 (2026-04-03)
 
 ### 🩹 Fixes

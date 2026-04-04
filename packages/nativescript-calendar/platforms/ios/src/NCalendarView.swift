@@ -457,51 +457,32 @@ public class NCalendarView: UIView {
     let dayText = "\(dayComponents.day)"
     let accLabel = _dateFormatter.string(from: date)
 
-    // Use DayWithEventsView when this day has events, otherwise standard DayView
-    if !eventColorHexes.isEmpty {
-      let properties = DayWithEventsView.InvariantViewProperties(
-        textColorHex: textColorHex,
-        fontSize: dayFontSizePt,
-        bgFillColorHex: bgFillHex,
-        bgBorderColorHex: bgBorderHex,
-        bgBorderWidth: bgBorderWidth,
-        isCircle: isCircle
+    let properties = DayWithEventsView.InvariantViewProperties(
+      textColorHex: textColorHex,
+      fontSize: dayFontSizePt,
+      bgFillColorHex: bgFillHex,
+      bgBorderColorHex: bgBorderHex,
+      bgBorderWidth: bgBorderWidth,
+      isCircle: isCircle
+    )
+
+    // Use the custom day view for every month/year cell so dayRender receives the actual cell view.
+    return DayWithEventsView.calendarItemModel(
+      invariantViewProperties: properties,
+      content: .init(
+        dayText: dayText,
+        accessibilityLabel: accLabel,
+        eventColorHexes: eventColorHexes,
+        renderContext: .init(
+          year: dayComponents.month.year,
+          month: dayComponents.month.month,
+          day: dayComponents.day,
+          isSelected: isSelected,
+          isInRange: isInRange,
+          isDisabled: isDisabled
+        )
       )
-
-      return DayWithEventsView.calendarItemModel(
-        invariantViewProperties: properties,
-        content: .init(dayText: dayText, accessibilityLabel: accLabel, eventColorHexes: eventColorHexes)
-      )
-    } else {
-      // Standard DayView — no events
-      let textColor: UIColor = colorFromHex(textColorHex) ?? .label
-
-      let bgDrawingConfig: DrawingConfig
-      if (isRangeStart || isRangeEnd) && !isSingleDayRange {
-        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue, borderColor: .clear)
-      } else if isMiddleOfRange && !isSingleDayRange {
-        bgDrawingConfig = .transparent
-      } else if isSelected {
-        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(bgFillHex) ?? .systemBlue, borderColor: .clear)
-      } else if isToday && !todayBgColorHex.isEmpty {
-        bgDrawingConfig = DrawingConfig(fillColor: colorFromHex(todayBgColorHex) ?? .clear, borderColor: .clear)
-      } else if isToday {
-        bgDrawingConfig = DrawingConfig(fillColor: .clear, borderColor: colorFromHex(bgBorderHex) ?? .systemBlue, borderWidth: 1)
-      } else {
-        bgDrawingConfig = .transparent
-      }
-
-      var properties = DayView.InvariantViewProperties.baseInteractive
-      properties.textColor = textColor
-      properties.font = .systemFont(ofSize: dayFontSizePt)
-      properties.backgroundShapeDrawingConfig = bgDrawingConfig
-      properties.shape = isCircle ? .circle : .rectangle(cornerRadius: 0)
-
-      return DayView.calendarItemModel(
-        invariantViewProperties: properties,
-        content: .init(dayText: dayText, accessibilityLabel: accLabel, accessibilityHint: nil)
-      )
-    }
+    )
   }
 
   // MARK: - Month Header Item
@@ -1047,6 +1028,15 @@ public final class DayRangeHighlightView: UIView, CalendarItemViewRepresentable 
 /// Used in place of DayView when a day has associated events.
 public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
 
+  public struct DayRenderContext: Equatable {
+    let year: Int
+    let month: Int
+    let day: Int
+    let isSelected: Bool
+    let isInRange: Bool
+    let isDisabled: Bool
+  }
+
   public struct InvariantViewProperties: Hashable {
     var textColorHex: String
     var fontSize: CGFloat
@@ -1060,12 +1050,15 @@ public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
     let dayText: String
     let accessibilityLabel: String?
     let eventColorHexes: [String]
+    let renderContext: DayRenderContext
   }
 
   private let dayLabel = UILabel()
   private let bgShapeLayer = CAShapeLayer()
   private var dotLayers: [CAShapeLayer] = []
   private var isCircle: Bool = true
+  private var renderContext: DayRenderContext?
+  private var hasEmittedRenderCallback = false
 
   fileprivate init(invariantViewProperties props: InvariantViewProperties) {
     super.init(frame: .zero)
@@ -1088,6 +1081,16 @@ public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
 
   required init?(coder: NSCoder) { fatalError() }
 
+  public override func didMoveToSuperview() {
+    super.didMoveToSuperview()
+    emitDayRenderIfNeeded()
+  }
+
+  public override func didMoveToWindow() {
+    super.didMoveToWindow()
+    emitDayRenderIfNeeded()
+  }
+
   public override func layoutSubviews() {
     super.layoutSubviews()
 
@@ -1109,6 +1112,7 @@ public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
     dayLabel.frame = CGRect(x: 0, y: labelOffset, width: w, height: h)
 
     layoutDots()
+    emitDayRenderIfNeeded()
   }
 
   private func layoutDots() {
@@ -1129,8 +1133,12 @@ public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
   }
 
   fileprivate func setContent(_ content: Content) {
+    backgroundColor = .clear
+    alpha = 1.0
     dayLabel.text = content.dayText
     accessibilityLabel = content.accessibilityLabel
+    renderContext = content.renderContext
+    hasEmittedRenderCallback = false
 
     // Remove old dots
     for dot in dotLayers { dot.removeFromSuperlayer() }
@@ -1145,6 +1153,34 @@ public final class DayWithEventsView: UIView, CalendarItemViewRepresentable {
     }
 
     setNeedsLayout()
+    emitDayRenderIfNeeded()
+  }
+
+  private func emitDayRenderIfNeeded() {
+    guard !hasEmittedRenderCallback,
+          let renderContext,
+          let calendarView = enclosingCalendarView() else { return }
+    hasEmittedRenderCallback = true
+    calendarView.onDayRender?(
+      renderContext.year,
+      renderContext.month,
+      renderContext.day,
+      self,
+      renderContext.isSelected,
+      renderContext.isInRange,
+      renderContext.isDisabled
+    )
+  }
+
+  private func enclosingCalendarView() -> NCalendarView? {
+    var ancestor = superview
+    while let current = ancestor {
+      if let calendarView = current as? NCalendarView {
+        return calendarView
+      }
+      ancestor = current.superview
+    }
+    return nil
   }
 
   public static func makeView(
