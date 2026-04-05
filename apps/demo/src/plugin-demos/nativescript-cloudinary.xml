@@ -6,9 +6,30 @@
 
   <!-- built to demo with iPad -->
 
+  <!-- Gallery demo: 26 images for memory/performance comparison -->
+  <!-- Uncomment this section to demonstrate unoptimized vs optimized image loading -->
+  <!-- Step 1: Run with unoptimized to see high memory usage and slow load -->
+  <!-- Step 2: Tap "Optimized" to see dramatic improvement in memory and load time -->
+  <!-- <GridLayout rows="auto,*">
+    <GridLayout row="0" columns="*,*" padding="16 16 8 16">
+      <Button col="0" text="Unoptimized (Large)" tap="loadUnoptimized" class="btn btn-primary" margin="0 4 0 0" />
+      <Button col="1" text="Optimized" tap="loadOptimized" class="btn btn-outline" margin="0 0 0 4" />
+    </GridLayout>
+    <ScrollView row="1">
+      <Repeater items="{{ galleryImages }}">
+        <Repeater.itemsLayout>
+          <WrapLayout padding="8" width="100%" />
+        </Repeater.itemsLayout>
+        <Repeater.itemTemplate>
+          <cl:ImageCloudinary options="{{ options }}" stretch="aspectFill" width="{{ size }}" height="{{ size }}" margin="4" borderRadius="8" />
+        </Repeater.itemTemplate>
+      </Repeater>
+    </ScrollView>
+  </GridLayout> -->
+
+  <!-- Examples of filters and transformations -->
   <GridLayout rows="auto,*" columns="auto,*" padding="20">
 
-    <!-- Category selector -->
     <StackLayout row="0" scrollBarIndicatorVisible="false" margin="8 0 8 0">
       <WrapLayout padding="0 8">
         <Repeater items="{{ categories }}">
@@ -19,7 +40,6 @@
       </WrapLayout>
     </StackLayout>
 
-    <!-- Item selector -->
     <ScrollView row="1" scrollBarIndicatorVisible="false" margin="0 0 4 0">
       <WrapLayout padding="0 8">
         <Repeater items="{{ currentItems }}">
@@ -30,16 +50,15 @@
       </WrapLayout>
     </ScrollView>
 
-    <!-- Image preview -->
-
-    <GridLayout rowSpan="2" col="1" rows="auto,*,auto" horizontalAlignment="center" padding="8">
+    <GridLayout rowSpan="2" col="1" rows="*,auto" horizontalAlignment="center" padding="8">
       <cl:ImageCloudinary options="{{ currentOptions }}" stretch="aspectFit" width="{{ imageSize }}" height="{{ imageSize }}" />
-      <!-- Info bar -->
-      <StackLayout row="2" padding="4 16 8 16" horizontalAlignment="left">
+      <StackLayout row="1" padding="4 16 8 16" horizontalAlignment="left">
         <Label text="{{ currentTitle }}" fontWeight="bold" fontSize="18" color="#212121" />
         <Label text="{{ currentDescription }}" fontSize="13" color="#757575" textWrap="true" />
       </StackLayout>
     </GridLayout>
 
   </GridLayout>
+
 </Page>
+
